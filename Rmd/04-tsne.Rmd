@@ -1,0 +1,2 @@
+# Spurious embeddings from non-linear dimensionality reduction methods and how to find them {#ch:tsne}
+

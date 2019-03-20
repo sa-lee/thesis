@@ -1,0 +1,12 @@
+.Rhistory
+.RData
+.Rproj.user
+cache-*/
+/figure
+/img/*.png
+.DS_Store
+*.log
+*.run.xml
+*.bbl
+
+thesis\.tex

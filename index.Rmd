@@ -1,0 +1,31 @@
+---
+title: 'TBD'
+author: 'Stuart Lee'
+degreetype: 'Doctor of Philosophy'
+site: bookdown::bookdown_site
+degrees: 'B.MatComSci., University of Adelaide; MSc.Bioinformatics. University of Melbourne'
+bibliography: [bib/plyranges.bib]
+link-citations: yes
+---
+
+```{r initial, echo = FALSE, cache = FALSE, results = 'hide'}
+options("knitr.graphics.auto_pdf" = TRUE)
+library(knitr)
+opts_chunk$set(
+  warning = FALSE, message = FALSE, echo = FALSE,
+  fig.path = 'figure/', fig.align = 'center', fig.show = 'hold',
+  cache = TRUE, external = TRUE, comment = "#>", dpi = 300,
+  out.width = ifelse(is_html_output(), "100%", "\\textwidth"),
+  cache.path = ifelse(is_html_output(), 'cache-gitbook/', 'cache-pdfbook/')
+)
+```
+
+`r if (knitr::is_latex_output()) '<!--'` 
+
+# Welcome {-}
+
+This is the website for my PhD thesis at Monash University (Australia), titled "TBD". 
+It is a work in progress.
+
+`r if (knitr::is_latex_output()) '-->'`
+
