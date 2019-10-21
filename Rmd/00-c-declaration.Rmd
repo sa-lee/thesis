@@ -7,3 +7,4 @@ I hereby declare that this thesis contains no material which has been accepted f
 \vspace*{2cm}\par\authorname
 
 `r if (knitr::is_html_output()) '-->'`
+

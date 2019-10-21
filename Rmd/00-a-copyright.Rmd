@@ -1,0 +1,9 @@
+`r if (knitr::is_html_output()) '<!--'` 
+
+# Copyright notice {-}
+
+\textcopyright { }Stuart Lee (\number\the\year). 
+
+\newpage
+
+`r if (knitr::is_html_output()) '-->'`
