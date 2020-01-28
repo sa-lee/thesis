@@ -25,8 +25,15 @@ Imports:
     knitr,
     magick,
     showtext,
-    spelling
+    spelling,
+    fluentGenomics,
+    macrophage,
+    tidyr,
+    ggplot2,
+    DESeq2,
+    vegawidget
 Remotes:
     rstudio/gt
+    sa-lee/fluentGenomics
 Language: en-GB
 URL: https://github.com/sa-lee/thesis
