@@ -1,3 +1,4 @@
 ^tic\.R$
 ^\.travis\.yml$
 ^Dockerfile$
+^data-raw$
