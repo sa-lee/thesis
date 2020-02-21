@@ -182,31 +182,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.2.1</span> Using <code>tximeta</code> to import RNA-seq quantification data</h3>
 <p>First, we specify a directory <code>dir</code>, where the quantification files are stored.
 You could simply specify this directory with:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">dir &lt;-<span class="st"> &quot;/path/to/quant/files&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">dir &lt;-<span class="st"> &quot;/path/to/quant/files&quot;</span></a></code></pre></div>
 <p>where the path is relative to your current R session. However, in this case we
 have distributed the files in the <code>macrophage</code> package. The relevant directory
 and associated files can be located using <code>system.file</code>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package=</span><span class="st">&quot;macrophage&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package=</span><span class="st">&quot;macrophage&quot;</span>)</a></code></pre></div>
 <p>Information about the experiment is contained in the <code>coldata.csv</code> file. We
 leverage the <code>dplyr</code> and <code>readr</code> packages (as part of the <code>tidyverse</code>) to read
 this file into R <span class="citation">(Wickham et al. <a href="bibliography.html#ref-tidyverse" role="doc-biblioref">2019</a>)</span>. We will see later that <code>plyranges</code> extends these
 packages to accommodate genomic ranges.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb18-3" title="3">colfile &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, <span class="st">&quot;coldata.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb18-4" title="4">coldata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(colfile) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb18-6" title="6">    names,</a>
-<a class="sourceLine" id="cb18-7" title="7">    <span class="dt">id =</span> sample_id,</a>
-<a class="sourceLine" id="cb18-8" title="8">    <span class="dt">line =</span> line_id,</a>
-<a class="sourceLine" id="cb18-9" title="9">    <span class="dt">condition =</span> condition_name</a>
-<a class="sourceLine" id="cb18-10" title="10">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb18-12" title="12">    <span class="dt">files =</span> <span class="kw">file.path</span>(dir, <span class="st">&quot;quants&quot;</span>, names, <span class="st">&quot;quant.sf.gz&quot;</span>),</a>
-<a class="sourceLine" id="cb18-13" title="13">    <span class="dt">line =</span> <span class="kw">factor</span>(line),</a>
-<a class="sourceLine" id="cb18-14" title="14">    <span class="dt">condition =</span> <span class="kw">relevel</span>(<span class="kw">factor</span>(condition), <span class="st">&quot;naive&quot;</span>)</a>
-<a class="sourceLine" id="cb18-15" title="15">  )</a>
-<a class="sourceLine" id="cb18-16" title="16">coldata</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb19-3" title="3">colfile &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, <span class="st">&quot;coldata.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb19-4" title="4">coldata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(colfile) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb19-6" title="6">    names,</a>
+<a class="sourceLine" id="cb19-7" title="7">    <span class="dt">id =</span> sample_id,</a>
+<a class="sourceLine" id="cb19-8" title="8">    <span class="dt">line =</span> line_id,</a>
+<a class="sourceLine" id="cb19-9" title="9">    <span class="dt">condition =</span> condition_name</a>
+<a class="sourceLine" id="cb19-10" title="10">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb19-12" title="12">    <span class="dt">files =</span> <span class="kw">file.path</span>(dir, <span class="st">&quot;quants&quot;</span>, names, <span class="st">&quot;quant.sf.gz&quot;</span>),</a>
+<a class="sourceLine" id="cb19-13" title="13">    <span class="dt">line =</span> <span class="kw">factor</span>(line),</a>
+<a class="sourceLine" id="cb19-14" title="14">    <span class="dt">condition =</span> <span class="kw">relevel</span>(<span class="kw">factor</span>(condition), <span class="st">&quot;naive&quot;</span>)</a>
+<a class="sourceLine" id="cb19-15" title="15">  )</a>
+<a class="sourceLine" id="cb19-16" title="16">coldata</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 24 x 5
 #&gt;    names      id     line  condition  files                                     
 #&gt;    &lt;chr&gt;      &lt;chr&gt;  &lt;fct&gt; &lt;fct&gt;      &lt;chr&gt;                                     
@@ -238,10 +238,10 @@ Inferential replicates are especially useful for performing transcript-level
 analysis, but here we will use a point estimate for the per-gene counts and
 perform gene-level analysis.</p>
 <p>The result is a <em>SummarizedExperiment</em> object.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(SummarizedExperiment))</a>
-<a class="sourceLine" id="cb20-2" title="2"><span class="kw">library</span>(tximeta)</a>
-<a class="sourceLine" id="cb20-3" title="3">se &lt;-<span class="st"> </span><span class="kw">tximeta</span>(coldata, <span class="dt">dropInfReps=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb20-4" title="4">se</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(SummarizedExperiment))</a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="kw">library</span>(tximeta)</a>
+<a class="sourceLine" id="cb21-3" title="3">se &lt;-<span class="st"> </span><span class="kw">tximeta</span>(coldata, <span class="dt">dropInfReps=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb21-4" title="4">se</a></code></pre></div>
 <pre><code>#&gt; class: RangedSummarizedExperiment 
 #&gt; dim: 205870 24 
 #&gt; metadata(6): tximetaInfo quantInfo ... txomeInfo txdbInfo
@@ -258,20 +258,20 @@ without any extra steps, as the <code>tximeta</code> function obtains any necess
 metadata via FTP, unless it is already cached locally. The <code>tximeta</code> package
 can also be used without an internet connection, in this case the linked
 transcriptome can be created directly from a <em>Salmon</em> index and gtf.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">makeLinkedTxome</span>(</a>
-<a class="sourceLine" id="cb22-2" title="2">  <span class="dt">indexDir=</span><span class="kw">file.path</span>(dir, <span class="st">&quot;gencode.v29_salmon_0.12.0&quot;</span>),</a>
-<a class="sourceLine" id="cb22-3" title="3">  <span class="dt">source=</span><span class="st">&quot;Gencode&quot;</span>,</a>
-<a class="sourceLine" id="cb22-4" title="4">  <span class="dt">organism=</span><span class="st">&quot;Homo sapiens&quot;</span>,</a>
-<a class="sourceLine" id="cb22-5" title="5">  <span class="dt">release=</span><span class="st">&quot;29&quot;</span>,</a>
-<a class="sourceLine" id="cb22-6" title="6">  <span class="dt">genome=</span><span class="st">&quot;GRCh38&quot;</span>,</a>
-<a class="sourceLine" id="cb22-7" title="7">  <span class="dt">fasta=</span><span class="st">&quot;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/gencode.v29.transcripts.fa.gz&quot;</span>,</a>
-<a class="sourceLine" id="cb22-8" title="8">  <span class="dt">gtf=</span><span class="kw">file.path</span>(dir, <span class="st">&quot;gencode.v29.annotation.gtf.gz&quot;</span>), <span class="co"># local version</span></a>
-<a class="sourceLine" id="cb22-9" title="9">  <span class="dt">write=</span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb22-10" title="10">)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">makeLinkedTxome</span>(</a>
+<a class="sourceLine" id="cb23-2" title="2">  <span class="dt">indexDir=</span><span class="kw">file.path</span>(dir, <span class="st">&quot;gencode.v29_salmon_0.12.0&quot;</span>),</a>
+<a class="sourceLine" id="cb23-3" title="3">  <span class="dt">source=</span><span class="st">&quot;Gencode&quot;</span>,</a>
+<a class="sourceLine" id="cb23-4" title="4">  <span class="dt">organism=</span><span class="st">&quot;Homo sapiens&quot;</span>,</a>
+<a class="sourceLine" id="cb23-5" title="5">  <span class="dt">release=</span><span class="st">&quot;29&quot;</span>,</a>
+<a class="sourceLine" id="cb23-6" title="6">  <span class="dt">genome=</span><span class="st">&quot;GRCh38&quot;</span>,</a>
+<a class="sourceLine" id="cb23-7" title="7">  <span class="dt">fasta=</span><span class="st">&quot;gencode.v29.transcripts.fa.gz&quot;</span>, <span class="co"># ftp link to fasta file</span></a>
+<a class="sourceLine" id="cb23-8" title="8">  <span class="dt">gtf=</span><span class="kw">file.path</span>(dir, <span class="st">&quot;gencode.v29.annotation.gtf.gz&quot;</span>), <span class="co"># local version</span></a>
+<a class="sourceLine" id="cb23-9" title="9">  <span class="dt">write=</span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb23-10" title="10">)</a></code></pre></div>
 <p>Because <code>tximeta</code> knows the correct reference transcriptome, we can ask
 <code>tximeta</code> to summarize the transcript-level data to the gene level using the
 methods of <span class="citation">Soneson, Love, and Robinson (<a href="bibliography.html#ref-Soneson2015" role="doc-biblioref">2015</a>)</span>.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">gse &lt;-<span class="st"> </span><span class="kw">summarizeToGene</span>(se)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">gse &lt;-<span class="st"> </span><span class="kw">summarizeToGene</span>(se)</a></code></pre></div>
 <p>One final note is that the <code>start</code> of positive strand genes and the <code>end</code> of
 negative strand genes is now dictated by the genomic extent of the isoforms of
 the gene (so the <code>start</code> and <code>end</code> of the reduced <em>GRanges</em>). Another
@@ -291,44 +291,48 @@ the following tab-delimited files from <span class="citation">Alasoo and Gaffney
 </ul>
 <p>To begin, we read in the sample metadata, following similar steps to those we
 used to generate the <code>coldata</code> table for the RNA-seq experiment:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">atac_coldata &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;ATAC_sample_metadata.txt.gz&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb24-3" title="3">    sample_id,</a>
-<a class="sourceLine" id="cb24-4" title="4">    donor,</a>
-<a class="sourceLine" id="cb24-5" title="5">    <span class="dt">condition =</span> condition_name</a>
-<a class="sourceLine" id="cb24-6" title="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-7" title="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">condition =</span> <span class="kw">relevel</span>(<span class="kw">factor</span>(condition), <span class="st">&quot;naive&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">atac_coldata &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;ATAC_sample_metadata.txt.gz&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb25-3" title="3">    sample_id,</a>
+<a class="sourceLine" id="cb25-4" title="4">    donor,</a>
+<a class="sourceLine" id="cb25-5" title="5">    <span class="dt">condition =</span> condition_name</a>
+<a class="sourceLine" id="cb25-6" title="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-7" title="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">condition =</span> <span class="kw">relevel</span>(<span class="kw">factor</span>(condition), <span class="st">&quot;naive&quot;</span>))</a></code></pre></div>
 <p>The ATAC-seq counts have already been normalized with <em>cqn</em> <span class="citation">(Hansen, Irizarry, and Wu <a href="bibliography.html#ref-Hansen2012" role="doc-biblioref">2012</a>)</span> and
 log2 transformed. Loading the <em>cqn</em>-normalized matrix of log2 transformed read
 counts takes ~30 seconds and loads an object of ~370 Mb. We set the column
 names so that the first column contains the rownames of the matrix, and the
 remaining columns are the sample identities from the <code>atac_coldata</code> object.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">atac_mat &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;ATAC_cqn_matrix.txt.gz&quot;</span>,</a>
-<a class="sourceLine" id="cb25-2" title="2">                     <span class="dt">skip =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb25-3" title="3">                     <span class="dt">col_names =</span><span class="kw">c</span>(<span class="st">&quot;rownames&quot;</span>, atac_coldata[[<span class="st">&quot;sample_id&quot;</span>]]))</a>
-<a class="sourceLine" id="cb25-4" title="4">rownames &lt;-<span class="st"> </span>atac_mat[[<span class="st">&quot;rownames&quot;</span>]]</a>
-<a class="sourceLine" id="cb25-5" title="5">atac_mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(atac_mat[,<span class="op">-</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb25-6" title="6"><span class="kw">rownames</span>(atac_mat) &lt;-<span class="st"> </span>rownames</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">atac_mat &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(</a>
+<a class="sourceLine" id="cb26-2" title="2">  <span class="st">&quot;ATAC_cqn_matrix.txt.gz&quot;</span>,</a>
+<a class="sourceLine" id="cb26-3" title="3">  <span class="dt">skip =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb26-4" title="4">  <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;rownames&quot;</span>, atac_coldata[[<span class="st">&quot;sample_id&quot;</span>]])</a>
+<a class="sourceLine" id="cb26-5" title="5"> )</a>
+<a class="sourceLine" id="cb26-6" title="6">rownames &lt;-<span class="st"> </span>atac_mat[[<span class="st">&quot;rownames&quot;</span>]]</a>
+<a class="sourceLine" id="cb26-7" title="7">atac_mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(atac_mat[,<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb26-8" title="8"><span class="kw">rownames</span>(atac_mat) &lt;-<span class="st"> </span>rownames</a></code></pre></div>
 <p>We read in the peak metadata (locations in the genome), and convert it to a
 <em>GRanges</em> object. The <code>as_granges()</code> function automatically converts the
 <em>data.frame</em> into a <em>GRanges</em> object. From that result, we extract the peak_id
 column and set the genome information to the build “GRCh38”. We know this from
 the <a href="https://zenodo.org/record/1188300#.XJOFSlNKiL5">Zenodo entry</a>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">library</span>(plyranges)</a>
-<a class="sourceLine" id="cb26-2" title="2">peaks_df &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;ATAC_peak_metadata.txt.gz&quot;</span>,</a>
-<a class="sourceLine" id="cb26-3" title="3">                     <span class="dt">col_types =</span> <span class="kw">c</span>(<span class="st">&quot;cidciicdc&quot;</span>)</a>
-<a class="sourceLine" id="cb26-4" title="4">)</a>
-<a class="sourceLine" id="cb26-5" title="5"></a>
-<a class="sourceLine" id="cb26-6" title="6">peaks_gr &lt;-<span class="st"> </span>peaks_df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb26-7" title="7"><span class="st">  </span><span class="kw">as_granges</span>(<span class="dt">seqnames =</span> chr) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb26-8" title="8"><span class="st">  </span><span class="kw">select</span>(<span class="dt">peak_id=</span>gene_id) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb26-9" title="9"><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;GRCh38&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">library</span>(plyranges)</a>
+<a class="sourceLine" id="cb27-2" title="2">peaks_df &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;ATAC_peak_metadata.txt.gz&quot;</span>,</a>
+<a class="sourceLine" id="cb27-3" title="3">                     <span class="dt">col_types =</span> <span class="kw">c</span>(<span class="st">&quot;cidciicdc&quot;</span>)</a>
+<a class="sourceLine" id="cb27-4" title="4">)</a>
+<a class="sourceLine" id="cb27-5" title="5"></a>
+<a class="sourceLine" id="cb27-6" title="6">peaks_gr &lt;-<span class="st"> </span>peaks_df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-7" title="7"><span class="st">  </span><span class="kw">as_granges</span>(<span class="dt">seqnames =</span> chr) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-8" title="8"><span class="st">  </span><span class="kw">select</span>(<span class="dt">peak_id=</span>gene_id) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-9" title="9"><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;GRCh38&quot;</span>)</a></code></pre></div>
 <p>Finally, we construct a <em>SummarizedExperiment</em> object. We place the matrix
 into the assays slot as a named list, the annotated peaks into the row-wise
 ranges slot, and the sample metadata into the column-wise data slot:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">atac &lt;-<span class="st"> </span><span class="kw">SummarizedExperiment</span>(<span class="dt">assays =</span> <span class="kw">list</span>(<span class="dt">cqndata=</span>atac_mat),</a>
-<a class="sourceLine" id="cb27-2" title="2">                             <span class="dt">rowRanges=</span>peaks_gr,</a>
-<a class="sourceLine" id="cb27-3" title="3">                             <span class="dt">colData=</span>atac_coldata)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">atac &lt;-<span class="st"> </span><span class="kw">SummarizedExperiment</span>(</a>
+<a class="sourceLine" id="cb28-2" title="2">  <span class="dt">assays =</span> <span class="kw">list</span>(<span class="dt">cqndata=</span>atac_mat),</a>
+<a class="sourceLine" id="cb28-3" title="3">  <span class="dt">rowRanges =</span> peaks_gr,</a>
+<a class="sourceLine" id="cb28-4" title="4">  <span class="dt">colData =</span> atac_coldata</a>
+<a class="sourceLine" id="cb28-5" title="5">)</a></code></pre></div>
 </div>
 </div>
             </section>

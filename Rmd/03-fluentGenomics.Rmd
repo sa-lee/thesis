@@ -169,7 +169,7 @@ makeLinkedTxome(
   organism="Homo sapiens",
   release="29",
   genome="GRCh38",
-  fasta="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/gencode.v29.transcripts.fa.gz",
+  fasta="gencode.v29.transcripts.fa.gz", # ftp link to fasta file
   gtf=file.path(dir, "gencode.v29.annotation.gtf.gz"), # local version
   write=FALSE
 )
@@ -219,9 +219,11 @@ names so that the first column contains the rownames of the matrix, and the
 remaining columns are the sample identities from the `atac_coldata` object.
 
 ```{r mat-atac, eval=FALSE, echo = TRUE}
-atac_mat <- read_tsv("ATAC_cqn_matrix.txt.gz",
-                     skip = 1,
-                     col_names =c("rownames", atac_coldata[["sample_id"]]))
+atac_mat <- read_tsv(
+  "ATAC_cqn_matrix.txt.gz",
+  skip = 1,
+  col_names = c("rownames", atac_coldata[["sample_id"]])
+ )
 rownames <- atac_mat[["rownames"]]
 atac_mat <- as.matrix(atac_mat[,-1])
 rownames(atac_mat) <- rownames
@@ -250,9 +252,11 @@ into the assays slot as a named list, the annotated peaks into the row-wise
 ranges slot, and the sample metadata into the column-wise data slot:
 
 ```{r atac-se, eval=FALSE, echo = TRUE}
-atac <- SummarizedExperiment(assays = list(cqndata=atac_mat),
-                             rowRanges=peaks_gr,
-                             colData=atac_coldata)
+atac <- SummarizedExperiment(
+  assays = list(cqndata=atac_mat),
+  rowRanges = peaks_gr,
+  colData = atac_coldata
+)
 ```
 
 ## Model assays

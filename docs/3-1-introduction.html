@@ -238,10 +238,10 @@ downloaded directly from the
 <p>The following code loads the path to the cached data file, or if it is not
 present, will create the cache and generate a <em>SummarizedExperiment</em> using the
 the <code>BiocFileCache</code> package <span class="citation">(Shepherd and Morgan <a href="bibliography.html#ref-bcfilecache" role="doc-biblioref">2019</a>)</span>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">library</span>(fluentGenomics)</a>
-<a class="sourceLine" id="cb14-2" title="2">path_to_se &lt;-<span class="st"> </span><span class="kw">cache_atac_se</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">library</span>(fluentGenomics)</a>
+<a class="sourceLine" id="cb15-2" title="2">path_to_se &lt;-<span class="st"> </span><span class="kw">cache_atac_se</span>()</a></code></pre></div>
 <p>We can then read the cached file and assign it to an object called <code>atac</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">atac &lt;-<span class="st"> </span><span class="kw">readRDS</span>(path_to_se)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">atac &lt;-<span class="st"> </span><span class="kw">readRDS</span>(path_to_se)</a></code></pre></div>
 <p>A precise description of how we obtained this <em>SummarizedExperiment</em> object can be found in section <a href="3-2-se.html#atac">3.2.2</a>.</p>
 </div>
 </div>

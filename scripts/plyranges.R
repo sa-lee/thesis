@@ -60,7 +60,7 @@ locations <- bam %>%
   get_genome_info()
 
 
-## ----read-bam, cache = TRUE---------------------------------
+## ----read-bam------------------------------------------
 alignments <- bam %>%
   filter_by_overlaps(locations) %>%
   select(seq) %>%

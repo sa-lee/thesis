@@ -357,10 +357,7 @@ We can directly obtain the genome information from the header of the
 BAM file: in this case the reads were aligned to the hg19 genome build
 and there are no reads overlapping the mitochondrial genome. 
 
-```{r bins}
-locations <- h1_bam_sorted %>%
-  read_bam() %>% 
-  get_genome_info() 
+```{r bins, echo = TRUE}
 ```
 
 Next we only read in alignments that overlap the genomic locations

@@ -425,6 +425,9 @@ Consortium.</p>
 <p>We can directly obtain the genome information from the header of the
 BAM file: in this case the reads were aligned to the hg19 genome build
 and there are no reads overlapping the mitochondrial genome.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">bam &lt;-<span class="st"> </span><span class="kw">read_bam</span>(h1_bam_sorted, <span class="dt">index =</span> h1_bam_sorted_index)</a>
+<a class="sourceLine" id="cb7-2" title="2">locations &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">get_genome_info</span>()</a></code></pre></div>
 <p>Next we only read in alignments that overlap the genomic locations
 we are interested in and select the query sequence. Note that
 the reading of the BAM file is deferred: only alignments that pass the filter
@@ -432,14 +435,14 @@ are loaded into memory. We can add another column representing the GC proportion
 for each alignment using the <code>letterFrequency()</code> function from the <code>Biostrings</code>
 package <span class="citation">(Pagès et al. <a href="bibliography.html#ref-R-biostrings" role="doc-biblioref">2018</a>)</span>. After computing the GC proportion as the score
 column, we drop all other columns in the GRanges object.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">alignments &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">filter_by_overlaps</span>(locations) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">select</span>(seq) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb7-5" title="5">    <span class="dt">score =</span> <span class="kw">as.numeric</span>(<span class="kw">letterFrequency</span>(seq, <span class="st">&quot;GC&quot;</span>, <span class="dt">as.prob =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb7-6" title="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="st">  </span><span class="kw">select</span>(score)</a>
-<a class="sourceLine" id="cb7-8" title="8">alignments</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">alignments &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span><span class="kw">filter_by_overlaps</span>(locations) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw">select</span>(seq) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb8-5" title="5">    <span class="dt">score =</span> <span class="kw">as.numeric</span>(<span class="kw">letterFrequency</span>(seq, <span class="st">&quot;GC&quot;</span>, <span class="dt">as.prob =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb8-6" title="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="st">  </span><span class="kw">select</span>(score)</a>
+<a class="sourceLine" id="cb8-8" title="8">alignments</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 8275595 ranges and 1 metadata column:
 #&gt;             seqnames            ranges strand |             score
 #&gt;                &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; |         &lt;numeric&gt;
@@ -459,13 +462,13 @@ column, we drop all other columns in the GRanges object.</p>
 <p>Finally, we create 10000nt tiles over the genome and compute the number
 of reads and average GC content over all reads that fall within
 each tile using an overlap join and merging endpoints.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">bins &lt;-<span class="st"> </span>locations <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">tile_ranges</span>(<span class="dt">width =</span> 10000L)</a>
-<a class="sourceLine" id="cb9-3" title="3"></a>
-<a class="sourceLine" id="cb9-4" title="4">alignments_summary &lt;-<span class="st"> </span>bins <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="st">  </span><span class="kw">join_overlap_inner</span>(alignments) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="st">  </span><span class="kw">disjoin_ranges</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">avg_gc =</span> <span class="kw">mean</span>(score))</a>
-<a class="sourceLine" id="cb9-7" title="7">alignments_summary</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">bins &lt;-<span class="st"> </span>locations <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw">tile_ranges</span>(<span class="dt">width =</span> 10000L)</a>
+<a class="sourceLine" id="cb10-3" title="3"></a>
+<a class="sourceLine" id="cb10-4" title="4">alignments_summary &lt;-<span class="st"> </span>bins <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="st">  </span><span class="kw">join_overlap_inner</span>(alignments) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-6" title="6"><span class="st">  </span><span class="kw">disjoin_ranges</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">avg_gc =</span> <span class="kw">mean</span>(score))</a>
+<a class="sourceLine" id="cb10-7" title="7">alignments_summary</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 286030 ranges and 2 metadata columns:
 #&gt;            seqnames            ranges strand |         n            avg_gc
 #&gt;               &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;         &lt;numeric&gt;
@@ -495,17 +498,17 @@ ratio, a quality control metric, within each chromosome in GRanges object.</p>
 <p>First we filter out the indels and mitochondrial variants. Then we
 create a logical vector corresponding to whether there is a transition
 event.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">h1_snp_array &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;D&quot;</span>)), seqnames <span class="op">!=</span><span class="st"> &quot;M&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">transition =</span> (ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;A&quot;</span>))<span class="op">|</span></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="st">                      </span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">h1_snp_array &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;D&quot;</span>)), seqnames <span class="op">!=</span><span class="st"> &quot;M&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">transition =</span> (ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;A&quot;</span>))<span class="op">|</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="st">                      </span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>)))</a></code></pre></div>
 <p>We then compute the transition-transversion ratio over each chromosome using
 <code>group_by()</code> in combination with <code>summarize()</code> (figure <a href="2-2-results.html#fig:titv-viz">1.5</a>).</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">ti_tv_results &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(seqnames) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_snps =</span> <span class="kw">n</span>(),</a>
-<a class="sourceLine" id="cb12-4" title="4">            <span class="dt">ti_tv =</span> <span class="kw">sum</span>(transition) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span>transition))</a>
-<a class="sourceLine" id="cb12-5" title="5">ti_tv_results</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">ti_tv_results &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(seqnames) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_snps =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb13-4" title="4">            <span class="dt">ti_tv =</span> <span class="kw">sum</span>(transition) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span>transition))</a>
+<a class="sourceLine" id="cb13-5" title="5">ti_tv_results</a></code></pre></div>
 <pre><code>#&gt; DataFrame with 24 rows and 3 columns
 #&gt;     seqnames    n_snps            ti_tv
 #&gt;     &lt;factor&gt; &lt;integer&gt;        &lt;numeric&gt;
