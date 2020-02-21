@@ -1,3 +1,7 @@
 # Introduction {#ch:intro}
 
-tbd
+overview
+
+describe main topic - research questions
+chapters 1, 2, 3, 4 (your contributions to the joint work)
+scope
