@@ -4,7 +4,7 @@ author: 'Stuart Lee'
 degreetype: 'Doctor of Philosophy'
 site: bookdown::bookdown_site
 degrees: 'B.MatComSci., University of Adelaide; MSc.Bioinformatics. University of Melbourne'
-bibliography: [bib/plyranges.bib, bib/fluentGenomics.bib]
+bibliography: [bib/plyranges.bib, bib/fluentGenomics.bib, bib/thesisrefs.bib]
 link-citations: yes
 ---
 

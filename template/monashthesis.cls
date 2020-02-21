@@ -189,7 +189,7 @@
         \Huge\textbf{\expandafter{\@title}}\\
     \end{center}
     \begin{center}
-        \Large Yiru (Earo) Wang\\
+        \Large Stuart Andrew Lee \\
         \@degrees
     \end{center}
     \vfill
