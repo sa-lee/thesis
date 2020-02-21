@@ -1,3 +1,7 @@
 data/tsibble/flights.rds filter=lfs diff=lfs merge=lfs -text
 data/tsibble/smart-meter13.rds filter=lfs diff=lfs merge=lfs -text
 data/superintronic/parts-coverage.rds filter=lfs diff=lfs merge=lfs -text
+data/d92b1f58f032_GSM433167_BI.H3K27me3.sorted.bam filter=lfs diff=lfs merge=lfs -text
+data/d92b73a42c4e_GSM433167_BI.H3K27me3.sorted.bam.bai filter=lfs diff=lfs merge=lfs -text
+data/d4a4784a4937_GSM433167_BI.H3K27me3.bam filter=lfs diff=lfs merge=lfs -text
+data/BiocFileCache.sqlite filter=lfs diff=lfs merge=lfs -text
