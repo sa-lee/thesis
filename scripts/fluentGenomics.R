@@ -14,27 +14,6 @@ makeLinkedTxome(
   write=FALSE
 )
 
-knitr::opts_chunk$set(
-  fig.align = "center"
-)
-
-
-## ----workflow, fig.cap = "(ref:workflow)", fig.align='center', out.width="\\textwidth", echo = FALSE----
-knitr::include_graphics("workflow.png")
-
-
-## ----cache-path, eval = FALSE----------------------
-## library(fluentGenomics)
-## path_to_se <- cache_atac_se()
-
-
-## ----read-cache, eval = FALSE----------------------
-## atac <- readRDS(path_to_se)
-
-
-## ----dir, eval=FALSE-------------------------------
-## dir <- "/path/to/quant/files"
-
 
 ## ----setdir----------------------------------------
 dir <- system.file("extdata", package="macrophage")
@@ -66,58 +45,8 @@ se <- tximeta(coldata, dropInfReps=TRUE)
 se
 
 
-## ----linkedtxome-ex, eval = FALSE------------------
-## makeLinkedTxome(
-##   indexDir=file.path(dir, "gencode.v29_salmon_0.12.0"),
-##   source="Gencode",
-##   organism="Homo sapiens",
-##   release="29",
-##   genome="GRCh38",
-##   fasta="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/gencode.v29.transcripts.fa.gz",
-##   gtf=file.path(dir, "gencode.v29.annotation.gtf.gz"), # local version
-##   write=FALSE
-## )
-
-
 ## ----gse-------------------------------------------
 gse <- summarizeToGene(se)
-
-
-## ----coldata-atac, eval=FALSE----------------------
-## atac_coldata <- read_tsv("ATAC_sample_metadata.txt.gz") %>%
-##   select(
-##     sample_id,
-##     donor,
-##     condition = condition_name
-##   ) %>%
-##   mutate(condition = relevel(factor(condition), "naive"))
-
-
-## ----mat-atac, eval=FALSE--------------------------
-## atac_mat <- read_tsv("ATAC_cqn_matrix.txt.gz",
-##                      skip = 1,
-##                      col_names =c("rownames", atac_coldata[["sample_id"]]))
-## rownames <- atac_mat[["rownames"]]
-## atac_mat <- as.matrix(atac_mat[,-1])
-## rownames(atac_mat) <- rownames
-
-
-## ----peaks-atac, eval=FALSE------------------------
-## library(plyranges)
-## peaks_df <- read_tsv("ATAC_peak_metadata.txt.gz",
-##                      col_types = c("cidciicdc")
-## )
-##
-## peaks_gr <- peaks_df %>%
-##   as_granges(seqnames = chr) %>%
-##   select(peak_id=gene_id) %>%
-##   set_genome_info(genome = "GRCh38")
-
-
-## ----atac-se, eval=FALSE---------------------------
-## atac <- SummarizedExperiment(assays = list(cqndata=atac_mat),
-##                              rowRanges=peaks_gr,
-##                              colData=atac_coldata)
 
 
 ## ----setup-deseq-----------------------------------
@@ -139,7 +68,7 @@ res <- results(dds,
                lfcThreshold=1, alpha=0.01)
 
 
-## ----ma-plot, fig.cap="(ref:maplot)"---------------
+## ----ma-plot---------------------------------------
 summary(res)
 DESeq2::plotMA(res, ylim=c(-10,10))
 
@@ -171,27 +100,6 @@ other_genes <- results(dds,
   dplyr::select(gene_id,
                 de_log2FC = log2FoldChange,
                 de_padj = padj)
-
-
-## ----limma, eval = FALSE---------------------------
-## library(limma)
-## design <- model.matrix(~donor + condition, colData(atac))
-## fit <- lmFit(assay(atac), design)
-## fit <- eBayes(fit)
-## idx <- which(colnames(fit$coefficients) == "conditionIFNg")
-## tt <- topTable(fit, coef=idx, sort.by="none", n=nrow(atac))
-
-
-## ----peaks-tidy, eval = FALSE----------------------
-## atac_peaks <- rowRanges(atac) %>%
-##   remove_names() %>%
-##   mutate(
-##     da_log2FC = tt$logFC,
-##     da_padj = tt$adj.P.Val
-##   ) %>%
-##   set_genome_info(genome = "hg38")
-##
-## seqlevelsStyle(atac_peaks) <- "UCSC"
 
 
 ## ----load-peaks------------------------------------
@@ -366,15 +274,4 @@ origin_threshold_counts %>%
              linetype = type)) +
   geom_line() +
   scale_y_log10()
-
-
-## ---- eval = FALSE---------------------------------
-## # development version from Github
-## BiocManager::install("sa-lee/fluentGenomics")
-## # version available from Bioconductor
-## BiocManager::install("fluentGenomics")
-
-
-## --------------------------------------------------
-sessionInfo()
 
