@@ -8,5 +8,5 @@ cache-*/
 *.log
 *.run.xml
 *.bbl
-
+data-raw/*.txt.gz
 thesis\.tex
