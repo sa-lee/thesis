@@ -30,7 +30,8 @@ directory. Since some files are greater than 50Mb, in order to clone this reposi
 * `data-raw/`: R code to generate data in `data/`..
 * `img/`: Images made with other tools to illustrate ideas. 
 * `bib/`: Bibliography files.
-* `template/`: Monash thesis template from [robjhydman/MonashThesis](https://github.com/robjhyndman/MonashThesis).
+* `template/`: Monash thesis template from[robjhydman/MonashThesis](https://github.com/robjhyndman/MonashThesis).
+* `docs/`: the compiled thesis and pdf
 
 
 ## Acknowledgements
