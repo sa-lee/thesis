@@ -1,5 +1,5 @@
 ---
-title: 'Exploratory data analysis for high-dimensional biological datasets'
+title: 'Fluent statistical computing interfaces for biological data analysis'
 author: 'Stuart Lee'
 degreetype: 'Doctor of Philosophy'
 site: bookdown::bookdown_site

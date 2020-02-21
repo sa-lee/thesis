@@ -9,3 +9,6 @@ skim:
 
 preview:
 	open _thesis/index.html
+
+both:
+	Rscript --quiet _render.R

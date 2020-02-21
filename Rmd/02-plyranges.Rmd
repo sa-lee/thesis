@@ -1,4 +1,4 @@
-# plyranges: a grammar of graphics for genomics data {#ch:plyranges}
+# plyranges: a grammar of data transformation for genomics {#ch:plyranges}
 
 ```{r plyranges-init, echo = FALSE, cache = FALSE, include = FALSE}
 knitr::read_chunk(here::here("scripts", "plyranges.R"))
@@ -96,7 +96,7 @@ representations and sophisticated statistical methods.
 
 #### Data Model
 
-(ref:GRanges-cap): An illustration of the GRanges data model for a sample from an RNA-seq experiment. The core components of the data model include a seqname column (representing the chromosome), a ranges column which consists of start and end coordinates for a genomic region, and a strand identifier (either positive, negative, or unstranded). Metadata are included as columns to the right of the dotted line as annotations (gene\_id) or range level covariates (score).
+(ref:GRanges-cap) An illustration of the GRanges data model for a sample from an RNA-seq experiment. The core components of the data model include a seqname column (representing the chromosome), a ranges column which consists of start and end coordinates for a genomic region, and a strand identifier (either positive, negative, or unstranded). Metadata are included as columns to the right of the dotted line as annotations (gene\_id) or range level covariates (score).
 
 ```{r GRanges, fig.cap = "(ref:GRanges-cap)", echo = FALSE}
 knitr::include_graphics(here::here("img", "GRanges.png"))
@@ -230,7 +230,7 @@ expressions.
 knitr::include_graphics(here::here("img", "olap-fig.png"))
 ```
 
-(ref:olaps-cap): Illustration of the three overlap join operators. Each join takes two  GRanges objects, \textit{x} and \textit{y} as input. A 'Hits' object for the  join is computed which consists of two components. The first component contains  the indices of the ranges in \textit{x} that have been overlapped  (the rectangles of \textit{x} that cross the orange lines). The second  component consists of the indices of the ranges in \textit{y} that overlap the ranges in \textit{x}. In this case a range in \textit{y} overlaps the ranges in \textit{x} three times, so the index is repeated three times. The resulting 'Hits' object is used to modify \textit{x} by where it was 'hit' by \textit{y} and merge all metadata columns from \textit{x} and \textit{y} based on the indices contained in the 'Hits' object. This procedure is applied generally in the \texttt{plyranges} DSL for both overlap and nearest neighbor operations. The join semantics alter what is returned: \textbf{A}: for an \textbf{inner} join the \textit{x} ranges that are overlapped by \textit{y} are returned. The returned ranges also include the metadata from the \textit{y} range that overlapped the three \textit{x} ranges. \textbf{B} An \textbf{intersect} join is identical to an inner join except that the intersection is taken between the overlapped \textit{x} ranges and the \textit{y} ranges. \textbf{C} For the \textbf{left} join all \textit{x} ranges are returned regardless of whether they are overlapped by \textit{y}. In this case the third range (rectangle with the asterisk next to it) of the join would have missing values on metadata columns that came from \textit{y}.
+(ref:olaps-cap) Illustration of the three overlap join operators. Each join takes two  GRanges objects, \textit{x} and \textit{y} as input. A 'Hits' object for the  join is computed which consists of two components. The first component contains  the indices of the ranges in \textit{x} that have been overlapped  (the rectangles of \textit{x} that cross the orange lines). The second  component consists of the indices of the ranges in \textit{y} that overlap the ranges in \textit{x}. In this case a range in \textit{y} overlaps the ranges in \textit{x} three times, so the index is repeated three times. The resulting 'Hits' object is used to modify \textit{x} by where it was 'hit' by \textit{y} and merge all metadata columns from \textit{x} and \textit{y} based on the indices contained in the 'Hits' object. This procedure is applied generally in the \texttt{plyranges} DSL for both overlap and nearest neighbor operations. The join semantics alter what is returned: \textbf{A}: for an \textbf{inner} join the \textit{x} ranges that are overlapped by \textit{y} are returned. The returned ranges also include the metadata from the \textit{y} range that overlapped the three \textit{x} ranges. \textbf{B} An \textbf{intersect} join is identical to an inner join except that the intersection is taken between the overlapped \textit{x} ranges and the \textit{y} ranges. \textbf{C} For the \textbf{left} join all \textit{x} ranges are returned regardless of whether they are overlapped by \textit{y}. In this case the third range (rectangle with the asterisk next to it) of the join would have missing values on metadata columns that came from \textit{y}.
 
 To support merging, our algebra recasts finding overlaps or 
 nearest neighbors between two
@@ -262,7 +262,7 @@ but also returns all _x_ ranges that are not hit by the _y_ ranges.
 knitr::include_graphics(here::here("img", "code-comparison.png"))
 ```
 
-(ref:code-comparison-cap): Idiomatic code examples for \texttt{plyranges} (\textbf{A}) and \texttt{GenomicRanges} (\textbf{B}) illustrating an overlap and aggregate operation that returns the same result. In each example, we have two BED files consisting of SNPs that are genome-wide association study (GWAS) hits and reference exons. Each code block counts for each SNP the number of distinct exons it overlaps. The \texttt{plyranges} code achieves this with an overlap join followed by partitioning and aggregation. Strand is ignored by default here. The \texttt{GenomicRanges} code achieves this using the 'Hits' and 'List' classes and their methods.
+(ref:code-comparison-cap) Idiomatic code examples for \texttt{plyranges} (\textbf{A}) and \texttt{GenomicRanges} (\textbf{B}) illustrating an overlap and aggregate operation that returns the same result. In each example, we have two BED files consisting of SNPs that are genome-wide association study (GWAS) hits and reference exons. Each code block counts for each SNP the number of distinct exons it overlaps. The \texttt{plyranges} code achieves this with an overlap join followed by partitioning and aggregation. Strand is ignored by default here. The \texttt{GenomicRanges} code achieves this using the 'Hits' and 'List' classes and their methods.
 
 Since the GRanges object is a tabular data structure, our grammar includes
 operators to filter, sort and aggregate by columns in a GRanges. These 
@@ -339,7 +339,7 @@ coverage islands, to the islands that are contained in the 5000nt region that su
 ```{r peak_region}
 ```
 
-(ref:peak-viz-cap): The final result of the `plyranges` operations to find a 5000nt region surrounding the peak of normalised coverage scores over chromosome 10, displayed as a density plot.
+(ref:peak-viz-cap) The final result of the `plyranges` operations to find a 5000nt region surrounding the peak of normalised coverage scores over chromosome 10, displayed as a density plot.
 
 ```{r peak-viz, fig.width = 7, out.width = "70%", fig.cap = "(ref:peak-viz-cap)"}
 ```
@@ -410,7 +410,7 @@ We then compute the transition-transversion ratio over each chromosome using
 ```{r titv-viz, echo = FALSE, fig.cap = "(ref:titv-viz-cap)"}
 ```
 
-(ref:titv-viz-cap): The final result of computing quality control metrics over the SNP array data with `plyranges`, displayed as a dot plot. Chromosomes are ordered by their estimated transition-transversion ratio. A white reference line is drawn at the expected ratio for a human exome."
+(ref:titv-viz-cap) The final result of computing quality control metrics over the SNP array data with `plyranges`, displayed as a dot plot. Chromosomes are ordered by their estimated transition-transversion ratio. A white reference line is drawn at the expected ratio for a human exome."
 
 ## Discussion 
 
