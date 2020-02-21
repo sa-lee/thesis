@@ -201,26 +201,27 @@ can be detected by ATAC-seq.</p>
 <div class="figure" style="text-align: center"><span id="fig:workflow"></span>
 <img src="img/workflow.png" alt="An overview of the fluent genomics workflow. First, we import data as a SummarizedExperiment object, which enables interoperability with downstream analysis packages. Then we model our assay data, using the existing Bioconductor packages DESeq2 and limma. We take the results of our models for each assay with respect to their genomic coordinates, and integrate them. First, we compute the overlap between the results of each assay, then aggregate over the combined genomic regions, and finally summarize to compare enrichment for differentially expressed genes to non differentially expressed genes. The final output can be used for downstream visualization or further transformation." width="100%" />
 <p class="caption">
-Figure 3.1: An overview of the fluent genomics workflow. First, we <em>import</em> data as a <em>SummarizedExperiment</em> object, which enables interoperability with downstream analysis packages. Then we <em>model</em> our assay data, using the existing Bioconductor packages <em>DESeq2</em> and <em>limma</em>. We take the results of our models for each assay with respect to their genomic coordinates, and <em>integrate</em> them. First, we compute the overlap between the results of each assay, then aggregate over the combined genomic regions, and finally summarize to compare enrichment for differentially expressed genes to non differentially expressed genes. The final output can be used for downstream visualization or further transformation.
+Figure 1.6: An overview of the fluent genomics workflow. First, we <em>import</em> data as a <em>SummarizedExperiment</em> object, which enables interoperability with downstream analysis packages. Then we <em>model</em> our assay data, using the existing Bioconductor packages <code>DESeq2</code> and <code>limma</code>. We take the results of our models for each assay with respect to their genomic coordinates, and <em>integrate</em> them. First, we compute the overlap between the results of each assay, then aggregate over the combined genomic regions, and finally summarize to compare enrichment for differentially expressed genes to non differentially expressed genes. The final output can be used for downstream visualization or further transformation.
 </p>
 </div>
-<p>Throughout the workflow (Figure <a href="3-1-introduction.html#fig:workflow">3.1</a>), we will use existing
+
+<p>Throughout the workflow (Figure <a href="3-1-introduction.html#fig:workflow">1.6</a>), we will use existing
 Bioconductor infrastructure to understand these datasets. In particular, we
-will emphasize the use of the Bioconductor packages <em>plyranges</em> and <em>tximeta</em>.
-The <em>plyranges</em> package fluently transforms data tied to genomic ranges using
+will emphasize the use of the Bioconductor packages <code>plyranges</code> and <code>tximeta</code>.
+The <code>plyranges</code> package fluently transforms data tied to genomic ranges using
 operations like shifting, window construction, overlap detection, etc. It is
 described by <span class="citation">Lee, Cook, and Lawrence (<a href="bibliography.html#ref-Lee2019" role="doc-biblioref">2019</a>)</span> and leverages underlying core Bioconductor infrastructure
-<span class="citation">(Lawrence et al. <a href="bibliography.html#ref-granges" role="doc-biblioref">2013</a><a href="bibliography.html#ref-granges" role="doc-biblioref">b</a>; Huber et al. <a href="bibliography.html#ref-bioc" role="doc-biblioref">2015</a><a href="bibliography.html#ref-bioc" role="doc-biblioref">b</a>)</span> and the <em>tidyverse</em> design principles <span class="citation">Wickham et al. (<a href="bibliography.html#ref-tidyverse" role="doc-biblioref">2019</a>)</span>.</p>
-<p>The <em>tximeta</em> package described by <span class="citation">Love et al. (<a href="bibliography.html#ref-Love2019-tximeta" role="doc-biblioref">2019</a>)</span> is used to read RNA-seq
+<span class="citation">(Lawrence et al. <a href="bibliography.html#ref-granges" role="doc-biblioref">2013</a><a href="bibliography.html#ref-granges" role="doc-biblioref">b</a>; Huber et al. <a href="bibliography.html#ref-bioc" role="doc-biblioref">2015</a><a href="bibliography.html#ref-bioc" role="doc-biblioref">b</a>)</span> and the <code>tidyverse</code> design principles <span class="citation">Wickham et al. (<a href="bibliography.html#ref-tidyverse" role="doc-biblioref">2019</a>)</span>.</p>
+<p>The <code>tximeta</code> package described by <span class="citation">Love et al. (<a href="bibliography.html#ref-Love2019-tximeta" role="doc-biblioref">2019</a>)</span> is used to read RNA-seq
 quantification data into R/Bioconductor, such that the transcript ranges and
 their provenance are automatically attached to the object containing expression
 values and differential expression results.</p>
 <div id="experimental-data" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Experimental Data</h3>
-<p>The data used in this workflow is available from two packages: the <em>macrophage</em>
+<p>The data used in this workflow is available from two packages: the <code>macrophage</code>
 Bioconductor ExperimentData package and from the workflow package
-<em>fluentGenomics</em>.</p>
-<p>The <em>macrophage</em> package contains RNA-seq quantification from 24 RNA-seq
+<code>fluentGenomics</code>.</p>
+<p>The <code>macrophage</code> package contains RNA-seq quantification from 24 RNA-seq
 samples, a subset of the RNA-seq samples generated and analyzed by <span class="citation">Alasoo et al. (<a href="bibliography.html#ref-alasoo" role="doc-biblioref">2018</a>)</span>. The
 paired-end reads were quantified using <em>Salmon</em> <span class="citation">(Patro et al. <a href="bibliography.html#ref-salmon" role="doc-biblioref">2017</a>)</span>, using the Gencode 29
 human reference transcripts <span class="citation">(Frankish, GENCODE-consoritum, and Flicek <a href="bibliography.html#ref-gencode" role="doc-biblioref">2018</a>)</span>. For more details on quantification, and
@@ -228,7 +229,7 @@ the exact code used, consult the vignette of the
 <a href="http://bioconductor.org/packages/macrophage">macrophage</a> package. The package
 also contains the <code>Snakemake</code> file that was used to distribute the <em>Salmon</em>
 quantification jobs on a cluster <span class="citation">(Köster and Rahmann <a href="bibliography.html#ref-snakemake" role="doc-biblioref">2012</a>)</span>.</p>
-<p>The <em>fluentGenomics</em> package contains functionality to download and generate a
+<p>The <code>fluentGenomics</code> package contains functionality to download and generate a
 cached <em>SummarizedExperiment</em> object from the normalized ATAC-seq data provided
 by <span class="citation">Alasoo and Gaffney (<a href="bibliography.html#ref-alasooZenodo" role="doc-biblioref">2017</a>)</span>. This object contains all 145 ATAC-seq samples across all
 experimental conditions as analyzed by <span class="citation">Alasoo et al. (<a href="bibliography.html#ref-alasoo" role="doc-biblioref">2018</a>)</span>. The data can be also be
@@ -236,7 +237,7 @@ downloaded directly from the
 <a href="https://zenodo.org/record/1188300#.XIAhXlNKjOQ">Zenodo</a> deposition.</p>
 <p>The following code loads the path to the cached data file, or if it is not
 present, will create the cache and generate a <em>SummarizedExperiment</em> using the
-the <em>BiocFileCache</em> package <span class="citation">(Shepherd and Morgan <a href="bibliography.html#ref-bcfilecache" role="doc-biblioref">2019</a>)</span>.</p>
+the <code>BiocFileCache</code> package <span class="citation">(Shepherd and Morgan <a href="bibliography.html#ref-bcfilecache" role="doc-biblioref">2019</a>)</span>.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">library</span>(fluentGenomics)</a>
 <a class="sourceLine" id="cb14-2" title="2">path_to_se &lt;-<span class="st"> </span><span class="kw">cache_atac_se</span>()</a></code></pre></div>
 <p>We can then read the cached file and assign it to an object called <code>atac</code>.</p>

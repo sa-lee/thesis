@@ -5,10 +5,10 @@ gitbook:
 	Rscript --quiet _render.R "bookdown::gitbook"
 
 skim:
-	open _thesis/thesis.pdf
+	open docs/thesis.pdf
 
 preview:
-	open _thesis/index.html
+	open docs/index.html
 
 both:
 	Rscript --quiet _render.R

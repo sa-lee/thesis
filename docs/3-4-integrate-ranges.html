@@ -179,18 +179,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="integrate-ranges" class="section level2">
 <h2><span class="header-section-number">3.4</span> Integrate ranges</h2>
 <div id="finding-overlaps-with-plyranges" class="section level3">
-<h3><span class="header-section-number">3.4.1</span> Finding overlaps with <em>plyranges</em></h3>
-<p>We have already used <em>plyranges</em> a number of times above, to <code>filter</code>,
+<h3><span class="header-section-number">3.4.1</span> Finding overlaps with <code>plyranges</code></h3>
+<p>We have already used <code>plyranges</code> a number of times above, to <code>filter</code>,
 <code>mutate</code>, and <code>select</code> on <em>GRanges</em> objects, as well as ensuring the correct
-genome annotation and style has been used. The <em>plyranges</em> package provides a
+genome annotation and style has been used. The <code>plyranges</code> package provides a
 grammar for performing transformations of genomic data <span class="citation">(Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019" role="doc-biblioref">2019</a>)</span>. Computations
-resulting from compositions of <em>plyranges</em> “verbs” are performed using
-underlying, highly optimized range operations in the <em>GenomicRanges</em> package
+resulting from compositions of <code>plyranges</code> “verbs” are performed using
+underlying, highly optimized range operations in the <code>GenomicRanges</code> package
 <span class="citation">(Lawrence et al. <a href="bibliography.html#ref-granges" role="doc-biblioref">2013</a><a href="bibliography.html#ref-granges" role="doc-biblioref">b</a>)</span>.</p>
 <p>For the overlap analysis, we filter the annotated peaks to have a nominal FDR
 bound of 1%.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">da_peaks &lt;-<span class="st"> </span>peaks <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">filter</span>(da_padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">da_peaks &lt;-<span class="st"> </span>peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="st">  </span><span class="kw">filter</span>(da_padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>)</a></code></pre></div>
 <p>We now have <em>GRanges</em> objects that contain DE genes, genes without strong
 signal of DE, and DA peaks. We are ready to answer the question: is there an
 enrichment of DA ATAC-seq peaks in the vicinity of DE genes compared to genes
@@ -198,13 +198,13 @@ without sufficient DE signal?</p>
 </div>
 <div id="down-sampling-non-differentially-expressed-genes" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Down sampling non-differentially expressed genes</h3>
-<p>As <em>plyranges</em> is built on top of <em>dplyr</em>, it implements methods for many of
+<p>As <code>plyranges</code> is built on top of <em>dplyr</em>, it implements methods for many of
 its verbs for <em>GRanges</em> objects. Here we can use <code>slice</code> to randomly sample the
 rows of the <code>other_genes</code>. The <code>sample.int</code> function will generate random
 samples of size equal to the number of DE-genes from the number of rows in
 <code>other_genes</code>:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">size &lt;-<span class="st"> </span><span class="kw">length</span>(de_genes)</a>
-<a class="sourceLine" id="cb38-2" title="2"><span class="kw">slice</span>(other_genes, <span class="kw">sample.int</span>(plyranges<span class="op">::</span><span class="kw">n</span>(), size))</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">size &lt;-<span class="st"> </span><span class="kw">length</span>(de_genes)</a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="kw">slice</span>(other_genes, <span class="kw">sample.int</span>(plyranges<span class="op">::</span><span class="kw">n</span>(), size))</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 749 ranges and 3 metadata columns:
 #&gt;         seqnames              ranges strand |            gene_id
 #&gt;            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
@@ -237,29 +237,29 @@ samples of size equal to the number of DE-genes from the number of rows in
 <p>We can repeat this many times to create many samples via <code>replicate</code>. By
 replicating the sub-sampling multiple times, we minimize the variance on the
 enrichment statistics induced by the sampling process.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># set a seed for the results</span></a>
-<a class="sourceLine" id="cb40-2" title="2"><span class="kw">set.seed</span>(<span class="dv">2019-08-02</span>)</a>
-<a class="sourceLine" id="cb40-3" title="3">boot_genes &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb40-4" title="4">                        <span class="kw">slice</span>(other_genes, <span class="kw">sample.int</span>(plyranges<span class="op">::</span><span class="kw">n</span>(), size)),</a>
-<a class="sourceLine" id="cb40-5" title="5">                        <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># set a seed for the results</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="kw">set.seed</span>(<span class="dv">2019-08-02</span>)</a>
+<a class="sourceLine" id="cb45-3" title="3">boot_genes &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb45-4" title="4">                        <span class="kw">slice</span>(other_genes, <span class="kw">sample.int</span>(plyranges<span class="op">::</span><span class="kw">n</span>(), size)),</a>
+<a class="sourceLine" id="cb45-5" title="5">                        <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>This creates a list of <em>GRanges</em> objects as a list, and we can bind these
 together using the <code>bind_ranges</code> function. This function creates a new column
 called “resample” on the result that identifies each of the input <em>GRanges</em>
 objects:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">boot_genes &lt;-<span class="st"> </span><span class="kw">bind_ranges</span>(boot_genes, <span class="dt">.id =</span> <span class="st">&quot;resample&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">boot_genes &lt;-<span class="st"> </span><span class="kw">bind_ranges</span>(boot_genes, <span class="dt">.id =</span> <span class="st">&quot;resample&quot;</span>)</a></code></pre></div>
 <p>Similarly, we can then combine the <code>boot_genes</code> <em>GRanges</em>, with the DE
 <em>GRanges</em> object. As the resample column was not present on the DE <em>GRanges</em>
 object, this is given a missing value which we recode to a 0 using <code>mutate()</code></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">all_genes &lt;-<span class="st"> </span><span class="kw">bind_ranges</span>(</a>
-<a class="sourceLine" id="cb42-2" title="2">  <span class="dt">de=</span>de_genes,</a>
-<a class="sourceLine" id="cb42-3" title="3">  <span class="dt">not_de =</span> boot_genes,</a>
-<a class="sourceLine" id="cb42-4" title="4">  <span class="dt">.id=</span><span class="st">&quot;origin&quot;</span></a>
-<a class="sourceLine" id="cb42-5" title="5">) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb42-7" title="7">    <span class="dt">origin =</span> <span class="kw">factor</span>(origin, <span class="kw">c</span>(<span class="st">&quot;not_de&quot;</span>, <span class="st">&quot;de&quot;</span>)),</a>
-<a class="sourceLine" id="cb42-8" title="8">    <span class="dt">resample =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(resample), 0L, <span class="kw">as.integer</span>(resample))</a>
-<a class="sourceLine" id="cb42-9" title="9">  )</a>
-<a class="sourceLine" id="cb42-10" title="10">all_genes</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">all_genes &lt;-<span class="st"> </span><span class="kw">bind_ranges</span>(</a>
+<a class="sourceLine" id="cb47-2" title="2">  <span class="dt">de=</span>de_genes,</a>
+<a class="sourceLine" id="cb47-3" title="3">  <span class="dt">not_de =</span> boot_genes,</a>
+<a class="sourceLine" id="cb47-4" title="4">  <span class="dt">.id=</span><span class="st">&quot;origin&quot;</span></a>
+<a class="sourceLine" id="cb47-5" title="5">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb47-7" title="7">    <span class="dt">origin =</span> <span class="kw">factor</span>(origin, <span class="kw">c</span>(<span class="st">&quot;not_de&quot;</span>, <span class="st">&quot;de&quot;</span>)),</a>
+<a class="sourceLine" id="cb47-8" title="8">    <span class="dt">resample =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(resample), 0L, <span class="kw">as.integer</span>(resample))</a>
+<a class="sourceLine" id="cb47-9" title="9">  )</a>
+<a class="sourceLine" id="cb47-10" title="10">all_genes</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 8239 ranges and 5 metadata columns:
 #&gt;          seqnames              ranges strand |            gene_id
 #&gt;             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
@@ -295,27 +295,27 @@ object, this is given a missing value which we recode to a 0 using <code>mutate(
 <p>Now we would like to modify our gene ranges so they contain the 10 kilobases on
 either side of their transcription start site (TSS). There are many ways one
 could do this, but we prefer an approach via the anchoring methods in
-<em>plyranges</em>. Because there is a mutual dependence between the start, end,
+<code>plyranges</code>. Because there is a mutual dependence between the start, end,
 width, and strand of a <em>GRanges</em> object, we define anchors to fix one of
 <code>start</code> and <code>end</code>, while modifying the <code>width</code>. As an example, to extract just
 the TSS, we can anchor by the 5’ end of the range and modify the width of the
 range to equal 1.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">all_genes &lt;-<span class="st"> </span>all_genes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-2" title="2"><span class="st">  </span><span class="kw">anchor_5p</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">width =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">all_genes &lt;-<span class="st"> </span>all_genes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-2" title="2"><span class="st">  </span><span class="kw">anchor_5p</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">width =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p>Anchoring by the 5’ end of a range will fix the <code>end</code> of negatively stranded
 ranges, and fix the <code>start</code> of positively stranded ranges.</p>
 <p>We can then repeat the same pattern but this time using <code>anchor_center()</code> to
-tell <em>plyranges</em> that we are making the TSS the midpoint of a range that has
+tell <code>plyranges</code> that we are making the TSS the midpoint of a range that has
 total width of 20kb, or 10kb both upstream and downstream of the TSS.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">all_genes &lt;-<span class="st"> </span>all_genes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw">anchor_center</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">width=</span><span class="dv">2</span><span class="op">*</span><span class="fl">1e4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">all_genes &lt;-<span class="st"> </span>all_genes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="st">  </span><span class="kw">anchor_center</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">width=</span><span class="dv">2</span><span class="op">*</span><span class="fl">1e4</span>)</a></code></pre></div>
 </div>
 <div id="use-overlap-joins-to-find-relative-enrichment" class="section level3">
 <h3><span class="header-section-number">3.4.4</span> Use overlap joins to find relative enrichment</h3>
 <p>We are now ready to compute overlaps between RNA-seq genes (our DE set and
-bootstrap sets) and the ATAC-seq peaks. In <em>plyranges</em>, overlaps are defined as
+bootstrap sets) and the ATAC-seq peaks. In <code>plyranges</code>, overlaps are defined as
 joins between two <em>GRanges</em> objects: a <em>left</em> and a <em>right</em> <em>GRanges</em> object.
 In an overlap join, a match is any range on the <em>left</em> <em>GRanges</em> that is
 overlapped by the <em>right</em> <em>GRanges</em>. One powerful aspect of the overlap joins
@@ -382,18 +382,19 @@ account for the number of resamples we have performed when counting if there
 are any peaks, to ensure we do not double count the same peak:</p>
 <p>We can then filter genes if they have any peaks and compare the peak fold
 changes between non-DE and DE genes using a boxplot:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb47-2" title="2">gene_peak_max_lfc <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-3" title="3"><span class="st">  </span><span class="kw">filter</span>(peak_count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-4" title="4"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-5" title="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(origin, peak_max_lfc)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-6" title="6"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb52-2" title="2">gene_peak_max_lfc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-3" title="3"><span class="st">  </span><span class="kw">filter</span>(peak_count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-4" title="4"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-5" title="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(origin, peak_max_lfc)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-6" title="6"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:boxplot"></span>
 <img src="img/boxplot-1.png" alt="A boxplot of maximum LFCs for DA peaks for DE genes compared to non-DE genes where genes have at least one DA peak." width="100%" />
 <p class="caption">
-Figure 3.3: A boxplot of maximum LFCs for DA peaks for DE genes compared to non-DE genes where genes have at least one DA peak.
+Figure 1.8: A boxplot of maximum LFCs for DA peaks for DE genes compared to non-DE genes where genes have at least one DA peak.
 </p>
 </div>
+
 <p>In general, the DE genes have larger maximum DA fold changes relative to the
 non-DE genes.</p>
 <p>Next we examine how thresholds on the DA LFC modify the enrichment we observe
@@ -401,14 +402,14 @@ of DA peaks near DE or non-DE genes. First, we want to know how the number of
 peaks within DE genes and non-DE genes change as we change threshold values on
 the peak LFC. As an example, we could compute this by arbitrarily chosen LFC
 thresholds of 1 or 2 as follows:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">origin_peak_lfc &lt;-<span class="st"> </span>genes_olap_peaks <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb48-4" title="4">    <span class="dt">peak_count =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(da_padj)) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
-<a class="sourceLine" id="cb48-5" title="5">    <span class="dt">lfc1_peak_count =</span><span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
-<a class="sourceLine" id="cb48-6" title="6">    <span class="dt">lfc2_peak_count =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample)</a>
-<a class="sourceLine" id="cb48-7" title="7">  )</a>
-<a class="sourceLine" id="cb48-8" title="8">origin_peak_lfc</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">origin_peak_lfc &lt;-<span class="st"> </span>genes_olap_peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb53-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb53-4" title="4">    <span class="dt">peak_count =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(da_padj)) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb53-5" title="5">    <span class="dt">lfc1_peak_count =</span><span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb53-6" title="6">    <span class="dt">lfc2_peak_count =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample)</a>
+<a class="sourceLine" id="cb53-7" title="7">  )</a>
+<a class="sourceLine" id="cb53-8" title="8">origin_peak_lfc</a></code></pre></div>
 <pre><code>#&gt; DataFrame with 2 rows and 4 columns
 #&gt;     origin peak_count lfc1_peak_count lfc2_peak_count
 #&gt;   &lt;factor&gt;  &lt;numeric&gt;       &lt;numeric&gt;       &lt;numeric&gt;
@@ -425,11 +426,11 @@ long form back to wide form using the <em>tidyr</em> package. First we pivot the
 results of the <code>peak_count</code> columns into name-value pairs, then pivot again to
 place values into the <code>origin</code> column. Then we create a new column with the
 relative enrichment:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">origin_peak_lfc <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-2" title="2"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-3" title="3"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span>origin) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-4" title="4"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> origin, <span class="dt">values_from =</span> value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">enrichment =</span> de <span class="op">/</span><span class="st"> </span>not_de)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1">origin_peak_lfc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb55-2" title="2"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span>origin) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb55-4" title="4"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> origin, <span class="dt">values_from =</span> value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb55-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">enrichment =</span> de <span class="op">/</span><span class="st"> </span>not_de)</a></code></pre></div>
 <pre><code>#&gt; # A tibble: 3 x 4
 #&gt;   name            not_de    de enrichment
 #&gt;   &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
@@ -446,19 +447,19 @@ peaks that meet the thresholds are computed within each gene, origin, and
 resample group. Second, within the origin column, we compute the total number
 of peaks that meet the DA LFC threshold and the number of genes that have more
 than zero peaks (again averaging over the number of resamples).</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">genes_olap_peaks <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(gene_id, origin, resample) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-3" title="3"><span class="st">  </span><span class="kw">reduce_ranges_directed</span>(</a>
-<a class="sourceLine" id="cb52-4" title="4">    <span class="dt">lfc1 =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb52-5" title="5">    <span class="dt">lfc2 =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb52-6" title="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-8" title="8"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb52-9" title="9">    <span class="dt">lfc1_gene_count =</span> <span class="kw">sum</span>(lfc1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
-<a class="sourceLine" id="cb52-10" title="10">    <span class="dt">lfc1_peak_count =</span> <span class="kw">sum</span>(lfc1) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
-<a class="sourceLine" id="cb52-11" title="11">    <span class="dt">lfc2_gene_count =</span> <span class="kw">sum</span>(lfc2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
-<a class="sourceLine" id="cb52-12" title="12">    <span class="dt">lfc2_peak_count =</span> <span class="kw">sum</span>(lfc2) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample)</a>
-<a class="sourceLine" id="cb52-13" title="13">  )</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">genes_olap_peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb57-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(gene_id, origin, resample) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb57-3" title="3"><span class="st">  </span><span class="kw">reduce_ranges_directed</span>(</a>
+<a class="sourceLine" id="cb57-4" title="4">    <span class="dt">lfc1 =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb57-5" title="5">    <span class="dt">lfc2 =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb57-6" title="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb57-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb57-8" title="8"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb57-9" title="9">    <span class="dt">lfc1_gene_count =</span> <span class="kw">sum</span>(lfc1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb57-10" title="10">    <span class="dt">lfc1_peak_count =</span> <span class="kw">sum</span>(lfc1) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb57-11" title="11">    <span class="dt">lfc2_gene_count =</span> <span class="kw">sum</span>(lfc2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb57-12" title="12">    <span class="dt">lfc2_peak_count =</span> <span class="kw">sum</span>(lfc2) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample)</a>
+<a class="sourceLine" id="cb57-13" title="13">  )</a></code></pre></div>
 <pre><code>#&gt; DataFrame with 2 rows and 5 columns
 #&gt;     origin lfc1_gene_count lfc1_peak_count lfc2_gene_count lfc2_peak_count
 #&gt;   &lt;factor&gt;       &lt;numeric&gt;       &lt;numeric&gt;       &lt;numeric&gt;       &lt;numeric&gt;
@@ -469,31 +470,31 @@ duplicate code. Instead we create a single function called
 <code>count_above_threshold</code> that accepts a variable and a vector of thresholds, and
 computes the sum of the absolute value of the variable for each element in the
 <code>thresholds</code> vector.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">count_if_above_threshold &lt;-<span class="st"> </span><span class="cf">function</span>(var, thresholds) {</a>
-<a class="sourceLine" id="cb54-2" title="2">  <span class="kw">lapply</span>(thresholds, <span class="cf">function</span>(.) <span class="kw">sum</span>(<span class="kw">abs</span>(var) <span class="op">&gt;</span><span class="st"> </span>., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb54-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">count_if_above_threshold &lt;-<span class="st"> </span><span class="cf">function</span>(var, thresholds) {</a>
+<a class="sourceLine" id="cb59-2" title="2">  <span class="kw">lapply</span>(thresholds, <span class="cf">function</span>(.) <span class="kw">sum</span>(<span class="kw">abs</span>(var) <span class="op">&gt;</span><span class="st"> </span>., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb59-3" title="3">}</a></code></pre></div>
 <p>The above function will compute the counts for any arbitrary threshold, so we
 can apply it over possible LFC thresholds of interest. We choose a grid of one
 hundred thresholds based on the range of absolute LFC values in the <code>da_peaks</code>
 <em>GRanges</em> object:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1">thresholds &lt;-<span class="st"> </span>da_peaks <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb55-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">abs_lfc =</span> <span class="kw">abs</span>(da_log2FC)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb55-3" title="3"><span class="st">  </span><span class="kw">with</span>(</a>
-<a class="sourceLine" id="cb55-4" title="4">    <span class="kw">seq</span>(<span class="kw">min</span>(abs_lfc), <span class="kw">max</span>(abs_lfc), <span class="dt">length.out =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb55-5" title="5">  )</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">thresholds &lt;-<span class="st"> </span>da_peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">abs_lfc =</span> <span class="kw">abs</span>(da_log2FC)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-3" title="3"><span class="st">  </span><span class="kw">with</span>(</a>
+<a class="sourceLine" id="cb60-4" title="4">    <span class="kw">seq</span>(<span class="kw">min</span>(abs_lfc), <span class="kw">max</span>(abs_lfc), <span class="dt">length.out =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb60-5" title="5">  )</a></code></pre></div>
 <p>The peak counts for each threshold are computed as a new list-column called
 <code>value</code>. First, the <em>GRanges</em> object has been grouped by the gene, origin, and
 the number of resamples columns. Then we aggregate over those columns, so each
 row will contain the peak counts for all of the thresholds for a gene, origin,
 and resample. We also maintain another list-column that contains the threshold
 values.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">genes_peak_all_thresholds &lt;-<span class="st"> </span>genes_olap_peaks <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb56-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(gene_id, origin, resample) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb56-3" title="3"><span class="st">  </span><span class="kw">reduce_ranges_directed</span>(</a>
-<a class="sourceLine" id="cb56-4" title="4">    <span class="dt">value =</span> <span class="kw">count_if_above_threshold</span>(da_log2FC, thresholds),</a>
-<a class="sourceLine" id="cb56-5" title="5">    <span class="dt">threshold =</span> <span class="kw">list</span>(thresholds)</a>
-<a class="sourceLine" id="cb56-6" title="6">  )</a>
-<a class="sourceLine" id="cb56-7" title="7">genes_peak_all_thresholds</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">genes_peak_all_thresholds &lt;-<span class="st"> </span>genes_olap_peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(gene_id, origin, resample) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-3" title="3"><span class="st">  </span><span class="kw">reduce_ranges_directed</span>(</a>
+<a class="sourceLine" id="cb61-4" title="4">    <span class="dt">value =</span> <span class="kw">count_if_above_threshold</span>(da_log2FC, thresholds),</a>
+<a class="sourceLine" id="cb61-5" title="5">    <span class="dt">threshold =</span> <span class="kw">list</span>(thresholds)</a>
+<a class="sourceLine" id="cb61-6" title="6">  )</a>
+<a class="sourceLine" id="cb61-7" title="7">genes_peak_all_thresholds</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 8239 ranges and 5 metadata columns:
 #&gt;          seqnames              ranges strand |            gene_id   origin
 #&gt;             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt; &lt;factor&gt;
@@ -541,14 +542,14 @@ values.</p>
 <code>threshold</code> columns and lengthen the resulting <em>GRanges</em> object. To compute
 the peak and gene counts for each threshold, we apply the same summarization as
 before:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">origin_peak_all_thresholds &lt;-<span class="st"> </span>genes_peak_all_thresholds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb58-2" title="2"><span class="st">  </span><span class="kw">expand_ranges</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb58-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(origin, threshold) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb58-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb58-5" title="5">    <span class="dt">gene_count =</span> <span class="kw">sum</span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
-<a class="sourceLine" id="cb58-6" title="6">    <span class="dt">peak_count =</span> <span class="kw">sum</span>(value) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample)</a>
-<a class="sourceLine" id="cb58-7" title="7">  )</a>
-<a class="sourceLine" id="cb58-8" title="8">origin_peak_all_thresholds</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">origin_peak_all_thresholds &lt;-<span class="st"> </span>genes_peak_all_thresholds <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="st">  </span><span class="kw">expand_ranges</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(origin, threshold) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb63-5" title="5">    <span class="dt">gene_count =</span> <span class="kw">sum</span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb63-6" title="6">    <span class="dt">peak_count =</span> <span class="kw">sum</span>(value) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample)</a>
+<a class="sourceLine" id="cb63-7" title="7">  )</a>
+<a class="sourceLine" id="cb63-8" title="8">origin_peak_all_thresholds</a></code></pre></div>
 <pre><code>#&gt; DataFrame with 200 rows and 4 columns
 #&gt;       origin          threshold gene_count peak_count
 #&gt;     &lt;factor&gt;          &lt;numeric&gt;  &lt;numeric&gt;  &lt;numeric&gt;
@@ -567,46 +568,48 @@ before:</p>
 before, by pivoting the results to long form then back to wide form to compute
 the enrichment. We visualize the peak enrichment changes of DE genes relative
 to other genes as a line chart:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">origin_threshold_counts &lt;-<span class="st"> </span>origin_peak_all_thresholds <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-2" title="2"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-3" title="3"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span><span class="kw">c</span>(origin, threshold),</a>
-<a class="sourceLine" id="cb60-4" title="4">                      <span class="dt">names_to =</span> <span class="kw">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;var&quot;</span>),</a>
-<a class="sourceLine" id="cb60-5" title="5">                      <span class="dt">names_sep =</span> <span class="st">&quot;_&quot;</span>,</a>
-<a class="sourceLine" id="cb60-6" title="6">                      <span class="dt">values_to =</span> <span class="st">&quot;count&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>var)</a>
-<a class="sourceLine" id="cb60-8" title="8"></a>
-<a class="sourceLine" id="cb60-9" title="9">origin_threshold_counts <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-10" title="10"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> &quot;peak&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-11" title="11"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> origin, <span class="dt">values_from =</span> count) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">enrichment =</span>  de <span class="op">/</span><span class="st"> </span>not_de) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-13" title="13"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> threshold, <span class="dt">y =</span> enrichment)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb60-14" title="14"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb60-15" title="15"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;logFC threshold&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Relative Enrichment&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">origin_threshold_counts &lt;-<span class="st"> </span>origin_peak_all_thresholds <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-2" title="2"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-3" title="3"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span><span class="kw">c</span>(origin, threshold),</a>
+<a class="sourceLine" id="cb65-4" title="4">                      <span class="dt">names_to =</span> <span class="kw">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;var&quot;</span>),</a>
+<a class="sourceLine" id="cb65-5" title="5">                      <span class="dt">names_sep =</span> <span class="st">&quot;_&quot;</span>,</a>
+<a class="sourceLine" id="cb65-6" title="6">                      <span class="dt">values_to =</span> <span class="st">&quot;count&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>var)</a>
+<a class="sourceLine" id="cb65-8" title="8"></a>
+<a class="sourceLine" id="cb65-9" title="9">origin_threshold_counts <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-10" title="10"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> &quot;peak&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-11" title="11"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> origin, <span class="dt">values_from =</span> count) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">enrichment =</span>  de <span class="op">/</span><span class="st"> </span>not_de) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-13" title="13"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> threshold, <span class="dt">y =</span> enrichment)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb65-14" title="14"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb65-15" title="15"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;logFC threshold&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Relative Enrichment&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:line-chart"></span>
 <img src="img/line-chart-1.png" alt="A line chart displaying how relative enrichment of DA peaks change between DE genes compared to non-DE genes as the absolute DA LFC threshold increases." width="100%" />
 <p class="caption">
-Figure 3.4: A line chart displaying how relative enrichment of DA peaks change between DE genes compared to non-DE genes as the absolute DA LFC threshold increases.
+Figure 1.9: A line chart displaying how relative enrichment of DA peaks change between DE genes compared to non-DE genes as the absolute DA LFC threshold increases.
 </p>
 </div>
+
 <p>We computed the sum of DA peaks near the DE genes, for increasing LFC
 thresholds on the accessibility change. As we increased the threshold, the
 number of total peaks went down (likewise the mean number of DA peaks per
 gene). It is also likely the number of DE genes with a DA peak nearby with such
 a large change went down. We can investigate this with a plot that summarizes
 many of the aspects underlying the enrichment plot above.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">origin_threshold_counts <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> threshold,</a>
-<a class="sourceLine" id="cb61-3" title="3">             <span class="dt">y =</span> count <span class="op">+</span><span class="st"> </span><span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb61-4" title="4">             <span class="dt">color =</span> origin,</a>
-<a class="sourceLine" id="cb61-5" title="5">             <span class="dt">linetype =</span> type)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb61-6" title="6"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb61-7" title="7"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">origin_threshold_counts <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> threshold,</a>
+<a class="sourceLine" id="cb66-3" title="3">             <span class="dt">y =</span> count <span class="op">+</span><span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb66-4" title="4">             <span class="dt">color =</span> origin,</a>
+<a class="sourceLine" id="cb66-5" title="5">             <span class="dt">linetype =</span> type)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb66-6" title="6"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb66-7" title="7"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:line-chart2"></span>
-<img src="img/line-chart2-1.png" alt="(ref:linechart2)" width="100%" />
+<img src="img/line-chart2-1.png" alt="A line chart displaying how gene and peak counts change as the absolute DA LFC threshold increases. Lines are colored according to whether they represent a gene that is DE or not. Note the x-axis is on a \(log_{10}\) scale." width="100%" />
 <p class="caption">
-Figure 3.5: (ref:linechart2)
+Figure 1.10: A line chart displaying how gene and peak counts change as the absolute DA LFC threshold increases. Lines are colored according to whether they represent a gene that is DE or not. Note the x-axis is on a <span class="math inline">\(log_{10}\)</span> scale.
 </p>
 </div>
+
 </div>
 </div>
             </section>
