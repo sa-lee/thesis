@@ -366,7 +366,7 @@ the reading of the BAM file is deferred: only alignments that pass the filter
 are loaded into memory. We can add another column representing the GC proportion 
 for each alignment using the `letterFrequency()` function from the `Biostrings`
 package [@R-biostrings]. After computing the GC proportion as the score
-column, we drop  all other columns in the GRanges object.
+column, we drop all other columns in the GRanges object.
 
 ```{r read-bam, echo = TRUE}
 ```
