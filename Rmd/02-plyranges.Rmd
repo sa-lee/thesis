@@ -380,7 +380,7 @@ each tile using an overlap join and merging endpoints.
 
 #### Quality Control Metrics
 
-```{r load-array, cache = TRUE}
+```{r load-array}
 ```
 
 We have created a GRanges object from genotyping performed on the
@@ -395,13 +395,13 @@ First we filter out the indels and mitochondrial variants. Then we
 create a logical vector corresponding to whether there is a transition
 event.
 
-```{r process-array, cache = TRUE, echo = TRUE}
+```{r process-array, echo = TRUE}
 ```
 
 We then compute the transition-transversion ratio over each chromosome using
 `group_by()` in combination with `summarize()` (figure \@ref(fig:titv-viz)).
 
-```{r titv, cache = TRUE, echo = TRUE}
+```{r titv, echo = TRUE}
 ```
 
 ```{r titv-viz, echo = FALSE, fig.cap = "(ref:titv-viz-cap)"}

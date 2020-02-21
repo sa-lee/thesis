@@ -237,9 +237,10 @@ the [Zenodo entry](https://zenodo.org/record/1188300#.XJOFSlNKiL5).
 
 ```{r peaks-atac, eval=FALSE, echo = TRUE}
 library(plyranges)
-peaks_df <- read_tsv("ATAC_peak_metadata.txt.gz",
-                     col_types = c("cidciicdc")
-)
+peaks_df <- read_tsv(
+  "ATAC_peak_metadata.txt.gz",
+  col_types = c("cidciicdc")
+  )
 
 peaks_gr <- peaks_df %>%
   as_granges(seqnames = chr) %>%
