@@ -318,10 +318,6 @@ to be computed over each island: in this case we take the maximum of
 the scores to find the coverage peaks over chromosome 10.
 
 ```{r chr10-scores-reduce, echo = TRUE}
-all_peaks <- chr10_scores %>% 
-  filter(score > 8) %>% 
-  reduce_ranges(score = max(score))
-all_peaks
 ```
 
 
