@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.4 Integrate ranges | Exploratory data analysis for high-dimensional biological datasets</title>
+  <meta name="description" content="3.4 Integrate ranges | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.4 Integrate ranges | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.4 Integrate ranges | Exploratory data analysis for high-dimensional biological datasets" />
+  
+  
+  
+
+<meta name="author" content="Stuart Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3-3-model-assays.html"/>
+<link rel="next" href="3-5-discussion-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"></a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="2-ch-plyranges.html"><a href="2-ch-plyranges.html"><i class="fa fa-check"></i><b>2</b> plyranges: a grammar of graphics for genomics data</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-background.html"><a href="2-1-background.html"><i class="fa fa-check"></i><b>2.1</b> Background</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-results.html"><a href="2-2-results.html"><i class="fa fa-check"></i><b>2.2</b> Results</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-discussion.html"><a href="2-3-discussion.html"><i class="fa fa-check"></i><b>2.3</b> Discussion</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-conclusion.html"><a href="2-4-conclusion.html"><i class="fa fa-check"></i><b>2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-acknowledgements-1.html"><a href="2-5-acknowledgements-1.html"><i class="fa fa-check"></i><b>2.5</b> Acknowledgements</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-availability-of-data-and-materials.html"><a href="2-6-availability-of-data-and-materials.html"><i class="fa fa-check"></i><b>2.6</b> Availability of Data and Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-fluentGenomics.html"><a href="3-ch-fluentGenomics.html"><i class="fa fa-check"></i><b>3</b> Fluent genomics: integrating data with plyranges and tximeta</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction.html"><a href="3-1-introduction.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-se.html"><a href="3-2-se.html"><i class="fa fa-check"></i><b>3.2</b> Import Data as a <em>SummarizedExperiment</em></a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-model-assays.html"><a href="3-3-model-assays.html"><i class="fa fa-check"></i><b>3.3</b> Model assays</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html"><i class="fa fa-check"></i><b>3.4</b> Integrate ranges</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-discussion-1.html"><a href="3-5-discussion-1.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-acknowledgements-2.html"><a href="3-7-acknowledgements-2.html"><i class="fa fa-check"></i><b>3.7</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis uncovers intron retention</a></li>
+<li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Spurious embeddings from non-linear dimensionality reduction methods and how to find them</a></li>
+<li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion and future plans</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploratory data analysis for high-dimensional biological datasets</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="integrate-ranges" class="section level2">
+<h2><span class="header-section-number">3.4</span> Integrate ranges</h2>
+<div id="finding-overlaps-with-plyranges" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Finding overlaps with <em>plyranges</em></h3>
+<p>We have already used <em>plyranges</em> a number of times above, to <code>filter</code>,
+<code>mutate</code>, and <code>select</code> on <em>GRanges</em> objects, as well as ensuring the correct
+genome annotation and style has been used. The <em>plyranges</em> package provides a
+grammar for performing transformations of genomic data <span class="citation">(Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019" role="doc-biblioref">2019</a>)</span>. Computations
+resulting from compositions of <em>plyranges</em> “verbs” are performed using
+underlying, highly optimized range operations in the <em>GenomicRanges</em> package
+<span class="citation">(Lawrence et al. <a href="bibliography.html#ref-granges" role="doc-biblioref">2013</a><a href="bibliography.html#ref-granges" role="doc-biblioref">b</a>)</span>.</p>
+<p>For the overlap analysis, we filter the annotated peaks to have a nominal FDR
+bound of 1%.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">da_peaks &lt;-<span class="st"> </span>peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">filter</span>(da_padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>)</a></code></pre></div>
+<p>We now have <em>GRanges</em> objects that contain DE genes, genes without strong
+signal of DE, and DA peaks. We are ready to answer the question: is there an
+enrichment of DA ATAC-seq peaks in the vicinity of DE genes compared to genes
+without sufficient DE signal?</p>
+</div>
+<div id="down-sampling-non-differentially-expressed-genes" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Down sampling non-differentially expressed genes</h3>
+<p>As <em>plyranges</em> is built on top of <em>dplyr</em>, it implements methods for many of
+its verbs for <em>GRanges</em> objects. Here we can use <code>slice</code> to randomly sample the
+rows of the <code>other_genes</code>. The <code>sample.int</code> function will generate random
+samples of size equal to the number of DE-genes from the number of rows in
+<code>other_genes</code>:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">size &lt;-<span class="st"> </span><span class="kw">length</span>(de_genes)</a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="kw">slice</span>(other_genes, <span class="kw">sample.int</span>(plyranges<span class="op">::</span><span class="kw">n</span>(), size))</a></code></pre></div>
+<pre><code>#&gt; GRanges object with 749 ranges and 3 metadata columns:
+#&gt;         seqnames              ranges strand |            gene_id
+#&gt;            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
+#&gt;     [1]    chr20   34088298-34112332      - |  ENSG00000125977.6
+#&gt;     [2]     chr2   61177418-61191203      + | ENSG00000173209.23
+#&gt;     [3]     chr6   79201245-79234738      - | ENSG00000118418.14
+#&gt;     [4]     chr2 237085312-237100466      + | ENSG00000198612.10
+#&gt;     [5]     chrX   80670854-80809688      - | ENSG00000165288.10
+#&gt;     ...      ...                 ...    ... .                ...
+#&gt;   [745]    chr19   17719242-17734516      + | ENSG00000130479.10
+#&gt;   [746]     chr5 172983757-173035445      + |  ENSG00000113732.8
+#&gt;   [747]     chr5 140107777-140125619      + |  ENSG00000185129.5
+#&gt;   [748]    chr11   67119269-67258087      + | ENSG00000173120.14
+#&gt;   [749]     chr2   38294880-38377285      - | ENSG00000119787.13
+#&gt;                   de_log2FC              de_padj
+#&gt;                   &lt;numeric&gt;            &lt;numeric&gt;
+#&gt;     [1]   0.202541954199987 4.89313911758975e-16
+#&gt;     [2]  -0.290970412857624 9.43889236366003e-06
+#&gt;     [3]   0.333230013465524 3.57906275109083e-10
+#&gt;     [4]  -0.222686918218474 7.86291945829116e-12
+#&gt;     [5]    0.12825546088533 0.000182882933452694
+#&gt;     ...                 ...                  ...
+#&gt;   [745] -0.0624379423204166 1.21743153745885e-08
+#&gt;   [746]   0.329885895911046 1.56888116839972e-08
+#&gt;   [747]  0.0191030196889702  6.8347954274893e-06
+#&gt;   [748]   0.563550634972385  0.00417606577089571
+#&gt;   [749]  -0.385408982676974 1.38745862197761e-05
+#&gt;   -------
+#&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
+<p>We can repeat this many times to create many samples via <code>replicate</code>. By
+replicating the sub-sampling multiple times, we minimize the variance on the
+enrichment statistics induced by the sampling process.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># set a seed for the results</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="kw">set.seed</span>(<span class="dv">2019-08-02</span>)</a>
+<a class="sourceLine" id="cb40-3" title="3">boot_genes &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb40-4" title="4">                        <span class="kw">slice</span>(other_genes, <span class="kw">sample.int</span>(plyranges<span class="op">::</span><span class="kw">n</span>(), size)),</a>
+<a class="sourceLine" id="cb40-5" title="5">                        <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>This creates a list of <em>GRanges</em> objects as a list, and we can bind these
+together using the <code>bind_ranges</code> function. This function creates a new column
+called “resample” on the result that identifies each of the input <em>GRanges</em>
+objects:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">boot_genes &lt;-<span class="st"> </span><span class="kw">bind_ranges</span>(boot_genes, <span class="dt">.id =</span> <span class="st">&quot;resample&quot;</span>)</a></code></pre></div>
+<p>Similarly, we can then combine the <code>boot_genes</code> <em>GRanges</em>, with the DE
+<em>GRanges</em> object. As the resample column was not present on the DE <em>GRanges</em>
+object, this is given a missing value which we recode to a 0 using <code>mutate()</code></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">all_genes &lt;-<span class="st"> </span><span class="kw">bind_ranges</span>(</a>
+<a class="sourceLine" id="cb42-2" title="2">  <span class="dt">de=</span>de_genes,</a>
+<a class="sourceLine" id="cb42-3" title="3">  <span class="dt">not_de =</span> boot_genes,</a>
+<a class="sourceLine" id="cb42-4" title="4">  <span class="dt">.id=</span><span class="st">&quot;origin&quot;</span></a>
+<a class="sourceLine" id="cb42-5" title="5">) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb42-7" title="7">    <span class="dt">origin =</span> <span class="kw">factor</span>(origin, <span class="kw">c</span>(<span class="st">&quot;not_de&quot;</span>, <span class="st">&quot;de&quot;</span>)),</a>
+<a class="sourceLine" id="cb42-8" title="8">    <span class="dt">resample =</span> <span class="kw">ifelse</span>(<span class="kw">is.na</span>(resample), 0L, <span class="kw">as.integer</span>(resample))</a>
+<a class="sourceLine" id="cb42-9" title="9">  )</a>
+<a class="sourceLine" id="cb42-10" title="10">all_genes</a></code></pre></div>
+<pre><code>#&gt; GRanges object with 8239 ranges and 5 metadata columns:
+#&gt;          seqnames              ranges strand |            gene_id
+#&gt;             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
+#&gt;      [1]     chr1 196651878-196747504      + | ENSG00000000971.15
+#&gt;      [2]     chr6   46129993-46146699      + |  ENSG00000001561.6
+#&gt;      [3]     chr4   17577192-17607972      + | ENSG00000002549.12
+#&gt;      [4]     chr7 150800403-150805120      + |  ENSG00000002933.8
+#&gt;      [5]     chr4   15778275-15853230      + | ENSG00000004468.12
+#&gt;      ...      ...                 ...    ... .                ...
+#&gt;   [8235]    chr17   43527844-43579620      - | ENSG00000175832.12
+#&gt;   [8236]    chr17   18260534-18266552      + | ENSG00000177427.12
+#&gt;   [8237]    chr20   63895182-63936031      + | ENSG00000101152.10
+#&gt;   [8238]     chr1   39081316-39487177      + | ENSG00000127603.25
+#&gt;   [8239]     chr8   41577187-41625001      + | ENSG00000158669.11
+#&gt;                   de_log2FC              de_padj  resample   origin
+#&gt;                   &lt;numeric&gt;            &lt;numeric&gt; &lt;integer&gt; &lt;factor&gt;
+#&gt;      [1]   4.98711071930695 1.37057050625117e-13         0       de
+#&gt;      [2]   1.92721595378787  3.1747750217733e-05         0       de
+#&gt;      [3]   2.93372501059128  2.0131038573066e-11         0       de
+#&gt;      [4]   3.16721751137972 1.07359906028984e-08         0       de
+#&gt;      [5]   5.40894352968188 4.82904694023763e-18         0       de
+#&gt;      ...                ...                  ...       ...      ...
+#&gt;   [8235] -0.240918426099239  0.00991611085813261        10   not_de
+#&gt;   [8236] -0.166059030395757  9.1205141062356e-05        10   not_de
+#&gt;   [8237]  0.250538999517482 1.74084544559733e-09        10   not_de
+#&gt;   [8238] -0.385053503003028  0.00265539384929076        10   not_de
+#&gt;   [8239]  0.155922038318879  2.9637514745875e-17        10   not_de
+#&gt;   -------
+#&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
+</div>
+<div id="expanding-genomic-coordinates-around-the-transcription-start-site" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Expanding genomic coordinates around the transcription start site</h3>
+<p>Now we would like to modify our gene ranges so they contain the 10 kilobases on
+either side of their transcription start site (TSS). There are many ways one
+could do this, but we prefer an approach via the anchoring methods in
+<em>plyranges</em>. Because there is a mutual dependence between the start, end,
+width, and strand of a <em>GRanges</em> object, we define anchors to fix one of
+<code>start</code> and <code>end</code>, while modifying the <code>width</code>. As an example, to extract just
+the TSS, we can anchor by the 5’ end of the range and modify the width of the
+range to equal 1.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">all_genes &lt;-<span class="st"> </span>all_genes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="st">  </span><span class="kw">anchor_5p</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">width =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p>Anchoring by the 5’ end of a range will fix the <code>end</code> of negatively stranded
+ranges, and fix the <code>start</code> of positively stranded ranges.</p>
+<p>We can then repeat the same pattern but this time using <code>anchor_center()</code> to
+tell <em>plyranges</em> that we are making the TSS the midpoint of a range that has
+total width of 20kb, or 10kb both upstream and downstream of the TSS.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">all_genes &lt;-<span class="st"> </span>all_genes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw">anchor_center</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">width=</span><span class="dv">2</span><span class="op">*</span><span class="fl">1e4</span>)</a></code></pre></div>
+</div>
+<div id="use-overlap-joins-to-find-relative-enrichment" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Use overlap joins to find relative enrichment</h3>
+<p>We are now ready to compute overlaps between RNA-seq genes (our DE set and
+bootstrap sets) and the ATAC-seq peaks. In <em>plyranges</em>, overlaps are defined as
+joins between two <em>GRanges</em> objects: a <em>left</em> and a <em>right</em> <em>GRanges</em> object.
+In an overlap join, a match is any range on the <em>left</em> <em>GRanges</em> that is
+overlapped by the <em>right</em> <em>GRanges</em>. One powerful aspect of the overlap joins
+is that the result maintains all (metadata) columns from each of the <em>left</em> and
+<em>right</em> ranges which makes downstream summaries easy to compute.</p>
+<p>To combine the DE genes with the DA peaks, we perform a left overlap join. This
+returns to us the <code>all_genes</code> ranges (potentially with duplication), but with
+the metadata columns from those overlapping DA peaks. For any gene that has no
+overlaps, the DA peak columns will have <code>NA</code>’s.</p>
+<pre><code>#&gt; GRanges object with 27766 ranges and 8 metadata columns:
+#&gt;           seqnames              ranges strand |            gene_id
+#&gt;              &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
+#&gt;       [1]     chr1 196641878-196661877      + | ENSG00000000971.15
+#&gt;       [2]     chr6   46119993-46139992      + |  ENSG00000001561.6
+#&gt;       [3]     chr4   17567192-17587191      + | ENSG00000002549.12
+#&gt;       [4]     chr4   17567192-17587191      + | ENSG00000002549.12
+#&gt;       [5]     chr4   17567192-17587191      + | ENSG00000002549.12
+#&gt;       ...      ...                 ...    ... .                ...
+#&gt;   [27762]     chr1   39071316-39091315      + | ENSG00000127603.25
+#&gt;   [27763]     chr1   39071316-39091315      + | ENSG00000127603.25
+#&gt;   [27764]     chr8   41567187-41587186      + | ENSG00000158669.11
+#&gt;   [27765]     chr8   41567187-41587186      + | ENSG00000158669.11
+#&gt;   [27766]     chr8   41567187-41587186      + | ENSG00000158669.11
+#&gt;                    de_log2FC              de_padj  resample   origin
+#&gt;                    &lt;numeric&gt;            &lt;numeric&gt; &lt;integer&gt; &lt;factor&gt;
+#&gt;       [1]   4.98711071930695 1.37057050625117e-13         0       de
+#&gt;       [2]   1.92721595378787  3.1747750217733e-05         0       de
+#&gt;       [3]   2.93372501059128  2.0131038573066e-11         0       de
+#&gt;       [4]   2.93372501059128  2.0131038573066e-11         0       de
+#&gt;       [5]   2.93372501059128  2.0131038573066e-11         0       de
+#&gt;       ...                ...                  ...       ...      ...
+#&gt;   [27762] -0.385053503003028  0.00265539384929076        10   not_de
+#&gt;   [27763] -0.385053503003028  0.00265539384929076        10   not_de
+#&gt;   [27764]  0.155922038318879  2.9637514745875e-17        10   not_de
+#&gt;   [27765]  0.155922038318879  2.9637514745875e-17        10   not_de
+#&gt;   [27766]  0.155922038318879  2.9637514745875e-17        10   not_de
+#&gt;                    peak_id          da_log2FC              da_padj
+#&gt;                &lt;character&gt;          &lt;numeric&gt;            &lt;numeric&gt;
+#&gt;       [1]  ATAC_peak_21236 -0.546582189082724 0.000115273676444232
+#&gt;       [2] ATAC_peak_231183   1.45329684862127  9.7322474682763e-17
+#&gt;       [3] ATAC_peak_193578  0.222371496904895 3.00939005719989e-11
+#&gt;       [4] ATAC_peak_193579 -0.281615137872819 7.99888515457195e-05
+#&gt;       [5] ATAC_peak_193580  0.673705317951604 7.60042918890061e-15
+#&gt;       ...              ...                ...                  ...
+#&gt;   [27762]   ATAC_peak_5357  -1.05823584693303 3.69051674661467e-16
+#&gt;   [27763]   ATAC_peak_5358  -1.31411238041643 6.44280493172654e-26
+#&gt;   [27764] ATAC_peak_263396 -0.904080135059089 8.19576651692093e-13
+#&gt;   [27765] ATAC_peak_263397  0.364737985368599 2.08834835864614e-08
+#&gt;   [27766] ATAC_peak_263399  0.317386691052334 1.20088116314111e-08
+#&gt;   -------
+#&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
+<p>Now we can ask, how many DA peaks are near DE genes relative to “other” non-DE
+genes? A gene may appear more than once in <code>genes_olap_peaks</code>, because
+multiple peaks may overlap a single gene, or because we have re-sampled the
+same gene more than once, or a combination of these two cases.</p>
+<p>For each gene (that is the combination of chromosome, the start, end, and
+strand), and the “origin” (DE vs not-DE) we can compute the distinct number of
+peaks for each gene and the maximum peak based on LFC. This is achieved via
+<code>reduce_ranges_directed</code>, which allows an aggregation to result in a <em>GRanges</em>
+object via merging neighboring genomic regions. The use of the directed suffix
+indicates we’re maintaining strand information. In this case, we are simply
+merging ranges (genes) via the groups we mentioned above. We also have to
+account for the number of resamples we have performed when counting if there
+are any peaks, to ensure we do not double count the same peak:</p>
+<p>We can then filter genes if they have any peaks and compare the peak fold
+changes between non-DE and DE genes using a boxplot:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb47-2" title="2">gene_peak_max_lfc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="st">  </span><span class="kw">filter</span>(peak_count <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-4" title="4"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-5" title="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(origin, peak_max_lfc)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-6" title="6"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:boxplot"></span>
+<img src="img/boxplot-1.png" alt="A boxplot of maximum LFCs for DA peaks for DE genes compared to non-DE genes where genes have at least one DA peak." width="100%" />
+<p class="caption">
+Figure 3.3: A boxplot of maximum LFCs for DA peaks for DE genes compared to non-DE genes where genes have at least one DA peak.
+</p>
+</div>
+<p>In general, the DE genes have larger maximum DA fold changes relative to the
+non-DE genes.</p>
+<p>Next we examine how thresholds on the DA LFC modify the enrichment we observe
+of DA peaks near DE or non-DE genes. First, we want to know how the number of
+peaks within DE genes and non-DE genes change as we change threshold values on
+the peak LFC. As an example, we could compute this by arbitrarily chosen LFC
+thresholds of 1 or 2 as follows:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">origin_peak_lfc &lt;-<span class="st"> </span>genes_olap_peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb48-4" title="4">    <span class="dt">peak_count =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(da_padj)) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb48-5" title="5">    <span class="dt">lfc1_peak_count =</span><span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb48-6" title="6">    <span class="dt">lfc2_peak_count =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample)</a>
+<a class="sourceLine" id="cb48-7" title="7">  )</a>
+<a class="sourceLine" id="cb48-8" title="8">origin_peak_lfc</a></code></pre></div>
+<pre><code>#&gt; DataFrame with 2 rows and 4 columns
+#&gt;     origin peak_count lfc1_peak_count lfc2_peak_count
+#&gt;   &lt;factor&gt;  &lt;numeric&gt;       &lt;numeric&gt;       &lt;numeric&gt;
+#&gt; 1   not_de     2391.8           369.5            32.5
+#&gt; 2       de       3416            1097             234</code></pre>
+<p>Here we see that DE genes tend to have more DA peaks near them, and that the
+number of DA peaks decreases as we increase the DA LFC threshold (as expected).
+We now show how to compute the ratio of peak counts from DE compared to non-DE
+genes, so we can see how this ratio changes for various DA LFC thresholds.</p>
+<p>For all variables except for the <code>origin</code> column we divide the first row’s
+values by the second row, which will be the enrichment of peaks in DE genes
+compared to other genes. This requires us to reshape the summary table from
+long form back to wide form using the <em>tidyr</em> package. First we pivot the
+results of the <code>peak_count</code> columns into name-value pairs, then pivot again to
+place values into the <code>origin</code> column. Then we create a new column with the
+relative enrichment:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">origin_peak_lfc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span>origin) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-4" title="4"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> origin, <span class="dt">values_from =</span> value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb50-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">enrichment =</span> de <span class="op">/</span><span class="st"> </span>not_de)</a></code></pre></div>
+<pre><code>#&gt; # A tibble: 3 x 4
+#&gt;   name            not_de    de enrichment
+#&gt;   &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+#&gt; 1 peak_count      2392.   3416       1.43
+#&gt; 2 lfc1_peak_count  370.   1097       2.97
+#&gt; 3 lfc2_peak_count   32.5   234       7.2</code></pre>
+<p>The above table shows that relative enrichment increases for a larger LFC
+threshold.</p>
+<p>Due to the one-to-many mappings of genes to peaks, it is unknown if we have the
+same number of DE genes participating or less, as we increase the threshold on
+the DA LFC. We can examine the number of genes with overlapping DA peaks at
+various thresholds by grouping and aggregating twice. First, the number of
+peaks that meet the thresholds are computed within each gene, origin, and
+resample group. Second, within the origin column, we compute the total number
+of peaks that meet the DA LFC threshold and the number of genes that have more
+than zero peaks (again averaging over the number of resamples).</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">genes_olap_peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(gene_id, origin, resample) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-3" title="3"><span class="st">  </span><span class="kw">reduce_ranges_directed</span>(</a>
+<a class="sourceLine" id="cb52-4" title="4">    <span class="dt">lfc1 =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb52-5" title="5">    <span class="dt">lfc2 =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb52-6" title="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb52-8" title="8"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb52-9" title="9">    <span class="dt">lfc1_gene_count =</span> <span class="kw">sum</span>(lfc1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb52-10" title="10">    <span class="dt">lfc1_peak_count =</span> <span class="kw">sum</span>(lfc1) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb52-11" title="11">    <span class="dt">lfc2_gene_count =</span> <span class="kw">sum</span>(lfc2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb52-12" title="12">    <span class="dt">lfc2_peak_count =</span> <span class="kw">sum</span>(lfc2) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample)</a>
+<a class="sourceLine" id="cb52-13" title="13">  )</a></code></pre></div>
+<pre><code>#&gt; DataFrame with 2 rows and 5 columns
+#&gt;     origin lfc1_gene_count lfc1_peak_count lfc2_gene_count lfc2_peak_count
+#&gt;   &lt;factor&gt;       &lt;numeric&gt;       &lt;numeric&gt;       &lt;numeric&gt;       &lt;numeric&gt;
+#&gt; 1   not_de           271.2           369.5            30.3            32.5
+#&gt; 2       de             515            1097             151             234</code></pre>
+<p>To do this for many thresholds is cumbersome and would create a lot of
+duplicate code. Instead we create a single function called
+<code>count_above_threshold</code> that accepts a variable and a vector of thresholds, and
+computes the sum of the absolute value of the variable for each element in the
+<code>thresholds</code> vector.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">count_if_above_threshold &lt;-<span class="st"> </span><span class="cf">function</span>(var, thresholds) {</a>
+<a class="sourceLine" id="cb54-2" title="2">  <span class="kw">lapply</span>(thresholds, <span class="cf">function</span>(.) <span class="kw">sum</span>(<span class="kw">abs</span>(var) <span class="op">&gt;</span><span class="st"> </span>., <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb54-3" title="3">}</a></code></pre></div>
+<p>The above function will compute the counts for any arbitrary threshold, so we
+can apply it over possible LFC thresholds of interest. We choose a grid of one
+hundred thresholds based on the range of absolute LFC values in the <code>da_peaks</code>
+<em>GRanges</em> object:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1">thresholds &lt;-<span class="st"> </span>da_peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb55-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">abs_lfc =</span> <span class="kw">abs</span>(da_log2FC)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="st">  </span><span class="kw">with</span>(</a>
+<a class="sourceLine" id="cb55-4" title="4">    <span class="kw">seq</span>(<span class="kw">min</span>(abs_lfc), <span class="kw">max</span>(abs_lfc), <span class="dt">length.out =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb55-5" title="5">  )</a></code></pre></div>
+<p>The peak counts for each threshold are computed as a new list-column called
+<code>value</code>. First, the <em>GRanges</em> object has been grouped by the gene, origin, and
+the number of resamples columns. Then we aggregate over those columns, so each
+row will contain the peak counts for all of the thresholds for a gene, origin,
+and resample. We also maintain another list-column that contains the threshold
+values.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">genes_peak_all_thresholds &lt;-<span class="st"> </span>genes_olap_peaks <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(gene_id, origin, resample) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-3" title="3"><span class="st">  </span><span class="kw">reduce_ranges_directed</span>(</a>
+<a class="sourceLine" id="cb56-4" title="4">    <span class="dt">value =</span> <span class="kw">count_if_above_threshold</span>(da_log2FC, thresholds),</a>
+<a class="sourceLine" id="cb56-5" title="5">    <span class="dt">threshold =</span> <span class="kw">list</span>(thresholds)</a>
+<a class="sourceLine" id="cb56-6" title="6">  )</a>
+<a class="sourceLine" id="cb56-7" title="7">genes_peak_all_thresholds</a></code></pre></div>
+<pre><code>#&gt; GRanges object with 8239 ranges and 5 metadata columns:
+#&gt;          seqnames              ranges strand |            gene_id   origin
+#&gt;             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt; &lt;factor&gt;
+#&gt;      [1]     chr1 196641878-196661877      + | ENSG00000000971.15       de
+#&gt;      [2]     chr6   46119993-46139992      + |  ENSG00000001561.6       de
+#&gt;      [3]     chr4   17567192-17587191      + | ENSG00000002549.12       de
+#&gt;      [4]     chr7 150790403-150810402      + |  ENSG00000002933.8       de
+#&gt;      [5]     chr4   15768275-15788274      + | ENSG00000004468.12       de
+#&gt;      ...      ...                 ...    ... .                ...      ...
+#&gt;   [8235]    chr17   43569620-43589619      - | ENSG00000175832.12   not_de
+#&gt;   [8236]    chr17   18250534-18270533      + | ENSG00000177427.12   not_de
+#&gt;   [8237]    chr20   63885182-63905181      + | ENSG00000101152.10   not_de
+#&gt;   [8238]     chr1   39071316-39091315      + | ENSG00000127603.25   not_de
+#&gt;   [8239]     chr8   41567187-41587186      + | ENSG00000158669.11   not_de
+#&gt;           resample         value
+#&gt;          &lt;integer&gt; &lt;IntegerList&gt;
+#&gt;      [1]         0     1,1,1,...
+#&gt;      [2]         0     1,1,1,...
+#&gt;      [3]         0     6,6,6,...
+#&gt;      [4]         0     4,4,4,...
+#&gt;      [5]         0  11,11,11,...
+#&gt;      ...       ...           ...
+#&gt;   [8235]        10     1,1,1,...
+#&gt;   [8236]        10     3,3,2,...
+#&gt;   [8237]        10     5,5,5,...
+#&gt;   [8238]        10     3,3,3,...
+#&gt;   [8239]        10     3,3,3,...
+#&gt;                                                           threshold
+#&gt;                                                       &lt;NumericList&gt;
+#&gt;      [1] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;      [2] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;      [3] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;      [4] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;      [5] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;      ...                                                        ...
+#&gt;   [8235] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;   [8236] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;   [8237] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;   [8238] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;   [8239] 0.0658243106359027,0.118483961449043,0.171143612262182,...
+#&gt;   -------
+#&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
+<p>Now we can expand these list-columns into a long <em>GRanges</em> object using the
+<code>expand_ranges()</code> function. This function will unlist the <code>value</code> and
+<code>threshold</code> columns and lengthen the resulting <em>GRanges</em> object. To compute
+the peak and gene counts for each threshold, we apply the same summarization as
+before:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">origin_peak_all_thresholds &lt;-<span class="st"> </span>genes_peak_all_thresholds <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-2" title="2"><span class="st">  </span><span class="kw">expand_ranges</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(origin, threshold) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb58-5" title="5">    <span class="dt">gene_count =</span> <span class="kw">sum</span>(value <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb58-6" title="6">    <span class="dt">peak_count =</span> <span class="kw">sum</span>(value) <span class="op">/</span><span class="st"> </span>plyranges<span class="op">::</span><span class="kw">n_distinct</span>(resample)</a>
+<a class="sourceLine" id="cb58-7" title="7">  )</a>
+<a class="sourceLine" id="cb58-8" title="8">origin_peak_all_thresholds</a></code></pre></div>
+<pre><code>#&gt; DataFrame with 200 rows and 4 columns
+#&gt;       origin          threshold gene_count peak_count
+#&gt;     &lt;factor&gt;          &lt;numeric&gt;  &lt;numeric&gt;  &lt;numeric&gt;
+#&gt; 1     not_de 0.0658243106359027        708     2391.4
+#&gt; 2     not_de  0.118483961449043      698.8     2320.6
+#&gt; 3     not_de  0.171143612262182      686.2     2178.6
+#&gt; 4     not_de  0.223803263075322      672.4     1989.4
+#&gt; 5     not_de  0.276462913888462      650.4     1785.8
+#&gt; ...      ...                ...        ...        ...
+#&gt; 196       de   5.06849113788419          2          2
+#&gt; 197       de   5.12115078869733          0          0
+#&gt; 198       de   5.17381043951047          0          0
+#&gt; 199       de   5.22647009032361          0          0
+#&gt; 200       de   5.27912974113675          0          0</code></pre>
+<p>Again we can compute the relative enrichment in LFCs in the same manner as
+before, by pivoting the results to long form then back to wide form to compute
+the enrichment. We visualize the peak enrichment changes of DE genes relative
+to other genes as a line chart:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">origin_threshold_counts &lt;-<span class="st"> </span>origin_peak_all_thresholds <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-3" title="3"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span><span class="kw">c</span>(origin, threshold),</a>
+<a class="sourceLine" id="cb60-4" title="4">                      <span class="dt">names_to =</span> <span class="kw">c</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;var&quot;</span>),</a>
+<a class="sourceLine" id="cb60-5" title="5">                      <span class="dt">names_sep =</span> <span class="st">&quot;_&quot;</span>,</a>
+<a class="sourceLine" id="cb60-6" title="6">                      <span class="dt">values_to =</span> <span class="st">&quot;count&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>var)</a>
+<a class="sourceLine" id="cb60-8" title="8"></a>
+<a class="sourceLine" id="cb60-9" title="9">origin_threshold_counts <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-10" title="10"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> &quot;peak&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-11" title="11"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> origin, <span class="dt">values_from =</span> count) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">enrichment =</span>  de <span class="op">/</span><span class="st"> </span>not_de) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-13" title="13"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> threshold, <span class="dt">y =</span> enrichment)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-14" title="14"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-15" title="15"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;logFC threshold&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Relative Enrichment&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:line-chart"></span>
+<img src="img/line-chart-1.png" alt="A line chart displaying how relative enrichment of DA peaks change between DE genes compared to non-DE genes as the absolute DA LFC threshold increases." width="100%" />
+<p class="caption">
+Figure 3.4: A line chart displaying how relative enrichment of DA peaks change between DE genes compared to non-DE genes as the absolute DA LFC threshold increases.
+</p>
+</div>
+<p>We computed the sum of DA peaks near the DE genes, for increasing LFC
+thresholds on the accessibility change. As we increased the threshold, the
+number of total peaks went down (likewise the mean number of DA peaks per
+gene). It is also likely the number of DE genes with a DA peak nearby with such
+a large change went down. We can investigate this with a plot that summarizes
+many of the aspects underlying the enrichment plot above.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">origin_threshold_counts <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> threshold,</a>
+<a class="sourceLine" id="cb61-3" title="3">             <span class="dt">y =</span> count <span class="op">+</span><span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb61-4" title="4">             <span class="dt">color =</span> origin,</a>
+<a class="sourceLine" id="cb61-5" title="5">             <span class="dt">linetype =</span> type)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb61-6" title="6"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb61-7" title="7"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:line-chart2"></span>
+<img src="img/line-chart2-1.png" alt="(ref:linechart2)" width="100%" />
+<p class="caption">
+Figure 3.5: (ref:linechart2)
+</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-3-model-assays.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-5-discussion-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//03-fluentGenomics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

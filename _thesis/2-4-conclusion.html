@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.4 Conclusion | Exploratory data analysis for high-dimensional biological datasets</title>
+  <meta name="description" content="2.4 Conclusion | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.4 Conclusion | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.4 Conclusion | Exploratory data analysis for high-dimensional biological datasets" />
+  
+  
+  
+
+<meta name="author" content="Stuart Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-3-discussion.html"/>
+<link rel="next" href="2-5-acknowledgements-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"></a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="2-ch-plyranges.html"><a href="2-ch-plyranges.html"><i class="fa fa-check"></i><b>2</b> plyranges: a grammar of graphics for genomics data</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-background.html"><a href="2-1-background.html"><i class="fa fa-check"></i><b>2.1</b> Background</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-results.html"><a href="2-2-results.html"><i class="fa fa-check"></i><b>2.2</b> Results</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-discussion.html"><a href="2-3-discussion.html"><i class="fa fa-check"></i><b>2.3</b> Discussion</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-conclusion.html"><a href="2-4-conclusion.html"><i class="fa fa-check"></i><b>2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-acknowledgements-1.html"><a href="2-5-acknowledgements-1.html"><i class="fa fa-check"></i><b>2.5</b> Acknowledgements</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-availability-of-data-and-materials.html"><a href="2-6-availability-of-data-and-materials.html"><i class="fa fa-check"></i><b>2.6</b> Availability of Data and Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-fluentGenomics.html"><a href="3-ch-fluentGenomics.html"><i class="fa fa-check"></i><b>3</b> Fluent genomics: integrating data with plyranges and tximeta</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction.html"><a href="3-1-introduction.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-se.html"><a href="3-2-se.html"><i class="fa fa-check"></i><b>3.2</b> Import Data as a <em>SummarizedExperiment</em></a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-model-assays.html"><a href="3-3-model-assays.html"><i class="fa fa-check"></i><b>3.3</b> Model assays</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html"><i class="fa fa-check"></i><b>3.4</b> Integrate ranges</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-discussion-1.html"><a href="3-5-discussion-1.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-acknowledgements-2.html"><a href="3-7-acknowledgements-2.html"><i class="fa fa-check"></i><b>3.7</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis uncovers intron retention</a></li>
+<li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Spurious embeddings from non-linear dimensionality reduction methods and how to find them</a></li>
+<li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion and future plans</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploratory data analysis for high-dimensional biological datasets</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conclusion" class="section level2">
+<h2><span class="header-section-number">2.4</span> Conclusion</h2>
+<p>We have shown how to create expressive and
+reproducible genomic workflows using the <code>plyranges</code> DSL. By
+realising that the GRanges data model is tidy we have highlighted how to
+implement a grammar for performing genomic arithmetic, aggregation, restriction
+and merging. Our examples show that <code>plyranges</code> code is succinct, human
+readable and can take advantage of the interoperability provided by
+the Bioconductor ecosystem and the R language.</p>
+<p>We also note that the grammar elements and design principles we have described
+are programming language agnostic and could be easily be implemented in another
+language where genomic information could be represented as a tabular data
+structure. We chose R because it is what we are familiar with and because
+the aforementioned Bioconductor packages have implemented the GRanges data
+structure.</p>
+<p>We aim to continue developing the <code>plyranges</code> package and to extend it
+for use with more complex data structures, such as the
+SummarizedExperiment class, the core Bioconductor data structure for
+representing experimental results (e.g., counts) from multiple sample
+experiments in conjunction with feature and sample metadata. Although,
+the SummarizedExperiment is not strictly tidy, it does consist of
+three tidy data structures that are related by feature and sample identifiers.
+Therefore, the grammar and design of the <code>plryanges</code> DSL is naturally
+extensible to the SummarizedExperiment.</p>
+<p>As the <code>plyranges</code> interface encourages tidy data practices, it
+integrates well with the grammar of graphics <span class="citation">(Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz" role="doc-biblioref">2016</a>)</span>. To
+achieve responsive performance, interactive graphics rely on lazy data
+access and computing patterns, so the deferred mechanisms within
+<code>plyranges</code> should help support interactive genomics applications.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-3-discussion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-5-acknowledgements-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//02-plyranges.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

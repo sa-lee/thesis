@@ -1,227 +1,227 @@
 # Tidy coverage analysis uncovers intron retention {#ch:intron}
 
-# Introduction
+<!-- # Introduction -->
 
-## Data
+<!-- ## Data -->
 
-We will use data from 12 samples from the human cell line mixture RNA-seq
-data. There are three biological replicates across two library preparation kits,
-a polyA kit and a total RNA kit. The BAM files have been previously aligned
-with subread using the hg20 reference genome. 
+<!-- We will use data from 12 samples from the human cell line mixture RNA-seq -->
+<!-- data. There are three biological replicates across two library preparation kits, -->
+<!-- a polyA kit and a total RNA kit. The BAM files have been previously aligned -->
+<!-- with subread using the hg20 reference genome.  -->
 
-```{r prepare-design, echo= FALSE}
-design <- readRDS(here("data", "superintronic", "design.rds"))
-```
-
-
-## `superintronic` analysis
-
-A superintronic analysis consists of four steps:
-1. Preparing the annotation and extract exonic/intronic parts
-2. Computing coverage over regions of interest
-3. Summarising coverage over regions of interest
-4. Visualising the results
-
-Steps 1 and 2. are performed in the `scripts/run_coverage.R`
-
-### Preparing GFF/GTF files
-
-```{r gff}
-library(superintronic)
-parts <- readRDS(here::here("data", "complete-annotation.rds"))
-parts
-```
-
-These can be interrogated as desired, but for our purposes we will keep
-genes that are protein coding, on main chromosomes but not mitochondrial 
-genome, and do not overlap any other genes and have more than one exon.
-
-```{r default-filter, echo = FALSE}
-parts_sub <- readRDS(here::here("data", "filtered-annotation.rds"))
-parts_sub
-```
+<!-- ```{r prepare-design, echo= FALSE} -->
+<!-- design <- readRDS(here("data", "superintronic", "design.rds")) -->
+<!-- ``` -->
 
 
-## Coverage over intronic/exonic regions
+<!-- ## `superintronic` analysis -->
 
-Now all the ingredients are in place to merge the coverage scores
-to our prepared annotation with `join_parts()`. This again
-returns a GRanges object, restricted to the intersection of the 
-coverage ranges with intron/exon ranges. Additional columns are added
-corresponding to the properties of the intron/exon.
+<!-- A superintronic analysis consists of four steps: -->
+<!-- 1. Preparing the annotation and extract exonic/intronic parts -->
+<!-- 2. Computing coverage over regions of interest -->
+<!-- 3. Summarising coverage over regions of interest -->
+<!-- 4. Visualising the results -->
 
+<!-- Steps 1 and 2. are performed in the `scripts/run_coverage.R` -->
 
-```{r, load-features, echo = FALSE }
-cvg_over_features <- readRDS(here::here("data", "parts-coverage.rds"))
-```
+<!-- ### Preparing GFF/GTF files -->
 
-Now we will compute summaries for each cell line and kit to detect IR 
-genes. This consists of three steps
+<!-- ```{r gff} -->
+<!-- library(superintronic) -->
+<!-- parts <- readRDS(here::here("data", "complete-annotation.rds")) -->
+<!-- parts -->
+<!-- ``` -->
 
-1. Computing the average log-coverage over all exon/intron features:
+<!-- These can be interrogated as desired, but for our purposes we will keep -->
+<!-- genes that are protein coding, on main chromosomes but not mitochondrial  -->
+<!-- genome, and do not overlap any other genes and have more than one exon. -->
 
-```{r rangenostics-01}
-# compute intron/exon features
-cvg_over_features <- cvg_over_features %>% 
-  mutate(log_score = log2(score + 0.5))  
-  
-cvg_by_features <- cvg_over_features %>% 
-  group_by(Kit, CellLine, gene_id, feature_type)
-E_vals <- cvg_by_features %>% 
-  summarise(mn = Hmisc::wtd.mean(log_score, width),
-            sd = sqrt(Hmisc::wtd.var(log_score, width)),
-            raw_mn = Hmisc::wtd.mean(score, width),
-            score = score,
-            n_bases = width,
-            start = min(start),
-            end = max(end),
-            seqnames = unlist(unique(seqnames)),
-            strand = unlist(unique(feature_strand))) %>% 
-  makeGRangesFromDataFrame(keep.extra.columns = TRUE)
-```
+<!-- ```{r default-filter, echo = FALSE} -->
+<!-- parts_sub <- readRDS(here::here("data", "filtered-annotation.rds")) -->
+<!-- parts_sub -->
+<!-- ``` -->
 
 
-2. For exon features computing the mean and variance of average log-coverage 
-   over all genes (lumpiness).
-   
-```{r rangenostics-02}
-lumpy <- E_vals %>% 
-  filter(sd > 0, feature_type == "exon") %>% 
-  group_by(Kit, CellLine) %>% 
-  summarise(
-    E_mu = mean(mn),
-    E_sd = mean(sd),
-    E_raw = mean(raw_mn)
-)
-lumpy 
-mcols(E_vals) <- cbind(mcols(E_vals),
-                       lumpy[match(paste0(E_vals$Kit, E_vals$CellLine), 
-                                   paste0(lumpy$Kit, lumpy$CellLine)), -c(1,2)])
-E_vals <- E_vals %>% 
-  mutate(
-    n_bases_E_raw = sum(n_bases[score > E_raw]),
-  ) 
-```
-   
-   
-3. Compute the average number of bases with a 
-   log-coverage score above the E values defined above. We have also computed
-   a smooth between over the intron/exon feature standard deviation against
-   the average for visualisation purposes.
+<!-- ## Coverage over intronic/exonic regions -->
 
-```{r rangenostics-03}
-rango <- E_vals %>% 
-  plyranges::select(-n_bases, -score, -seqnames, -start, -end, -width, -strand, 
-         .drop_ranges = TRUE) %>% 
-  dplyr::as_tibble() %>% 
-  group_by(Kit, CellLine, feature_type) %>% 
-  tidyr::nest() %>% 
-  mutate(
-    smooth = lapply(data, function(x) {
-      mgcv::gam(sd ~ s(mn), data = x)
-      }),
-    augment = lapply(smooth, broom::augment),
-  ) %>% 
-  tidyr::unnest(data, augment) %>% 
-  dplyr::select(-dplyr::ends_with("1"), -.sigma)
-```
+<!-- Now all the ingredients are in place to merge the coverage scores -->
+<!-- to our prepared annotation with `join_parts()`. This again -->
+<!-- returns a GRanges object, restricted to the intersection of the  -->
+<!-- coverage ranges with intron/exon ranges. Additional columns are added -->
+<!-- corresponding to the properties of the intron/exon. -->
 
-4. Plot the results.
 
-We get very similar results to a `voom` plot in a standard limma analysis. We
-have also overlaid on the E_mu and E_sigma values as potential cut-offs for
-each feature. 
+<!-- ```{r, load-features, echo = FALSE } -->
+<!-- cvg_over_features <- readRDS(here::here("data", "parts-coverage.rds")) -->
+<!-- ``` -->
 
-```{r voom-like-plot}
-# rangenostics feature_average vs feature_sd coloured by n of bases above
-# average raw exon coverage
-library(ggplot2)
-voom_plot <- function(.x, .y) {
-  p <- ggplot(data = .x, aes(x = mn, y = sd)) +
-    geom_point() +
-    geom_line(aes(y = .fitted), colour = "blue") +
-    geom_vline(aes(xintercept = E_mu), 
-               data  = dplyr::distinct(.x, feature_type, E_mu)) +
-    geom_hline(aes(yintercept = E_sd),
-               data = dplyr::distinct(.x, feature_type, E_sd)) +
-    facet_wrap(~feature_type) +
-    labs(
-         subtitle = paste(.y$Kit, .y$CellLine),
-         x = "mean log-coverage",
-         y = "sd log-covreage"
-    )
-  fname <- here::here("img", 
-                      paste0(.y$Kit, "-", .y$CellLine, 
-                             "voom-like-plot.png")
-  )
-  ggsave(fname, p)
-}
-rango %>% 
-  group_by(Kit, CellLine) %>% 
-  dplyr::group_walk(voom_plot)
-```
+<!-- Now we will compute summaries for each cell line and kit to detect IR  -->
+<!-- genes. This consists of three steps -->
 
-We also plot pairs of summary values for each feature in a scatter plot matrix
-(using a hexbin scatter plot). Again we get similar results to the plots
-produced by a DE analysis from InDeX.
+<!-- 1. Computing the average log-coverage over all exon/intron features: -->
 
-```{r rangenostics-pairs}
-all_features <- tidyr::gather(rango, "key", "value", 
-                              -Kit, -CellLine, -gene_id, -feature_type, 
-                              -E_mu, -E_sd, -E_raw) %>% 
-  mutate(var = paste0(feature_type, "_", key)) %>% 
-  plyranges::select(-feature_type, -key) %>% 
-  arrange(gene_id) %>% 
-  tidyr::spread(var, value)
-pairs_plot <- function(.x, .y) {
-  sub <- plyranges::select(.x, 
-                           exon_mn, 
-                           intron_mn, 
-                           intron_sd, 
-                           bases_above = intron_n_bases_E_raw)
-  fname <- here::here("img", 
-                      paste0(.y$Kit, "-", .y$CellLine, 
-                             "-pairs-plot.png")
-  )
-  
-  p <- GGally::ggpairs(sub, columns = 1:4, lower = list(continuous = hex))
-  ggsave(fname, p)
-}
-all_features %>% 
-  group_by(Kit, CellLine) %>% 
-  dplyr::group_walk(pairs_plot)
-  
-  
-```
+<!-- ```{r rangenostics-01} -->
+<!-- # compute intron/exon features -->
+<!-- cvg_over_features <- cvg_over_features %>%  -->
+<!--   mutate(log_score = log2(score + 0.5))   -->
 
-5. Decide on cut-off over each feature. It appears that choosing genes
-with high intron feature standard deviations, and with number of bases above
-E_mu in the 99th percentile discriminates intron retention features well.
+<!-- cvg_by_features <- cvg_over_features %>%  -->
+<!--   group_by(Kit, CellLine, gene_id, feature_type) -->
+<!-- E_vals <- cvg_by_features %>%  -->
+<!--   summarise(mn = Hmisc::wtd.mean(log_score, width), -->
+<!--             sd = sqrt(Hmisc::wtd.var(log_score, width)), -->
+<!--             raw_mn = Hmisc::wtd.mean(score, width), -->
+<!--             score = score, -->
+<!--             n_bases = width, -->
+<!--             start = min(start), -->
+<!--             end = max(end), -->
+<!--             seqnames = unlist(unique(seqnames)), -->
+<!--             strand = unlist(unique(feature_strand))) %>%  -->
+<!--   makeGRangesFromDataFrame(keep.extra.columns = TRUE) -->
+<!-- ``` -->
 
-```{r rangenositcs-hits}
-hits <- all_features %>% 
-  group_by(Kit, CellLine) %>% 
-  filter(exon_mn > E_mu, 
-         intron_sd > E_sd, 
-         intron_n_bases_E_raw > quantile(intron_n_bases_E_raw, 0.99))  
- 
-dplyr::count(hits)
-```
 
-6. We can also look at overlaps between sets using an UpSet plot:
+<!-- 2. For exon features computing the mean and variance of average log-coverage  -->
+<!--    over all genes (lumpiness). -->
 
-```{r, echo  = FALSE}
-sets <- hits %>% 
-  dplyr::distinct(gene_id) %>%
-  arrange(gene_id) %>% 
-  mutate(value = 1L, var = paste(CellLine, Kit)) %>% 
-  ungroup() %>%  
-  plyranges::select(gene_id, var, value) %>% 
-  tidyr::spread(var, value) %>% 
-  dplyr::mutate_at(2:5, .funs = ~ dplyr::if_else(is.na(.), 0L, .)) 
-sets <- as.data.frame(sets)
-library(UpSetR)
-pdf(here::here("img", "olaps-superintronic-hits.pdf"))
-upset(sets)
-dev.off()
-```
+<!-- ```{r rangenostics-02} -->
+<!-- lumpy <- E_vals %>%  -->
+<!--   filter(sd > 0, feature_type == "exon") %>%  -->
+<!--   group_by(Kit, CellLine) %>%  -->
+<!--   summarise( -->
+<!--     E_mu = mean(mn), -->
+<!--     E_sd = mean(sd), -->
+<!--     E_raw = mean(raw_mn) -->
+<!-- ) -->
+<!-- lumpy  -->
+<!-- mcols(E_vals) <- cbind(mcols(E_vals), -->
+<!--                        lumpy[match(paste0(E_vals$Kit, E_vals$CellLine),  -->
+<!--                                    paste0(lumpy$Kit, lumpy$CellLine)), -c(1,2)]) -->
+<!-- E_vals <- E_vals %>%  -->
+<!--   mutate( -->
+<!--     n_bases_E_raw = sum(n_bases[score > E_raw]), -->
+<!--   )  -->
+<!-- ``` -->
+
+
+<!-- 3. Compute the average number of bases with a  -->
+<!--    log-coverage score above the E values defined above. We have also computed -->
+<!--    a smooth between over the intron/exon feature standard deviation against -->
+<!--    the average for visualisation purposes. -->
+
+<!-- ```{r rangenostics-03} -->
+<!-- rango <- E_vals %>%  -->
+<!--   plyranges::select(-n_bases, -score, -seqnames, -start, -end, -width, -strand,  -->
+<!--          .drop_ranges = TRUE) %>%  -->
+<!--   dplyr::as_tibble() %>%  -->
+<!--   group_by(Kit, CellLine, feature_type) %>%  -->
+<!--   tidyr::nest() %>%  -->
+<!--   mutate( -->
+<!--     smooth = lapply(data, function(x) { -->
+<!--       mgcv::gam(sd ~ s(mn), data = x) -->
+<!--       }), -->
+<!--     augment = lapply(smooth, broom::augment), -->
+<!--   ) %>%  -->
+<!--   tidyr::unnest(data, augment) %>%  -->
+<!--   dplyr::select(-dplyr::ends_with("1"), -.sigma) -->
+<!-- ``` -->
+
+<!-- 4. Plot the results. -->
+
+<!-- We get very similar results to a `voom` plot in a standard limma analysis. We -->
+<!-- have also overlaid on the E_mu and E_sigma values as potential cut-offs for -->
+<!-- each feature.  -->
+
+<!-- ```{r voom-like-plot} -->
+<!-- # rangenostics feature_average vs feature_sd coloured by n of bases above -->
+<!-- # average raw exon coverage -->
+<!-- library(ggplot2) -->
+<!-- voom_plot <- function(.x, .y) { -->
+<!--   p <- ggplot(data = .x, aes(x = mn, y = sd)) + -->
+<!--     geom_point() + -->
+<!--     geom_line(aes(y = .fitted), colour = "blue") + -->
+<!--     geom_vline(aes(xintercept = E_mu),  -->
+<!--                data  = dplyr::distinct(.x, feature_type, E_mu)) + -->
+<!--     geom_hline(aes(yintercept = E_sd), -->
+<!--                data = dplyr::distinct(.x, feature_type, E_sd)) + -->
+<!--     facet_wrap(~feature_type) + -->
+<!--     labs( -->
+<!--          subtitle = paste(.y$Kit, .y$CellLine), -->
+<!--          x = "mean log-coverage", -->
+<!--          y = "sd log-covreage" -->
+<!--     ) -->
+<!--   fname <- here::here("img",  -->
+<!--                       paste0(.y$Kit, "-", .y$CellLine,  -->
+<!--                              "voom-like-plot.png") -->
+<!--   ) -->
+<!--   ggsave(fname, p) -->
+<!-- } -->
+<!-- rango %>%  -->
+<!--   group_by(Kit, CellLine) %>%  -->
+<!--   dplyr::group_walk(voom_plot) -->
+<!-- ``` -->
+
+<!-- We also plot pairs of summary values for each feature in a scatter plot matrix -->
+<!-- (using a hexbin scatter plot). Again we get similar results to the plots -->
+<!-- produced by a DE analysis from InDeX. -->
+
+<!-- ```{r rangenostics-pairs} -->
+<!-- all_features <- tidyr::gather(rango, "key", "value",  -->
+<!--                               -Kit, -CellLine, -gene_id, -feature_type,  -->
+<!--                               -E_mu, -E_sd, -E_raw) %>%  -->
+<!--   mutate(var = paste0(feature_type, "_", key)) %>%  -->
+<!--   plyranges::select(-feature_type, -key) %>%  -->
+<!--   arrange(gene_id) %>%  -->
+<!--   tidyr::spread(var, value) -->
+<!-- pairs_plot <- function(.x, .y) { -->
+<!--   sub <- plyranges::select(.x,  -->
+<!--                            exon_mn,  -->
+<!--                            intron_mn,  -->
+<!--                            intron_sd,  -->
+<!--                            bases_above = intron_n_bases_E_raw) -->
+<!--   fname <- here::here("img",  -->
+<!--                       paste0(.y$Kit, "-", .y$CellLine,  -->
+<!--                              "-pairs-plot.png") -->
+<!--   ) -->
+
+<!--   p <- GGally::ggpairs(sub, columns = 1:4, lower = list(continuous = hex)) -->
+<!--   ggsave(fname, p) -->
+<!-- } -->
+<!-- all_features %>%  -->
+<!--   group_by(Kit, CellLine) %>%  -->
+<!--   dplyr::group_walk(pairs_plot) -->
+
+
+<!-- ``` -->
+
+<!-- 5. Decide on cut-off over each feature. It appears that choosing genes -->
+<!-- with high intron feature standard deviations, and with number of bases above -->
+<!-- E_mu in the 99th percentile discriminates intron retention features well. -->
+
+<!-- ```{r rangenositcs-hits} -->
+<!-- hits <- all_features %>%  -->
+<!--   group_by(Kit, CellLine) %>%  -->
+<!--   filter(exon_mn > E_mu,  -->
+<!--          intron_sd > E_sd,  -->
+<!--          intron_n_bases_E_raw > quantile(intron_n_bases_E_raw, 0.99))   -->
+
+<!-- dplyr::count(hits) -->
+<!-- ``` -->
+
+<!-- 6. We can also look at overlaps between sets using an UpSet plot: -->
+
+<!-- ```{r, echo  = FALSE} -->
+<!-- sets <- hits %>%  -->
+<!--   dplyr::distinct(gene_id) %>% -->
+<!--   arrange(gene_id) %>%  -->
+<!--   mutate(value = 1L, var = paste(CellLine, Kit)) %>%  -->
+<!--   ungroup() %>%   -->
+<!--   plyranges::select(gene_id, var, value) %>%  -->
+<!--   tidyr::spread(var, value) %>%  -->
+<!--   dplyr::mutate_at(2:5, .funs = ~ dplyr::if_else(is.na(.), 0L, .))  -->
+<!-- sets <- as.data.frame(sets) -->
+<!-- library(UpSetR) -->
+<!-- pdf(here::here("img", "olaps-superintronic-hits.pdf")) -->
+<!-- upset(sets) -->
+<!-- dev.off() -->
+<!-- ``` -->

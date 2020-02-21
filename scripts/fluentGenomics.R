@@ -20,8 +20,8 @@ dir <- system.file("extdata", package="macrophage")
 
 
 ## ----coldata-rna-----------------------------------
-library(dplyr)
 library(readr)
+library(dplyr)
 colfile <- file.path(dir, "coldata.csv")
 coldata <- read_csv(colfile) %>%
   dplyr::select(
@@ -86,7 +86,11 @@ de_genes
 ## ----de-genes--------------------------------------
 de_genes <- de_genes %>%
   filter(padj < 0.01) %>%
-  select(gene_id, de_log2FC = log2FoldChange, de_padj = padj)
+  dplyr::select(
+    gene_id,
+    de_log2FC = log2FoldChange,
+    de_padj = padj
+  )
 
 
 ## ----not-de-genes----------------------------------
@@ -97,9 +101,11 @@ other_genes <- results(dds,
                        format="GRanges") %>%
   filter(padj < 0.01) %>%
   names_to_column("gene_id") %>%
-  dplyr::select(gene_id,
-                de_log2FC = log2FoldChange,
-                de_padj = padj)
+  dplyr::select(
+    gene_id,
+    de_log2FC = log2FoldChange,
+    de_padj = padj
+  )
 
 
 ## ----load-peaks------------------------------------
@@ -114,14 +120,14 @@ da_peaks <- peaks %>%
 
 ## ----slice-example---------------------------------
 size <- length(de_genes)
-slice(other_genes, sample.int(n(), size))
+slice(other_genes, sample.int(plyranges::n(), size))
 
 
 ## ----boot-set-01-----------------------------------
 # set a seed for the results
 set.seed(2019-08-02)
 boot_genes <- replicate(10,
-                        slice(other_genes, sample.int(n(), size)),
+                        slice(other_genes, sample.int(plyranges::n(), size)),
                         simplify = FALSE)
 
 
@@ -164,7 +170,7 @@ genes_olap_peaks
 gene_peak_max_lfc <- genes_olap_peaks %>%
   group_by(gene_id, origin)  %>%
   reduce_ranges_directed(
-    peak_count = sum(!is.na(da_padj)) / n_distinct(resample),
+    peak_count = sum(!is.na(da_padj)) / plyranges::n_distinct(resample),
     peak_max_lfc = max(abs(da_log2FC))
   )
 
@@ -182,9 +188,9 @@ gene_peak_max_lfc %>%
 origin_peak_lfc <- genes_olap_peaks %>%
   group_by(origin) %>%
   summarize(
-    peak_count = sum(!is.na(da_padj)) / n_distinct(resample),
-    lfc1_peak_count =sum(abs(da_log2FC) > 1, na.rm=TRUE)/ n_distinct(resample),
-    lfc2_peak_count = sum(abs(da_log2FC) > 2, na.rm=TRUE)/ n_distinct(resample)
+    peak_count = sum(!is.na(da_padj)) / plyranges::n_distinct(resample),
+    lfc1_peak_count =sum(abs(da_log2FC) > 1, na.rm=TRUE)/ plyranges::n_distinct(resample),
+    lfc2_peak_count = sum(abs(da_log2FC) > 2, na.rm=TRUE)/ plyranges::n_distinct(resample)
   )
 origin_peak_lfc
 
@@ -206,10 +212,10 @@ genes_olap_peaks %>%
   ) %>%
   group_by(origin) %>%
   summarize(
-    lfc1_gene_count = sum(lfc1 > 0) / n_distinct(resample),
-    lfc1_peak_count = sum(lfc1) / n_distinct(resample),
-    lfc2_gene_count = sum(lfc2 > 0) / n_distinct(resample),
-    lfc2_peak_count = sum(lfc2) / n_distinct(resample)
+    lfc1_gene_count = sum(lfc1 > 0) / plyranges::n_distinct(resample),
+    lfc1_peak_count = sum(lfc1) / plyranges::n_distinct(resample),
+    lfc2_gene_count = sum(lfc2 > 0) / plyranges::n_distinct(resample),
+    lfc2_peak_count = sum(lfc2) / plyranges::n_distinct(resample)
   )
 
 
@@ -242,8 +248,8 @@ origin_peak_all_thresholds <- genes_peak_all_thresholds %>%
   expand_ranges() %>%
   group_by(origin, threshold) %>%
   summarize(
-    gene_count = sum(value > 0) / n_distinct(resample),
-    peak_count = sum(value) / n_distinct(resample)
+    gene_count = sum(value > 0) / plyranges::n_distinct(resample),
+    peak_count = sum(value) / plyranges::n_distinct(resample)
   )
 origin_peak_all_thresholds
 
@@ -255,7 +261,7 @@ origin_threshold_counts <- origin_peak_all_thresholds %>%
                       names_to = c("type", "var"),
                       names_sep = "_",
                       values_to = "count") %>%
-  select(-var)
+  dplyr::select(-var)
 
 origin_threshold_counts %>%
   filter(type == "peak") %>%
@@ -274,4 +280,3 @@ origin_threshold_counts %>%
              linetype = type)) +
   geom_line() +
   scale_y_log10()
-

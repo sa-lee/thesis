@@ -13,12 +13,12 @@ options("knitr.graphics.auto_pdf" = TRUE)
 library(knitr)
 opts_chunk$set(
   warning = FALSE, message = FALSE, echo = FALSE,
-  fig.path = here::here('img'), fig.align = 'center', fig.show = 'hold',
+  fig.path = here::here('img/'), fig.align = 'center', fig.show = 'hold',
   cache = TRUE, external = TRUE, comment = "#>", dpi = 300,
   out.width = ifelse(is_html_output(), "100%", "\\textwidth"),
   cache.path = ifelse(is_html_output(), 
-                      here::here('cache-gitbook'), 
-                      here::here('cache-pdfbook')
+                      here::here('cache-gitbook/'), 
+                      here::here('cache-pdfbook/')
   )
 )
 ```

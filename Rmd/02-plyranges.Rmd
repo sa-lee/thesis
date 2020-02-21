@@ -258,7 +258,7 @@ the left range. Finally, the overlap _left_ join is akin to left outer
 join in Codd's relational algebra: it performs an overlap inner join
 but also returns all _x_ ranges that are not hit by the _y_ ranges.
 
-```{r code-comparsion, fig.cap = "(ref:code-comparison-cap)", echo = FALSE}
+```{r code-comparison, fig.cap = "(ref:code-comparison-cap)", echo = FALSE}
 knitr::include_graphics(here::here("img", "code-comparison.png"))
 ```
 

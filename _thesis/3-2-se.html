@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.2 Import Data as a SummarizedExperiment | Exploratory data analysis for high-dimensional biological datasets</title>
+  <meta name="description" content="3.2 Import Data as a SummarizedExperiment | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.2 Import Data as a SummarizedExperiment | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.2 Import Data as a SummarizedExperiment | Exploratory data analysis for high-dimensional biological datasets" />
+  
+  
+  
+
+<meta name="author" content="Stuart Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3-1-introduction.html"/>
+<link rel="next" href="3-3-model-assays.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"></a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="2-ch-plyranges.html"><a href="2-ch-plyranges.html"><i class="fa fa-check"></i><b>2</b> plyranges: a grammar of graphics for genomics data</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-background.html"><a href="2-1-background.html"><i class="fa fa-check"></i><b>2.1</b> Background</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-results.html"><a href="2-2-results.html"><i class="fa fa-check"></i><b>2.2</b> Results</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-discussion.html"><a href="2-3-discussion.html"><i class="fa fa-check"></i><b>2.3</b> Discussion</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-conclusion.html"><a href="2-4-conclusion.html"><i class="fa fa-check"></i><b>2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-acknowledgements-1.html"><a href="2-5-acknowledgements-1.html"><i class="fa fa-check"></i><b>2.5</b> Acknowledgements</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-availability-of-data-and-materials.html"><a href="2-6-availability-of-data-and-materials.html"><i class="fa fa-check"></i><b>2.6</b> Availability of Data and Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-fluentGenomics.html"><a href="3-ch-fluentGenomics.html"><i class="fa fa-check"></i><b>3</b> Fluent genomics: integrating data with plyranges and tximeta</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction.html"><a href="3-1-introduction.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-se.html"><a href="3-2-se.html"><i class="fa fa-check"></i><b>3.2</b> Import Data as a <em>SummarizedExperiment</em></a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-model-assays.html"><a href="3-3-model-assays.html"><i class="fa fa-check"></i><b>3.3</b> Model assays</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html"><i class="fa fa-check"></i><b>3.4</b> Integrate ranges</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-discussion-1.html"><a href="3-5-discussion-1.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-acknowledgements-2.html"><a href="3-7-acknowledgements-2.html"><i class="fa fa-check"></i><b>3.7</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis uncovers intron retention</a></li>
+<li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Spurious embeddings from non-linear dimensionality reduction methods and how to find them</a></li>
+<li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion and future plans</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploratory data analysis for high-dimensional biological datasets</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="se" class="section level2">
+<h2><span class="header-section-number">3.2</span> Import Data as a <em>SummarizedExperiment</em></h2>
+<div id="using-tximeta-to-import-rna-seq-quantification-data" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Using <em>tximeta</em> to import RNA-seq quantification data</h3>
+<p>First, we specify a directory <code>dir</code>, where the quantification files are stored.
+You could simply specify this directory with:</p>
+<p>where the path is relative to your current R session. However, in this case we
+have distributed the files in the <em>macrophage</em> package. The relevant directory
+and associated files can be located using <code>system.file</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package=</span><span class="st">&quot;macrophage&quot;</span>)</a></code></pre></div>
+<p>Information about the experiment is contained in the <code>coldata.csv</code> file. We
+leverage the <em>dplyr</em> and <em>readr</em> packages (as part of the <em>tidyverse</em>) to read
+this file into R <span class="citation">(Wickham et al. <a href="bibliography.html#ref-tidyverse" role="doc-biblioref">2019</a>)</span>. We will see later that <em>plyranges</em> extends these
+packages to accommodate genomic ranges.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb17-3" title="3">colfile &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, <span class="st">&quot;coldata.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb17-4" title="4">coldata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(colfile) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb17-6" title="6">    names,</a>
+<a class="sourceLine" id="cb17-7" title="7">    <span class="dt">id =</span> sample_id,</a>
+<a class="sourceLine" id="cb17-8" title="8">    <span class="dt">line =</span> line_id,</a>
+<a class="sourceLine" id="cb17-9" title="9">    <span class="dt">condition =</span> condition_name</a>
+<a class="sourceLine" id="cb17-10" title="10">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb17-12" title="12">    <span class="dt">files =</span> <span class="kw">file.path</span>(dir, <span class="st">&quot;quants&quot;</span>, names, <span class="st">&quot;quant.sf.gz&quot;</span>),</a>
+<a class="sourceLine" id="cb17-13" title="13">    <span class="dt">line =</span> <span class="kw">factor</span>(line),</a>
+<a class="sourceLine" id="cb17-14" title="14">    <span class="dt">condition =</span> <span class="kw">relevel</span>(<span class="kw">factor</span>(condition), <span class="st">&quot;naive&quot;</span>)</a>
+<a class="sourceLine" id="cb17-15" title="15">  )</a>
+<a class="sourceLine" id="cb17-16" title="16">coldata</a></code></pre></div>
+<pre><code>#&gt; # A tibble: 24 x 5
+#&gt;    names      id     line  condition  files                                     
+#&gt;    &lt;chr&gt;      &lt;chr&gt;  &lt;fct&gt; &lt;fct&gt;      &lt;chr&gt;                                     
+#&gt;  1 SAMEA1038… diku_A diku… naive      /Library/Frameworks/R.framework/Versions/…
+#&gt;  2 SAMEA1038… diku_B diku… IFNg       /Library/Frameworks/R.framework/Versions/…
+#&gt;  3 SAMEA1038… diku_C diku… SL1344     /Library/Frameworks/R.framework/Versions/…
+#&gt;  4 SAMEA1038… diku_D diku… IFNg_SL13… /Library/Frameworks/R.framework/Versions/…
+#&gt;  5 SAMEA1038… eiwy_A eiwy… naive      /Library/Frameworks/R.framework/Versions/…
+#&gt;  6 SAMEA1038… eiwy_B eiwy… IFNg       /Library/Frameworks/R.framework/Versions/…
+#&gt;  7 SAMEA1038… eiwy_C eiwy… SL1344     /Library/Frameworks/R.framework/Versions/…
+#&gt;  8 SAMEA1038… eiwy_D eiwy… IFNg_SL13… /Library/Frameworks/R.framework/Versions/…
+#&gt;  9 SAMEA1038… fikt_A fikt… naive      /Library/Frameworks/R.framework/Versions/…
+#&gt; 10 SAMEA1038… fikt_B fikt… IFNg       /Library/Frameworks/R.framework/Versions/…
+#&gt; # … with 14 more rows</code></pre>
+<p>After we have read the <code>coldata.csv</code> file, we select relevant columns from this
+table, create a new column called <code>files</code>, and transform the existing <code>line</code>
+and <code>condition</code> columns into factors. In the case of <code>condition</code>, we specify
+the “naive” cell line as the reference level. The <code>files</code> column points to the
+quantifications for each observation – these files have been gzipped, but
+would typically not have the ‘gz’ ending if used from <em>Salmon</em> directly. One
+other thing to note is the use of the pipe operator,<code>%&gt;%</code>, which can be read as
+“then”, i.e. first read the data, <em>then</em> select columns, <em>then</em> mutate them.</p>
+<p>Now we have a table summarizing the experimental design and the locations of
+the quantifications. The following lines of code do a lot of work for the
+analyst: importing the RNA-seq quantification (dropping <em>inferential
+replicates</em> in this case), locating the relevant reference transcriptome,
+attaching the transcript ranges to the data, and fetching genome information.
+Inferential replicates are especially useful for performing transcript-level
+analysis, but here we will use a point estimate for the per-gene counts and
+perform gene-level analysis.</p>
+<p>The result is a <em>SummarizedExperiment</em> object.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(SummarizedExperiment))</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw">library</span>(tximeta)</a>
+<a class="sourceLine" id="cb19-3" title="3">se &lt;-<span class="st"> </span><span class="kw">tximeta</span>(coldata, <span class="dt">dropInfReps=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb19-4" title="4">se</a></code></pre></div>
+<pre><code>#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 205870 24 
+#&gt; metadata(6): tximetaInfo quantInfo ... txomeInfo txdbInfo
+#&gt; assays(3): counts abundance length
+#&gt; rownames(205870): ENST00000456328.2 ENST00000450305.2 ...
+#&gt;   ENST00000387460.2 ENST00000387461.2
+#&gt; rowData names(3): tx_id gene_id tx_name
+#&gt; colnames(24): SAMEA103885102 SAMEA103885347 ... SAMEA103885308
+#&gt;   SAMEA103884949
+#&gt; colData names(4): names id line condition</code></pre>
+<!-- should we describe the data structure in more detail, or use a figure -->
+<p>On a machine with a working internet connection, the above command works
+without any extra steps, as the <code>tximeta</code> function obtains any necessary
+metadata via FTP, unless it is already cached locally. The <em>tximeta</em> package
+can also be used without an internet connection, in this case the linked
+transcriptome can be created directly from a <em>Salmon</em> index and gtf.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">makeLinkedTxome</span>(</a>
+<a class="sourceLine" id="cb21-2" title="2">  <span class="dt">indexDir=</span><span class="kw">file.path</span>(dir, <span class="st">&quot;gencode.v29_salmon_0.12.0&quot;</span>),</a>
+<a class="sourceLine" id="cb21-3" title="3">  <span class="dt">source=</span><span class="st">&quot;Gencode&quot;</span>,</a>
+<a class="sourceLine" id="cb21-4" title="4">  <span class="dt">organism=</span><span class="st">&quot;Homo sapiens&quot;</span>,</a>
+<a class="sourceLine" id="cb21-5" title="5">  <span class="dt">release=</span><span class="st">&quot;29&quot;</span>,</a>
+<a class="sourceLine" id="cb21-6" title="6">  <span class="dt">genome=</span><span class="st">&quot;GRCh38&quot;</span>,</a>
+<a class="sourceLine" id="cb21-7" title="7">  <span class="dt">fasta=</span><span class="st">&quot;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/gencode.v29.transcripts.fa.gz&quot;</span>,</a>
+<a class="sourceLine" id="cb21-8" title="8">  <span class="dt">gtf=</span><span class="kw">file.path</span>(dir, <span class="st">&quot;gencode.v29.annotation.gtf.gz&quot;</span>), <span class="co"># local version</span></a>
+<a class="sourceLine" id="cb21-9" title="9">  <span class="dt">write=</span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb21-10" title="10">)</a></code></pre></div>
+<p>Because <em>tximeta</em> knows the correct reference transcriptome, we can ask
+<em>tximeta</em> to summarize the transcript-level data to the gene level using the
+methods of <span class="citation">Soneson, Love, and Robinson (<a href="bibliography.html#ref-Soneson2015" role="doc-biblioref">2015</a>)</span>.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">gse &lt;-<span class="st"> </span><span class="kw">summarizeToGene</span>(se)</a></code></pre></div>
+<p>One final note is that the <code>start</code> of positive strand genes and the <code>end</code> of
+negative strand genes is now dictated by the genomic extent of the isoforms of
+the gene (so the <code>start</code> and <code>end</code> of the reduced <em>GRanges</em>). Another
+alternative would be to either operate on transcript abundance, and perform
+differential analysis on transcript (and so avoid defining the TSS of a set of
+isoforms), or to use gene-level summarized expression but to pick the most
+representative TSS based on isoform expression.</p>
+</div>
+<div id="atac" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Importing ATAC-seq data as a <em>SummarizedExperiment</em> object</h3>
+<p>The <em>SummarizedExperiment</em> object containing ATAC-seq peaks can be created from
+the following tab-delimited files from <span class="citation">Alasoo and Gaffney (<a href="bibliography.html#ref-alasooZenodo" role="doc-biblioref">2017</a>)</span>:</p>
+<ul>
+<li>The sample metadata: <code>ATAC_sample_metadata.txt.gz</code> (&lt;1M)</li>
+<li>The matrix of normalized read counts: <code>ATAC_cqn_matrix.txt.gz</code> (109M)</li>
+<li>The annotated peaks: <code>ATAC_peak_metadata.txt.gz</code> (5.6M)</li>
+</ul>
+<p>To begin, we read in the sample metadata, following similar steps to those we
+used to generate the <code>coldata</code> table for the RNA-seq experiment:</p>
+<p>The ATAC-seq counts have already been normalized with <em>cqn</em> <span class="citation">(Hansen, Irizarry, and Wu <a href="bibliography.html#ref-Hansen2012" role="doc-biblioref">2012</a>)</span> and
+log2 transformed. Loading the <em>cqn</em>-normalized matrix of log2 transformed read
+counts takes ~30 seconds and loads an object of ~370 Mb. We set the column
+names so that the first column contains the rownames of the matrix, and the
+remaining columns are the sample identities from the <code>atac_coldata</code> object.</p>
+<p>We read in the peak metadata (locations in the genome), and convert it to a
+<em>GRanges</em> object. The <code>as_granges()</code> function automatically converts the
+<em>data.frame</em> into a <em>GRanges</em> object. From that result, we extract the peak_id
+column and set the genome information to the build “GRCh38”. We know this from
+the <a href="https://zenodo.org/record/1188300#.XJOFSlNKiL5">Zenodo entry</a>.</p>
+<p>Finally, we construct a <em>SummarizedExperiment</em> object. We place the matrix
+into the assays slot as a named list, the annotated peaks into the row-wise
+ranges slot, and the sample metadata into the column-wise data slot:</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-1-introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-3-model-assays.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//03-fluentGenomics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

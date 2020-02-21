@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.3 Model assays | Exploratory data analysis for high-dimensional biological datasets</title>
+  <meta name="description" content="3.3 Model assays | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.3 Model assays | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.3 Model assays | Exploratory data analysis for high-dimensional biological datasets" />
+  
+  
+  
+
+<meta name="author" content="Stuart Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3-2-se.html"/>
+<link rel="next" href="3-4-integrate-ranges.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"></a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="2-ch-plyranges.html"><a href="2-ch-plyranges.html"><i class="fa fa-check"></i><b>2</b> plyranges: a grammar of graphics for genomics data</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-background.html"><a href="2-1-background.html"><i class="fa fa-check"></i><b>2.1</b> Background</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-results.html"><a href="2-2-results.html"><i class="fa fa-check"></i><b>2.2</b> Results</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-discussion.html"><a href="2-3-discussion.html"><i class="fa fa-check"></i><b>2.3</b> Discussion</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-conclusion.html"><a href="2-4-conclusion.html"><i class="fa fa-check"></i><b>2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-acknowledgements-1.html"><a href="2-5-acknowledgements-1.html"><i class="fa fa-check"></i><b>2.5</b> Acknowledgements</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-availability-of-data-and-materials.html"><a href="2-6-availability-of-data-and-materials.html"><i class="fa fa-check"></i><b>2.6</b> Availability of Data and Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-fluentGenomics.html"><a href="3-ch-fluentGenomics.html"><i class="fa fa-check"></i><b>3</b> Fluent genomics: integrating data with plyranges and tximeta</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction.html"><a href="3-1-introduction.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-se.html"><a href="3-2-se.html"><i class="fa fa-check"></i><b>3.2</b> Import Data as a <em>SummarizedExperiment</em></a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-model-assays.html"><a href="3-3-model-assays.html"><i class="fa fa-check"></i><b>3.3</b> Model assays</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html"><i class="fa fa-check"></i><b>3.4</b> Integrate ranges</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-discussion-1.html"><a href="3-5-discussion-1.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-acknowledgements-2.html"><a href="3-7-acknowledgements-2.html"><i class="fa fa-check"></i><b>3.7</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis uncovers intron retention</a></li>
+<li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Spurious embeddings from non-linear dimensionality reduction methods and how to find them</a></li>
+<li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion and future plans</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploratory data analysis for high-dimensional biological datasets</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="model-assays" class="section level2">
+<h2><span class="header-section-number">3.3</span> Model assays</h2>
+<div id="rna-seq-differential-gene-expression-analysis" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> RNA-seq differential gene expression analysis</h3>
+<p>We can easily run a differential expression analysis with <em>DESeq2</em> using the
+following code chunks <span class="citation">(Love, Huber, and Anders <a href="bibliography.html#ref-Love2014" role="doc-biblioref">2014</a>)</span>. The design formula indicates that we want to
+control for the donor baselines (<code>line</code>) and test for differences in gene
+expression on the condition. For a more comprehensive discussion of DE
+workflows in Bioconductor see <span class="citation">Love et al. (<a href="bibliography.html#ref-Love2016-f1000" role="doc-biblioref">2016</a>)</span> and <span class="citation">Law et al. (<a href="bibliography.html#ref-Law2018-f1000" role="doc-biblioref">2018</a>)</span>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">library</span>(DESeq2)</a>
+<a class="sourceLine" id="cb23-2" title="2">dds &lt;-<span class="st"> </span><span class="kw">DESeqDataSet</span>(gse, <span class="op">~</span>line <span class="op">+</span><span class="st"> </span>condition)</a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="co"># filter out lowly expressed genes</span></a>
+<a class="sourceLine" id="cb23-4" title="4"><span class="co"># at least 10 counts in at least 6 samples</span></a>
+<a class="sourceLine" id="cb23-5" title="5">keep &lt;-<span class="st"> </span><span class="kw">rowSums</span>(<span class="kw">counts</span>(dds) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb23-6" title="6">dds &lt;-<span class="st"> </span>dds[keep,]</a></code></pre></div>
+<p>The model is fit with the following line of code:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">dds &lt;-<span class="st"> </span><span class="kw">DESeq</span>(dds)</a></code></pre></div>
+<p>Below we set the contrast on the condition variable, indicating we are
+estimating the <span class="math inline">\(\log_2\)</span> fold change (LFC) of IFNg stimulated cell lines against
+naive cell lines. We are interested in LFC greater than 1 at a nominal false
+discovery rate (FDR) of 1%.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">res &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</a>
+<a class="sourceLine" id="cb25-2" title="2">               <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</a>
+<a class="sourceLine" id="cb25-3" title="3">               <span class="dt">lfcThreshold=</span><span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.01</span>)</a></code></pre></div>
+<p>To see the results of the expression analysis, we can generate a summary table
+and an MA plot:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">summary</span>(res)</a></code></pre></div>
+<pre><code>#&gt; 
+#&gt; out of 17806 with nonzero total read count
+#&gt; adjusted p-value &lt; 0.01
+#&gt; LFC &gt; 1.00 (up)    : 502, 2.8%
+#&gt; LFC &lt; -1.00 (down) : 247, 1.4%
+#&gt; outliers [1]       : 0, 0%
+#&gt; low counts [2]     : 0, 0%
+#&gt; (mean count &lt; 3)
+#&gt; [1] see &#39;cooksCutoff&#39; argument of ?results
+#&gt; [2] see &#39;independentFiltering&#39; argument of ?results</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">DESeq2<span class="op">::</span><span class="kw">plotMA</span>(res, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:ma-plot"></span>
+<img src="img/ma-plot-1.png" alt="Visualization of DESeq2 results as an “MA plot”. Genes that have an adjusted p-value below 0.01 are colored red." width="100%" />
+<p class="caption">
+Figure 3.2: Visualization of <em>DESeq2</em> results as an “MA plot”. Genes that have an adjusted <em>p-value</em> below 0.01 are colored red.
+</p>
+</div>
+<p>We now output the results as a <em>GRanges</em> object, and due to the conventions of
+<em>plyranges</em>, we construct a new column called <code>gene_id</code> from the row names of
+the results. Each row now contains the genomic region (<code>seqnames</code>, <code>start</code>,
+<code>end</code>, <code>strand</code>) along with corresponding metadata columns (the <code>gene_id</code> and
+the results of the test). Note that <em>tximeta</em> has correctly identified the
+reference genome as “hg38”, and this has also been added to the <em>GRanges</em> along
+the results columns. This kind of book-keeping is vital once overlap operations
+are performed to ensure that <em>plyranges</em> is not comparing across incompatible
+genomes.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(plyranges))</a>
+<a class="sourceLine" id="cb29-2" title="2">de_genes &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</a>
+<a class="sourceLine" id="cb29-3" title="3">                    <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</a>
+<a class="sourceLine" id="cb29-4" title="4">                    <span class="dt">lfcThreshold=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb29-5" title="5">                    <span class="dt">format=</span><span class="st">&quot;GRanges&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-6" title="6"><span class="st">  </span><span class="kw">names_to_column</span>(<span class="st">&quot;gene_id&quot;</span>)</a>
+<a class="sourceLine" id="cb29-7" title="7">de_genes</a></code></pre></div>
+<pre><code>#&gt; GRanges object with 17806 ranges and 7 metadata columns:
+#&gt;           seqnames              ranges strand |            gene_id
+#&gt;              &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
+#&gt;       [1]     chrX 100627109-100639991      - | ENSG00000000003.14
+#&gt;       [2]    chr20   50934867-50958555      - | ENSG00000000419.12
+#&gt;       [3]     chr1 169849631-169894267      - | ENSG00000000457.13
+#&gt;       [4]     chr1 169662007-169854080      + | ENSG00000000460.16
+#&gt;       [5]     chr1   27612064-27635277      - | ENSG00000000938.12
+#&gt;       ...      ...                 ...    ... .                ...
+#&gt;   [17802]    chr10   84167228-84172093      - |  ENSG00000285972.1
+#&gt;   [17803]     chr6   63572012-63583587      + |  ENSG00000285976.1
+#&gt;   [17804]    chr16   57177349-57181390      + |  ENSG00000285979.1
+#&gt;   [17805]     chr8 103398658-103501895      - |  ENSG00000285982.1
+#&gt;   [17806]    chr10   12563151-12567351      + |  ENSG00000285994.1
+#&gt;                   baseMean     log2FoldChange              lfcSE
+#&gt;                  &lt;numeric&gt;          &lt;numeric&gt;          &lt;numeric&gt;
+#&gt;       [1] 171.570646163445 -0.282245015065582  0.300571026277417
+#&gt;       [2] 967.751278980391 0.0391222756936352 0.0859707605047955
+#&gt;       [3] 682.432885098654    1.2846178585311  0.196906721741941
+#&gt;       [4] 262.963397841117  -1.47187616421189  0.218691645887265
+#&gt;       [5] 2660.10225731917  0.675478091290521  0.236053041372838
+#&gt;       ...              ...                ...                ...
+#&gt;   [17802] 10.0474624496157  0.548451844773876  0.444318686394084
+#&gt;   [17803] 4586.34616821518 -0.033929582570062  0.188004977365846
+#&gt;   [17804] 14.2965310090402  0.312347650582085  0.522699844356108
+#&gt;   [17805] 27.7629588245413  0.994518742790125   1.58237312176743
+#&gt;   [17806] 6.60408582708505   0.25399752352481    0.5957511892896
+#&gt;                        stat             pvalue              padj
+#&gt;                   &lt;numeric&gt;          &lt;numeric&gt;         &lt;numeric&gt;
+#&gt;       [1]                 0                  1                 1
+#&gt;       [2]                 0                  1                 1
+#&gt;       [3]  1.44544511235177  0.148332899695748                 1
+#&gt;       [4] -2.15772377722715 0.0309493141635637 0.409727500369082
+#&gt;       [5]                 0                  1                 1
+#&gt;       ...               ...                ...               ...
+#&gt;   [17802]                 0                  1                 1
+#&gt;   [17803]                 0                  1                 1
+#&gt;   [17804]                 0                  1                 1
+#&gt;   [17805]                 0                  1                 1
+#&gt;   [17806]                 0                  1                 1
+#&gt;   -------
+#&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
+<p>From this, we can restrict the results to those that meet our FDR threshold and
+select (and rename) the metadata columns we’re interested in:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">de_genes &lt;-<span class="st"> </span>de_genes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="st">  </span><span class="kw">filter</span>(padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb31-4" title="4">    gene_id,</a>
+<a class="sourceLine" id="cb31-5" title="5">    <span class="dt">de_log2FC =</span> log2FoldChange,</a>
+<a class="sourceLine" id="cb31-6" title="6">    <span class="dt">de_padj =</span> padj</a>
+<a class="sourceLine" id="cb31-7" title="7">  )</a></code></pre></div>
+<p>We now wish to extract genes for which there is evidence that the LFC is <em>not</em>
+large. We perform this test by specifying an LFC threshold and an alternative
+hypothesis (<code>altHypothesis</code>) that the LFC is less than the threshold in
+absolute value. To visualize the result of this test, you can run <code>results</code>
+without <code>format="GRanges"</code>, and pass this object to <code>plotMA</code> as before. We
+label these genes as <code>other_genes</code> and later as “non-DE genes”, for comparison
+with our <code>de_genes</code> set.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">other_genes &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</a>
+<a class="sourceLine" id="cb32-2" title="2">                       <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</a>
+<a class="sourceLine" id="cb32-3" title="3">                       <span class="dt">lfcThreshold=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb32-4" title="4">                       <span class="dt">altHypothesis=</span><span class="st">&quot;lessAbs&quot;</span>,</a>
+<a class="sourceLine" id="cb32-5" title="5">                       <span class="dt">format=</span><span class="st">&quot;GRanges&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-6" title="6"><span class="st">  </span><span class="kw">filter</span>(padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-7" title="7"><span class="st">  </span><span class="kw">names_to_column</span>(<span class="st">&quot;gene_id&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb32-9" title="9">    gene_id,</a>
+<a class="sourceLine" id="cb32-10" title="10">    <span class="dt">de_log2FC =</span> log2FoldChange,</a>
+<a class="sourceLine" id="cb32-11" title="11">    <span class="dt">de_padj =</span> padj</a>
+<a class="sourceLine" id="cb32-12" title="12">  )</a></code></pre></div>
+</div>
+<div id="atac-seq-peak-differential-abundance-analysis" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> ATAC-seq peak differential abundance analysis</h3>
+<p>The following section describes the process we have used for generating a
+<em>GRanges</em> object of differential peaks from the ATAC-seq data in <span class="citation">Alasoo et al. (<a href="bibliography.html#ref-alasoo" role="doc-biblioref">2018</a>)</span>.</p>
+<p>The code chunks for the remainder of this section are not run.</p>
+<p>For assessing differential accessibility, we run <em>limma</em> <span class="citation">(Smyth <a href="bibliography.html#ref-Smyth2004" role="doc-biblioref">2004</a>)</span>, and
+generate the a summary of LFCs and adjusted p-values for the peaks:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">library</span>(limma)</a>
+<a class="sourceLine" id="cb33-2" title="2">design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span>donor <span class="op">+</span><span class="st"> </span>condition, <span class="kw">colData</span>(atac))</a>
+<a class="sourceLine" id="cb33-3" title="3">fit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(<span class="kw">assay</span>(atac), design)</a>
+<a class="sourceLine" id="cb33-4" title="4">fit &lt;-<span class="st"> </span><span class="kw">eBayes</span>(fit)</a>
+<a class="sourceLine" id="cb33-5" title="5">idx &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(fit<span class="op">$</span>coefficients) <span class="op">==</span><span class="st"> &quot;conditionIFNg&quot;</span>)</a>
+<a class="sourceLine" id="cb33-6" title="6">tt &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit, <span class="dt">coef=</span>idx, <span class="dt">sort.by=</span><span class="st">&quot;none&quot;</span>, <span class="dt">n=</span><span class="kw">nrow</span>(atac))</a></code></pre></div>
+<p>We now take the <code>rowRanges</code> of the <em>SummarizedExperiment</em> and attach the LFCs
+and adjusted p-values from <em>limma</em>, so that we can consider the overlap with
+differential expression. Note that we set the genome build to “hg38” and
+restyle the chromosome information to use the “UCSC” style (e.g. “chr1”,
+“chr2”, etc.). Again, we know the genome build from the Zenodo entry for the
+ATAC-seq data.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">atac_peaks &lt;-<span class="st"> </span><span class="kw">rowRanges</span>(atac) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="st">  </span><span class="kw">remove_names</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb34-4" title="4">    <span class="dt">da_log2FC =</span> tt<span class="op">$</span>logFC,</a>
+<a class="sourceLine" id="cb34-5" title="5">    <span class="dt">da_padj =</span> tt<span class="op">$</span>adj.P.Val</a>
+<a class="sourceLine" id="cb34-6" title="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-7" title="7"><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;hg38&quot;</span>)</a>
+<a class="sourceLine" id="cb34-8" title="8"></a>
+<a class="sourceLine" id="cb34-9" title="9"><span class="kw">seqlevelsStyle</span>(atac_peaks) &lt;-<span class="st"> &quot;UCSC&quot;</span></a></code></pre></div>
+<p>The final <em>GRanges</em> object containing the DA peaks is included in the workflow
+package and can be loaded as follows:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">library</span>(fluentGenomics)</a>
+<a class="sourceLine" id="cb35-2" title="2">peaks</a></code></pre></div>
+<pre><code>#&gt; GRanges object with 296220 ranges and 3 metadata columns:
+#&gt;            seqnames              ranges strand |          peak_id
+#&gt;               &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |      &lt;character&gt;
+#&gt;        [1]     chr1          9979-10668      * |      ATAC_peak_1
+#&gt;        [2]     chr1         10939-11473      * |      ATAC_peak_2
+#&gt;        [3]     chr1         15505-15729      * |      ATAC_peak_3
+#&gt;        [4]     chr1         21148-21481      * |      ATAC_peak_4
+#&gt;        [5]     chr1         21864-22067      * |      ATAC_peak_5
+#&gt;        ...      ...                 ...    ... .              ...
+#&gt;   [296216]     chrX 155896572-155896835      * | ATAC_peak_296216
+#&gt;   [296217]     chrX 155958507-155958646      * | ATAC_peak_296217
+#&gt;   [296218]     chrX 156016760-156016975      * | ATAC_peak_296218
+#&gt;   [296219]     chrX 156028551-156029422      * | ATAC_peak_296219
+#&gt;   [296220]     chrX 156030135-156030785      * | ATAC_peak_296220
+#&gt;                     da_log2FC              da_padj
+#&gt;                     &lt;numeric&gt;            &lt;numeric&gt;
+#&gt;        [1]  0.266185396736073 9.10672732956434e-05
+#&gt;        [2]   0.32217712436691 2.03434717570469e-05
+#&gt;        [3] -0.574159538548115 3.41707743345703e-08
+#&gt;        [4]  -1.14706617895329 8.22298606986521e-26
+#&gt;        [5] -0.896143162633654 4.79452571676397e-11
+#&gt;        ...                ...                  ...
+#&gt;   [296216] -0.834628897017445  1.3354605397165e-11
+#&gt;   [296217] -0.147537281935847    0.313014754316915
+#&gt;   [296218] -0.609732301631964 3.62338775135558e-09
+#&gt;   [296219] -0.347678474957794 6.94823191242968e-06
+#&gt;   [296220]  0.492442459200901 7.07663984067763e-13
+#&gt;   -------
+#&gt;   seqinfo: 23 sequences from hg38 genome; no seqlengths</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-2-se.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-4-integrate-ranges.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//03-fluentGenomics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

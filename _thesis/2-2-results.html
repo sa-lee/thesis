@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.2 Results | Exploratory data analysis for high-dimensional biological datasets</title>
+  <meta name="description" content="2.2 Results | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.2 Results | Exploratory data analysis for high-dimensional biological datasets" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.2 Results | Exploratory data analysis for high-dimensional biological datasets" />
+  
+  
+  
+
+<meta name="author" content="Stuart Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-1-background.html"/>
+<link rel="next" href="2-3-discussion.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"></a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="2-ch-plyranges.html"><a href="2-ch-plyranges.html"><i class="fa fa-check"></i><b>2</b> plyranges: a grammar of graphics for genomics data</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-background.html"><a href="2-1-background.html"><i class="fa fa-check"></i><b>2.1</b> Background</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-results.html"><a href="2-2-results.html"><i class="fa fa-check"></i><b>2.2</b> Results</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-discussion.html"><a href="2-3-discussion.html"><i class="fa fa-check"></i><b>2.3</b> Discussion</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-conclusion.html"><a href="2-4-conclusion.html"><i class="fa fa-check"></i><b>2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-acknowledgements-1.html"><a href="2-5-acknowledgements-1.html"><i class="fa fa-check"></i><b>2.5</b> Acknowledgements</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-availability-of-data-and-materials.html"><a href="2-6-availability-of-data-and-materials.html"><i class="fa fa-check"></i><b>2.6</b> Availability of Data and Materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-fluentGenomics.html"><a href="3-ch-fluentGenomics.html"><i class="fa fa-check"></i><b>3</b> Fluent genomics: integrating data with plyranges and tximeta</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction.html"><a href="3-1-introduction.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-se.html"><a href="3-2-se.html"><i class="fa fa-check"></i><b>3.2</b> Import Data as a <em>SummarizedExperiment</em></a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-model-assays.html"><a href="3-3-model-assays.html"><i class="fa fa-check"></i><b>3.3</b> Model assays</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html"><i class="fa fa-check"></i><b>3.4</b> Integrate ranges</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-discussion-1.html"><a href="3-5-discussion-1.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-acknowledgements-2.html"><a href="3-7-acknowledgements-2.html"><i class="fa fa-check"></i><b>3.7</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis uncovers intron retention</a></li>
+<li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Spurious embeddings from non-linear dimensionality reduction methods and how to find them</a></li>
+<li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion and future plans</a></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploratory data analysis for high-dimensional biological datasets</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="results" class="section level2">
+<h2><span class="header-section-number">2.2</span> Results</h2>
+<div id="genomic-relational-algebra" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Genomic Relational Algebra</h3>
+<div id="data-model" class="section level4">
+<h4><span class="header-section-number">2.2.1.1</span> Data Model</h4>
+<p>(ref:GRanges-cap): An illustration of the GRanges data model for a sample from an RNA-seq experiment. The core components of the data model include a seqname column (representing the chromosome), a ranges column which consists of start and end coordinates for a genomic region, and a strand identifier (either positive, negative, or unstranded). Metadata are included as columns to the right of the dotted line as annotations (gene_id) or range level covariates (score).</p>
+<div class="figure" style="text-align: center"><span id="fig:GRanges"></span>
+<img src="img/GRanges.png" alt="(ref:GRanges-cap)" width="100%" />
+<p class="caption">
+Figure 1.1: (ref:GRanges-cap)
+</p>
+</div>
+<p>The <code>plyranges</code> DSL is built on the core Bioconductor data structure
+GRanges, which is a constrained table, with fixed columns
+for the chromosome, start and end coordinates, and the strand, along
+with an arbitrary set of additional columns, consisting of
+measurements or metadata specific to the data type or experiment
+(figure <a href="2-2-results.html#fig:GRanges">1.1</a>). GRanges balances flexibility with formal
+constraints, so that it is applicable to virtually any genomic
+workflow, while also being semantically rich enough to support
+high-level operations on genomic ranges. As a core data structure,
+GRanges enables interoperability between <code>plyranges</code> and the rest of
+Bioconductor. Adhering to a single data structure simplifies the API
+and makes it easier to learn and understand, in part because
+operations become endomorphic, i.e., they return the same type as
+their input.</p>
+<p>GRanges follow the intuitive tidy data pattern: it is a rectangular
+table corresponding to a single biological context. Each row contains
+a single observation and each column is a variable describing the
+observations. GRanges specializes the tidy pattern in that the
+observations always pertain to some genomic feature, but it largely
+remains compatible with the general relational operations defined by
+<code>dplyr</code>. Thus, we define our algebra as an extension of the <code>dplyr</code>
+algebra, and borrow its syntax conventions and design principles.</p>
+
+</div>
+<div id="algebraic-operations" class="section level4">
+<h4><span class="header-section-number">2.2.1.2</span> Algebraic operations</h4>
+<p>The <code>plyranges</code> DSL defines an expressive algebra for performing
+genomic operations with and between GRanges objects (see table
+). The grammar includes several classes of operation
+that cover most use cases in genomics data analysis. There are
+range arithmetic operators, such as for resizing ranges or finding their
+intersection, and operators for merging, filtering and aggregating by
+range-specific notions like overlap and proximity.</p>
+<p>Arithmetic operations transform range coordinates, as defined by their
+<em>start</em>, <em>end</em> and <em>width</em>. The three dimensions are mutually
+dependent and partially redundant, so direct manipulation of them is
+problematic. For example, changing the <em>width</em> column needs to change
+either the <em>start</em>, <em>end</em> or both to preserve integrity of the
+object. We introduce the <em>anchor</em> modifier to disambiguate these
+adjustments. Supported anchor points include the start, end and
+midpoint, as well as the 3’ and 5’ ends for strand-directed
+ranges. For example, if we anchor the start, then setting the width
+will adjust the end while leaving the start stationary.</p>
+<p>The algebra also defines conveniences for relative coordinate
+adjustments: <em>shift</em> (unanchored adjustment to both start and end) and
+<em>stretch</em> (anchored adjustment of width). We can perform any relative
+adjustment by some combination of those two operations. The <em>stretch</em>
+operation requires an anchor and assumes the midpoint by
+default. Since <em>shift</em> is unanchored, the user specifies a suffix for
+indicating the direction: left/right or, for stranded features,
+upstream/downstream. For example, <em>shift_right</em> shifts a range to the
+right.</p>
+<p>The <em>flank</em> operation generates new ranges that are adjacent to
+existing ones. This is useful, for example, when generating upstream
+promoter regions for genes. Analogous to <em>shift</em>, a suffix indicates
+the side of the input range to flank.</p>
+<p>As with other genomic grammars, we define set operations that treat
+ranges as sets of integers, including <em>intersect</em>, <em>union</em>,
+<em>difference</em>, and <em>complement</em>. There are two sets of these: parallel
+and merging. For example, the parallel intersection (<em>x %intersect% y</em>) finds the
+intersecting range between <em>xi</em> and <em>yi</em> for <em>i</em> in <em>1…n</em>, where <em>n</em>
+is the length of both <em>x</em> and <em>y</em>. In contrast, the merging
+intersection (<em>intersect_ranges(x, y)</em>) returns a new set of disjoint
+ranges representing wherever there was overlap between a range in <em>x</em>
+and a range in <em>y</em>. Finding the parallel union will fail when two ranges
+have a gap, so we introduce a <em>span</em> operator that takes the union
+while filling any gap. The <em>complement</em> operation is unique in that it
+is unary. It finds the regions not covered by any of the ranges in a
+single set. Closely related is the <em>between</em> parallel operation, which
+finds the gap separating <em>xi</em> and <em>yi</em>. The binary operations are
+callable from within arithmetic, restriction and aggregation
+expressions.</p>
+<div class="figure" style="text-align: center"><span id="fig:olaps-fig"></span>
+<img src="img/olap-fig.png" alt="(ref:olaps-cap)" width="100%" />
+<p class="caption">
+Figure 1.2: (ref:olaps-cap)
+</p>
+</div>
+<p>(ref:olaps-cap): Illustration of the three overlap join operators. Each join takes two GRanges objects,  and  as input. A ‘Hits’ object for the join is computed which consists of two components. The first component contains the indices of the ranges in  that have been overlapped (the rectangles of  that cross the orange lines). The second component consists of the indices of the ranges in  that overlap the ranges in . In this case a range in  overlaps the ranges in  three times, so the index is repeated three times. The resulting ‘Hits’ object is used to modify  by where it was ‘hit’ by  and merge all metadata columns from  and  based on the indices contained in the ‘Hits’ object. This procedure is applied generally in the  DSL for both overlap and nearest neighbor operations. The join semantics alter what is returned: : for an  join the  ranges that are overlapped by  are returned. The returned ranges also include the metadata from the  range that overlapped the three  ranges.  An  join is identical to an inner join except that the intersection is taken between the overlapped  ranges and the  ranges.  For the  join all  ranges are returned regardless of whether they are overlapped by . In this case the third range (rectangle with the asterisk next to it) of the join would have missing values on metadata columns that came from .</p>
+<p>To support merging, our algebra recasts finding overlaps or
+nearest neighbors between two
+genomic regions as variants of the relational join operator. A join
+acts on two GRanges objects: <em>x</em> and <em>y</em>. The join operator
+is relational in the sense that metadata from the <em>x</em> and <em>y</em>
+ranges are retained in the joined range. All join operators in the
+<code>plyranges</code> DSL generate a set of hits based on overlap or proximity
+of ranges and use those hits to merge the two datasets in different
+ways. There are four supported matching algorithms: <em>overlap</em>,
+<em>nearest</em>, <em>precede</em>, and <em>follow</em> (figure
+<a href="2-2-results.html#fig:olaps-fig">1.2</a>). We can further restrict the
+matching by whether the query is completely <em>within</em> the subject, and
+adding the <em>directed</em> suffix ensures that matching ranges have the
+same direction (strand).</p>
+<p>For merging based on the hits, we have three modes: <em>inner</em>,
+<em>intersect</em> and <em>left</em>. The <em>inner</em> overlap join is similar to the
+conventional inner join in that there is a row in the result for every
+match. A major difference is that the matching is not by identity, so
+we have to choose one of the ranges from each pair. We always choose
+the left range. The <em>intersect</em> join uses the intersection instead of
+the left range. Finally, the overlap <em>left</em> join is akin to left outer
+join in Codd’s relational algebra: it performs an overlap inner join
+but also returns all <em>x</em> ranges that are not hit by the <em>y</em> ranges.</p>
+<div class="figure" style="text-align: center"><span id="fig:code-comparison"></span>
+<img src="img/code-comparison.png" alt="(ref:code-comparison-cap)" width="100%" />
+<p class="caption">
+Figure 1.3: (ref:code-comparison-cap)
+</p>
+</div>
+<p>(ref:code-comparison-cap): Idiomatic code examples for  () and  () illustrating an overlap and aggregate operation that returns the same result. In each example, we have two BED files consisting of SNPs that are genome-wide association study (GWAS) hits and reference exons. Each code block counts for each SNP the number of distinct exons it overlaps. The  code achieves this with an overlap join followed by partitioning and aggregation. Strand is ignored by default here. The  code achieves this using the ‘Hits’ and ‘List’ classes and their methods.</p>
+<p>Since the GRanges object is a tabular data structure, our grammar includes
+operators to filter, sort and aggregate by columns in a GRanges. These
+operations can be performed over partitions formed
+using the <em>group_by</em> modifier. Together with our algebra for arithmetic and
+merging, these operations conform to the semantics and syntax of the
+<code>dplyr</code> grammar. Consequently, <code>plyranges</code> code is generally more compact
+than the equivalent <code>GenomicRanges</code> code (figure <a href="2-2-results.html#fig:code-comparison">1.3</a>).</p>
+</div>
+</div>
+<div id="developing-workflows-with-plyranges" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Developing workflows with <code>plyranges</code></h3>
+<p>Here we provide illustrative examples of using the <code>plyranges</code> DSL to show
+how our grammar could be integrated into genomic data workflows. As we
+construct the workflows we show the data output intermittently to assist
+the reader in understanding the pipeline steps. The workflows
+highlight how interoperability with existing Bioconductor infrastructure,
+enables easy access to public datasets and methods for analysis and
+visualization.</p>
+<div id="peak-finding" class="section level4">
+<h4><span class="header-section-number">2.2.2.1</span> Peak Finding</h4>
+<p>In the workflow of ChIP-seq data analysis, we are interested in finding peaks
+from islands of coverage over chromosome. Here we will use <code>plyranges</code>
+to call peaks from islands of coverage above 8 then plot the region
+surrounding the tallest peak.</p>
+<p>Using <code>plyranges</code> and the the Bioconductor package <code>AnnotationHub</code> <span class="citation">(Morgan <a href="bibliography.html#ref-R-ahub" role="doc-biblioref">2017</a>)</span>
+we can download and read BigWig files from ChIP-Seq experiments from
+the Human Epigenome Roadmap project <span class="citation">(Roadmap Epigenomics Consortium et al. <a href="bibliography.html#ref-Roadmap-Epigenomics-Consortium2015-pr" role="doc-biblioref">2015</a>)</span>.
+Here we analyse a BigWig file corresponding to H3 lysine 27 trimethylation
+(H3K27Me3) of primary T CD8+ memory cells from peripheral blood, focussing
+on coverage islands over chromosome 10.</p>
+<p>First, we extract the genome information from the BigWig file and filter
+to get the range for chromosome 10. This range will be used as a filter when
+reading the file.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(plyranges)</a>
+<a class="sourceLine" id="cb1-2" title="2">chr10_ranges &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="st">  </span><span class="kw">get_genome_info</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="st">  </span><span class="kw">filter</span>(seqnames <span class="op">==</span><span class="st"> &quot;chr10&quot;</span>)</a></code></pre></div>
+<p>Then we read the BigWig file only extracting scores if they overlap chromosome
+10. We also add the genome build information to the resulting ranges. This
+book-keeping is good practice as it ensures the integrity of any
+downstream operations such as finding overlaps.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">chr10_scores &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw">read_bigwig</span>(<span class="dt">overlap_ranges =</span> chr10_ranges) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;hg19&quot;</span>)</a>
+<a class="sourceLine" id="cb2-4" title="4">chr10_scores</a></code></pre></div>
+<pre><code>#&gt; GRanges object with 5789841 ranges and 1 metadata column:
+#&gt;             seqnames              ranges strand |              score
+#&gt;                &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |          &lt;numeric&gt;
+#&gt;         [1]    chr10             1-60602      * | 0.0422799997031689
+#&gt;         [2]    chr10         60603-60781      * |  0.163240000605583
+#&gt;         [3]    chr10         60782-60816      * |  0.372139990329742
+#&gt;         [4]    chr10         60817-60995      * |  0.163240000605583
+#&gt;         [5]    chr10         60996-61625      * | 0.0422799997031689
+#&gt;         ...      ...                 ...    ... .                ...
+#&gt;   [5789837]    chr10 135524723-135524734      * |  0.144319996237755
+#&gt;   [5789838]    chr10 135524735-135524775      * |  0.250230014324188
+#&gt;   [5789839]    chr10 135524776-135524784      * |  0.427789986133575
+#&gt;   [5789840]    chr10 135524785-135524806      * |  0.730019986629486
+#&gt;   [5789841]    chr10 135524807-135524837      * |   1.03103005886078
+#&gt;   -------
+#&gt;   seqinfo: 25 sequences from hg19 genome</code></pre>
+<p>We then filter for regions with a coverage score greater than 8, and following
+this reduce individual runs to ranges representing the islands of coverage.
+This is achieved with the <code>reduce_ranges()</code> function, which allows a summary
+to be computed over each island: in this case we take the maximum of
+the scores to find the coverage peaks over chromosome 10.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">all_peaks &lt;-<span class="st"> </span>chr10_scores <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">filter</span>(score <span class="op">&gt;</span><span class="st"> </span><span class="dv">8</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">reduce_ranges</span>(<span class="dt">score =</span> <span class="kw">max</span>(score))</a>
+<a class="sourceLine" id="cb4-4" title="4">all_peaks</a></code></pre></div>
+<pre><code>#&gt; GRanges object with 1085 ranges and 1 metadata column:
+#&gt;          seqnames              ranges strand |            score
+#&gt;             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;numeric&gt;
+#&gt;      [1]    chr10     1299144-1299370      * | 13.2264003753662
+#&gt;      [2]    chr10     1778600-1778616      * | 8.20512008666992
+#&gt;      [3]    chr10     4613068-4613078      * | 8.76027011871338
+#&gt;      [4]    chr10     4613081-4613084      * | 8.43659973144531
+#&gt;      [5]    chr10             4613086      * | 8.11507987976074
+#&gt;      ...      ...                 ...    ... .              ...
+#&gt;   [1081]    chr10 135344482-135344488      * | 9.23237991333008
+#&gt;   [1082]    chr10 135344558-135344661      * |  11.843409538269
+#&gt;   [1083]    chr10 135344663-135344665      * | 8.26965999603271
+#&gt;   [1084]    chr10 135344670-135344674      * | 8.26965999603271
+#&gt;   [1085]    chr10 135345440-135345441      * | 8.26965999603271
+#&gt;   -------
+#&gt;   seqinfo: 25 sequences from hg19 genome</code></pre>
+<p>Returning to the GRanges object containing normalized coverage scores,
+we filter to find the coordinates of the peak containing the maximum coverage
+score. We can then find a 5000 nt region centered around the maximum position
+by anchoring and modifying the width.</p>
+<p>Finally, the overlap inner join is used to restrict the chromosome 10
+coverage islands, to the islands that are contained in the 5000nt region that surrounds the max peak (figure <a href="2-2-results.html#fig:peak-viz">1.4</a>).</p>
+<pre><code>#&gt; GRanges object with 890 ranges and 2 metadata columns:
+#&gt;         seqnames            ranges strand |            score.x          score.y
+#&gt;            &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; |          &lt;numeric&gt;        &lt;numeric&gt;
+#&gt;     [1]    chr10 21805891-21805988      * | 0.0206599999219179 29.9573001861572
+#&gt;     [2]    chr10 21805989-21806000      * | 0.0211200006306171 29.9573001861572
+#&gt;     [3]    chr10 21806001-21806044      * |  0.022069999948144 29.9573001861572
+#&gt;     [4]    chr10 21806045-21806049      * | 0.0215900000184774 29.9573001861572
+#&gt;     [5]    chr10 21806050-21806081      * | 0.0211200006306171 29.9573001861572
+#&gt;     ...      ...               ...    ... .                ...              ...
+#&gt;   [886]    chr10          21810878      * |   5.24951982498169 29.9573001861572
+#&gt;   [887]    chr10          21810879      * |   5.83534002304077 29.9573001861572
+#&gt;   [888]    chr10 21810880-21810884      * |   6.44267988204956 29.9573001861572
+#&gt;   [889]    chr10 21810885-21810895      * |   7.07054996490479 29.9573001861572
+#&gt;   [890]    chr10 21810896-21810911      * |   6.44267988204956 29.9573001861572
+#&gt;   -------
+#&gt;   seqinfo: 25 sequences from hg19 genome</code></pre>
+<p>(ref:peak-viz-cap): The final result of the <code>plyranges</code> operations to find a 5000nt region surrounding the peak of normalised coverage scores over chromosome 10, displayed as a density plot.</p>
+<div class="figure" style="text-align: center"><span id="fig:peak-viz"></span>
+<img src="img/peak-viz-1.png" alt="(ref:peak-viz-cap)" width="70%" />
+<p class="caption">
+Figure 1.4: (ref:peak-viz-cap)
+</p>
+</div>
+</div>
+<div id="computing-windowed-statistics" class="section level4">
+<h4><span class="header-section-number">2.2.2.2</span> Computing Windowed Statistics</h4>
+<p>Another common operation in genomics data analysis is to compute data
+summaries over genomic windows. In <code>plyranges</code> this can be achieved
+via the <code>group_by_overlaps()</code> operator. We bin and count and
+find the average GC content of reads from a
+H3K27Me3 ChIP-seq experiment by the Human Epigenome Roadmap
+Consortium.</p>
+<p>We can directly obtain the genome information from the header of the
+BAM file: in this case the reads were aligned to the hg19 genome build
+and there are no reads overlapping the mitochondrial genome.</p>
+<p>Next we only read in alignments that overlap the genomic locations
+we are interested in and select the query sequence. Note that
+the reading of the BAM file is deferred: only alignments that pass the filter
+are loaded into memory. We can add another column representing the GC proportion
+for each alignment using the <code>letterFrequency()</code> function from the <code>Biostrings</code>
+package <span class="citation">(Pagès et al. <a href="bibliography.html#ref-R-biostrings" role="doc-biblioref">2018</a>)</span>. After computing the GC proportion as the score
+column, we drop all other columns in the GRanges object.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">alignments &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">filter_by_overlaps</span>(locations) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">select</span>(seq) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb7-5" title="5">    <span class="dt">score =</span> <span class="kw">as.numeric</span>(<span class="kw">letterFrequency</span>(seq, <span class="st">&quot;GC&quot;</span>, <span class="dt">as.prob =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb7-6" title="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="st">  </span><span class="kw">select</span>(score)</a>
+<a class="sourceLine" id="cb7-8" title="8">alignments</a></code></pre></div>
+<pre><code>#&gt; GRanges object with 8275595 ranges and 1 metadata column:
+#&gt;             seqnames            ranges strand |             score
+#&gt;                &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; |         &lt;numeric&gt;
+#&gt;         [1]    chr10       50044-50119      - | 0.276315789473684
+#&gt;         [2]    chr10       50050-50119      + |              0.25
+#&gt;         [3]    chr10       50141-50213      - | 0.447368421052632
+#&gt;         [4]    chr10       50203-50278      + | 0.263157894736842
+#&gt;         [5]    chr10       50616-50690      + | 0.276315789473684
+#&gt;         ...      ...               ...    ... .               ...
+#&gt;   [8275591]     chrY 57772745-57772805      - | 0.513157894736842
+#&gt;   [8275592]     chrY 57772751-57772800      + | 0.526315789473684
+#&gt;   [8275593]     chrY 57772767-57772820      + | 0.565789473684211
+#&gt;   [8275594]     chrY 57772812-57772845      + |              0.25
+#&gt;   [8275595]     chrY 57772858-57772912      + | 0.592105263157895
+#&gt;   -------
+#&gt;   seqinfo: 24 sequences from an unspecified genome</code></pre>
+<p>Finally, we create 10000nt tiles over the genome and compute the number
+of reads and average GC content over all reads that fall within
+each tile using an overlap join and merging endpoints.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">bins &lt;-<span class="st"> </span>locations <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">tile_ranges</span>(<span class="dt">width =</span> 10000L)</a>
+<a class="sourceLine" id="cb9-3" title="3"></a>
+<a class="sourceLine" id="cb9-4" title="4">alignments_summary &lt;-<span class="st"> </span>bins <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="st">  </span><span class="kw">join_overlap_inner</span>(alignments) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="st">  </span><span class="kw">disjoin_ranges</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">avg_gc =</span> <span class="kw">mean</span>(score))</a>
+<a class="sourceLine" id="cb9-7" title="7">alignments_summary</a></code></pre></div>
+<pre><code>#&gt; GRanges object with 286030 ranges and 2 metadata columns:
+#&gt;            seqnames            ranges strand |         n            avg_gc
+#&gt;               &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;         &lt;numeric&gt;
+#&gt;        [1]    chr10       49999-59997      * |        88 0.369019138755981
+#&gt;        [2]    chr10       59998-69997      * |        65 0.434210526315789
+#&gt;        [3]    chr10       69998-79996      * |        56 0.386513157894737
+#&gt;        [4]    chr10       79997-89996      * |        71  0.51297257227576
+#&gt;        [5]    chr10       89997-99996      * |        64 0.387746710526316
+#&gt;        ...      ...               ...    ... .       ...               ...
+#&gt;   [286026]     chrY 57722961-57732958      * |        36 0.468201754385965
+#&gt;   [286027]     chrY 57732959-57742957      * |        38 0.469529085872576
+#&gt;   [286028]     chrY 57742958-57752956      * |        38 0.542936288088643
+#&gt;   [286029]     chrY 57752957-57762955      * |        42 0.510651629072682
+#&gt;   [286030]     chrY 57762956-57772954      * |       504 0.526942355889723
+#&gt;   -------
+#&gt;   seqinfo: 24 sequences from an unspecified genome; no seqlengths</code></pre>
+</div>
+<div id="quality-control-metrics" class="section level4">
+<h4><span class="header-section-number">2.2.2.3</span> Quality Control Metrics</h4>
+<p>We have created a GRanges object from genotyping performed on the
+H1 cell line, consisting of approximately two million single nucleotide
+polymorphisms (SNPs) and short insertion/deletions (indels). The GRanges object consists
+of 7 columns, relating to the alleles of a SNP or indel, the B-allele frequency,
+log relative intensity of the probes, GC content score over a probe, and the
+name of the probe. We can use this information to compute the transition-transversion
+ratio, a quality control metric, within each chromosome in GRanges object.</p>
+<p>First we filter out the indels and mitochondrial variants. Then we
+create a logical vector corresponding to whether there is a transition
+event.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">h1_snp_array &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;D&quot;</span>)), seqnames <span class="op">!=</span><span class="st"> &quot;M&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">transition =</span> (ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;A&quot;</span>))<span class="op">|</span></a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="st">                      </span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>)))</a></code></pre></div>
+<p>We then compute the transition-transversion ratio over each chromosome using
+<code>group_by()</code> in combination with <code>summarize()</code> (figure <a href="2-2-results.html#fig:titv-viz">1.5</a>).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">ti_tv_results &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(seqnames) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_snps =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb12-4" title="4">            <span class="dt">ti_tv =</span> <span class="kw">sum</span>(transition) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span>transition))</a>
+<a class="sourceLine" id="cb12-5" title="5">ti_tv_results</a></code></pre></div>
+<pre><code>#&gt; DataFrame with 24 rows and 3 columns
+#&gt;     seqnames    n_snps            ti_tv
+#&gt;     &lt;factor&gt; &lt;integer&gt;        &lt;numeric&gt;
+#&gt; 1          Y      2226  1.4381161007667
+#&gt; 2          6    154246 3.32013219807305
+#&gt; 3         13     83736 3.40669403220714
+#&gt; 4         10    120035 3.49400973418195
+#&gt; 5          4    153243 3.29528828096533
+#&gt; ...      ...       ...              ...
+#&gt; 20        16     77538 3.19827819589583
+#&gt; 21        12    113208 3.47851887016378
+#&gt; 22        20     57073  3.7121036988111
+#&gt; 23        21     32349 3.50480434479877
+#&gt; 24         X     55495 3.58219800181653</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:titv-viz"></span>
+<img src="img/titv-viz-1.png" alt="(ref:titv-viz-cap)" width="100%" />
+<p class="caption">
+Figure 1.5: (ref:titv-viz-cap)
+</p>
+</div>
+<p>(ref:titv-viz-cap): The final result of computing quality control metrics over the SNP array data with <code>plyranges</code>, displayed as a dot plot. Chromosomes are ordered by their estimated transition-transversion ratio. A white reference line is drawn at the expected ratio for a human exome."</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-1-background.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-3-discussion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//02-plyranges.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

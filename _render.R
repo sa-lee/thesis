@@ -22,7 +22,7 @@ for (i in img_pdf) {
   file_pdf <- paste0("img/", i)
   dest_pdf <- paste0("img/", sub("pdf$", "png", i))
   magick::image_write(
-    magick::image_read(file_pdf, 300), dest_pdf, "png", 
+    magick::image_read(file_pdf, 300), dest_pdf, "png",
     density = 300
   )
 }
