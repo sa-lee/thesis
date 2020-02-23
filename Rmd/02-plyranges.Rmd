@@ -1,5 +1,7 @@
 # plyranges: a grammar of data transformation for genomics {#ch:plyranges}
 
+There is a cognitive load placed on users in learning a data abstraction from the Bioconductor project and understanding its appropriate use. Users must navigate these abstractions to perform a genomic analysis task, when a single data abstraction, a GRanges object will suffice. By recognizing that the GRanges class follows 'tidy' data principles, we create a grammar of genomic data transformation, defining verbs for performing actions on and between genomic interval data and providing a way of performing common data analysis tasks through a coherent interface to existing Bioconductor infrastructure. We implement this grammar as a Bioconductor/R package called `plyranges`.
+
 ```{r plyranges-init, echo = FALSE, cache = FALSE, include = FALSE}
 knitr::read_chunk(here::here("scripts", "plyranges.R"))
 ```
