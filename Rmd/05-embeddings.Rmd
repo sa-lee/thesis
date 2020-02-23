@@ -16,9 +16,9 @@ https://jlmelville.github.io/smallvis/init.html#other_initialization_options
 
 High dimensional data is increasingly prevalent in the natural sciences and
 beyond but presents a challenge to the analyst in terms of both data cleaning /
-preprocessing and visualisation. Methods to embed data from a high-dimesional
+pre-processing and visualisation. Methods to embed data from a high-dimensional
 space into a low-dimensional one now form a core step of the data analysis
-workflow where they are used to ascertain hidden structure and denoise data for
+workflow where they are used to ascertain hidden structure and de-noise data for
 downstream analysis (thereby nullifying the 'curse of dimensionality').
 
 Choosing an appropriate embedding presents a challenge to the analyst. How does
@@ -47,9 +47,9 @@ component (eigenvector). A common approach to deciding on the number of
 principal components to retain is to plot the proportion of variance explained
 by each component and choose a cut-off.
 
-Non-linear methods generally perform preprocessing on the high-dimensional data
+Non-linear methods generally perform pre-processing on the high-dimensional data
 such as generating a neighborhood graph and perform transformations on the
-preprocessed form. We restrict our attention to three methods that are commonly
+pre-processed form. We restrict our attention to three methods that are commonly
 used in high-throughput biology: t-distributed stochastic neighbor embedding
 (t-SNE), uniform manifold alignment and projection (UMAP), and potential of
 heat-diffusion for affinity-based transition embedding (PHATE). The t-SNE
@@ -57,22 +57,22 @@ algorithm estimates the similarity of (Euclidean) distances of points in a high
 dimensional space using a Gaussian distribution and then estimates a
 configuration in the low dimensional embedding space by modelling similarities
 using a t-distribution with 1 degree of freedom. The resulting configuration is
-the one that minimizes the Kulback-Leibler divergence between the two
+the one that minimizes the Kullback-Leibler divergence between the two
 distributions. A recent theoretical contribution by @Linderman2019-dq proved
 that t-SNE can recover spherical and well separated cluster shapes, and
 proposed new approaches for tuning the optimisation parameters. It is a known
 problem that t-SNE can have trouble recovering global structure and that
 configurations can be highly dependent on how the algorithm is initialised and
-parameterised [@Wattenberg2016-ji; @Kobak2019-lm]. UMAP is a method that is
+parameterized [@Wattenberg2016-ji; @Kobak2019-lm]. UMAP is a method that is
 related to LargeVis [@Tang2016-oz], and like t-SNE acts on the k-nearest
 neighbor graph. Its main differences are that it uses a different cost function
 (cross entropy) which is optimized using stochastic gradient descent and
-defines a different kernel for similiarites in the low dimensional space. Due
+defines a different kernel for similarities in the low dimensional space. Due
 to it's computational speed it's possible to generate UMAP embeddings in more
 than three dimensions. Finally, PHATE, inspired by diffusion maps, is based on
 estimating an affinity matrix via a distance matrix and k-nearest neighbors
-graph. The algorithm denoises estimated distances in high dimensional space via
-transforming the affinity matrix into a Markov transition probaility matrix and
+graph. The algorithm de-noises estimated distances in high dimensional space via
+transforming the affinity matrix into a Markov transition probability matrix and
 diffusing this matrix over a fixed number of time steps. Then the diffused
 probabilities are transformed once more to construct a distance matrix, and
 multidimensional scaling is performed to construct a 2d embedding for
@@ -80,7 +80,7 @@ visualization.
 
 As part of a visualization workflow, it's important to consider the perception
 and interpretation of embedding methods as well. @Sedlmair2013-pn showed that
-2D scatter plots were mostly suffucient for detecting class seperation, however
+2D scatter plots were mostly sufficient for detecting class separation, however
 they noted that often multiple embeddings were required. For the task of
 cluster identification, @Lewis2012-ai showed experimentally that novice users
 of non-linear embedding techniques were more likely to consider clusters of
@@ -101,9 +101,9 @@ important for controlling and exploring the visualisation: the tour has been
 used previously by @Wickham2015-cx as tool for exploring statistical model fits
 and by @Buja1996-fk for exploring factorial experimental designs.
 
-While there has been much work on the algorithmic details of the aformentioned
+While there has been much work on the algorithmic details of the aforementioned
 embedding methods, there has been relatively few tools designed to assist users
-to interact with these techniques and assist them in making comparsions between
+to interact with these techniques and assist them in making comparisons between
 embeddings and performing the aforementioned cluster orientation tasks. Several
 interactive interfaces have been proposed for evaluating or using embedding
 techniques: the Sleepwalk interface provides a click and highlight
@@ -117,7 +117,7 @@ highlights nearest neighbors [@Smilkov2016-hp].
 
 There is no one-size fits all: finding an appropriate embedding for a given
 dataset is a difficult and somewhat poorly defined problem. For non-linear
-methods, there are a lot of parameters to explore that can have an effeft on
+methods, there are a lot of parameters to explore that can have an effect on
 the resulting visualisation and interpretation. Interfaces for evaluating
 embeddings require interaction but should also be able to be incorporated into
 an analysts workflow. We propose a more pragmatic workflow inspired by
@@ -144,7 +144,7 @@ and making comparisons.
 
 To investigate latent structure and the shape of a high dimensional dataset, a
 tour can be run without the use of an external embedding. It is often useful to
-first run principal components on the input as an intial dimension reduction
+first run principal components on the input as an initial dimension reduction
 step, and then tour a subset of those components instead, i.e. by selecting
 them from a scree plot. The default tour layout is a scatter plot with an axis
 layout displaying the magnitude and direction of each basis vector. Since the
@@ -152,7 +152,7 @@ tour is dynamic, it is often useful to be able to pause and highlight a
 particular view. In our interface, brushing will pause the tour path, allowing
 users to identify 'interesting' projections. The domain of the axis scales from
 running a tour is called the half range, and is computed by rescaling the input
-data onto hyperdimensional unit cube. We bind the half range to a mouse wheel
+data onto hyper-dimensional unit cube. We bind the half range to a mouse wheel
 event, allowing a user to pan and zoom on the tour view dynamically. This is
 useful for peeling back dense clumps of points to reveal structure.
 
@@ -160,9 +160,9 @@ useful for peeling back dense clumps of points to reveal structure.
 
 We combine the tour view in a side by side layout with a scatter
 plot view from an embedding algorithm. The views are linked; analysts can brush a group of points in the embedding view, and see its shape in the tour view.
-This can be used for either manually identifying clusers, or verifying the location of clusters relative to other groupings. Consequently, simple linked
+This can be used for either manually identifying clusters, or verifying the location of clusters relative to other groupings. Consequently, simple linked
 brushing can alleviate a downfall of non-linear methods such as UMAP or t-SNE
-that break hierachial structure of clusterings. Aside from simple
+that break hierarchical structure of clusters. Aside from simple
 linked brushing, we can also pose more complex queries via interrogating
 the neighbourhood graph. Using a linked neighbourhood brush, we can 
 visually investigate the nearest neighbour relationships in the 
@@ -172,10 +172,10 @@ used for determining the neighbours. This allows users to interrogate the stabil
 can be used to pose queries in either the tour view or the embedding view;
 interface controls allow these brushes to combine using logical operators
 such as 'and', 'or', or 'not'. The use of linked brushing goes beyond
-single point highlights or colorings, allowing analysts to get a more holistic
+simple color highlights, allowing analysts to get a more holistic
 view of the effect of an embedding algorithm.
 
-### Making comparsions
+### Making comparisons
 
 TODO
 
@@ -202,7 +202,7 @@ package for constructing tour paths.
 
 ### Case Study 2: well-clustered smallish single cell
 
-### Case Study 3: largeish single cell data
+### Case Study 3: largish single cell data
 
 ### Case Study 4: non-spherical clusters, pdfsense
 

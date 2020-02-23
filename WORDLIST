@@ -21,6 +21,8 @@ doi
 dplyr
 DSLs
 EDA
+eigendecomposition
+eigenvalues
 emph
 Epigenome
 Epigenomics
@@ -28,6 +30,8 @@ exome
 ExperimentData
 FC
 fluentGenomics
+FloatBarrier
+footnotesize
 funders
 GC
 GenAp
@@ -61,6 +65,9 @@ isoforms
 kb
 kilobases
 knitr
+Kullback
+LargeVis
+Leibler
 LFC
 LFCs
 limma
@@ -72,11 +79,15 @@ newpage
 nt
 olaps
 OO
+orthonormal
 pagenumbering
+pdfsense
+PHATE
 pluripotent
 plyranges
 pybedtools
 quantifications
+RaggedRight
 readr
 recode
 rmarkdown
@@ -89,10 +100,12 @@ seqname
 seqnames
 setcounter
 setdiff
+SNE
 superintronic
 SL
 summarization
 SummarizedExperiment
+tabcolsep
 textbf
 textcopyright
 textit
@@ -113,6 +126,7 @@ unadjusted
 unstranded
 unlist
 UCSC
+UMAP
 valr
 vspace
 yi
