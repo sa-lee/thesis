@@ -4,7 +4,48 @@
 
 I hereby declare that this thesis contains no material which has been accepted for the award of any other degree or diploma in any university or equivalent institution, and that, to the best of my knowledge and belief, this thesis contains no material previously published or written by another person, except where due reference is made in the text of the thesis.
 
-\vspace*{2cm}\par\authorname
+This thesis includes 3 publications, two of which have been published and one 
+which has not yet been submitted. As the core theme of my thesis is the development of software
+interfaces for biological data analysis, and given the collaborative nature
+of statistical computing and bioinformatics research; all of the included
+papers in this thesis reflect and acknowledge the contributions of my 
+co-authors, including my  primary supervisors Professor Dianne Cook (DC) in the 
+Department of Econometrics and Business Statistics at Monash University
+and Associate Professor Matthew Ritchie in the Epigenetics and Development 
+Division at the Walter and Eliza Hall Institute. The following table details
+the publications and my and my fellow co-authors contributions:
+
+\begin{table}
+\centering\footnotesize\tabcolsep=0.12cm
+\begin{tabular}{|p{1cm}|p{2cm}|p{1.5cm}|p{3.5cm}|p{3.5cm}|p{1.5cm}|p{1cm}}
+\hline
+\RaggedRight\textbf{Thesis Chapter}  & \RaggedRight\textbf{Publication Title}  & \RaggedRight\textbf{Status (published, in press, accepted or returned for revision)}  & \RaggedRight\textbf{Nature and} {\%} \RaggedRight\textbf{of student contribution} & \RaggedRight\textbf{Co-author name(s) Nature and} {\%} \RaggedRight\textbf{of Co-author’s contribution} & \RaggedRight\textbf{Co-author(s), Monash student Y/N}  & \RaggedRight\textbf{Reference} \\ \hline
+\@ref(ch:plyranges) & plyranges: a grammar of genomic data transformation & Published  & 70\%. Concept, software development, data analysis, and manuscript writing & (1) Dianne Cook, Concept and manuscript revision 10\% (2) Michael Lawrence, Concept and software development  20\% & \multicolumn{1}{c|}{N} & @Lee2019 \\
+\hline
+\@ref(ch:fluentGenomics) 3 & Fluent genomics with _plyranges_ and _tximeta_ & Published (awaiting peer review) & 60\%. Concept, software development, data analysis and manuscript writing  & (1) Michael Lawrence, manuscript feedback and editing 5\% (2) Michael I Love, Concept, data analysis and manuscript writing 35\% & \multicolumn{1}{c|}{N} & @Lee2020-ie \\
+\hline
+\@ref(ch:tsne) & Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings & To be submitted & 80\%. Concept, software development, and manuscript writing & (1) Dianne Cook, Concept and manuscript writing 15\% \multicolumn{1}{c|}{N} & Not Applicable \\
+\hline
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+Note that chapter \@ref(ch:intron), reflects my  contribution (in the form of a 
+software package and data analysis) to the submitted manuscript entitled 
+_Covering all your bases: incorporating intron signal from RNA-seq data_
+[@Lee2019-mf] and is joint work under the supervision of Dr Charity Law
+and Associate Professor Matthew Ritchie. 
+
+
+\textbf{Student name:} Stuart Andrew Lee
+
+\textbf{Student signature:}
+
+```{r signature, out.width = "20%", fig.align = "left", eval = file.exists("img/signature.png")}
+knitr::include_graphics("img/signature.png")
+```
+
 
 `r if (knitr::is_html_output()) '-->'`
 
