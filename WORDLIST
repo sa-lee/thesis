@@ -39,6 +39,7 @@ Gencode
 Genometric
 GenomicRanges
 gff
+ggplot
 github
 Github
 GMQL
@@ -81,6 +82,7 @@ olaps
 OO
 orthonormal
 pagenumbering
+PBMC
 pdfsense
 PHATE
 pluripotent
@@ -88,6 +90,7 @@ plyranges
 pybedtools
 quantifications
 RaggedRight
+ranglers
 readr
 recode
 rmarkdown

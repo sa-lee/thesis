@@ -4,7 +4,7 @@ bookdown::gitbook:
   split_by: section+number
   split_bib: no
   fig_retina: 1
-  toc_depth: 2
+  toc_depth: 3
   config:
     toc:
       collapse: none

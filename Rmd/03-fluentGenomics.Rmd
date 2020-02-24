@@ -634,7 +634,7 @@ BiocManager::install("sa-lee/fluentGenomics")
 BiocManager::install("fluentGenomics")
 ```
 
-## Acknowledgements
+## Acknowledgements {-}
 
 We would like to thank all participants of the Bioconductor 2019 and
 BiocAsia 2019 conferences who attended and provided feedback on early versions of this workflow paper.

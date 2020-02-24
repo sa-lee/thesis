@@ -200,11 +200,9 @@ package for constructing tour paths.
 
 ### Case Study 1: Fake trees
 
-### Case Study 2: well-clustered smallish single cell
+### Case Study 2: Clustering PBMC 10x single cell RNA-seq data
 
-### Case Study 3: largish single cell data
-
-### Case Study 4: non-spherical clusters, pdfsense
+### Case Study 3: Single cell mouse retina data
 
 
 ## Discussion

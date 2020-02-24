@@ -1,6 +1,32 @@
-# Tidy coverage analysis uncovers intron retention {#ch:intron}
+# Tidy coverage analysis and visualisation with superintronic {#ch:intron}
 
-<!-- # Introduction -->
+## Introduction
+
+
+## Methods
+
+### Motivation: intron signal in RNA-seq data
+
+
+## Results
+
+### Representation of coverage estimation
+
+
+### Integration of external gene annotations
+
+
+### Discovery of regions of interest via 'ranglers'
+
+
+
+### A superintronic workflow for uncovering intron retention
+
+
+## Discussion
+
+## Conclusion
+
 
 <!-- ## Data -->
 

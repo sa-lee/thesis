@@ -540,14 +540,6 @@ access and computing patterns, so the deferred mechanisms within
 `plyranges` should help support interactive genomics applications.
 
 
-## Acknowledgements
-
-We would like to thank Dr Matthew Ritchie at the Walter and Eliza Hall 
-Institute and Dr Paul Harrison for their feedback on earlier drafts of
-this work. We would also like to thank Lori Shepherd and Hèrve Pages
-for the code review they performed and users who have submitted feedback
-and pull requests. 
-
 ## Availability of Data and Materials
 
 The BigWig file for the H3K27Me3 primary T CD8+ memory cells from peripheral 
@@ -565,3 +557,12 @@ The `plyranges` package is open source under an Artistic 2.0 license
 can be obtained via the Bioconductor project website 
 [https://bioconductor.org](https://bioconductor.org) or accessed via Github 
 [https://github.com/sa-lee/plyranges](https://github.com/sa-lee/plyranges).
+
+
+## Acknowledgements {-}
+
+We would like to thank Dr Matthew Ritchie at the Walter and Eliza Hall 
+Institute and Dr Paul Harrison for their feedback on earlier drafts of
+this work. We would also like to thank Lori Shepherd and Hèrve Pages
+for the code review they performed and users who have submitted feedback
+and pull requests. 

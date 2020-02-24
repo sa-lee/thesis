@@ -1,2 +1,20 @@
-# Conclusion and future plans {#ch:conclusion}
+# Conclusion  {#ch:conclusion}
 
+<!-- remind the reader of the research problem and purpose and how they were addressed -->
+<!-- briefly summarise what has been covered in the paper -->
+<!-- make some kind of holistic assessment/judgement/ claim that pertains to the whole project (i.e., more than a descriptive summary) -->
+<!-- assess the value/relevance/ implications of the key findings in light of existing studies and literature -->
+<!-- ‘speak’ to the Introduction -->
+<!-- outline implications of the study (for theory, practice, further research) -->
+<!-- comment on the findings that failed to support or only partially support the hypothesis or research questions directing the study -->
+<!-- refer to the limitations of the studies that may affect the validity or the generalisability of results -->
+<!-- make recommendations for further research -->
+<!-- make claims for new knowledge/ contribution to knowledge. -->
+
+## Findings and limitations
+
+
+## Software development and impact
+
+
+## Further research

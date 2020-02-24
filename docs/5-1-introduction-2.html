@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.1 Introduction | Fluent statistical computing interfaces for biological data analysis</title>
+  <meta name="description" content="5.1 Introduction | Fluent statistical computing interfaces for biological data analysis" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.1 Introduction | Fluent statistical computing interfaces for biological data analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.1 Introduction | Fluent statistical computing interfaces for biological data analysis" />
+  
+  
+  
+
+<meta name="author" content="Stuart Lee" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="5-ch-tsne.html"/>
+<link rel="next" href="5-2-design.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="template/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./"></a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-a-grammar-for-genomic-data-analysis.html"><a href="1-1-a-grammar-for-genomic-data-analysis.html"><i class="fa fa-check"></i><b>1.1</b> A grammar for genomic data analysis</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-integration-and-representation-of-genomic-data-structures.html"><a href="1-2-integration-and-representation-of-genomic-data-structures.html"><i class="fa fa-check"></i><b>1.2</b> Integration and representation of genomic data structures</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-visual-analytics-for-dimension-reduction-and-clustering-workflows.html"><a href="1-3-visual-analytics-for-dimension-reduction-and-clustering-workflows.html"><i class="fa fa-check"></i><b>1.3</b> Visual analytics for dimension reduction and clustering workflows</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-summary.html"><a href="1-4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-ch-plyranges.html"><a href="2-ch-plyranges.html"><i class="fa fa-check"></i><b>2</b> plyranges: a grammar of data transformation for genomics</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-background.html"><a href="2-1-background.html"><i class="fa fa-check"></i><b>2.1</b> Background</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-results.html"><a href="2-2-results.html"><i class="fa fa-check"></i><b>2.2</b> Results</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-results.html"><a href="2-2-results.html#genomic-relational-algebra"><i class="fa fa-check"></i><b>2.2.1</b> Genomic Relational Algebra</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-results.html"><a href="2-2-results.html#developing-workflows-with-plyranges"><i class="fa fa-check"></i><b>2.2.2</b> Developing workflows with <code>plyranges</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-discussion.html"><a href="2-3-discussion.html"><i class="fa fa-check"></i><b>2.3</b> Discussion</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-conclusion.html"><a href="2-4-conclusion.html"><i class="fa fa-check"></i><b>2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-availability-of-data-and-materials.html"><a href="2-5-availability-of-data-and-materials.html"><i class="fa fa-check"></i><b>2.5</b> Availability of Data and Materials</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements-1.html"><a href="acknowledgements-1.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ch-fluentGenomics.html"><a href="3-ch-fluentGenomics.html"><i class="fa fa-check"></i><b>3</b> Fluent genomics with <em>plyranges</em> and <em>tximeta</em></a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction.html"><a href="3-1-introduction.html"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="3-1-introduction.html"><a href="3-1-introduction.html#experimental-data"><i class="fa fa-check"></i><b>3.1.1</b> Experimental Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3-2-se.html"><a href="3-2-se.html"><i class="fa fa-check"></i><b>3.2</b> Import Data as a <em>SummarizedExperiment</em></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-se.html"><a href="3-2-se.html#using-tximeta-to-import-rna-seq-quantification-data"><i class="fa fa-check"></i><b>3.2.1</b> Using <code>tximeta</code> to import RNA-seq quantification data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-se.html"><a href="3-2-se.html#atac"><i class="fa fa-check"></i><b>3.2.2</b> Importing ATAC-seq data as a <em>SummarizedExperiment</em> object</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-model-assays.html"><a href="3-3-model-assays.html"><i class="fa fa-check"></i><b>3.3</b> Model assays</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-model-assays.html"><a href="3-3-model-assays.html#rna-seq-differential-gene-expression-analysis"><i class="fa fa-check"></i><b>3.3.1</b> RNA-seq differential gene expression analysis</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-model-assays.html"><a href="3-3-model-assays.html#atac-seq-peak-differential-abundance-analysis"><i class="fa fa-check"></i><b>3.3.2</b> ATAC-seq peak differential abundance analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html"><i class="fa fa-check"></i><b>3.4</b> Integrate ranges</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html#finding-overlaps-with-plyranges"><i class="fa fa-check"></i><b>3.4.1</b> Finding overlaps with <code>plyranges</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html#down-sampling-non-differentially-expressed-genes"><i class="fa fa-check"></i><b>3.4.2</b> Down sampling non-differentially expressed genes</a></li>
+<li class="chapter" data-level="3.4.3" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html#expanding-genomic-coordinates-around-the-transcription-start-site"><i class="fa fa-check"></i><b>3.4.3</b> Expanding genomic coordinates around the transcription start site</a></li>
+<li class="chapter" data-level="3.4.4" data-path="3-4-integrate-ranges.html"><a href="3-4-integrate-ranges.html#use-overlap-joins-to-find-relative-enrichment"><i class="fa fa-check"></i><b>3.4.4</b> Use overlap joins to find relative enrichment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="3-5-discussion-1.html"><a href="3-5-discussion-1.html"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements-2.html"><a href="acknowledgements-2.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis and visualisation with superintronic</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-introduction-1.html"><a href="4-1-introduction-1.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-methods.html"><a href="4-2-methods.html"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#motivation-intron-signal-in-rna-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> Motivation: intron signal in RNA-seq data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html"><i class="fa fa-check"></i><b>4.3</b> Results</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-results-1.html"><a href="4-3-results-1.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.3.1</b> Representation of coverage estimation</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-results-1.html"><a href="4-3-results-1.html#integration-of-external-gene-annotations"><i class="fa fa-check"></i><b>4.3.2</b> Integration of external gene annotations</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html#discovery-of-regions-of-interest-via-ranglers"><i class="fa fa-check"></i><b>4.3.3</b> Discovery of regions of interest via ‘ranglers’</a></li>
+<li class="chapter" data-level="4.3.4" data-path="4-3-results-1.html"><a href="4-3-results-1.html#a-superintronic-workflow-for-uncovering-intron-retention"><i class="fa fa-check"></i><b>4.3.4</b> A superintronic workflow for uncovering intron retention</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-discussion-2.html"><a href="4-4-discussion-2.html"><i class="fa fa-check"></i><b>4.4</b> Discussion</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-conclusion-1.html"><a href="4-5-conclusion-1.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-introduction-2.html"><a href="5-1-introduction-2.html"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-design.html"><a href="5-2-design.html"><i class="fa fa-check"></i><b>5.2</b> Design</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-design.html"><a href="5-2-design.html#finding-gestalt-focus-and-context"><i class="fa fa-check"></i><b>5.2.1</b> Finding Gestalt: focus and context</a></li>
+<li class="chapter" data-level="5.2.2" data-path="5-2-design.html"><a href="5-2-design.html#posing-queries-multiple-views-many-contexts"><i class="fa fa-check"></i><b>5.2.2</b> Posing Queries: multiple views, many contexts</a></li>
+<li class="chapter" data-level="5.2.3" data-path="5-2-design.html"><a href="5-2-design.html#making-comparisons"><i class="fa fa-check"></i><b>5.2.3</b> Making comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5-3-implementation.html"><a href="5-3-implementation.html"><i class="fa fa-check"></i><b>5.3</b> Implementation</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-implementation.html"><a href="5-3-implementation.html#tours-as-a-streaming-data-problem"><i class="fa fa-check"></i><b>5.3.1</b> Tours as a streaming data problem</a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-implementation.html"><a href="5-3-implementation.html#linking-views-via-spatial-brushes"><i class="fa fa-check"></i><b>5.3.2</b> Linking views via spatial brushes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html"><i class="fa fa-check"></i><b>5.4</b> Case Studies</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-1-fake-trees"><i class="fa fa-check"></i><b>5.4.1</b> Case Study 1: Fake trees</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-2-clustering-pbmc-10x-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.4.2</b> Case Study 2: Clustering PBMC 10x single cell RNA-seq data</a></li>
+<li class="chapter" data-level="5.4.3" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-3-single-cell-mouse-retina-data"><i class="fa fa-check"></i><b>5.4.3</b> Case Study 3: Single cell mouse retina data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5-5-discussion-3.html"><a href="5-5-discussion-3.html"><i class="fa fa-check"></i><b>5.5</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-findings-and-limitations.html"><a href="6-1-findings-and-limitations.html"><i class="fa fa-check"></i><b>6.1</b> Findings and limitations</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-software-development-and-impact.html"><a href="6-2-software-development-and-impact.html"><i class="fa fa-check"></i><b>6.2</b> Software development and impact</a></li>
+<li class="chapter" data-level="6.3" data-path="6-3-further-research.html"><a href="6-3-further-research.html"><i class="fa fa-check"></i><b>6.3</b> Further research</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
+<li class="divider"></li>
+<li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Fluent statistical computing interfaces for biological data analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-2" class="section level2">
+<h2><span class="header-section-number">5.1</span> Introduction</h2>
+<p>High dimensional data is increasingly prevalent in the natural sciences and
+beyond but presents a challenge to the analyst in terms of both data cleaning /
+pre-processing and visualisation. Methods to embed data from a high-dimensional
+space into a low-dimensional one now form a core step of the data analysis
+workflow where they are used to ascertain hidden structure and de-noise data for
+downstream analysis (thereby nullifying the ‘curse of dimensionality’).</p>
+<p>Choosing an appropriate embedding presents a challenge to the analyst. How does
+an analyst know whether the embedding has captured the underlying topology and
+geometry of the high dimensional space? The answer depends on the analyst’s
+workflow. <span class="citation">Brehmer et al. (<a href="bibliography.html#ref-Brehmer2014-hk" role="doc-biblioref">2014</a>)</span> characterised two main workflow steps that an
+analyst performs when using embedding techniques: dimension reduction and
+cluster orientation. The first relates to dimension reduction achieved by using
+an embedding method, here an analyst wants to characterise and map meaning onto
+the embedded form, for example identifying batch effects from a high throughput
+sequencing experiment, or identifying a gradient or trajectory along the
+embedded form <span class="citation">Nguyen and Holmes (<a href="bibliography.html#ref-Nguyen2019-yh" role="doc-biblioref">2019</a>)</span>. The second relates to using embeddings as part of
+a clustering workflow. Here analysts are interested in identifying and naming
+clusters and verifying them by either applying known labels or colouring by
+variables that are a-priori known to distinguish clusters. Both of these
+workflow steps rely on the embedding being ‘faithful’ or the original high
+dimensional dataset, and become much more difficult when there is no underlying
+ground truth.</p>
+<p>Embedding methods can be classified into two broad groups: linear and
+non-linear methods. Linear methods perform a linear transformation of the data;
+one example is principal components analysis (PCA) which performs an
+eigendecomposition of the estimated sample covariance matrix. The eigenvalues
+are sorted in decreasing order and represent the variance explained by each
+component (eigenvector). A common approach to deciding on the number of
+principal components to retain is to plot the proportion of variance explained
+by each component and choose a cut-off.</p>
+<p>Non-linear methods generally perform pre-processing on the high-dimensional data
+such as generating a neighborhood graph and perform transformations on the
+pre-processed form. We restrict our attention to three methods that are commonly
+used in high-throughput biology: t-distributed stochastic neighbor embedding
+(t-SNE), uniform manifold alignment and projection (UMAP), and potential of
+heat-diffusion for affinity-based transition embedding (PHATE). The t-SNE
+algorithm estimates the similarity of (Euclidean) distances of points in a high
+dimensional space using a Gaussian distribution and then estimates a
+configuration in the low dimensional embedding space by modelling similarities
+using a t-distribution with 1 degree of freedom. The resulting configuration is
+the one that minimizes the Kullback-Leibler divergence between the two
+distributions. A recent theoretical contribution by <span class="citation">Linderman and Steinerberger (<a href="bibliography.html#ref-Linderman2019-dq" role="doc-biblioref">2019</a>)</span> proved
+that t-SNE can recover spherical and well separated cluster shapes, and
+proposed new approaches for tuning the optimisation parameters. It is a known
+problem that t-SNE can have trouble recovering global structure and that
+configurations can be highly dependent on how the algorithm is initialised and
+parameterized <span class="citation">(Wattenberg, Viégas, and Johnson <a href="bibliography.html#ref-Wattenberg2016-ji" role="doc-biblioref">2016</a>; Kobak and Berens <a href="bibliography.html#ref-Kobak2019-lm" role="doc-biblioref">2019</a>)</span>. UMAP is a method that is
+related to LargeVis <span class="citation">(Tang et al. <a href="bibliography.html#ref-Tang2016-oz" role="doc-biblioref">2016</a>)</span>, and like t-SNE acts on the k-nearest
+neighbor graph. Its main differences are that it uses a different cost function
+(cross entropy) which is optimized using stochastic gradient descent and
+defines a different kernel for similarities in the low dimensional space. Due
+to it’s computational speed it’s possible to generate UMAP embeddings in more
+than three dimensions. Finally, PHATE, inspired by diffusion maps, is based on
+estimating an affinity matrix via a distance matrix and k-nearest neighbors
+graph. The algorithm de-noises estimated distances in high dimensional space via
+transforming the affinity matrix into a Markov transition probability matrix and
+diffusing this matrix over a fixed number of time steps. Then the diffused
+probabilities are transformed once more to construct a distance matrix, and
+multidimensional scaling is performed to construct a 2d embedding for
+visualization.</p>
+<p>As part of a visualization workflow, it’s important to consider the perception
+and interpretation of embedding methods as well. <span class="citation">Sedlmair, Munzner, and Tory (<a href="bibliography.html#ref-Sedlmair2013-pn" role="doc-biblioref">2013</a>)</span> showed that
+2D scatter plots were mostly sufficient for detecting class separation, however
+they noted that often multiple embeddings were required. For the task of
+cluster identification, <span class="citation">Lewis, Van der Maaten, and Sa (<a href="bibliography.html#ref-Lewis2012-ai" role="doc-biblioref">2012</a>)</span> showed experimentally that novice users
+of non-linear embedding techniques were more likely to consider clusters of
+points on a 2d scatter plot to be the result of a spurious embedding compared
+to advanced users who were aware of the inner workings of the embedding
+algorithm.</p>
+<p>A complimentary approach for visualizing structure in high dimensional data is
+the tour. A tour is a sequence of projections of a high dimensional dataset
+onto a low-dimensional orthonormal basis matrix, that is represented as a
+dynamic visualization. The sequence of generated bases are interpolated to form
+the tour path, allowing a user to explore the subspace of projections. A grand
+tour corresponds to choosing new bases at random, and can give an overview of
+the structure in the data. Instead of picking projections at random, a guided
+tour can be used to generate a sequence ‘interesting’ projections as quantified
+by an index function. Given the dynamic nature of the tour, user interaction is
+important for controlling and exploring the visualisation: the tour has been
+used previously by <span class="citation">Wickham, Cook, and Hofmann (<a href="bibliography.html#ref-Wickham2015-cx" role="doc-biblioref">2015</a>)</span> as tool for exploring statistical model fits
+and by <span class="citation">Buja, Cook, and Swayne (<a href="bibliography.html#ref-Buja1996-fk" role="doc-biblioref">1996</a>)</span> for exploring factorial experimental designs.</p>
+<p>While there has been much work on the algorithmic details of the aforementioned
+embedding methods, there has been relatively few tools designed to assist users
+to interact with these techniques and assist them in making comparisons between
+embeddings and performing the aforementioned cluster orientation tasks. Several
+interactive interfaces have been proposed for evaluating or using embedding
+techniques: the Sleepwalk interface provides a click and highlight
+visualisation for colouring points in an embedding according to their distance
+in the original high-dimensional space <span class="citation">(Ovchinnikova and Anders <a href="bibliography.html#ref-Ovchinnikova2019-gf" role="doc-biblioref">2019</a>)</span>. The work by
+<span class="citation">Pezzotti et al. (<a href="bibliography.html#ref-Pezzotti2017-cz" role="doc-biblioref">2017</a>)</span> provides a user guided and modified form of the t-SNE
+algorithm, that allows users to modified optimisation parameters in real-time.
+Similarly, the embedding projector is a web interface to running UMAP, t-SNE or
+PCA live in the browser and provides interactions to color points, and
+highlights nearest neighbors <span class="citation">(Smilkov et al. <a href="bibliography.html#ref-Smilkov2016-hp" role="doc-biblioref">2016</a>)</span>.</p>
+<p>There is no one-size fits all: finding an appropriate embedding for a given
+dataset is a difficult and somewhat poorly defined problem. For non-linear
+methods, there are a lot of parameters to explore that can have an effect on
+the resulting visualisation and interpretation. Interfaces for evaluating
+embeddings require interaction but should also be able to be incorporated into
+an analysts workflow. We propose a more pragmatic workflow inspired by
+incorporating interactive graphics and tours with embeddings that allows users
+to see a global overview of their high dimensional data and assists them with
+cluster orientation tasks. This workflow is incorporated into an R package
+called <code>liminal</code> (Available: <a href="https://github.com/sa-lee/liminal" class="uri">https://github.com/sa-lee/liminal</a>).</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="5-ch-tsne.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-2-design.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//05-embeddings.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

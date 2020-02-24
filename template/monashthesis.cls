@@ -203,7 +203,7 @@
 \numberwithin{section}{chapter}
 \numberwithin{equation}{chapter}
 
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 
 \def\prefacesection#1{%
     \chapter*{#1}
