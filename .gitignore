@@ -10,3 +10,5 @@ cache-*/
 *.bbl
 data-raw/*.txt.gz
 thesis\.tex
+img/signature.png
+docs/img/signature.png
