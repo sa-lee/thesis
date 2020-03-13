@@ -51,7 +51,10 @@ published in Genome Biology [@Lee2019].
 
 ## Integration and representation of genomic data structures 
 
-
+- talking about chapters 3 and 4 here
+- having the grammar doesn't impair interoperability, in fact we show it
+can be used to glue two different approches
+- the long form representation can be taken even further... 
 
 ## Visual analytics for dimension reduction and clustering workflows
 
