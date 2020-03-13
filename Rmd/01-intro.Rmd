@@ -2,65 +2,58 @@
 
 Exploratory data analysis (EDA) is a vital element of the modern 
 statistical workflow - it is an analyst’s first pass at 
-understanding their data; revealing all it’s messes and (possibly) 
+understanding their data; revealing all it’s messes and 
 uncovering hidden insights [@Tukey1977-pn; @Grolemund2017-uc]. 
-It is an iterative process involving both computation and visualization 
-that can generate new hypotheses that can be tested and formalised using 
-statistical modelling. Moreover, as datasets grow in complexity and become
+It is an iterative process involving computation and visualization,
+leading to new hypotheses that can be tested and formalised using 
+statistical modelling. As datasets grow in complexity and become
 increasingly heterogeneous and multidimensional, 
 the use of EDA becomes vital to ensure the integrity and quality of analysis 
-outputs.  This is certainly true in high-throughput biological 
-data analysis, where there are constraints on computation time and 
-memory, leading to the situation that as data becomes larger,
-EDA becomes increasingly difficult. 
+outputs. This is certainly true in high-throughput biological 
+data analysis, where constraints on computation time and memory, in addition
+to the analyst's time, results in EDA becoming increasingly difficult and 
+neglected. 
 
-
-The approach taken by the suite of software packages collectively known as the *tidyverse* 
-is an attempt to formalise aspects of the EDA process in the R programming language
-under a single semantic known as *tidy data* [@baser; @tidyverse; @Wickham2014-jc]. 
-Simply put, a *tidy data* set is a rectangular table where each row of the table corresponds to an 
-observation and each column corresponds to a variable. There is a surprisingly
-large amount of utility that can be achieved with this definition. By having
-each column representing a variable,  variables can be mapped
-to graphical aesthetics  of visualizations. This enables the grammar of graphics as implemented
-by *ggplot2* [@Wickham2016-gz; @Wilkinson2005-kq]. User interfaces
-as implemented by *tidyverse* and in particular the *dplyr* package are *fluent*; 
-they form a domain specific language (DSL) that gives users a mental model 
-for performing and composing common data transformation tasks 
-[@Wickham2017-dplyr; @FowlerFluent].
-
-It is unclear whether the *fluent* interfaces as implemented using the
-*tidy data* framework can be more generally applied and useful
-in fields such as high-throughput biology where domain specific semantics as
-implemented through more complex data structures are required. This is particularly
-true in the Bioconductor ecosystem, where much thought has gone into the
-design of data structures that enable interoperability between different tools 
-[@Huber2015-ei]. One contribution of this thesis is the implementation
-of a *fluent* interface for genomics data that is expressive enough to
-enable EDA and be used as a building block for more software. 
 
 
 
 
 ## A grammar for genomic data analysis
 
+The approach taken by the suite of software packages collectively known as the 
+*tidyverse*  is an attempt to formalise aspects of the EDA process in the R
+programming language under a single semantic known as *tidy data* 
+[@baser; @tidyverse; @Wickham2014-jc]. Simply put, a *tidy data* set is a 
+rectangular table where each row of the table corresponds to an  observation, 
+each column corresponds to a variable and each cell a value. There is a 
+surprisingly large amount of utility that can be achieved with this definition. 
+By having each column representing a variable, variables in the data can be mapped
+to graphical aesthetics of plots. This paradigm enables the grammar of graphics 
+as implemented by *ggplot2* [@Wickham2016-gz; @Wilkinson2005-kq]. User interfaces
+as implemented by *tidyverse*, and in particular the *dplyr* package, are *fluent*; 
+they form a domain specific language (DSL) that gives users a mental model 
+for performing and composing common data transformation tasks 
+[@Wickham2017-dplyr; @FowlerFluent].
+
+It is unclear whether the *fluent* interfaces as implemented using the
+*tidy data* framework can be more generally applied and useful
+in fields such as high-throughput biology where domain specific semantics are 
+required. This is particularly true in the *Bioconductor* ecosystem, where much 
+thought has gone into the design of data structures that enable interoperability
+between different tools, biological assays and analysis goals [@Huber2015-ei].
+
+Chapter \@ref(ch:plyranges) shows that the *tidy data* semantic is applicable
+to range-based genomics data and develops a *fluent* interface to transforming
+it called *plyranges*. The software provides a framework to an assist
+an analyst to compose queries on genomics datasets. This chapter has been 
+published in Genome Biology [@Lee2019].
 
 ## Integration and representation of genomic data structures 
+
 
 
 ## Visual analytics for dimension reduction and clustering workflows
 
 
 
-## Summary
 
-This thesis presents a set of tools for performing exploratory 
-data analysis in the context of genomics and transcriptomics.  The first tool, “plyranges” provides a domain specific language for 
-reasoning about range based genomics data that simplifies common 
-operations such as overlaps and aggregations.  Next I extend 
-“plyranges”  to develop “superintronic” which presents an 
-approach for discovering interesting genomic regions within an 
-experimental design. We apply this tool to explore intron signal 
-in transcriptomic data. Finally, I turn my attention to focus on 
-embedding methods currently used for visualisation of large data 
-sets… 
