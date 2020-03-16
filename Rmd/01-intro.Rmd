@@ -55,8 +55,24 @@ published in Genome Biology [@Lee2019].
 - having the grammar doesn't impair interoperability, in fact we show it
 can be used to glue two different approches
 - the long form representation can be taken even further... 
+- recasting EDA problems as search, we want to find regions measured along the
+genome that display a characteristic of interest, and then link that to raw 
+data plots.
 
-## Visual analytics for dimension reduction and clustering workflows
+
+## Visual analytics for dimension reduction workflows
+
+
+- talking about chapter 5
+- taking a step back in the last chapter, have been focused on data wrangling
+but am now looking the integration of vis and models
+- focussed on a common part of EDA as applied to transcriptomics, dimension
+reduction workflows
+- especially non-linear dr as that has gotten extremely popular
+- combining with the tour, we can grasp the trade-off between global and
+local views of the data
+- user interaction provides ability to dissect the quality of a DR, and
+perform cluster oriented tasks
 
 
 
