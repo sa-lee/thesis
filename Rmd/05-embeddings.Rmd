@@ -186,7 +186,11 @@ view of the effect of an embedding algorithm.
 
 ### Making comparisons
 
-TODO
+
+**distortion**: points that are far away in one view, will show neighbours that are close together in the opposing view.
+
+**diffusion**: points that are close in one view, will show neighbours that are far apart in the opposing view.
+
 
 ## Implementation
 
@@ -197,17 +201,41 @@ graphics. Ensemble graphics for arranging tour and embedding views are
 generated using the `shiny` packages. We have made extensive use of the `tourr`
 package for constructing tour paths.
 
+- **concatenated views:** see local and global structures
+- **user interactions:** verify cluster shapes and locations
+- **quality checks:** interrogate an embedding with reference
+to the underlying data
+
 ### Tours as a streaming data problem
 
+- don't need to realise the entire sequence
+- instead generate new bases according to a fixed frame rate
+- allows user interactions to play/pause on the current view
 
-### Linking views via spatial brushes
+### Linking views via brushes
 
 
 
 ## Case Studies
 
 
-### Case Study 1: Fake trees
+### Case Study 1: Exploring tree structured data
+
+(ref:fake-trees) Example from PHATE
+
+```{r fake-trees, echo = FALSE, out.width = "50%", fig.cap="(ref:fake-trees)"}
+knitr::include_graphics(here::here("img", "tree.png"))
+```
+
+#### Using t-SNE
+
+- there's a lot of parameters to tweak
+- emphasises locality, distance between clusters of points can be misleading
+- size of clusters can be misleading 
+- may require a few different runs to capture topology of data
+- if there are clusters it will find them 
+
+
 
 ### Case Study 2: Clustering PBMC 10x single cell RNA-seq data
 
@@ -215,3 +243,6 @@ package for constructing tour paths.
 
 
 ## Discussion
+
+
+## Acknowledgements
