@@ -209,6 +209,15 @@ propose this can be done visually using our side-by-side tour and embedding
 views. Some quality checks, such as finding distortions can be identified using simple linked brushing, however we can also interrogate them via spatial
 brushes and brush compostions. 
 
+ Look up nearest neighbours graph from points that lie in a brushing region.
+
+Highlight the corresponding neighbours using colour or transparency in the linked view. 
+
+
+- The $k$ nearest neighbours graph can be pre-computed quickly, for either $X$, $Y$ or both.
+- Instead of using the neighbour indices, we could use the neighbour distances instead.
+- Composition of multiple brushes could be used to show where there are matches/mismatches between nearest neighbour graphs. 
+
 Using a linked neighbourhood brush, we can 
 visually investigate the nearest neighbour relationships in the 
 high-dimensional space via brushing in the embedding view. The user can select
