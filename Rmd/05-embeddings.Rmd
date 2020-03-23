@@ -95,7 +95,7 @@ points on a 2d scatter plot to be the result of a spurious embedding compared
 to advanced users who were aware of the inner workings of the embedding
 algorithm.
 
-A complimentary approach for visualizing structure in high dimensional data is
+A complementary approach for visualizing structure in high dimensional data is
 the tour. A tour is a sequence of projections of a high dimensional dataset
 onto a low-dimensional orthonormal basis matrix, that is represented as a
 dynamic visualization. The sequence of generated bases are interpolated to form
@@ -188,11 +188,28 @@ for manually identifying clusters and verifying cluster locations and shapes:
 brushing in the embedding view gives analysts a sense of the shape and 
 proximity of cluster in high-dimensional space. 
 
-### Making comparisons: think global, act local
+### Making comparisons: revising embeddings
 
-Aside from simple
-linked brushing, we can also pose more complex queries via interrogating
-the neighbourhood graph. Using a linked neighbourhood brush, we can 
+As mentioned previously, when using any DR method, we are assuming
+the embedding is representative of the high-dimensional dataset it was
+computed from. Defining what it means for embedding to be 'representative` or
+'faithful' to high-dimensional data is ill-posed and depends on the underlying
+taks an analyst is trying to achieve. At the very minimum, we are interested
+in distortions and diffusions of the high-dimensional data. Distortions
+occur when points that are near each other in the embedding view are 
+far from each other in the original dataset. This implies that the embedding 
+is not continuous. Diffusions occur when points are far from each other in the embedding view are near in the original data.  Whether, points are near or far 
+is reliant on the distance metric used; distortions and diffusions can
+be thought of as the preservation of distances or the nearest neighbors
+graphs between the high-dimensional space and the embedding space. As distances
+can be noisy in high-dimensions, ranks can be used instead as has been 
+proposed by ... Identifying distortions and diffusions allows an analyst
+to investigate the quality of their embedding and revise them iteratively. We
+propose this can be done visually using our side-by-side tour and embedding
+views. Some quality checks, such as finding distortions can be identified using simple linked brushing, however we can also interrogate them via spatial
+brushes and brush compostions. 
+
+Using a linked neighbourhood brush, we can 
 visually investigate the nearest neighbour relationships in the 
 high-dimensional space via brushing in the embedding view. The user can select
 the number of nearest neighbours directly, and modify the distance metric 
@@ -202,10 +219,6 @@ interface controls allow these brushes to combine using logical operators
 such as 'and', 'or', or 'not'. The use of linked brushing goes beyond
 simple color highlights, allowing analysts to get a more holistic
 view of the effect of an embedding algorithm.
-
-**distortion**: points that are far away in one view, will show neighbours that are close together in the opposing view.
-
-**diffusion**: points that are close in one view, will show neighbours that are far apart in the opposing view.
 
 
 ## Implementation
