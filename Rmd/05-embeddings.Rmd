@@ -6,9 +6,7 @@
 - design
 - examples/benchmarks
   - Kevin moon
-  - pdfsense
   - single cell
-  - quick draw
 https://jlmelville.github.io/smallvis/init.html#other_initialization_options
 -->
 
