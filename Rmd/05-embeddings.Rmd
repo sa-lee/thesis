@@ -171,8 +171,7 @@ These views are linked; analysts can brush regions or
 highlight collections of points in either view. Linked highlighting can
 be performed when points have been previously labeled according to some
 discrete structure, i.e. cluster labels are available. This is achieved
-via the analyst clicking on groups in the legend, which causes unclicked
-groupings to have their points become less opaque. Consequently, 
+via the analyst clicking on groups in the legend, which causes unselected groupings to have their points become less opaque. Consequently, 
 simple linked highlighting can alleviate a known downfall of methods such as 
 UMAP or t-SNE: that is distances between clusters are misleading. By
 highlighting corresponding clusters in the tour view, the analyst can
@@ -194,7 +193,7 @@ As mentioned previously, when using any DR method, we are assuming
 the embedding is representative of the high-dimensional dataset it was
 computed from. Defining what it means for embedding to be 'representative` or
 'faithful' to high-dimensional data is ill-posed and depends on the underlying
-taks an analyst is trying to achieve. At the very minimum, we are interested
+task an analyst is trying to achieve. At the very minimum, we are interested
 in distortions and diffusions of the high-dimensional data. Distortions
 occur when points that are near each other in the embedding view are 
 far from each other in the original dataset. This implies that the embedding 
@@ -207,7 +206,7 @@ proposed by ... Identifying distortions and diffusions allows an analyst
 to investigate the quality of their embedding and revise them iteratively. We
 propose this can be done visually using our side-by-side tour and embedding
 views. Some quality checks, such as finding distortions can be identified using simple linked brushing, however we can also interrogate them via spatial
-brushes and brush compostions. 
+brushes and brush composition. 
 
  Look up nearest neighbours graph from points that lie in a brushing region.
 

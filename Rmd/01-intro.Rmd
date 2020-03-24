@@ -10,7 +10,7 @@ statistical modelling. As datasets grow in complexity and become
 increasingly heterogeneous and multidimensional, 
 the use of EDA becomes vital to ensure the integrity and quality of analysis 
 outputs. This is certainly true in high-throughput biological 
-data sceince, where constraints on computation time and memory, in addition
+data science, where constraints on computation time and memory, in addition
 to the analyst's time, results in EDA becoming increasingly difficult and 
 neglected. 
 
@@ -53,7 +53,7 @@ published in Genome Biology [@Lee2019].
 
 - talking about chapters 3 and 4 here
 - having the grammar doesn't impair interoperability, in fact we show it
-can be used to glue two different approches
+can be used to glue two different approaches
 - the long form representation can be taken even further... 
 - recasting EDA problems as search, we want to find regions measured along the
 genome that display a characteristic of interest, and then link that to raw 
