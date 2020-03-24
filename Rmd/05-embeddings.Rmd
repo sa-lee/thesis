@@ -231,8 +231,8 @@ view of the effect of an embedding algorithm.
 
 ## Implementation
 
-We have implemnted the above design as an open source R package 
-called `liminal` [@baseR]. The package allows analysts to constuct
+We have implemented the above design as an open source R package 
+called `liminal` [@baseR]. The package allows analysts to construct
 concatenated visualisations, via the
 Vega-Lite grammar of interactive graphics (using `vegawidget` package)
 and provides an interface for constructing brushes and manipulating tour paths
