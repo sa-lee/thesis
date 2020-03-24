@@ -231,17 +231,16 @@ view of the effect of an embedding algorithm.
 
 ## Implementation
 
-The `liminal` software is implemented as an open source R package @baseR. All
-visualisations produced by the package were constructed using the `vegawidget`
-package, which is an R interface to the Vega-Lite grammar of interactive
-graphics. Ensemble graphics for arranging tour and embedding views are
-generated using the `shiny` packages. We have made extensive use of the `tourr`
-package for constructing tour paths.
+We have implemnted the above design as an open source R package 
+called `liminal` [@baseR]. The package allows analysts to constuct
+concatenated visualisations, via the
+Vega-Lite grammar of interactive graphics (using `vegawidget` package)
+and provides an interface for constructing brushes and manipulating tour paths
+using the `shiny` and `tourr` packages. `liminal` also provides a stand-alone
+interface to the tour, in addition to the linked scatterplot interfaces 
+discussed above. Below we display the `liminal` API, and our approach to
+generating tour paths and user interactions.
 
-- **concatenated views:** see local and global structures
-- **user interactions:** verify cluster shapes and locations
-- **quality checks:** interrogate an embedding with reference
-to the underlying data
 
 ### Tours as a streaming data problem
 
@@ -256,7 +255,7 @@ to the underlying data
 ## Case Studies
 
 
-### Case Study 1: Exploring tree structured data
+### Case Study 1: Exploring tree structured data with tours and t-SNE
 
 (ref:fake-trees) Example from PHATE
 
