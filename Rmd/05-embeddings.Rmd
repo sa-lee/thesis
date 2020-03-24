@@ -274,7 +274,6 @@ knitr::include_graphics(here::here("img", "tree.png"))
 - if there are clusters it will find them 
 
 
-
 ### Case Study 2: Clustering PBMC 10x single cell RNA-seq data
 
 ### Case Study 3: Single cell mouse retina data
