@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.2" data-path="5-3-implementation.html"><a href="5-3-implementation.html#linking-views-via-brushes"><i class="fa fa-check"></i><b>5.3.2</b> Linking views via brushes</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html"><i class="fa fa-check"></i><b>5.4</b> Case Studies</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-1-exploring-tree-structured-data"><i class="fa fa-check"></i><b>5.4.1</b> Case Study 1: Exploring tree structured data</a></li>
+<li class="chapter" data-level="5.4.1" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-1-exploring-tree-structured-data-with-tours-and-t-sne"><i class="fa fa-check"></i><b>5.4.1</b> Case Study 1: Exploring tree structured data with tours and t-SNE</a></li>
 <li class="chapter" data-level="5.4.2" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-2-clustering-pbmc-10x-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.4.2</b> Case Study 2: Clustering PBMC 10x single cell RNA-seq data</a></li>
 <li class="chapter" data-level="5.4.3" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-3-single-cell-mouse-retina-data"><i class="fa fa-check"></i><b>5.4.3</b> Case Study 3: Single cell mouse retina data</a></li>
 </ul></li>
@@ -261,32 +261,32 @@ samples of size equal to the number of DE-genes from the number of rows in
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">size &lt;-<span class="st"> </span><span class="kw">length</span>(de_genes)</a>
 <a class="sourceLine" id="cb44-2" title="2"><span class="kw">slice</span>(other_genes, <span class="kw">sample.int</span>(plyranges<span class="op">::</span><span class="kw">n</span>(), size))</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 749 ranges and 3 metadata columns:
-#&gt;         seqnames            ranges strand |            gene_id
-#&gt;            &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
-#&gt;     [1]    chr10   5765223-5842132      - | ENSG00000057608.16
-#&gt;     [2]    chr10 95605929-95656706      - |  ENSG00000059573.8
-#&gt;     [3]     chr1 29147743-29181987      - | ENSG00000116350.16
-#&gt;     [4]    chr20     320313-348224      - |  ENSG00000225377.5
-#&gt;     [5]    chr16   2223566-2235742      + | ENSG00000167967.15
-#&gt;     ...      ...               ...    ... .                ...
-#&gt;   [745]    chr22 27851669-27920134      - | ENSG00000180957.17
-#&gt;   [746]    chr19 10416773-10469631      + | ENSG00000065989.15
-#&gt;   [747]     chr4     337814-384864      + | ENSG00000131127.13
-#&gt;   [748]    chr11 66638617-66668374      + | ENSG00000173933.20
-#&gt;   [749]    chr18 20946906-21111851      - |  ENSG00000067900.7
+#&gt;         seqnames              ranges strand |            gene_id
+#&gt;            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
+#&gt;     [1]    chr19   39825350-39834201      - | ENSG00000105204.13
+#&gt;     [2]    chr19   14408819-14419383      - | ENSG00000123136.14
+#&gt;     [3]    chr14   23969874-24006408      + | ENSG00000187630.16
+#&gt;     [4]    chr20   58651253-58679526      + | ENSG00000124222.22
+#&gt;     [5]    chr16   82147798-82170226      - |  ENSG00000135698.9
+#&gt;     ...      ...                 ...    ... .                ...
+#&gt;   [745]    chr19   52269571-52296046      + | ENSG00000196214.10
+#&gt;   [746]    chr16   89644431-89657845      - | ENSG00000131165.14
+#&gt;   [747]    chr12 133037292-133063304      + | ENSG00000198040.10
+#&gt;   [748]     chr5   40825262-40835335      - | ENSG00000145592.13
+#&gt;   [749]     chr5 138352596-138437028      + | ENSG00000120733.13
 #&gt;                   de_log2FC              de_padj
 #&gt;                   &lt;numeric&gt;            &lt;numeric&gt;
-#&gt;     [1]   0.553882132119244 3.41575144686802e-05
-#&gt;     [2]  -0.068267549663837 0.000605648799164912
-#&gt;     [3]   0.215662442238219 6.98023305700147e-10
-#&gt;     [4] -0.0780965488712919  0.00027250243041282
-#&gt;     [5]  -0.078542939357301 5.93682310103917e-10
+#&gt;     [1]  -0.474265547309344  0.00143202691714562
+#&gt;     [2]  -0.195565169666109 6.15122704276795e-08
+#&gt;     [3]  -0.193857259904103 2.41289228667999e-10
+#&gt;     [4]   0.124808527260134 4.01451204966896e-20
+#&gt;     [5]  -0.475374492775655   0.0049180188694544
 #&gt;     ...                 ...                  ...
-#&gt;   [745]   0.508207083275955 1.47383012169179e-07
-#&gt;   [746] -0.0742686263896624 0.000263152857647572
-#&gt;   [747]  -0.156104540241799 4.41378177224054e-15
-#&gt;   [748]   0.529301693380888 2.30760934461235e-07
-#&gt;   [749]  -0.127440480749984 1.15334369266229e-26
+#&gt;   [745]   0.121805772890165 6.91333933127851e-14
+#&gt;   [746]    0.21540812408334  7.0132754879051e-13
+#&gt;   [747] -0.0247115944890518 1.03112429766339e-13
+#&gt;   [748]  -0.465654436226396 2.88370054622836e-06
+#&gt;   [749] -0.0962891356396259 8.36348429017276e-17
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
 <p>We can repeat this many times to create many samples via <code>replicate</code>. By

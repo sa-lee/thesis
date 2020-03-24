@@ -133,7 +133,9 @@ to see a global overview of their high dimensional data and assists them with
 cluster orientation tasks. This workflow is incorporated into an R package
 called `liminal` (Available: https://github.com/sa-lee/liminal).
 
-## Design
+## Dimensionality Reduction
+
+## Visual Design
 
 We propose using tours as part of an analyst's workflow in in performing
 dimensionality reduction tasks. We have made extensive use of ensemble
@@ -229,7 +231,7 @@ simple color highlights, allowing analysts to get a more holistic
 view of the effect of an embedding algorithm.
 
 
-## Implementation
+## Software Infrastructure
 
 We have implemented the above design as an open source R package 
 called `liminal` [@baseR]. The package allows analysts to construct

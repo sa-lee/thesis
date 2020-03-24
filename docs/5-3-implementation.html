@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.2" data-path="5-3-implementation.html"><a href="5-3-implementation.html#linking-views-via-brushes"><i class="fa fa-check"></i><b>5.3.2</b> Linking views via brushes</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html"><i class="fa fa-check"></i><b>5.4</b> Case Studies</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-1-exploring-tree-structured-data"><i class="fa fa-check"></i><b>5.4.1</b> Case Study 1: Exploring tree structured data</a></li>
+<li class="chapter" data-level="5.4.1" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-1-exploring-tree-structured-data-with-tours-and-t-sne"><i class="fa fa-check"></i><b>5.4.1</b> Case Study 1: Exploring tree structured data with tours and t-SNE</a></li>
 <li class="chapter" data-level="5.4.2" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-2-clustering-pbmc-10x-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.4.2</b> Case Study 2: Clustering PBMC 10x single cell RNA-seq data</a></li>
 <li class="chapter" data-level="5.4.3" data-path="5-4-case-studies.html"><a href="5-4-case-studies.html#case-study-3-single-cell-mouse-retina-data"><i class="fa fa-check"></i><b>5.4.3</b> Case Study 3: Single cell mouse retina data</a></li>
 </ul></li>
@@ -233,18 +233,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="implementation" class="section level2">
 <h2><span class="header-section-number">5.3</span> Implementation</h2>
-<p>The <code>liminal</code> software is implemented as an open source R package <span class="citation">R Core Team (<a href="bibliography.html#ref-baseR" role="doc-biblioref">2019</a><a href="bibliography.html#ref-baseR" role="doc-biblioref">b</a>)</span>. All
-visualisations produced by the package were constructed using the <code>vegawidget</code>
-package, which is an R interface to the Vega-Lite grammar of interactive
-graphics. Ensemble graphics for arranging tour and embedding views are
-generated using the <code>shiny</code> packages. We have made extensive use of the <code>tourr</code>
-package for constructing tour paths.</p>
-<ul>
-<li><strong>concatenated views:</strong> see local and global structures</li>
-<li><strong>user interactions:</strong> verify cluster shapes and locations</li>
-<li><strong>quality checks:</strong> interrogate an embedding with reference
-to the underlying data</li>
-</ul>
+<p>We have implemented the above design as an open source R package
+called <code>liminal</code> <span class="citation">(R Core Team <a href="bibliography.html#ref-baseR" role="doc-biblioref">2019</a><a href="bibliography.html#ref-baseR" role="doc-biblioref">b</a>)</span>. The package allows analysts to construct
+concatenated visualisations, via the
+Vega-Lite grammar of interactive graphics (using <code>vegawidget</code> package)
+and provides an interface for constructing brushes and manipulating tour paths
+using the <code>shiny</code> and <code>tourr</code> packages. <code>liminal</code> also provides a stand-alone
+interface to the tour, in addition to the linked scatterplot interfaces
+discussed above. Below we display the <code>liminal</code> API, and our approach to
+generating tour paths and user interactions.</p>
 <div id="tours-as-a-streaming-data-problem" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> Tours as a streaming data problem</h3>
 <ul>
