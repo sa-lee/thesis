@@ -12,14 +12,27 @@ the use of EDA becomes vital to ensure the integrity and quality of analysis
 outputs. This is certainly true in high-throughput biological 
 data science, where constraints on computation time and memory, in addition
 to the analyst's time, results in EDA becoming increasingly difficult and 
-neglected. 
+neglected.
 
-This thesis develops tools and frameworks to perform EDA as part of the
-biological data science workflow...  
+This thesis focuses on three core aspects of EDA as part of a biological data
+science workflow: wrangling, integration and visualisation (in particular we 
+focus on the exploration of genomics and transcriptomics data).
+It is organised in the same manner that you would iterate back and
+forth between these tasks  during an analysis. To begin you wrangle your data into a structure 
+that you can understand and use; section \@ref(sec:tidygranges) introudces a
+grammar-based framework for transforming genomics data that is described in 
+chapter \@ref(ch:plyranges). Next, you integrate data and model outputs
+over genomic regions to gain biological insight; \@ref(sec:ir) introduces a
+framework for incorporating and discovering 'interesting' genomic regions,
+described further in chapters \@ref(ch:fluentGenomics) and \@ref(ch:intron).
+Third, you cycle between model-based representations and visualisations
+of your data; section {#sec:va} introduces a visual analytics approach for
+understanding non-linear dimension reduction techniques and is described in
+detail in chapter \@ref(ch:tsne). Lastly, you take a step back and look at
+the implications and limitations of your work; in chapter \@ref(ch:conclusion)
+I describe the impacts of my work and plans for future research. 
 
-
-
-## A grammar for genomic data analysis
+## A grammar for genomic data analysis {#sec:tidygranges}
 
 The approach taken by the suite of software packages collectively known as the 
 *tidyverse*  is an attempt to formalise aspects of the EDA process in the R
@@ -49,7 +62,7 @@ it called *plyranges*. The software provides a framework to an assist
 an analyst to compose queries on genomics datasets. This chapter has been 
 published in Genome Biology [@Lee2019].
 
-## Integration and representation of genomic data structures 
+## Integration and representation of genomic data structures {#sec:ir}
 
 - talking about chapters 3 and 4 here
 - having the grammar doesn't impair interoperability, in fact we show it
