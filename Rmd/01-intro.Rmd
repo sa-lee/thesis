@@ -18,19 +18,19 @@ This thesis focuses on three core aspects of EDA as part of a biological data
 science workflow: wrangling, integration and visualisation (in particular we 
 focus on the exploration of genomics and transcriptomics data).
 It is organised in the same manner that you would iterate back and
-forth between these tasks  during an analysis. To begin you wrangle your data into a structure 
-that you can understand and use; section \@ref(sec:tidygranges) introudces a
-grammar-based framework for transforming genomics data that is described in 
-chapter \@ref(ch:plyranges). Next, you integrate data and model outputs
-over genomic regions to gain biological insight; \@ref(sec:ir) introduces a
-framework for incorporating and discovering 'interesting' genomic regions,
-described further in chapters \@ref(ch:fluentGenomics) and \@ref(ch:intron).
-Third, you cycle between model-based representations and visualisations
-of your data; section {#sec:va} introduces a visual analytics approach for
-understanding non-linear dimension reduction techniques and is described in
+forth between these tasks  during an analysis. To begin you wrangle your data 
+into a structure that you can understand and use; section \@ref(sec:tidygranges)
+introudces a grammar-based framework for transforming genomics data that is 
+described in chapter \@ref(ch:plyranges). Next, you integrate data and model 
+outputs over genomic regions to gain biological insight; \@ref(sec:ir) 
+introduces a framework for incorporating and discovering 'interesting' genomic
+regions, described further in chapters \@ref(ch:fluentGenomics) and 
+\@ref(ch:intron). Third, you cycle between model-based representations and 
+visualisations of your data; section {#sec:va} introduces a visual analytics 
+approach for understanding non-linear dimension reduction techniques and is described in
 detail in chapter \@ref(ch:tsne). Lastly, you take a step back and look at
 the implications and limitations of your work; in chapter \@ref(ch:conclusion)
-I describe the impacts of my work and plans for future research. 
+I describe the outpus of my thesis and plans for future research. 
 
 ## A grammar for genomic data analysis {#sec:tidygranges}
 
@@ -64,16 +64,29 @@ published in Genome Biology [@Lee2019].
 
 ## Integration and representation of genomic data structures {#sec:ir}
 
-- talking about chapters 3 and 4 here
-- having the grammar doesn't impair interoperability, in fact we show it
-can be used to glue two different approaches
-- the long form representation can be taken even further... 
-- recasting EDA problems as search, we want to find regions measured along the
-genome that display a characteristic of interest, and then link that to raw 
-data plots.
+It is rare that a biological data analysis will involve
+a single measurement assay or that only one aspect of a measurement assay
+will be of interest to the biological question under study. While there are 
+many approaches to integrating data sets from multiple assays using multivariate
+statistical techniques [@Meng2016-pz], in chapter \@ref(ch:fluentGenomics)
+we describe a simpler end-to-end workflow for integrating 
+results along the genome using *plyranges*. This workflow also shows that
+our grammar based approach does not impair interoperability between
+the *tidyverse* and *Bioconductor* approaches, and in fact they work seamlessly
+together. 
+
+Moreover, in chapter \@ref(ch:intron) we explore the limits of the *tidy data*
+semantic by extending *plyranges* to analyse coverage estimated on RNA-seq
+data by developing a new software tool called *superintronic*. We show that the
+long-form tidy representation is an effective way of combining the experimental
+design and reference annotations into a single genomic data structure for
+exploration. We use *superintronic* to develop a framework for discovering
+interesting regions of coverage and apply our approach to integrating intron
+signal from RNA-seq data.
 
 
-## Visual analytics for dimension reduction workflows
+## Visual analytics for dimension reduction workflows {#sec:va}
+
 
 
 - talking about chapter 5
