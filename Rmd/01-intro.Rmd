@@ -14,23 +14,24 @@ data science, where constraints on computation time and memory, in addition
 to the analyst's time, results in EDA becoming increasingly difficult and 
 neglected.
 
-This thesis focuses on three core aspects of EDA as part of a biological data
-science workflow: wrangling, integration and visualisation (in particular we 
-focus on the exploration of genomics and transcriptomics data).
-It is organised in the same manner that you would iterate back and
-forth between these tasks  during an analysis. To begin you wrangle your data 
+This thesis focuses on core aspects of EDA as part of a biological data
+science workflow: wrangling, integration and visualisation, with a focus 
+on applications to genomics and transcriptomics. It is organised in 
+the same manner that you would iterate back and
+forth between these tasks during an analysis. To begin you wrangle your data 
 into a structure that you can understand and use; section \@ref(sec:tidygranges)
-introudces a grammar-based framework for transforming genomics data that is 
+introduces a grammar-based framework for transforming genomics data that is 
 described in chapter \@ref(ch:plyranges). Next, you integrate data and model 
 outputs over genomic regions to gain biological insight; \@ref(sec:ir) 
 introduces a framework for incorporating and discovering 'interesting' genomic
 regions, described further in chapters \@ref(ch:fluentGenomics) and 
 \@ref(ch:intron). Third, you cycle between model-based representations and 
-visualisations of your data; section {#sec:va} introduces a visual analytics 
-approach for understanding non-linear dimension reduction techniques and is described in
-detail in chapter \@ref(ch:tsne). Lastly, you take a step back and look at
-the implications and limitations of your work; in chapter \@ref(ch:conclusion)
-I describe the outpus of my thesis and plans for future research. 
+visualisations of your data; section \@ref(sec:va) introduces a visual analytics 
+approach for understanding non-linear dimension reduction techniques and is 
+described in detail in chapter \@ref(ch:tsne). Lastly, you take a step back and 
+look at the implications and limitations of your work; in chapter 
+\@ref(ch:conclusion) I describe the outputs of my thesis and plans for future 
+research. 
 
 ## A grammar for genomic data analysis {#sec:tidygranges}
 
@@ -88,18 +89,24 @@ signal from RNA-seq data.
 ## Visual analytics for dimension reduction workflows {#sec:va}
 
 
+In the final chapter, we move away from data wrangling and towards the 
+integration of visualisation with model-based summaries of high-dimensional
+data sets. We focus on a common tool for EDA (especially applied to single-cell
+transcriptomics): dimension reduction (DR). We consider the incorporation of 
+interactive and dynamic graphics to assist analysts in using DR techniques
+for cluster orientation tasks. In particular, we advocate for the use of tours
+[@Cook1995-bi] alongside a DR visualisation to highlight potential pitfalls and 
+distortions of obtained from a DR method. This approach acknowledges that
+there is no 'one' best visualisation or DR for a high-dimensional dataset,
+and we often want to have an understanding of both the global and local structure
+within our data.
 
-- talking about chapter 5
-- taking a step back in the last chapter, have been focused on data wrangling
-but am now looking the integration of vis and models
-- focussed on a common part of EDA as applied to transcriptomics, dimension
-reduction workflows
-- especially non-linear dr as that has gotten extremely popular
-- combining with the tour, we can grasp the trade-off between global and
-local views of the data
-- user interaction provides ability to dissect the quality of a DR, and
-perform cluster oriented tasks
 
+Chapter \@ref(ch:liminal) introduces
+a software package called *liminal* for constructing these views and
+a user interaction framework for identifying distortions. We present several
+case studies for using our approach to diagnose the quality of 
+results obtained via t-distributed stochastic neighbour embeddings (t-SNE)
 
 
 
