@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Tidy coverage analysis and visualisation with superintronic | Fluent statistical computing interfaces for biological data analysis</title>
-  <meta name="description" content="Chapter 4 Tidy coverage analysis and visualisation with superintronic | Fluent statistical computing interfaces for biological data analysis" />
+  <title>5.3 Visual Design | Fluent statistical computing interfaces for biological data analysis</title>
+  <meta name="description" content="5.3 Visual Design | Fluent statistical computing interfaces for biological data analysis" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Tidy coverage analysis and visualisation with superintronic | Fluent statistical computing interfaces for biological data analysis" />
+  <meta property="og:title" content="5.3 Visual Design | Fluent statistical computing interfaces for biological data analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Tidy coverage analysis and visualisation with superintronic | Fluent statistical computing interfaces for biological data analysis" />
+  <meta name="twitter:title" content="5.3 Visual Design | Fluent statistical computing interfaces for biological data analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="acknowledgements-2.html"/>
-<link rel="next" href="4-1-introduction-1.html"/>
+<link rel="prev" href="5-2-dimensionality-reduction.html"/>
+<link rel="next" href="5-4-software-infrastructure.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -232,16 +232,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ch:intron" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Tidy coverage analysis and visualisation with superintronic</h1>
+<div id="visual-design" class="section level2">
+<h2><span class="header-section-number">5.3</span> Visual Design</h2>
+<p>We propose using tours as part of an analyst’s workflow in in performing
+dimensionality reduction tasks. We have made extensive use of ensemble
+graphics, that is aligning related plots alongside each other to provide
+context. As we will see in the case studies, this allows analysts to quickly
+compare views from embedding methods and allows them to see how the embedding
+method alters the global structure of their data. Using ensembles allows the
+use of interaction techniques, that allow analysts to perform cluster
+orientation tasks via linking multiple views. This approach allows our
+interface, to achieve the three principles for interactive high-dimensional
+data visualisation outlined by <span class="citation">Buja, Cook, and Swayne (<a href="bibliography.html#ref-Buja1996-fk" role="doc-biblioref">1996</a>)</span>: finding gestalt, posing queries,
+and making comparisons.</p>
+<div id="finding-gestalt-focus-and-context" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Finding Gestalt: focus and context</h3>
+<p>To investigate latent structure and the shape of a high dimensional dataset, a
+tour can be run without the use of an external embedding. It is often useful to
+first run principal components on the input as an initial dimension reduction
+step, and then tour a subset of those components instead, i.e. by selecting
+them from a scree plot. The default tour layout is a scatter plot with an axis
+layout displaying the magnitude and direction of each basis vector. Since the
+tour is dynamic, it is often useful to be able to pause and highlight a
+particular view. In our interface, brushing will pause the tour path, allowing
+users to identify ‘interesting’ projections. The domain of the axis scales from
+running a tour is called the half range, and is computed by rescaling the input
+data onto hyper-dimensional unit cube. We bind the half range to a mouse wheel
+event, allowing a user to pan and zoom on the tour view dynamically. This is
+useful for peeling back dense clumps of points to reveal structure.</p>
+</div>
+<div id="posing-queries-multiple-views-many-contexts" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Posing Queries: multiple views, many contexts</h3>
+<p>We have combined the tour view in a side by side layout with
+a scatter plot view that represents the output of an embedding algorithm.
+These views are linked; analysts can brush regions or
+highlight collections of points in either view. Linked highlighting can
+be performed when points have been previously labeled according to some
+discrete structure, i.e. cluster labels are available. This is achieved
+via the analyst clicking on groups in the legend, which causes unselected groupings to have their points become less opaque. Consequently,
+simple linked highlighting can alleviate a known downfall of methods such as
+UMAP or t-SNE: that is distances between clusters are misleading. By
+highlighting corresponding clusters in the tour view, the analyst can
+see the relationship between clusters, and therefore obtain a more accurate
+representation of the topology of their data.</p>
+<p>Simple linked brushing is achieved via mouse-click and drag movements. By
+default, when brushing occurs in the tour view, the current projection is
+paused and corresponding points in the embedding view are highlighted.
+Likewise, when brushing occurs in the embedding view, corresponding points
+in the tour view are highlighted. In this case, an analyst can use brushing
+for manually identifying clusters and verifying cluster locations and shapes:
+brushing in the embedding view gives analysts a sense of the shape and
+proximity of cluster in high-dimensional space.</p>
+</div>
+<div id="making-comparisons-revising-embeddings" class="section level3">
+<h3><span class="header-section-number">5.3.3</span> Making comparisons: revising embeddings</h3>
+<p>As mentioned previously, when using any DR method, we are assuming
+the embedding is representative of the high-dimensional dataset it was
+computed from. Defining what it means for embedding to be ‘representative` or
+’faithful’ to high-dimensional data is ill-posed and depends on the underlying
+task an analyst is trying to achieve. At the very minimum, we are interested
+in distortions and diffusions of the high-dimensional data. Distortions
+occur when points that are near each other in the embedding view are
+far from each other in the original dataset. This implies that the embedding
+is not continuous. Diffusions occur when points are far from each other in the embedding view are near in the original data. Whether, points are near or far
+is reliant on the distance metric used; distortions and diffusions can
+be thought of as the preservation of distances or the nearest neighbors
+graphs between the high-dimensional space and the embedding space. As distances
+can be noisy in high-dimensions, ranks can be used instead as has been
+proposed by … Identifying distortions and diffusions allows an analyst
+to investigate the quality of their embedding and revise them iteratively. We
+propose this can be done visually using our side-by-side tour and embedding
+views. Some quality checks, such as finding distortions can be identified using simple linked brushing, however we can also interrogate them via spatial
+brushes and brush composition.</p>
+<p>Look up nearest neighbours graph from points that lie in a brushing region.</p>
+<p>Highlight the corresponding neighbours using colour or transparency in the linked view.</p>
+<ul>
+<li>The <span class="math inline">\(k\)</span> nearest neighbours graph can be pre-computed quickly, for either <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> or both.</li>
+<li>Instead of using the neighbour indices, we could use the neighbour distances instead.</li>
+<li>Composition of multiple brushes could be used to show where there are matches/mismatches between nearest neighbour graphs.</li>
+</ul>
+<p>Using a linked neighbourhood brush, we can
+visually investigate the nearest neighbour relationships in the
+high-dimensional space via brushing in the embedding view. The user can select
+the number of nearest neighbours directly, and modify the distance metric
+used for determining the neighbours. This allows users to interrogate the stability of clusters generated in the embedding view. Multiple brushes
+can be used to pose queries in either the tour view or the embedding view;
+interface controls allow these brushes to combine using logical operators
+such as ‘and’, ‘or’, or ‘not’. The use of linked brushing goes beyond
+simple color highlights, allowing analysts to get a more holistic
+view of the effect of an embedding algorithm.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="acknowledgements-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="4-1-introduction-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="5-2-dimensionality-reduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-4-software-infrastructure.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -263,7 +351,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//04-intron.Rmd",
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//05-embeddings.Rmd",
 "text": "Edit"
 },
 "history": {
