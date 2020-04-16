@@ -102,7 +102,7 @@ and we often want to have an understanding of both the global and local structur
 within our data.
 
 
-Chapter \@ref(ch:liminal) introduces
+Chapter \@ref(ch:tsne) introduces
 a software package called *liminal* for constructing these views and
 a user interaction framework for identifying distortions. We present several
 case studies for using our approach to diagnose the quality of 
