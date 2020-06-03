@@ -7,8 +7,40 @@
 
 ### Motivation: intron signal in RNA-seq data
 
+Read coverage of intronic and exonic regions were calculated for poly(A) RNA and Total RNA HCC827 human cell lines using our \textit{superintronic} package, via the \textit{Rsamtools} package \cite{rsamtools,GenomicRanges}.
+Genes of interest were restricted to protein coding genes on reference chromosomes, and we removed any genes that overlapped another to simplify the analysis and reduce coverage ambiguity.  
+Genes were then further filtered if they were not expressed in the poly(A) RNA protocol (requiring at least 3 reads overlapping intronic and exonic regions). 
+A total of 3,262 genes were examined and categorised as short, regular or long (roughly 1,087 genes in each category) by splitting the length of each gene into three bins by tertiles. 
+
+Using associated BAM files and GENCODE v27 annotation GTF, \textit{superintronic} summarised the number of bases covered at a given coverage score for each gene and sample.
+For exonic regions and intronic regions, coverage scores were transformed to log$_2$-scale using an offset of 0.5, and then normalised by dividing by each gene and each sample's maximum log-coverage score.
+Normalised log-coverage scores, or {\it relative log-coverage} (relative to each gene's maximum coverage), were divided into 20 windows along the length of each gene using the \textit{GenomicRanges} package \cite{GenomicRanges}.
+To summarise coverage patterns across genes, \textit{plyranges} \cite{Lee2019plyranges} was applied to relative log-coverage scores by intersecting it with the positional windows.
+Each window's mean coverage score (mean relative log-coverage) was calculated for each gene.
+Based on the position of the windows, they were further summarised across genes by taking its mean. % (mean of mean relative log-coverage).  
+The summary values were calculated separately for genes categorised as short, regular and long to represent general coverage trends along the gene body.
+
+## Data
+
+\textit{Human cell lines} of lung adenocarcinoma HCC827 and NCI-H1975 were cultured on three
+separate occasions by Holik {\it et al.} (2017) \cite{Holik:NAR:2017} giving three pseudo biological replicates. 
+RNA was extracted from each pseudo biological replicate and split into two and prepared as poly(A) RNA and Total RNA libraries.
+Raw sequencing reads were downloaded from the Gene Expression Omnibus (GEO) \citep{GEO:2013} under accession number GSE64098.
+12 libraries were examined for this dataset. 
+
+FASTQ files containing raw sequencing reads were aligned to the human \textit{hg38} or mouse \textit{mm10}
+% or {\color{blue}{zebrafish \textit{GRCz11}}} 
+genome using \textit{subjunc} \citep{Liao:NAR:2013} with default parameters in the \textit{Rsubread} software package \citep{Rsubread:2019}. 
+GENCODE's main \textit{Comprehensive gene annotation} file in GTF format was downloaded from {https://www.gencodegenes.org} for human (Release 27) and mouse (Release M12). 
+Using ``gene types'' (rather than ``transcript types'') from Gencode, the annotation files were simplified by taking the union of two or more overlapping exons from transcripts of the same gene.
+The adjustment provides a simplification of genomic positions on each strand, such that each position is classified as belonging to ``exon'', ``intron'' or otherwise outside of an annotated gene.
+Three resultant annotation files were saved in standard annotation format (SAF) -- exon annotation, intron annotation (region between exons), and genebody annotation (region spanning first to last exon).
+Our Supplementary Materials available at \href{https://github.com/charitylaw/Intron-reads}{https://github.com/charitylaw/Intron-reads} contain the scripts to process annotation files, together with other data analyses and supplementary figures. 
+
 
 ## Results
+
+
 
 ### Representation of coverage estimation
 
@@ -21,6 +53,54 @@
 
 
 ### A superintronic workflow for uncovering intron retention
+
+Considering IR also as another possible source of intron reads we propose a new method using our {\it superintronic} software to explore intron signal directly from aligned sequencing data with the assumption that most intron reads do not point to IR but pre-mRNA instead. 
+{\it Superintronic} is an R package that is available to download and install at \href{https://github.com/sa-lee/superintronic}{https://github.com/sa-lee/superintronic}. 
+It extends the \textit{plyranges} Bioconductor package \citep{Lee2019plyranges} for genomics data analysis to develop a simple and modular interface for performing exploratory  genomics data analysis via coverage estimation. 
+Each aspect of the \textit{superintronic} data analysis workflow as it has been applied for exploring intron signal is outlined in Figure~\ref{fig:workflows}b. 
+
+Our software records the per base coverage over intron and exon regions of each gene, with the option of storing these per sample or summarised over variables in the experimental design such as by biological group or by RNA library preparation. 
+Coverage scores are normalised using a log$_2$-transformation with an offset of 0.5 to get log-coverage values for which intron and exon summary statistics are constructed for each gene (described below).
+Within \textit{superintronic}, a suite of visualization tools to construct coverage plots for genes with intron and exon structures and scatter plots are provided. 
+
+
+\subsection{\textit{Superintronic} finds genes with IR-like coverage profiles in human cell lines}
+
+\begin{figure*}[!tpb]
+\centerline{\includegraphics[width=\textwidth]{coverage-si-hits.pdf}}
+\caption{{\it Superintronic} selects genes with IR-like coverage profiles in poly(A) RNA HCC827 cell lines. Genes (a) PSMB7, (b) EIF2S3, and (c) ARGLU1 are highlighted out of 43 genes selected. Whilst the analysis was carried out on poly(A) RNA libraries, coverage is shown for both poly(A) RNA HCC827 (top) and Total RNA HCC827 (bottom) samples to ensure that results are not an artifact of RNA library preparation. Coverage is oriented from 5' to 3', with exon regions coloured green and intron regions coloured orange.
+}\label{fig:ir}
+\end{figure*}
+
+
+Using \textit{superintronic}, poly(A) RNA HCC827 cell lines were examined for genes with IR  after selecting genes in the hg38 reference that were protein coding, did not overlap any other gene and were placed on the main contigs -- a total of 6,606 genes. 
+These genes were then split into intron and exon regions and intersected with the coverage of each sample. 
+Per gene intron and exon summary statistics, mean and standard deviation, were computed on log-coverage values. 
+We selected genes enriched for IR-like coverage profiles by looking for ``expressed'' genes, where for a substantial number of intron bases its coverage is much higher than other intron features within the same gene while having similar expression levels to the exon features. 
+To do this we used the following thresholds -- genes had an average exon log-coverage of greater than 2 (corresponding to the mean of average exon log-coverage values across all genes), a standard deviation of intron log-coverage greater than 1.5 (corresponding to the mean of intron standard deviation values across all genes), and genes with a large number of intron bases with log-coverage greater than 2 (top 1\% of genes).
+The thresholds were chosen after examining distributions of the summary statistics (Supplementary Figure 4).
+Forty-three genes met these criteria, where a manual check of coverage profiles revealed that 36 genes indeed appear IR-like (see `Analyses' page in Supplementary Materials).
+We highlight 3 of these genes in Figure~\ref{fig:ir}.
+The coverage of remaining 7 genes appear to be more pre-mRNA-like, with large variation in intron coverage, where at its peak it is expressed similarly to exon features. 
+
+We use poly(A) RNA samples in our analysis for consistency with previous studies on IR.
+In theory, Total RNA samples may be more appropriate for this exercise since it is less biased towards the 3' end, where high 3' intron coverage as a result of 3' bias in poly(A) RNA libraries can be mistaken as a 3' retained intron. 
+For this reason, we review both the coverage of poly(A) RNA and Total RNA samples in  our \textcolor{red}{S}upplementary \textcolor{red}{M}aterials for all selected genes to ensure that retained introns found in poly(A) RNA samples are not an artifact of RNA library preparation. 
+
+If differentially retained introns are of interest, one could simply run \textit{superintronic} on two conditions separately and compare lists of IR-like genes between groups.
+We found that differences between the lists of IR-like genes were concordant with \textit{index} results for genes DE by intron counts, as expected (see `Analyses' page in Supplementary Materials).
+For example, 14 genes were uniquely selected as IR-like in Total RNA HCC827 cell line when compared to Total RNA NCI-H1975 cell line using \textit{superintronic}, where 13 of those genes were also found to be DE in intron counts by \textit{index}, and in the expected direction.
+Similarly, 19 genes were uniquely detected as IR-like in Total RNA NCI-H1975 by \textit{superintronic}, 16 of which were also detected as DE in intron counts by \textit{index}.
+Additionally, 12 genes which were found to be IR-like in both cell lines appear to have varying intron expression according to \textit{index} since it is found to be DE in intron counts. 
+
+\textcolor{red}{
+Whilst genes that are uniquely IR-like were concordant with directional changes in intron counts, we did not find that IR-like genes played a large part in \textit{index} gene categorisation.
+This was mostly expected since thousands of genes were detected as significantly DE by \textit{index} and a relatively small number of genes were detected as IR-like by \textit{superintronic}.
+Specifically, IR-like genes did not overlap with one particular \textit{index} category (see `Analyses' page in Supplementary Materials).
+Of genes that are classified as intron+ or intron-, only 3 out of 1,006 genes were also detected by \textit{superintronic} as IR-like.
+In the ``mixed'' category, 2 out of 54 genes were also detected as IR-like.
+}
+
 
 
 ## Discussion
