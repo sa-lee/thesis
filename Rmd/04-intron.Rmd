@@ -1,4 +1,4 @@
-# Tidy coverage analysis and visualisation with superintronic {#ch:intron}
+# Exploratory coverage analysis with superintronic {#ch:intron}
 
 ## Introduction
 
