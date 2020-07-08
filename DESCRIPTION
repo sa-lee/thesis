@@ -13,7 +13,6 @@ Imports:
     AnnotationHub,
     bookdown,
     cliapp,
-    cranlogs,
     plyranges,
     BioStrings,
     stringr,
@@ -31,9 +30,13 @@ Imports:
     tidyr,
     ggplot2,
     DESeq2,
-    vegawidget
+    vegawidget,
+    superintronic,
+    liminal,
+    BiocPkgTools
 Remotes:
     rstudio/gt
-    sa-lee/fluentGenomics
+    sa-lee/liminal
+    sa-lee/superintronic
 Language: en-GB
 URL: https://github.com/sa-lee/thesis
