@@ -1,5 +1,27 @@
 # Conclusion  {#ch:conclusion}
 
+
+In this thesis, I have designed tools to explore workflow steps
+that are integral to modern biological data science. In particular, I have
+implemented software that facilitates the wrangling, integration, and 
+visualisation of high-throughput biological data in a principled and pragmatic
+manner. Chapter \@ref(ch:plyranges), "plyranges: a grammar of genomic data
+transformation" developed a new domain specific language for genomics data.
+Chapter \@ref(ch:fluentGenomics), "Fluent genomics with plyranges and tximeta"
+described techniques integrating data along the genome, and emphasised
+the importance of interoperability between tools. Chapter \@ref(ch:intron),
+"Exploratory coverage analysis with superintronic and plyranges", tackled data 
+integration from a different angle by looking at multiple summaries
+of variables measured along the genome to find regions of biological interest. 
+Chapter \@ref(ch:tsne), "Casting multiple shadows: high-dimensional 
+interactive data visualisation with tours and embeddings", explored pragmatic
+approaches to high dimensional data visualisation in light of the rise of 
+popular non-linear embedding methods. 
+
+The chapters 
+
+
+
 <!-- remind the reader of the research problem and purpose and how they were addressed -->
 <!-- briefly summarise what has been covered in the paper -->
 <!-- make some kind of holistic assessment/judgement/ claim that pertains to the whole project (i.e., more than a descriptive summary) -->
