@@ -7,6 +7,14 @@
 
 ## Methods
 
+Considering IR also as another possible source of intron reads we propose a new method using our {\it superintronic} software to explore intron signal directly from aligned sequencing data with the assumption that most intron reads do not point to IR but pre-mRNA instead. 
+{\it Superintronic} is an R package that is available to download and install at \href{https://github.com/sa-lee/superintronic}{https://github.com/sa-lee/superintronic}. 
+It extends the \textit{plyranges} Bioconductor package \citep{Lee2019plyranges} for genomics data analysis to develop a simple and modular interface for performing exploratory  genomics data analysis via coverage estimation. 
+Each aspect of the \textit{superintronic} data analysis workflow as it has been applied for exploring intron signal is outlined in Figure~\ref{fig:workflows}b. 
+
+Our software records the per base coverage over intron and exon regions of each gene, with the option of storing these per sample or summarised over variables in the experimental design such as by biological group or by RNA library preparation. 
+Coverage scores are normalised using a log$_2$-transformation with an offset of 0.5 to get log-coverage values for which intron and exon summary statistics are constructed for each gene (described below).
+Within \textit{superintronic}, a suite of visualization tools to construct coverage plots for genes with intron and exon structures and scatter plots are provided. 
 
 ### Representation of coverage estimation
 
@@ -53,18 +61,6 @@ Our Supplementary Materials available at \href{https://github.com/charitylaw/Int
 
 
 
-
-
-Considering IR also as another possible source of intron reads we propose a new method using our {\it superintronic} software to explore intron signal directly from aligned sequencing data with the assumption that most intron reads do not point to IR but pre-mRNA instead. 
-{\it Superintronic} is an R package that is available to download and install at \href{https://github.com/sa-lee/superintronic}{https://github.com/sa-lee/superintronic}. 
-It extends the \textit{plyranges} Bioconductor package \citep{Lee2019plyranges} for genomics data analysis to develop a simple and modular interface for performing exploratory  genomics data analysis via coverage estimation. 
-Each aspect of the \textit{superintronic} data analysis workflow as it has been applied for exploring intron signal is outlined in Figure~\ref{fig:workflows}b. 
-
-Our software records the per base coverage over intron and exon regions of each gene, with the option of storing these per sample or summarised over variables in the experimental design such as by biological group or by RNA library preparation. 
-Coverage scores are normalised using a log$_2$-transformation with an offset of 0.5 to get log-coverage values for which intron and exon summary statistics are constructed for each gene (described below).
-Within \textit{superintronic}, a suite of visualization tools to construct coverage plots for genes with intron and exon structures and scatter plots are provided. 
-
-
 \subsection{\textit{Superintronic} finds genes with IR-like coverage profiles in human cell lines}
 
 \begin{figure*}[!tpb]
@@ -102,8 +98,6 @@ Specifically, IR-like genes did not overlap with one particular \textit{index} c
 Of genes that are classified as intron+ or intron-, only 3 out of 1,006 genes were also detected by \textit{superintronic} as IR-like.
 In the ``mixed'' category, 2 out of 54 genes were also detected as IR-like.
 }
-
-
 
 ## Discussion
 
