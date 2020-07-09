@@ -1,11 +1,25 @@
-# Exploratory coverage analysis with superintronic {#ch:intron}
+# Exploratory coverage analysis with superintronic and plyranges {#ch:intron}
 
 ## Introduction
+
+### Motivation: intron signal in RNA-seq data
 
 
 ## Methods
 
-### Motivation: intron signal in RNA-seq data
+
+### Representation of coverage estimation
+
+
+### Integration of external gene annotations
+
+
+### Discovery of regions of interest via 'data descriptors'
+
+
+
+## A workflow for uncovering intron retention
+
 
 Read coverage of intronic and exonic regions were calculated for poly(A) RNA and Total RNA HCC827 human cell lines using our \textit{superintronic} package, via the \textit{Rsamtools} package \cite{rsamtools,GenomicRanges}.
 Genes of interest were restricted to protein coding genes on reference chromosomes, and we removed any genes that overlapped another to simplify the analysis and reduce coverage ambiguity.  
@@ -19,8 +33,6 @@ To summarise coverage patterns across genes, \textit{plyranges} \cite{Lee2019ply
 Each window's mean coverage score (mean relative log-coverage) was calculated for each gene.
 Based on the position of the windows, they were further summarised across genes by taking its mean. % (mean of mean relative log-coverage).  
 The summary values were calculated separately for genes categorised as short, regular and long to represent general coverage trends along the gene body.
-
-## Data
 
 \textit{Human cell lines} of lung adenocarcinoma HCC827 and NCI-H1975 were cultured on three
 separate occasions by Holik {\it et al.} (2017) \cite{Holik:NAR:2017} giving three pseudo biological replicates. 
@@ -38,21 +50,10 @@ Three resultant annotation files were saved in standard annotation format (SAF) 
 Our Supplementary Materials available at \href{https://github.com/charitylaw/Intron-reads}{https://github.com/charitylaw/Intron-reads} contain the scripts to process annotation files, together with other data analyses and supplementary figures. 
 
 
-## Results
 
 
 
-### Representation of coverage estimation
 
-
-### Integration of external gene annotations
-
-
-### Discovery of regions of interest via 'ranglers'
-
-
-
-### A superintronic workflow for uncovering intron retention
 
 Considering IR also as another possible source of intron reads we propose a new method using our {\it superintronic} software to explore intron signal directly from aligned sequencing data with the assumption that most intron reads do not point to IR but pre-mRNA instead. 
 {\it Superintronic} is an R package that is available to download and install at \href{https://github.com/sa-lee/superintronic}{https://github.com/sa-lee/superintronic}. 
@@ -81,7 +82,8 @@ To do this we used the following thresholds -- genes had an average exon log-cov
 The thresholds were chosen after examining distributions of the summary statistics (Supplementary Figure 4).
 Forty-three genes met these criteria, where a manual check of coverage profiles revealed that 36 genes indeed appear IR-like (see `Analyses' page in Supplementary Materials).
 We highlight 3 of these genes in Figure~\ref{fig:ir}.
-The coverage of remaining 7 genes appear to be more pre-mRNA-like, with large variation in intron coverage, where at its peak it is expressed similarly to exon features. 
+The coverage of remaining 7 genes appear to be more pre-mRNA-like, with large 
+variation in intron coverage, where at its peak it is expressed similarly to exon features. 
 
 We use poly(A) RNA samples in our analysis for consistency with previous studies on IR.
 In theory, Total RNA samples may be more appropriate for this exercise since it is less biased towards the 3' end, where high 3' intron coverage as a result of 3' bias in poly(A) RNA libraries can be mistaken as a 3' retained intron. 
