@@ -15,54 +15,66 @@ package called **superintronic**, available at https://github.com/sa-lee/superin
 
 ## Introduction
 
-### Motivation: intron signal in RNA-seq data
-
-In @Lee2019-mf, we showed that there is evidence that a major
-source of intron reads in RNA-seq datasets is pre-mRNA, and sought data analysis techniques to unravel different aspects of intron signal. In light of this,
-we made the assumption that most intron reads do not necessarily point to
-intron retention (IR) events, and developed a workflow based on combining
-multiple summary statistics, "data descriptors", to find coverage traces that appear to have IR-like events by collapsing coverage scores over a design matrix alongside the exonic and intronic parts of a gene. To do this we developed a new R package
-called **superintronic** that provides tooling for exploratory 
-coverage analysis by extending and integrating our previous software package,
-**plyranges** [@Lee2019]. We provide a workflow below
-using a zebrafish RNA-seq dataset for developing data descriptors to find IR like coverage traces. 
-
-
-## Exploratory coverage analysis 
-
-Although there are many flexible and powerful software tools, like BEDTools or Deeptools, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantegous to have tooling
-that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
-be possible with a single command line tool. There are also gains in reproduciblity as analysts do not have move between multiple software suites to explore their processed transcriptomics data. 
-
-Here we emphasise the importance
-of actually looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data, and by facetting these traces over different combinations of the experimental design and with their biological context such as gene annotations. 
+In high-throughput sequencing data sets, coverage is the estimated number of
+reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omic's analysis such peak-calling in ChIP-seq or varinat calling in DNA-seq [@Sims2014-qk]. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data. By facetting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
+insight into biological signal under study. 
 Of course, due to the sheer size of most reference genome annotaions 
 it would take an extremely long time for an analyst to look at every 
 single possible region where there is some interesting signal within the
-coverage trace. Because visualisation does not scale, we need a method to help
-us search the possible space of coverage traces and provide diagnostics for
+coverage trace. Because visualisation does not scale, we need to search the possible space of coverage traces and provide diagnostics for
 identifying traces with interesting biology. We have taken inspiration from
 visualisation literature; in particular the idea of scatterplot diagnostics ("scagnostics") for summarising the space of all possible 2D scatterplots
 to a small number of descriptors of each scatterplots properties such as 
 density or monotonicity [@Friedman2002-yx;@Wilkinson2005-xt].  Similarly,
 searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead [@Hyndman2015-sc].
 
+Although there are many flexible and powerful software tools, like BEDTools or DeepTools, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantegous to have tooling
+that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
+be possible with a single command line tool. There are also gains in reproduciblity as analysts do not have to move between multiple software suites to explore their processed transcriptomics data. 
 
+In @Lee2019-mf, we showed that there is evidence that a major
+source of intron reads in RNA-seq datasets is pre-mRNA, and sought data analysis techniques to unravel different aspects of intron signal. In light of this,
+we made the assumption that most intron reads do not necessarily point to
+intron retention (IR) events, and developed a workflow based on combining
+multiple summary statistics, "data descriptors", to find coverage traces that appear to have IR-like events by collapsing coverage scores over a design matrix alongside the exonic and intronic parts of a gene. To do this we developed a new R package called **superintronic** that provides tooling for exploratory 
+coverage analysis by extending and integrating our previous software package,
+**plyranges** [@Lee2019]. 
 
+In this paper, we describe methodology for establishing data descriptors by turning coverage vectors into long form tidy data using **superintronic**
+and **plyranges**. We provide a workflow below
+using a zebrafish RNA-seq dataset for developing data descriptors to find IR like coverage traces within genes known to have minor class splicing events. 
 
 
 ## Methods
 
-Considering IR also as another possible source of intron reads we propose a new method using our {\it superintronic} software to explore intron signal directly from aligned sequencing data with the assumption that most intron reads do not point to IR but pre-mRNA instead. 
-{\it Superintronic} is an R package that is available to download and install at \href{https://github.com/sa-lee/superintronic}{https://github.com/sa-lee/superintronic}. 
-It extends the \textit{plyranges} Bioconductor package \citep{Lee2019plyranges} for genomics data analysis to develop a simple and modular interface for performing exploratory  genomics data analysis via coverage estimation. 
-Each aspect of the \textit{superintronic} data analysis workflow as it has been applied for exploring intron signal is outlined in Figure~\ref{fig:workflows}b. 
+**superintronic** is an R package available on Github at https://github.com/sa-lee/superintronic and used for estimating, representing,
+and visualising per-base coverage scores, that can then be 
+flexibly summarised over factors within an experimental design and collapsed
+over regions of the genome using our companion package **plyranges**. The
+aspects of this combined workflow are summarised in figure \@ref(fig:si-fig). 
 
-Our software records the per base coverage over intron and exon regions of each gene, with the option of storing these per sample or summarised over variables in the experimental design such as by biological group or by RNA library preparation. 
-Coverage scores are normalised using a log$_2$-transformation with an offset of 0.5 to get log-coverage values for which intron and exon summary statistics are constructed for each gene (described below).
-Within \textit{superintronic}, a suite of visualization tools to construct coverage plots for genes with intron and exon structures and scatter plots are provided. 
+(ref:si-fig): An overview of the **superintronic** and **plyranges** workflow.
+
+```{r si-fig, fig.cap = "(ref:si-fig)", echo = FALSE}
+knitr::include_graphics(here::here("img", "olap-fig.png"))
+```
 
 ### Representation of coverage estimation
+
+The per base coverage score is estimated directly from one or more BAM files
+that represent the units within the experimental design,
+along with an optional experimental design table that is returns 
+a long-form tidy **GRanges** data structure. The coverage estimation is
+computed via the **Rsamtools** package, and
+users have the ability to estimate coverage in parallel and drop regions
+in the genome where there is no coverage [@rsamtools; @GenomicRanges]. This
+representation is tidy, since each row of the resulting **GRanges** data
+structure corresponds to position(s) within a given sample with a given 
+coverage score alongside any variables such as biological group. While the long-form representation repeats the same information
+for a sample within the design, the size of the resulting **GRanges** in
+memory can be compressed using run-length encoding for any categorical 
+variable. This representation allows us to easily transform the coverage scores
+and integrate annotations using the **plyranges** grammar, and visualise traces using **ggplot2** [@Wickham2016-gz].
 
 
 ### Integration of external gene annotations
@@ -70,12 +82,13 @@ Within \textit{superintronic}, a suite of visualization tools to construct cover
 
 ### Discovery of regions of interest via 'data descriptors'
 
+Coverage scores are normalised using a log$_2$-transformation with an offset of 0.5 to get log-coverage values for which intron and exon summary statistics are constructed for each gene (described below).
 
 
 ## A workflow for uncovering intron retention
 
 
-Read coverage of intronic and exonic regions were calculated for poly(A) RNA and Total RNA HCC827 human cell lines using our \textit{superintronic} package, via the \textit{Rsamtools} package \cite{rsamtools,GenomicRanges}.
+Read coverage of intronic and exonic regions were calculated for poly(A) RNA and Total RNA HCC827 human cell lines using our \textit{superintronic} package,.
 Genes of interest were restricted to protein coding genes on reference chromosomes, and we removed any genes that overlapped another to simplify the analysis and reduce coverage ambiguity.  
 Genes were then further filtered if they were not expressed in the poly(A) RNA protocol (requiring at least 3 reads overlapping intronic and exonic regions). 
 A total of 3,262 genes were examined and categorised as short, regular or long (roughly 1,087 genes in each category) by splitting the length of each gene into three bins by tertiles. 
@@ -146,6 +159,7 @@ In the ``mixed'' category, 2 out of 54 genes were also detected as IR-like.
 }
 
 ## Discussion
+
 
 ## Conclusion
 
