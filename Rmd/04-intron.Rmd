@@ -1,3 +1,8 @@
+```{r setup}
+library(superintronic)
+
+```
+
 # Exploratory coverage analysis with superintronic and plyranges {#ch:intron}
 
 Here we consider a tidy-data approach for exploring
@@ -11,6 +16,39 @@ package called **superintronic**, available at https://github.com/sa-lee/superin
 ## Introduction
 
 ### Motivation: intron signal in RNA-seq data
+
+In @Lee2019-mf, we showed that there is evidence that a major
+source of intron reads in RNA-seq datasets is pre-mRNA, and sought data analysis techniques to unravel different aspects of intron signal. In light of this,
+we made the assumption that most intron reads do not necessarily point to
+intron retention (IR) events, and developed a workflow based on combining
+multiple summary statistics, "data descriptors", to find coverage traces that appear to have IR-like events by collapsing coverage scores over a design matrix alongside the exonic and intronic parts of a gene. To do this we developed a new R package
+called **superintronic** that provides tooling for exploratory 
+coverage analysis by extending and integrating our previous software package,
+**plyranges** [@Lee2019]. We provide a workflow below
+using a zebrafish RNA-seq dataset for developing data descriptors to find IR like coverage traces. 
+
+
+## Exploratory coverage analysis 
+
+Although there are many flexible and powerful software tools, like BEDTools or Deeptools, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantegous to have tooling
+that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
+be possible with a single command line tool. There are also gains in reproduciblity as analysts do not have move between multiple software suites to explore their processed transcriptomics data. 
+
+Here we emphasise the importance
+of actually looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data, and by facetting these traces over different combinations of the experimental design and with their biological context such as gene annotations. 
+Of course, due to the sheer size of most reference genome annotaions 
+it would take an extremely long time for an analyst to look at every 
+single possible region where there is some interesting signal within the
+coverage trace. Because visualisation does not scale, we need a method to help
+us search the possible space of coverage traces and provide diagnostics for
+identifying traces with interesting biology. We have taken inspiration from
+visualisation literature; in particular the idea of scatterplot diagnostics ("scagnostics") for summarising the space of all possible 2D scatterplots
+to a small number of descriptors of each scatterplots properties such as 
+density or monotonicity [@Friedman2002-yx;@Wilkinson2005-xt].  Similarly,
+searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead [@Hyndman2015-sc].
+
+
+
 
 
 ## Methods
