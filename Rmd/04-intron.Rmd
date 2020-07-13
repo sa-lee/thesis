@@ -56,7 +56,7 @@ aspects of this combined workflow are summarised in figure \@ref(fig:si-fig).
 (ref:si-fig): An overview of the **superintronic** and **plyranges** workflow.
 
 ```{r si-fig, fig.cap = "(ref:si-fig)", echo = FALSE}
-knitr::include_graphics(here::here("img", "olap-fig.png"))
+knitr::include_graphics(here::here("img", "si-wflow.png"))
 ```
 
 ### Representation of coverage estimation
@@ -76,16 +76,39 @@ memory can be compressed using run-length encoding for any categorical
 variable. This representation allows us to easily transform the coverage scores
 and integrate annotations using the **plyranges** grammar, and visualise traces using **ggplot2** [@Wickham2016-gz].
 
+### Integration of external annotations
 
-### Integration of external gene annotations
-
+External reference annotations, perhaps transcripts or exons, 
+can be coereced to **GRanges** objects, are  incorporated into the coverage **GRanges** by taking the intersection of
+the annotation with the **GRanges** using an overlap intersect join from the **plyranges** software. The resulting intersection will now contain the
+per base coverage that are overlapped the genomic features in the annotation,
+along side any metadata about the features themselves. Since our main workflow
+interest is in discovering coverage traces with IR profiles, **superintronic**
+provides some syntatic sugar for unravelling gene annotations into their exonic
+and intronic parts, and intersecting them with a coverage **GRanges**.
 
 ### Discovery of regions of interest via 'data descriptors'
 
-Coverage scores are normalised using a log$_2$-transformation with an offset of 0.5 to get log-coverage values for which intron and exon summary statistics are constructed for each gene (described below).
+Once the coverage **GRanges** has reference genomic features, data 
+descriptors can be computed via collecting summary statistics across
+the factors of the experimental design and features of interest. This can be
+achieved using **plyranges** directly by first grouping across variables
+of interest, computing descriptors defined by **superintronic** and then
+pivoting the results into a wide form table for additional processing or
+visualisation. There are many descriptors defined by **superintronic**
+that are weighted statistics (as we have to account for the number of bases
+covered, or the width of the range) of the coverage score, such as the mean 
+and standard deviation. There are also descriptors that can be used to find
+the number of times the coverage trace is above a certain number of bases
+or score. To find coverage traces that have unusual descriptors, 
+the descriptors can be visualised directly as a scatterplot matrix. After that
+thresholds can be applied to filter the genomic features that had extreme
+descriptors on the coverage **GRanges**, and the traces can be visualised. 
 
 
-## A workflow for uncovering intron retention
+## Results
+
+### A workflow for uncovering intron retention in zebrafish
 
 
 Read coverage of intronic and exonic regions were calculated for poly(A) RNA and Total RNA HCC827 human cell lines using our \textit{superintronic} package,.
