@@ -7,7 +7,7 @@ library(superintronic)
 
 Here we consider a tidy-data approach for exploring
 estimated coverage from RNA-seq data. We establish a simple 
-framework, for aggregating accross experimental design, and annotated genomic regions to discover 'interesting' coverage trace plots. We highlight how this framework can be used to
+framework, for aggregating across experimental design, and annotated genomic regions to discover 'interesting' coverage trace plots. We highlight how this framework can be used to
 develop data descriptions that find putative genes with
 intron retention. Our framework is implemented in a software
 package called **superintronic**, available at https://github.com/sa-lee/superintronic.
@@ -16,21 +16,21 @@ package called **superintronic**, available at https://github.com/sa-lee/superin
 ## Introduction
 
 In high-throughput sequencing data sets, coverage is the estimated number of
-reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omic's analysis such peak-calling in ChIP-seq or varinat calling in DNA-seq [@Sims2014-qk]. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data. By facetting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
+reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omics analysis such peak-calling in ChIP-seq or variant calling in DNA-seq [@Sims2014-qk]. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data. By faceting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
 insight into biological signal under study. 
-Of course, due to the sheer size of most reference genome annotaions 
+Of course, due to the sheer size of most reference genome annotations 
 it would take an extremely long time for an analyst to look at every 
 single possible region where there is some interesting signal within the
 coverage trace. Because visualisation does not scale, we need to search the possible space of coverage traces and provide diagnostics for
 identifying traces with interesting biology. We have taken inspiration from
-visualisation literature; in particular the idea of scatterplot diagnostics ("scagnostics") for summarising the space of all possible 2D scatterplots
-to a small number of descriptors of each scatterplots properties such as 
+visualisation literature; in particular the idea of scatter plot diagnostics ("scagnostics") for summarising the space of all possible 2D scatter plots
+to a small number of descriptors of each scatter plots properties such as 
 density or monotonicity [@Friedman2002-yx;@Wilkinson2005-xt].  Similarly,
 searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead [@Hyndman2015-sc].
 
-Although there are many flexible and powerful software tools, like BEDTools or DeepTools, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantegous to have tooling
+Although there are many flexible and powerful software tools, like BEDTools or DeepTools, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantageous to have tooling
 that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
-be possible with a single command line tool. There are also gains in reproduciblity as analysts do not have to move between multiple software suites to explore their processed transcriptomics data. 
+be possible with a single command line tool. There are also gains in reproducibility as analysts do not have to move between multiple software suites to explore their processed transcriptomics data. 
 
 In @Lee2019-mf, we showed that there is evidence that a major
 source of intron reads in RNA-seq datasets is pre-mRNA, and sought data analysis techniques to unravel different aspects of intron signal. In light of this,
@@ -47,7 +47,7 @@ using a zebrafish RNA-seq dataset for developing data descriptors to find IR lik
 
 ## Methods
 
-**superintronic** is an R package available on Github at https://github.com/sa-lee/superintronic and used for estimating, representing,
+**superintronic** is an R package available on GitHub at https://github.com/sa-lee/superintronic and used for estimating, representing,
 and visualising per-base coverage scores, that can then be 
 flexibly summarised over factors within an experimental design and collapsed
 over regions of the genome using our companion package **plyranges**. The
@@ -79,12 +79,12 @@ and integrate annotations using the **plyranges** grammar, and visualise traces 
 ### Integration of external annotations
 
 External reference annotations, perhaps transcripts or exons, 
-can be coereced to **GRanges** objects, are  incorporated into the coverage **GRanges** by taking the intersection of
+can be coerced to **GRanges** objects, are  incorporated into the coverage **GRanges** by taking the intersection of
 the annotation with the **GRanges** using an overlap intersect join from the **plyranges** software. The resulting intersection will now contain the
 per base coverage that are overlapped the genomic features in the annotation,
 along side any metadata about the features themselves. Since our main workflow
 interest is in discovering coverage traces with IR profiles, **superintronic**
-provides some syntatic sugar for unravelling gene annotations into their exonic
+provides some syntactic sugar for unravelling gene annotations into their exonic
 and intronic parts, and intersecting them with a coverage **GRanges**.
 
 ### Discovery of regions of interest via 'data descriptors'
@@ -101,7 +101,7 @@ covered, or the width of the range) of the coverage score, such as the mean
 and standard deviation. There are also descriptors that can be used to find
 the number of times the coverage trace is above a certain number of bases
 or score. To find coverage traces that have unusual descriptors, 
-the descriptors can be visualised directly as a scatterplot matrix. After that
+the descriptors can be visualised directly as a scatter plot matrix. After that
 thresholds can be applied to filter the genomic features that had extreme
 descriptors on the coverage **GRanges**, and the traces can be visualised. 
 
@@ -147,12 +147,12 @@ Our Supplementary Materials available at \href{https://github.com/charitylaw/Int
 
 \begin{figure*}[!tpb]
 \centerline{\includegraphics[width=\textwidth]{coverage-si-hits.pdf}}
-\caption{{\it Superintronic} selects genes with IR-like coverage profiles in poly(A) RNA HCC827 cell lines. Genes (a) PSMB7, (b) EIF2S3, and (c) ARGLU1 are highlighted out of 43 genes selected. Whilst the analysis was carried out on poly(A) RNA libraries, coverage is shown for both poly(A) RNA HCC827 (top) and Total RNA HCC827 (bottom) samples to ensure that results are not an artifact of RNA library preparation. Coverage is oriented from 5' to 3', with exon regions coloured green and intron regions coloured orange.
+\caption{{\it Superintronic} selects genes with IR-like coverage profiles in poly(A) RNA HCC827 cell lines. Genes (a) PSMB7, (b) EIF2S3, and (c) ARGLU1 are highlighted out of 43 genes selected. Whilst the analysis was carried out on poly(A) RNA libraries, coverage is shown for both poly(A) RNA HCC827 (top) and Total RNA HCC827 (bottom) samples to ensure that results are not an artefact of RNA library preparation. Coverage is oriented from 5' to 3', with exon regions coloured green and intron regions coloured orange.
 }\label{fig:ir}
 \end{figure*}
 
 
-Using \textit{superintronic}, poly(A) RNA HCC827 cell lines were examined for genes with IR  after selecting genes in the hg38 reference that were protein coding, did not overlap any other gene and were placed on the main contigs -- a total of 6,606 genes. 
+Using \textit{superintronic}, poly(A) RNA HCC827 cell lines were examined for genes with IR  after selecting genes in the hg38 reference that were protein coding, did not overlap any other gene and were placed on the main configs -- a total of 6,606 genes. 
 These genes were then split into intron and exon regions and intersected with the coverage of each sample. 
 Per gene intron and exon summary statistics, mean and standard deviation, were computed on log-coverage values. 
 We selected genes enriched for IR-like coverage profiles by looking for ``expressed'' genes, where for a substantial number of intron bases its coverage is much higher than other intron features within the same gene while having similar expression levels to the exon features. 
