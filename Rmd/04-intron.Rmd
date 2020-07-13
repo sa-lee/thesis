@@ -1,5 +1,13 @@
 # Exploratory coverage analysis with superintronic and plyranges {#ch:intron}
 
+Here we consider a tidy-data approach for exploring
+estimated coverage from RNA-seq data. We establish a simple 
+framework, for aggregating accross experimental design, and annotated genomic regions to discover 'interesting' coverage trace plots. We highlight how this framework can be used to
+develop data descriptions that find putative genes with
+intron retention. Our framework is implemented in a software
+package called **superintronic**, available at https://github.com/sa-lee/superintronic.
+
+
 ## Introduction
 
 ### Motivation: intron signal in RNA-seq data
