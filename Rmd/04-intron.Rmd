@@ -53,10 +53,10 @@ flexibly summarised over factors within an experimental design and collapsed
 over regions of the genome using our companion package **plyranges**. The
 aspects of this combined workflow are summarised in figure \@ref(fig:si-fig). 
 
-(ref:si-fig): An overview of the **superintronic** and **plyranges** workflow.
+(ref:si-fig): An overview of the **superintronic** and **plyranges** workflow. Coverage is estimated directly using the design matrix that contains a source column pointing to the locations of BAM files. The long-form representation is output as a **GRanges** object, and contains columsns that were part of the design. Additional annotations are add with join functions, here we show the particular case of expanding the coverage **GRanges** to include exonic and intronic parts of a gene. This object can be further anlaysed using **plyranges** and our data descriptors approach, and then descriptors can be visualised as a scatter plot matrix with the `GGally` and `ggplot2` packages [@ggally; @Wickham2016-gz]. Coverage traces can be directly generated with **superintronic** and collapsed over parts of the design matrix to identify differences between groups.
 
 ```{r si-fig, fig.cap = "(ref:si-fig)", echo = FALSE}
-knitr::include_graphics(here::here("img", "si-wflow.png"))
+knitr::include_graphics(here::here("img", "si-workflowflow.png"))
 ```
 
 ### Representation of coverage estimation
