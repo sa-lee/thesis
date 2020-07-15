@@ -115,7 +115,7 @@ had two replicates.
 
 FASTQ files were aligned to the GRCz11 reference genome using subjunc with
 the default parameters called from Rsubread to produce BAM files for each
-sample. The coverage was then estimated directly from the set of BAM files
+sample [@Liao2013; @Liao2019-qn]. The coverage was then estimated directly from the set of BAM files
 using **superintronic** into the long form *GRanges* representation we described above. 
 
 The gene annotation files were
