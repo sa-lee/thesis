@@ -33,7 +33,7 @@ intron retention.  Chapter \@ref(ch:tsne), "Casting multiple shadows:
 high-dimensional  interactive data visualisation with tours and embeddings", 
 explored pragmatic approaches to high dimensional data visualisation in light of
 the rise of popular non-linear embedding methods. 
-To finish, I will dicuss the implications of this work and provide 
+To finish, I will discuss the implications of this work and provide 
 suggestions for further research.
 
 ## Findings and Impact
@@ -51,7 +51,7 @@ chapter\@ref(ch:fluentGenomics) and refined the development of the API. A
 broader impact of the work, has been the discussions around the
 concepts of fluent interfaces and tidy data within the Bioconductor community,
 which has led to several developments currently in place that are exploring
-different approaches for fluent interfaces for other types of 'omics data.
+different approaches for fluent interfaces for other types of omics data.
 
 The **superintronic** software described in chapter \@ref(ch:intron) has
 been used in @Lee2019-mf to disentangle and view intron signal in RNA-seq
@@ -76,12 +76,12 @@ used in **liminal** could be broadly applicable many high dimensional datasets.
 
 A limitation of the grammar as we have implemented it in 
 **plyranges** is lack of scalability and computational speed for data sets
-that do not fit in memory. We attempted several techniques for perfoming 
+that do not fit in memory. We attempted several techniques for performing 
 delayed operations over range-based data, however a more general approach
 that allows for data stored on the cloud or in scientific data formats
-like HDF5 that leverages existing Bioconductor frameworks would be useful.
+like HDF5 that leverage existing Bioconductor frameworks would be useful.
 We showed in chapters \@ref(ch:fluentGenomics) ad \@ref(ch:intron) that an a
-nalyst is able to do some very complex data transformations and resampling 
+analyst is able to do some very complex data transformations and re-sampling 
 procedures via casting results into *GRanges* object. However, it is unclear 
 whether the semantics of our grammar can be extended to data that can not be 
 easily reshaped into long form tidy representations. Moreover, further work

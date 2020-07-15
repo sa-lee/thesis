@@ -18,7 +18,7 @@ This thesis focuses on core aspects of EDA as part of a biological data
 science workflow: wrangling, integration and visualisation, with a focus 
 on applications to genomics and transcriptomics. It is organised in 
 according to the aforementioned workflow steps. To begin we discuss wrangling
-biological data using a coherent represntation and programming interface; 
+biological data using a coherent representation and programming interface; 
 section \@ref(sec:tidygranges)
 introduces a grammar-based framework for transforming genomics data that is 
 described in chapter \@ref(ch:plyranges). Next, we look at integrating data and 
@@ -103,7 +103,7 @@ within our data.
 Chapter \@ref(ch:tsne) introduces
 a software package called *liminal* for constructing these views and
 a user interaction framework for identifying distortions. We present several
-case studies using data sets from both single-cell transciptomics and 
+case studies using data sets from both single-cell transcriptomics and 
 machine learning  for using our approach to diagnose the quality of 
 results obtained via popular non-linear DR methods
 like t-distributed stochastic neighbour embeddings (t-SNE).
