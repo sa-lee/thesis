@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Fluent statistical computing interfaces for biological data analysis</title>
-  <meta name="description" content="Fluent statistical computing interfaces for biological data analysis" />
+  <title>6.1 Findings and Impact | Fluent statistical computing interfaces for biological data analysis</title>
+  <meta name="description" content="6.1 Findings and Impact | Fluent statistical computing interfaces for biological data analysis" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Fluent statistical computing interfaces for biological data analysis" />
+  <meta property="og:title" content="6.1 Findings and Impact | Fluent statistical computing interfaces for biological data analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Fluent statistical computing interfaces for biological data analysis" />
+  <meta name="twitter:title" content="6.1 Findings and Impact | Fluent statistical computing interfaces for biological data analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="abstract.html"/>
+<link rel="prev" href="6-ch-conclusion.html"/>
+<link rel="next" href="6-2-further-research.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -231,33 +231,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Fluent statistical computing interfaces for biological data analysis</h1>
-<p class="author"><em>Stuart Lee</em></p>
-</div>
-<div id="welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>This is the website for my PhD thesis at Monash University (Australia), titled “Fluent statistical computing interfaces for biological data analysis”.
-It is a work in progress.</p>
-
-<!-- 
-
-# Copyright notice {-}
-
-\textcopyright { }Stuart Lee (\number\the\year). 
-
-\newpage
-
--->
-
+<div id="findings-and-impact" class="section level2">
+<h2><span class="header-section-number">6.1</span> Findings and Impact</h2>
+<p>The early chapters of this thesis explored the <em>tidy data</em> semantic and its
+extension to range based genomics data. This culminated in the development
+of the <strong>plyranges</strong> package and consequent explorations of the applicability
+of its interface and use of the <em>tidy data</em> concept in chapters
+<a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a> and <a href="4-ch-intron.html#ch:intron">4</a>. The package has been relatively
+successful: it has been downloaded 22276 times from
+11939 unique IP addresses since its availability on
+Bioconductor. I have also had the privilege of teaching workshops on <strong>plyranges</strong>
+at Bioconductor conferences which also led to the development of the work in
+chapter<a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a> and refined the development of the API. A
+broader impact of the work, has been the discussions around the
+concepts of fluent interfaces and tidy data within the Bioconductor community,
+which has led to several developments currently in place that are exploring
+different approaches for fluent interfaces for other types of omics data.</p>
+<p>The <strong>superintronic</strong> software described in chapter <a href="4-ch-intron.html#ch:intron">4</a> has
+been used in <span class="citation">S. Lee et al. (<a href="bibliography.html#ref-Lee2019-mf">2019</a>)</span> to disentangle and view intron signal in RNA-seq
+data. Here, we again show the strengths of providing a long-form representations
+of genomics data (in this case coverage vectors). By leveraging <strong>plyranges</strong>
+we were then able to create a set of data descriptors that we could link back
+to the raw data to discover genes thought to be associated with a real biological
+signal. An interesting extension to this work would be applying it to single
+cell and long-read based transcriptomics data, where scalability and much
+larger design matrices would be come an issue.</p>
+<p>Finally, the <strong>liminal</strong> software aims to provide a more holistic approach to
+analysis tasks requiring the use of dimensionality reduction algorithms. We
+showed how to incorporate interactive graphics and tours to identify problems
+with embeddings. Based on the case studies provided I believe that the methods
+used in <strong>liminal</strong> could be broadly applicable many high dimensional datasets.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="abstract.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="6-ch-conclusion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6-2-further-research.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -279,7 +290,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/sa-lee/thesis/edit/master/index.Rmd",
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//06-conclusion.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Fluent statistical computing interfaces for biological data analysis</title>
-  <meta name="description" content="Fluent statistical computing interfaces for biological data analysis" />
+  <title>6.2 Further Research | Fluent statistical computing interfaces for biological data analysis</title>
+  <meta name="description" content="6.2 Further Research | Fluent statistical computing interfaces for biological data analysis" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Fluent statistical computing interfaces for biological data analysis" />
+  <meta property="og:title" content="6.2 Further Research | Fluent statistical computing interfaces for biological data analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Fluent statistical computing interfaces for biological data analysis" />
+  <meta name="twitter:title" content="6.2 Further Research | Fluent statistical computing interfaces for biological data analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="abstract.html"/>
+<link rel="prev" href="6-1-findings-and-impact.html"/>
+<link rel="next" href="bibliography.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -231,33 +231,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Fluent statistical computing interfaces for biological data analysis</h1>
-<p class="author"><em>Stuart Lee</em></p>
+<div id="further-research" class="section level2">
+<h2><span class="header-section-number">6.2</span> Further Research</h2>
+<div id="scalable-grammars-for-non-rectangular-data-structures" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Scalable grammars for non-rectangular data structures</h3>
+<p>A limitation of the grammar as we have implemented it in
+<strong>plyranges</strong> is lack of scalability and computational speed for data sets
+that do not fit in memory. We attempted several techniques for performing
+delayed operations over range-based data, however a more general approach
+that allows for data stored on the cloud or in scientific data formats
+like HDF5 that leverage existing Bioconductor frameworks would be useful.
+We showed in chapters <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a> ad <a href="4-ch-intron.html#ch:intron">4</a> that an a
+analyst is able to do some very complex data transformations and re-sampling
+procedures via casting results into <em>GRanges</em> object. However, it is unclear
+whether the semantics of our grammar can be extended to data that can not be
+easily reshaped into long form tidy representations. Moreover, further work
+is required to explore the design space of grammars for data
+transformations and grammars for graphics when the data large, multifaceted
+and non-rectangular.</p>
 </div>
-<div id="welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>This is the website for my PhD thesis at Monash University (Australia), titled “Fluent statistical computing interfaces for biological data analysis”.
-It is a work in progress.</p>
-
-<!-- 
-
-# Copyright notice {-}
-
-\textcopyright { }Stuart Lee (\number\the\year). 
-
-\newpage
-
--->
+<div id="extending-tour-displays-for-large-n-data-sets" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Extending tour displays for large <span class="math inline">\(n\)</span> data sets</h3>
+<p>We showed in chapter <a href="#ch:liminal"><strong>??</strong></a> that tours provide a global overview
+that can be used as tool for exploring model fits. An issue that arises is
+how to scale the tour as the number of observations increases. There are
+latencies in sending data from the back end to the visualisation client
+that causes lag during animation. One could also question whether point
+based displays are appropriate in this case, and it would be worth exploring
+the usability of animations based on binning the projections. Moreover,
+when the number of observations are large, the points in the projections are
+concentrated in the centre of the tour display obscuring interesting aspects
+of the data. This is mitigated via having
+the ability to zoom, but further research into transforming the projections
+to avoid crowding would be valuable. An added complexity to changes in visual
+displays are thinking about the design of user interactions, several promising
+avenues based on section tours should be explored <span class="citation">(Laa et al. <a href="bibliography.html#ref-Laa2020-wr">2020</a>; Laa, Cook, and Valencia <a href="bibliography.html#ref-Laa2020-fy">2020</a>)</span>.</p>
 
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="abstract.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="6-1-findings-and-impact.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bibliography.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -279,7 +298,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/sa-lee/thesis/edit/master/index.Rmd",
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//06-conclusion.Rmd",
 "text": "Edit"
 },
 "history": {

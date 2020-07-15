@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -172,19 +172,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements-2.html"><a href="acknowledgements-2.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis and visualisation with superintronic</a><ul>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Exploratory coverage analysis with superintronic and plyranges</a><ul>
 <li class="chapter" data-level="4.1" data-path="4-1-introduction-1.html"><a href="4-1-introduction-1.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="4-2-methods.html"><a href="4-2-methods.html"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#motivation-intron-signal-in-rna-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> Motivation: intron signal in RNA-seq data</a></li>
+<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.2.1</b> Representation of coverage estimation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-methods.html"><a href="4-2-methods.html#integration-of-external-annotations"><i class="fa fa-check"></i><b>4.2.2</b> Integration of external annotations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-methods.html"><a href="4-2-methods.html#discovery-of-regions-of-interest-via-data-descriptors"><i class="fa fa-check"></i><b>4.2.3</b> Discovery of regions of interest via ‘data descriptors’</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html"><i class="fa fa-check"></i><b>4.3</b> Results</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="4-3-results-1.html"><a href="4-3-results-1.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.3.1</b> Representation of coverage estimation</a></li>
-<li class="chapter" data-level="4.3.2" data-path="4-3-results-1.html"><a href="4-3-results-1.html#integration-of-external-gene-annotations"><i class="fa fa-check"></i><b>4.3.2</b> Integration of external gene annotations</a></li>
-<li class="chapter" data-level="4.3.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html#discovery-of-regions-of-interest-via-ranglers"><i class="fa fa-check"></i><b>4.3.3</b> Discovery of regions of interest via ‘ranglers’</a></li>
-<li class="chapter" data-level="4.3.4" data-path="4-3-results-1.html"><a href="4-3-results-1.html#a-superintronic-workflow-for-uncovering-intron-retention"><i class="fa fa-check"></i><b>4.3.4</b> A superintronic workflow for uncovering intron retention</a></li>
-</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><i class="fa fa-check"></i><b>4.3</b> A workflow for uncovering intron retention in a zebrafish experiment</a></li>
 <li class="chapter" data-level="4.4" data-path="4-4-discussion-2.html"><a href="4-4-discussion-2.html"><i class="fa fa-check"></i><b>4.4</b> Discussion</a></li>
-<li class="chapter" data-level="4.5" data-path="4-5-conclusion-1.html"><a href="4-5-conclusion-1.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-acknowledgements-3.html"><a href="4-5-acknowledgements-3.html"><i class="fa fa-check"></i><b>4.5</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-1-introduction-2.html"><a href="5-1-introduction-2.html"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
@@ -204,12 +201,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.3" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-3-single-cell-mouse-retina-data"><i class="fa fa-check"></i><b>5.5.3</b> Case Study 3: Single cell mouse retina data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="5-6-discussion-3.html"><a href="5-6-discussion-3.html"><i class="fa fa-check"></i><b>5.6</b> Discussion</a></li>
-<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-3.html"><a href="5-7-acknowledgements-3.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
+<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-4.html"><a href="5-7-acknowledgements-4.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-findings-and-limitations.html"><a href="6-1-findings-and-limitations.html"><i class="fa fa-check"></i><b>6.1</b> Findings and limitations</a></li>
-<li class="chapter" data-level="6.2" data-path="6-2-software-development-and-impact.html"><a href="6-2-software-development-and-impact.html"><i class="fa fa-check"></i><b>6.2</b> Software development and impact</a></li>
-<li class="chapter" data-level="6.3" data-path="6-3-further-research.html"><a href="6-3-further-research.html"><i class="fa fa-check"></i><b>6.3</b> Further research</a></li>
+<li class="chapter" data-level="6.1" data-path="6-1-findings-and-impact.html"><a href="6-1-findings-and-impact.html"><i class="fa fa-check"></i><b>6.1</b> Findings and Impact</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html"><i class="fa fa-check"></i><b>6.2</b> Further Research</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-further-research.html"><a href="6-2-further-research.html#scalable-grammars-for-non-rectangular-data-structures"><i class="fa fa-check"></i><b>6.2.1</b> Scalable grammars for non-rectangular data structures</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html#extending-tour-displays-for-large-n-data-sets"><i class="fa fa-check"></i><b>6.2.2</b> Extending tour displays for large <span class="math inline">\(n\)</span> data sets</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -243,13 +242,13 @@ downstream analysis (thereby nullifying the ‘curse of dimensionality’).</p>
 <p>Choosing an appropriate embedding presents a challenge to the analyst. How does
 an analyst know whether the embedding has captured the underlying topology and
 geometry of the high dimensional space? The answer depends on the analyst’s
-workflow. <span class="citation">Brehmer et al. (<a href="bibliography.html#ref-Brehmer2014-hk" role="doc-biblioref">2014</a>)</span> characterised two main workflow steps that an
+workflow. <span class="citation">Brehmer et al. (<a href="bibliography.html#ref-Brehmer2014-hk">2014</a>)</span> characterised two main workflow steps that an
 analyst performs when using embedding techniques: dimension reduction and
 cluster orientation. The first relates to dimension reduction achieved by using
 an embedding method, here an analyst wants to characterise and map meaning onto
 the embedded form, for example identifying batch effects from a high throughput
 sequencing experiment, or identifying a gradient or trajectory along the
-embedded form <span class="citation">Nguyen and Holmes (<a href="bibliography.html#ref-Nguyen2019-yh" role="doc-biblioref">2019</a>)</span>. The second relates to using embeddings as part of
+embedded form <span class="citation">Nguyen and Holmes (<a href="bibliography.html#ref-Nguyen2019-yh">2019</a>)</span>. The second relates to using embeddings as part of
 a clustering workflow. Here analysts are interested in identifying and naming
 clusters and verifying them by either applying known labels or colouring by
 variables that are a-priori known to distinguish clusters. Both of these
@@ -275,13 +274,13 @@ dimensional space using a Gaussian distribution and then estimates a
 configuration in the low dimensional embedding space by modelling similarities
 using a t-distribution with 1 degree of freedom. The resulting configuration is
 the one that minimizes the Kullback-Leibler divergence between the two
-distributions. A recent theoretical contribution by <span class="citation">Linderman and Steinerberger (<a href="bibliography.html#ref-Linderman2019-dq" role="doc-biblioref">2019</a>)</span> proved
+distributions. A recent theoretical contribution by <span class="citation">Linderman and Steinerberger (<a href="bibliography.html#ref-Linderman2019-dq">2019</a>)</span> proved
 that t-SNE can recover spherical and well separated cluster shapes, and
 proposed new approaches for tuning the optimisation parameters. It is a known
 problem that t-SNE can have trouble recovering global structure and that
 configurations can be highly dependent on how the algorithm is initialised and
-parameterized <span class="citation">(Wattenberg, Viégas, and Johnson <a href="bibliography.html#ref-Wattenberg2016-ji" role="doc-biblioref">2016</a>; Kobak and Berens <a href="bibliography.html#ref-Kobak2019-lm" role="doc-biblioref">2019</a>)</span>. UMAP is a method that is
-related to LargeVis <span class="citation">(Tang et al. <a href="bibliography.html#ref-Tang2016-oz" role="doc-biblioref">2016</a>)</span>, and like t-SNE acts on the k-nearest
+parameterized <span class="citation">(Wattenberg, Viégas, and Johnson <a href="bibliography.html#ref-Wattenberg2016-ji">2016</a>; Kobak and Berens <a href="bibliography.html#ref-Kobak2019-lm">2019</a>)</span>. UMAP is a method that is
+related to LargeVis <span class="citation">(Tang et al. <a href="bibliography.html#ref-Tang2016-oz">2016</a>)</span>, and like t-SNE acts on the k-nearest
 neighbor graph. Its main differences are that it uses a different cost function
 (cross entropy) which is optimized using stochastic gradient descent and
 defines a different kernel for similarities in the low dimensional space. Due
@@ -295,10 +294,10 @@ probabilities are transformed once more to construct a distance matrix, and
 multidimensional scaling is performed to construct a 2d embedding for
 visualization.</p>
 <p>As part of a visualization workflow, it’s important to consider the perception
-and interpretation of embedding methods as well. <span class="citation">Sedlmair, Munzner, and Tory (<a href="bibliography.html#ref-Sedlmair2013-pn" role="doc-biblioref">2013</a>)</span> showed that
+and interpretation of embedding methods as well. <span class="citation">Sedlmair, Munzner, and Tory (<a href="bibliography.html#ref-Sedlmair2013-pn">2013</a>)</span> showed that
 2D scatter plots were mostly sufficient for detecting class separation, however
 they noted that often multiple embeddings were required. For the task of
-cluster identification, <span class="citation">Lewis, Van der Maaten, and Sa (<a href="bibliography.html#ref-Lewis2012-ai" role="doc-biblioref">2012</a>)</span> showed experimentally that novice users
+cluster identification, <span class="citation">Lewis, Van der Maaten, and Sa (<a href="bibliography.html#ref-Lewis2012-ai">2012</a>)</span> showed experimentally that novice users
 of non-linear embedding techniques were more likely to consider clusters of
 points on a 2d scatter plot to be the result of a spurious embedding compared
 to advanced users who were aware of the inner workings of the embedding
@@ -313,8 +312,8 @@ the structure in the data. Instead of picking projections at random, a guided
 tour can be used to generate a sequence ‘interesting’ projections as quantified
 by an index function. Given the dynamic nature of the tour, user interaction is
 important for controlling and exploring the visualisation: the tour has been
-used previously by <span class="citation">Wickham, Cook, and Hofmann (<a href="bibliography.html#ref-Wickham2015-cx" role="doc-biblioref">2015</a>)</span> as tool for exploring statistical model fits
-and by <span class="citation">Buja, Cook, and Swayne (<a href="bibliography.html#ref-Buja1996-fk" role="doc-biblioref">1996</a>)</span> for exploring factorial experimental designs.</p>
+used previously by <span class="citation">Wickham, Cook, and Hofmann (<a href="bibliography.html#ref-Wickham2015-cx">2015</a>)</span> as tool for exploring statistical model fits
+and by <span class="citation">Buja, Cook, and Swayne (<a href="bibliography.html#ref-Buja1996-fk">1996</a>)</span> for exploring factorial experimental designs.</p>
 <p>While there has been much work on the algorithmic details of the aforementioned
 embedding methods, there has been relatively few tools designed to assist users
 to interact with these techniques and assist them in making comparisons between
@@ -322,12 +321,12 @@ embeddings and performing the aforementioned cluster orientation tasks. Several
 interactive interfaces have been proposed for evaluating or using embedding
 techniques: the Sleepwalk interface provides a click and highlight
 visualisation for colouring points in an embedding according to their distance
-in the original high-dimensional space <span class="citation">(Ovchinnikova and Anders <a href="bibliography.html#ref-Ovchinnikova2019-gf" role="doc-biblioref">2019</a>)</span>. The work by
-<span class="citation">Pezzotti et al. (<a href="bibliography.html#ref-Pezzotti2017-cz" role="doc-biblioref">2017</a>)</span> provides a user guided and modified form of the t-SNE
+in the original high-dimensional space <span class="citation">(Ovchinnikova and Anders <a href="bibliography.html#ref-Ovchinnikova2019-gf">2019</a>)</span>. The work by
+<span class="citation">Pezzotti et al. (<a href="bibliography.html#ref-Pezzotti2017-cz">2017</a>)</span> provides a user guided and modified form of the t-SNE
 algorithm, that allows users to modified optimisation parameters in real-time.
 Similarly, the embedding projector is a web interface to running UMAP, t-SNE or
 PCA live in the browser and provides interactions to color points, and
-highlights nearest neighbors <span class="citation">(Smilkov et al. <a href="bibliography.html#ref-Smilkov2016-hp" role="doc-biblioref">2016</a>)</span>.</p>
+highlights nearest neighbors <span class="citation">(Smilkov et al. <a href="bibliography.html#ref-Smilkov2016-hp">2016</a>)</span>.</p>
 <p>There is no one-size fits all: finding an appropriate embedding for a given
 dataset is a difficult and somewhat poorly defined problem. For non-linear
 methods, there are a lot of parameters to explore that can have an effect on

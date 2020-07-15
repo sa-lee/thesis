@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -172,19 +172,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements-2.html"><a href="acknowledgements-2.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis and visualisation with superintronic</a><ul>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Exploratory coverage analysis with superintronic and plyranges</a><ul>
 <li class="chapter" data-level="4.1" data-path="4-1-introduction-1.html"><a href="4-1-introduction-1.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="4-2-methods.html"><a href="4-2-methods.html"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#motivation-intron-signal-in-rna-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> Motivation: intron signal in RNA-seq data</a></li>
+<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.2.1</b> Representation of coverage estimation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-methods.html"><a href="4-2-methods.html#integration-of-external-annotations"><i class="fa fa-check"></i><b>4.2.2</b> Integration of external annotations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-methods.html"><a href="4-2-methods.html#discovery-of-regions-of-interest-via-data-descriptors"><i class="fa fa-check"></i><b>4.2.3</b> Discovery of regions of interest via ‘data descriptors’</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html"><i class="fa fa-check"></i><b>4.3</b> Results</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="4-3-results-1.html"><a href="4-3-results-1.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.3.1</b> Representation of coverage estimation</a></li>
-<li class="chapter" data-level="4.3.2" data-path="4-3-results-1.html"><a href="4-3-results-1.html#integration-of-external-gene-annotations"><i class="fa fa-check"></i><b>4.3.2</b> Integration of external gene annotations</a></li>
-<li class="chapter" data-level="4.3.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html#discovery-of-regions-of-interest-via-ranglers"><i class="fa fa-check"></i><b>4.3.3</b> Discovery of regions of interest via ‘ranglers’</a></li>
-<li class="chapter" data-level="4.3.4" data-path="4-3-results-1.html"><a href="4-3-results-1.html#a-superintronic-workflow-for-uncovering-intron-retention"><i class="fa fa-check"></i><b>4.3.4</b> A superintronic workflow for uncovering intron retention</a></li>
-</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><i class="fa fa-check"></i><b>4.3</b> A workflow for uncovering intron retention in a zebrafish experiment</a></li>
 <li class="chapter" data-level="4.4" data-path="4-4-discussion-2.html"><a href="4-4-discussion-2.html"><i class="fa fa-check"></i><b>4.4</b> Discussion</a></li>
-<li class="chapter" data-level="4.5" data-path="4-5-conclusion-1.html"><a href="4-5-conclusion-1.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-acknowledgements-3.html"><a href="4-5-acknowledgements-3.html"><i class="fa fa-check"></i><b>4.5</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-1-introduction-2.html"><a href="5-1-introduction-2.html"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
@@ -204,12 +201,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.3" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-3-single-cell-mouse-retina-data"><i class="fa fa-check"></i><b>5.5.3</b> Case Study 3: Single cell mouse retina data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="5-6-discussion-3.html"><a href="5-6-discussion-3.html"><i class="fa fa-check"></i><b>5.6</b> Discussion</a></li>
-<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-3.html"><a href="5-7-acknowledgements-3.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
+<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-4.html"><a href="5-7-acknowledgements-4.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-findings-and-limitations.html"><a href="6-1-findings-and-limitations.html"><i class="fa fa-check"></i><b>6.1</b> Findings and limitations</a></li>
-<li class="chapter" data-level="6.2" data-path="6-2-software-development-and-impact.html"><a href="6-2-software-development-and-impact.html"><i class="fa fa-check"></i><b>6.2</b> Software development and impact</a></li>
-<li class="chapter" data-level="6.3" data-path="6-3-further-research.html"><a href="6-3-further-research.html"><i class="fa fa-check"></i><b>6.3</b> Further research</a></li>
+<li class="chapter" data-level="6.1" data-path="6-1-findings-and-impact.html"><a href="6-1-findings-and-impact.html"><i class="fa fa-check"></i><b>6.1</b> Findings and Impact</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html"><i class="fa fa-check"></i><b>6.2</b> Further Research</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-further-research.html"><a href="6-2-further-research.html#scalable-grammars-for-non-rectangular-data-structures"><i class="fa fa-check"></i><b>6.2.1</b> Scalable grammars for non-rectangular data structures</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html#extending-tour-displays-for-large-n-data-sets"><i class="fa fa-check"></i><b>6.2.2</b> Extending tour displays for large <span class="math inline">\(n\)</span> data sets</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -378,27 +377,27 @@ visualization.</p>
 from islands of coverage over chromosome. Here we will use <code>plyranges</code>
 to call peaks from islands of coverage above 8 then plot the region
 surrounding the tallest peak.</p>
-<p>Using <code>plyranges</code> and the the Bioconductor package <code>AnnotationHub</code> <span class="citation">(Morgan <a href="bibliography.html#ref-R-ahub" role="doc-biblioref">2017</a>)</span>
+<p>Using <code>plyranges</code> and the the Bioconductor package <code>AnnotationHub</code> <span class="citation">(Morgan <a href="bibliography.html#ref-R-ahub">2017</a>)</span>
 we can download and read BigWig files from ChIP-Seq experiments from
-the Human Epigenome Roadmap project <span class="citation">(Roadmap Epigenomics Consortium et al. <a href="bibliography.html#ref-Roadmap-Epigenomics-Consortium2015-pr" role="doc-biblioref">2015</a>)</span>.
+the Human Epigenome Roadmap project <span class="citation">(Roadmap Epigenomics Consortium et al. <a href="bibliography.html#ref-Roadmap-Epigenomics-Consortium2015-pr">2015</a>)</span>.
 Here we analyse a BigWig file corresponding to H3 lysine 27 trimethylation
 (H3K27Me3) of primary T CD8+ memory cells from peripheral blood, focussing
 on coverage islands over chromosome 10.</p>
 <p>First, we extract the genome information from the BigWig file and filter
 to get the range for chromosome 10. This range will be used as a filter when
 reading the file.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(plyranges)</a>
-<a class="sourceLine" id="cb1-2" title="2">chr10_ranges &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="st">  </span><span class="kw">get_genome_info</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="st">  </span><span class="kw">filter</span>(seqnames <span class="op">==</span><span class="st"> &quot;chr10&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(plyranges)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">chr10_ranges &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="st">  </span><span class="kw">get_genome_info</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(seqnames <span class="op">==</span><span class="st"> &quot;chr10&quot;</span>)</a></code></pre></div>
 <p>Then we read the BigWig file only extracting scores if they overlap chromosome
 10. We also add the genome build information to the resulting ranges. This
 book-keeping is good practice as it ensures the integrity of any
 downstream operations such as finding overlaps.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">chr10_scores &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw">read_bigwig</span>(<span class="dt">overlap_ranges =</span> chr10_ranges) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;hg19&quot;</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4">chr10_scores</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">chr10_scores &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw">read_bigwig</span>(<span class="dt">overlap_ranges =</span> chr10_ranges) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;hg19&quot;</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">chr10_scores</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 5789841 ranges and 1 metadata column:
 #&gt;             seqnames              ranges strand |              score
 #&gt;                &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |          &lt;numeric&gt;
@@ -420,10 +419,10 @@ this reduce individual runs to ranges representing the islands of coverage.
 This is achieved with the <code>reduce_ranges()</code> function, which allows a summary
 to be computed over each island: in this case we take the maximum of
 the scores to find the coverage peaks over chromosome 10.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">all_peaks &lt;-<span class="st"> </span>chr10_scores <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">filter</span>(score <span class="op">&gt;</span><span class="st"> </span><span class="dv">8</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">reduce_ranges</span>(<span class="dt">score =</span> <span class="kw">max</span>(score))</a>
-<a class="sourceLine" id="cb4-4" title="4">all_peaks</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">all_peaks &lt;-<span class="st"> </span>chr10_scores <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(score <span class="op">&gt;</span><span class="st"> </span><span class="dv">8</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">reduce_ranges</span>(<span class="dt">score =</span> <span class="kw">max</span>(score))</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">all_peaks</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 1085 ranges and 1 metadata column:
 #&gt;          seqnames              ranges strand |            score
 #&gt;             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;numeric&gt;
@@ -481,24 +480,24 @@ Consortium.</p>
 <p>We can directly obtain the genome information from the header of the
 BAM file: in this case the reads were aligned to the hg19 genome build
 and there are no reads overlapping the mitochondrial genome.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">bam &lt;-<span class="st"> </span><span class="kw">read_bam</span>(h1_bam_sorted, <span class="dt">index =</span> h1_bam_sorted_index)</a>
-<a class="sourceLine" id="cb7-2" title="2">locations &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">get_genome_info</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">bam &lt;-<span class="st"> </span><span class="kw">read_bam</span>(h1_bam_sorted, <span class="dt">index =</span> h1_bam_sorted_index)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">locations &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">get_genome_info</span>()</a></code></pre></div>
 <p>Next we only read in alignments that overlap the genomic locations
 we are interested in and select the query sequence. Note that
 the reading of the BAM file is deferred: only alignments that pass the filter
 are loaded into memory. We can add another column representing the GC proportion
 for each alignment using the <code>letterFrequency()</code> function from the <code>Biostrings</code>
-package <span class="citation">(Pagès et al. <a href="bibliography.html#ref-R-biostrings" role="doc-biblioref">2018</a>)</span>. After computing the GC proportion as the score
+package <span class="citation">(Pagès et al. <a href="bibliography.html#ref-R-biostrings">2018</a>)</span>. After computing the GC proportion as the score
 column, we drop all other columns in the GRanges object.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">alignments &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span><span class="kw">filter_by_overlaps</span>(locations) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw">select</span>(seq) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb8-5" title="5">    <span class="dt">score =</span> <span class="kw">as.numeric</span>(<span class="kw">letterFrequency</span>(seq, <span class="st">&quot;GC&quot;</span>, <span class="dt">as.prob =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb8-6" title="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="st">  </span><span class="kw">select</span>(score)</a>
-<a class="sourceLine" id="cb8-8" title="8">alignments</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">alignments &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">filter_by_overlaps</span>(locations) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(seq) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">    <span class="dt">score =</span> <span class="kw">as.numeric</span>(<span class="kw">letterFrequency</span>(seq, <span class="st">&quot;GC&quot;</span>, <span class="dt">as.prob =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(score)</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">alignments</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 8275595 ranges and 1 metadata column:
 #&gt;             seqnames            ranges strand |             score
 #&gt;                &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; |         &lt;numeric&gt;
@@ -518,13 +517,13 @@ column, we drop all other columns in the GRanges object.</p>
 <p>Finally, we create 10000nt tiles over the genome and compute the number
 of reads and average GC content over all reads that fall within
 each tile using an overlap join and merging endpoints.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">bins &lt;-<span class="st"> </span>locations <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw">tile_ranges</span>(<span class="dt">width =</span> 10000L)</a>
-<a class="sourceLine" id="cb10-3" title="3"></a>
-<a class="sourceLine" id="cb10-4" title="4">alignments_summary &lt;-<span class="st"> </span>bins <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-5" title="5"><span class="st">  </span><span class="kw">join_overlap_inner</span>(alignments) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-6" title="6"><span class="st">  </span><span class="kw">disjoin_ranges</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">avg_gc =</span> <span class="kw">mean</span>(score))</a>
-<a class="sourceLine" id="cb10-7" title="7">alignments_summary</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">bins &lt;-<span class="st"> </span>locations <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">tile_ranges</span>(<span class="dt">width =</span> 10000L)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">alignments_summary &lt;-<span class="st"> </span>bins <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span><span class="kw">join_overlap_inner</span>(alignments) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="st">  </span><span class="kw">disjoin_ranges</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">avg_gc =</span> <span class="kw">mean</span>(score))</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">alignments_summary</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 286030 ranges and 2 metadata columns:
 #&gt;            seqnames            ranges strand |         n            avg_gc
 #&gt;               &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;         &lt;numeric&gt;
@@ -554,17 +553,17 @@ ratio, a quality control metric, within each chromosome in GRanges object.</p>
 <p>First we filter out the indels and mitochondrial variants. Then we
 create a logical vector corresponding to whether there is a transition
 event.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">h1_snp_array &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;D&quot;</span>)), seqnames <span class="op">!=</span><span class="st"> &quot;M&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">transition =</span> (ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;A&quot;</span>))<span class="op">|</span></a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="st">                      </span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">h1_snp_array &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;D&quot;</span>)), seqnames <span class="op">!=</span><span class="st"> &quot;M&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">transition =</span> (ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;A&quot;</span>))<span class="op">|</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">                      </span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>)))</a></code></pre></div>
 <p>We then compute the transition-transversion ratio over each chromosome using
 <code>group_by()</code> in combination with <code>summarize()</code> (figure <a href="2-2-results.html#fig:titv-viz">2.5</a>).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">ti_tv_results &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(seqnames) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_snps =</span> <span class="kw">n</span>(),</a>
-<a class="sourceLine" id="cb13-4" title="4">            <span class="dt">ti_tv =</span> <span class="kw">sum</span>(transition) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span>transition))</a>
-<a class="sourceLine" id="cb13-5" title="5">ti_tv_results</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">ti_tv_results &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(seqnames) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_snps =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">            <span class="dt">ti_tv =</span> <span class="kw">sum</span>(transition) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span>transition))</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">ti_tv_results</a></code></pre></div>
 <pre><code>#&gt; DataFrame with 24 rows and 3 columns
 #&gt;     seqnames    n_snps            ti_tv
 #&gt;        &lt;Rle&gt; &lt;integer&gt;        &lt;numeric&gt;
@@ -580,9 +579,9 @@ event.</p>
 #&gt; 23        21     32349 3.50480434479877
 #&gt; 24         X     55495 3.58219800181653</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:titv-viz"></span>
-<img src="img/titv-viz-1.png" alt="The final result of computing quality control metrics over the SNP array data with plyranges, displayed as a dot plot. Chromosomes are ordered by their estimated transition-transversion ratio. A white reference line is drawn at the expected ratio for a human exome."" width="100%" />
+<img src="img/titv-viz-1.png" alt="The final result of computing quality control metrics over the SNP array data with plyranges, displayed as a dot plot. Chromosomes are ordered by their estimated transition-transversion ratio. A white reference line is drawn at the expected ratio for a human exome.&quot;" width="100%" />
 <p class="caption">
-Figure 2.5: The final result of computing quality control metrics over the SNP array data with <code>plyranges</code>, displayed as a dot plot. Chromosomes are ordered by their estimated transition-transversion ratio. A white reference line is drawn at the expected ratio for a human exome."
+Figure 2.5: The final result of computing quality control metrics over the SNP array data with <code>plyranges</code>, displayed as a dot plot. Chromosomes are ordered by their estimated transition-transversion ratio. A white reference line is drawn at the expected ratio for a human exome.&quot;
 </p>
 </div>
 

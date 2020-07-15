@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -172,19 +172,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements-2.html"><a href="acknowledgements-2.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis and visualisation with superintronic</a><ul>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Exploratory coverage analysis with superintronic and plyranges</a><ul>
 <li class="chapter" data-level="4.1" data-path="4-1-introduction-1.html"><a href="4-1-introduction-1.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="4-2-methods.html"><a href="4-2-methods.html"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#motivation-intron-signal-in-rna-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> Motivation: intron signal in RNA-seq data</a></li>
+<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.2.1</b> Representation of coverage estimation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-methods.html"><a href="4-2-methods.html#integration-of-external-annotations"><i class="fa fa-check"></i><b>4.2.2</b> Integration of external annotations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-methods.html"><a href="4-2-methods.html#discovery-of-regions-of-interest-via-data-descriptors"><i class="fa fa-check"></i><b>4.2.3</b> Discovery of regions of interest via ‘data descriptors’</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html"><i class="fa fa-check"></i><b>4.3</b> Results</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="4-3-results-1.html"><a href="4-3-results-1.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.3.1</b> Representation of coverage estimation</a></li>
-<li class="chapter" data-level="4.3.2" data-path="4-3-results-1.html"><a href="4-3-results-1.html#integration-of-external-gene-annotations"><i class="fa fa-check"></i><b>4.3.2</b> Integration of external gene annotations</a></li>
-<li class="chapter" data-level="4.3.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html#discovery-of-regions-of-interest-via-ranglers"><i class="fa fa-check"></i><b>4.3.3</b> Discovery of regions of interest via ‘ranglers’</a></li>
-<li class="chapter" data-level="4.3.4" data-path="4-3-results-1.html"><a href="4-3-results-1.html#a-superintronic-workflow-for-uncovering-intron-retention"><i class="fa fa-check"></i><b>4.3.4</b> A superintronic workflow for uncovering intron retention</a></li>
-</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><i class="fa fa-check"></i><b>4.3</b> A workflow for uncovering intron retention in a zebrafish experiment</a></li>
 <li class="chapter" data-level="4.4" data-path="4-4-discussion-2.html"><a href="4-4-discussion-2.html"><i class="fa fa-check"></i><b>4.4</b> Discussion</a></li>
-<li class="chapter" data-level="4.5" data-path="4-5-conclusion-1.html"><a href="4-5-conclusion-1.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-acknowledgements-3.html"><a href="4-5-acknowledgements-3.html"><i class="fa fa-check"></i><b>4.5</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-1-introduction-2.html"><a href="5-1-introduction-2.html"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
@@ -204,12 +201,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.3" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-3-single-cell-mouse-retina-data"><i class="fa fa-check"></i><b>5.5.3</b> Case Study 3: Single cell mouse retina data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="5-6-discussion-3.html"><a href="5-6-discussion-3.html"><i class="fa fa-check"></i><b>5.6</b> Discussion</a></li>
-<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-3.html"><a href="5-7-acknowledgements-3.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
+<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-4.html"><a href="5-7-acknowledgements-4.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-findings-and-limitations.html"><a href="6-1-findings-and-limitations.html"><i class="fa fa-check"></i><b>6.1</b> Findings and limitations</a></li>
-<li class="chapter" data-level="6.2" data-path="6-2-software-development-and-impact.html"><a href="6-2-software-development-and-impact.html"><i class="fa fa-check"></i><b>6.2</b> Software development and impact</a></li>
-<li class="chapter" data-level="6.3" data-path="6-3-further-research.html"><a href="6-3-further-research.html"><i class="fa fa-check"></i><b>6.3</b> Further research</a></li>
+<li class="chapter" data-level="6.1" data-path="6-1-findings-and-impact.html"><a href="6-1-findings-and-impact.html"><i class="fa fa-check"></i><b>6.1</b> Findings and Impact</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html"><i class="fa fa-check"></i><b>6.2</b> Further Research</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-further-research.html"><a href="6-2-further-research.html#scalable-grammars-for-non-rectangular-data-structures"><i class="fa fa-check"></i><b>6.2.1</b> Scalable grammars for non-rectangular data structures</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html#extending-tour-displays-for-large-n-data-sets"><i class="fa fa-check"></i><b>6.2.2</b> Extending tour displays for large <span class="math inline">\(n\)</span> data sets</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -237,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Exploratory data analysis (EDA) is a vital element of the modern
 statistical workflow - it is an analyst’s first pass at
 understanding their data; revealing all it’s messes and
-uncovering hidden insights <span class="citation">(Tukey <a href="bibliography.html#ref-Tukey1977-pn" role="doc-biblioref">1977</a>; Grolemund and Wickham <a href="bibliography.html#ref-Grolemund2017-uc" role="doc-biblioref">2017</a>)</span>.
+uncovering hidden insights <span class="citation">(Tukey <a href="bibliography.html#ref-Tukey1977-pn">1977</a>; Grolemund and Wickham <a href="bibliography.html#ref-Grolemund2017-uc">2017</a>)</span>.
 It is an iterative process involving computation and visualization,
 leading to new hypotheses that can be tested and formalised using
 statistical modelling. As datasets grow in complexity and become
@@ -250,21 +249,20 @@ neglected.</p>
 <p>This thesis focuses on core aspects of EDA as part of a biological data
 science workflow: wrangling, integration and visualisation, with a focus
 on applications to genomics and transcriptomics. It is organised in
-the same manner that you would iterate back and
-forth between these tasks during an analysis. To begin you wrangle your data
-into a structure that you can understand and use; section <a href="1-1-sec-tidygranges.html#sec:tidygranges">1.1</a>
+according to the aforementioned workflow steps. To begin we discuss wrangling
+biological data using a coherent representation and programming interface;
+section <a href="1-1-sec-tidygranges.html#sec:tidygranges">1.1</a>
 introduces a grammar-based framework for transforming genomics data that is
-described in chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a>. Next, you integrate data and model
-outputs over genomic regions to gain biological insight; <a href="1-2-sec-ir.html#sec:ir">1.2</a>
+described in chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a>. Next, we look at integrating data and
+model outputs over genomic regions to gain biological insight; <a href="1-2-sec-ir.html#sec:ir">1.2</a>
 introduces a framework for incorporating and discovering ‘interesting’ genomic
 regions, described further in chapters <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a> and
-<a href="4-ch-intron.html#ch:intron">4</a>. Third, you cycle between model-based representations and
-visualisations of your data; section <a href="1-3-sec-va.html#sec:va">1.3</a> introduces a visual analytics
-approach for understanding non-linear dimension reduction techniques and is
-described in detail in chapter <a href="5-ch-tsne.html#ch:tsne">5</a>. Lastly, you take a step back and
-look at the implications and limitations of your work; in chapter
+<a href="4-ch-intron.html#ch:intron">4</a>. Third, we consider the challenges in visualising<br />
+high dimensional data; section <a href="1-3-sec-va.html#sec:va">1.3</a> introduces a visual analytics
+approach for understanding non-linear dimension reduction techniques described
+in chapter <a href="5-ch-tsne.html#ch:tsne">5</a>. Lastly, in chapter
 <a href="6-ch-conclusion.html#ch:conclusion">6</a> I describe the outputs of my thesis and plans for future
-research.</p>
+developments.</p>
 </div>
             </section>
 

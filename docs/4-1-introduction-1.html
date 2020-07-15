@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -172,19 +172,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements-2.html"><a href="acknowledgements-2.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis and visualisation with superintronic</a><ul>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Exploratory coverage analysis with superintronic and plyranges</a><ul>
 <li class="chapter" data-level="4.1" data-path="4-1-introduction-1.html"><a href="4-1-introduction-1.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="4-2-methods.html"><a href="4-2-methods.html"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#motivation-intron-signal-in-rna-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> Motivation: intron signal in RNA-seq data</a></li>
+<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.2.1</b> Representation of coverage estimation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-methods.html"><a href="4-2-methods.html#integration-of-external-annotations"><i class="fa fa-check"></i><b>4.2.2</b> Integration of external annotations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-methods.html"><a href="4-2-methods.html#discovery-of-regions-of-interest-via-data-descriptors"><i class="fa fa-check"></i><b>4.2.3</b> Discovery of regions of interest via ‘data descriptors’</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html"><i class="fa fa-check"></i><b>4.3</b> Results</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="4-3-results-1.html"><a href="4-3-results-1.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.3.1</b> Representation of coverage estimation</a></li>
-<li class="chapter" data-level="4.3.2" data-path="4-3-results-1.html"><a href="4-3-results-1.html#integration-of-external-gene-annotations"><i class="fa fa-check"></i><b>4.3.2</b> Integration of external gene annotations</a></li>
-<li class="chapter" data-level="4.3.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html#discovery-of-regions-of-interest-via-ranglers"><i class="fa fa-check"></i><b>4.3.3</b> Discovery of regions of interest via ‘ranglers’</a></li>
-<li class="chapter" data-level="4.3.4" data-path="4-3-results-1.html"><a href="4-3-results-1.html#a-superintronic-workflow-for-uncovering-intron-retention"><i class="fa fa-check"></i><b>4.3.4</b> A superintronic workflow for uncovering intron retention</a></li>
-</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><i class="fa fa-check"></i><b>4.3</b> A workflow for uncovering intron retention in a zebrafish experiment</a></li>
 <li class="chapter" data-level="4.4" data-path="4-4-discussion-2.html"><a href="4-4-discussion-2.html"><i class="fa fa-check"></i><b>4.4</b> Discussion</a></li>
-<li class="chapter" data-level="4.5" data-path="4-5-conclusion-1.html"><a href="4-5-conclusion-1.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-acknowledgements-3.html"><a href="4-5-acknowledgements-3.html"><i class="fa fa-check"></i><b>4.5</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-1-introduction-2.html"><a href="5-1-introduction-2.html"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
@@ -204,12 +201,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.3" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-3-single-cell-mouse-retina-data"><i class="fa fa-check"></i><b>5.5.3</b> Case Study 3: Single cell mouse retina data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="5-6-discussion-3.html"><a href="5-6-discussion-3.html"><i class="fa fa-check"></i><b>5.6</b> Discussion</a></li>
-<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-3.html"><a href="5-7-acknowledgements-3.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
+<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-4.html"><a href="5-7-acknowledgements-4.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-findings-and-limitations.html"><a href="6-1-findings-and-limitations.html"><i class="fa fa-check"></i><b>6.1</b> Findings and limitations</a></li>
-<li class="chapter" data-level="6.2" data-path="6-2-software-development-and-impact.html"><a href="6-2-software-development-and-impact.html"><i class="fa fa-check"></i><b>6.2</b> Software development and impact</a></li>
-<li class="chapter" data-level="6.3" data-path="6-3-further-research.html"><a href="6-3-further-research.html"><i class="fa fa-check"></i><b>6.3</b> Further research</a></li>
+<li class="chapter" data-level="6.1" data-path="6-1-findings-and-impact.html"><a href="6-1-findings-and-impact.html"><i class="fa fa-check"></i><b>6.1</b> Findings and Impact</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html"><i class="fa fa-check"></i><b>6.2</b> Further Research</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-further-research.html"><a href="6-2-further-research.html#scalable-grammars-for-non-rectangular-data-structures"><i class="fa fa-check"></i><b>6.2.1</b> Scalable grammars for non-rectangular data structures</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html#extending-tour-displays-for-large-n-data-sets"><i class="fa fa-check"></i><b>6.2.2</b> Extending tour displays for large <span class="math inline">\(n\)</span> data sets</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -234,6 +233,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="introduction-1" class="section level2">
 <h2><span class="header-section-number">4.1</span> Introduction</h2>
+<p>In high-throughput sequencing data sets, coverage is the estimated number of
+reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omics analysis such peak-calling in ChIP-seq or variant calling in DNA-seq <span class="citation">(Sims et al. <a href="bibliography.html#ref-Sims2014-qk">2014</a>)</span>. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data. By faceting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
+insight into biological signal under study.
+Of course, due to the sheer size of most reference genome annotations
+it would take an extremely long time for an analyst to look at every
+single possible region where there is some interesting signal within the
+coverage trace. Because visualisation does not scale, we need to search the possible space of coverage traces and provide diagnostics for
+identifying traces with interesting biology. We have taken inspiration from
+visualisation literature; in particular the idea of scatter plot diagnostics (“scagnostics”) for summarising the space of all possible 2D scatter plots
+to a small number of descriptors of each scatter plots properties such as
+density or monotonicity <span class="citation">(Friedman and Stuetzle <a href="bibliography.html#ref-Friedman2002-yx">2002</a>; Wilkinson, Anand, and Grossman <a href="bibliography.html#ref-Wilkinson2005-xt">2005</a>)</span>. Similarly,
+searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead <span class="citation">(Hyndman, Wang, and Laptev <a href="bibliography.html#ref-Hyndman2015-sc">2015</a>)</span>.</p>
+<p>Although there are many flexible and powerful software tools, like BEDtools or DeepTools, for exploring and estimating coverage from common genomic data formats <span class="citation">(Quinlan and Hall <a href="bibliography.html#ref-Quinlan2010-gc">2010</a>; Ramı'rez et al. <a href="bibliography.html#ref-Ramirez2014-sh">2014</a>)</span>, it is advantageous to have tooling
+that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
+be possible with a single command line tool. There are also gains in reproducibility as analysts do not have to move between multiple software suites to explore their processed transcriptomics data.</p>
+<p>In <span class="citation">S. Lee et al. (<a href="bibliography.html#ref-Lee2019-mf">2019</a>)</span>, we showed that there is evidence that a major
+source of intron reads in RNA-seq datasets is pre-mRNA, and sought data analysis techniques to unravel different aspects of intron signal. In light of this,
+we made the assumption that most intron reads do not necessarily point to
+intron retention (IR) events, and developed a workflow based on combining
+multiple summary statistics, “data descriptors”, to find coverage traces that appear to have IR-like events by collapsing coverage scores over a design matrix alongside the exonic and intronic parts of a gene. To do this we developed a new R package called <strong>superintronic</strong> that provides tooling for exploratory
+coverage analysis by extending and integrating our previous software package,
+<strong>plyranges</strong> <span class="citation">(S. Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019">2019</a>)</span>.</p>
+<p>In this paper, we describe methodology for establishing data descriptors by turning coverage vectors into long form tidy data using <strong>superintronic</strong>
+and <strong>plyranges</strong>. We provide a workflow below
+using a zebrafish RNA-seq dataset for developing data descriptors to find IR like coverage traces within genes known to have minor class splicing events.</p>
 </div>
             </section>
 

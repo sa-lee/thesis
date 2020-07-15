@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Fluent statistical computing interfaces for biological data analysis</title>
-  <meta name="description" content="Fluent statistical computing interfaces for biological data analysis" />
+  <title>4.3 A workflow for uncovering intron retention in a zebrafish experiment | Fluent statistical computing interfaces for biological data analysis</title>
+  <meta name="description" content="4.3 A workflow for uncovering intron retention in a zebrafish experiment | Fluent statistical computing interfaces for biological data analysis" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Fluent statistical computing interfaces for biological data analysis" />
+  <meta property="og:title" content="4.3 A workflow for uncovering intron retention in a zebrafish experiment | Fluent statistical computing interfaces for biological data analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Fluent statistical computing interfaces for biological data analysis" />
+  <meta name="twitter:title" content="4.3 A workflow for uncovering intron retention in a zebrafish experiment | Fluent statistical computing interfaces for biological data analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="abstract.html"/>
+<link rel="prev" href="4-2-methods.html"/>
+<link rel="next" href="4-4-discussion-2.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -231,33 +231,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Fluent statistical computing interfaces for biological data analysis</h1>
-<p class="author"><em>Stuart Lee</em></p>
+<div id="a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment" class="section level2">
+<h2><span class="header-section-number">4.3</span> A workflow for uncovering intron retention in a zebrafish experiment</h2>
+<p>In the study of gene regulation, there is much interest in uncovering the
+effects of aberrant minor class splicing (called U12 splicing) on the transcriptome.
+Minor class splicing is a regulatory process where a class of
+introns (called U12 introns in this case but there exist other classes in eukaryotic organisms such as U2 introns) are removed from pre-mRNA prior to gene expression. The removal of these introns is catalysed by small ribonucleoproteins (snRNPs)
+which identify key motifs and branch sites in the intron to begin splicing <span class="citation">(Markmiller et al. <a href="bibliography.html#ref-Markmiller2014-kg">2014</a>)</span>.
+Here we describe an exploratory workflow for finding coverage traces
+with evidence for intron retention using RNA-seq data from a knockout experiment in zebrafish obtained from the Heath Lab at WEHI.</p>
+<p>The data consist of 11 zebrafish samples from single-end polyA enriched RNA-seq libraries pooled from zebrafish larvae. The experimental factors looked at combinations of genotype (whether the gene rnpc3 has been knocked out or not) and line (whether the zebrafish larvae have the caliban <em>cal</em> or mutant caliban <em>zm-cal</em> phenotype). Within each combination there are three biological replicates, except for the combination <em>zm-cal</em> and wild-type rnpc3 which
+had two replicates.</p>
+<p>FASTQ files were aligned to the GRCz11 reference genome using subjunc with
+the default parameters called from Rsubread to produce BAM files for each
+sample <span class="citation">(Liao, Smyth, and Shi <a href="bibliography.html#ref-Liao2013">2013</a>, <a href="bibliography.html#ref-Liao2019-qn">2019</a>)</span>. The coverage was then estimated directly from the set of BAM files
+using <strong>superintronic</strong> into the long form <em>GRanges</em> representation we described above.</p>
+<p>The gene annotation files were
+obtained as GFF files from RefSeq and used that to construct the exonic
+and intronic parts of each gene as <strong>GRanges</strong> object using <em>superintronic</em>.
+We further filtered genes that had a single exon or genes that were overlapping
+others in the annotation and that were not on the main contigs of the reference genome (i.e. excluding mitochondria) to simplify our analysis and reduce any coverage ambiguity. This left 18,270 genes available for
+computing data descriptors on in order to detecting IR-like coverage traces. Across each combination of genotype and line, we first log<span class="math inline">\(_2\)</span> transformed the coverage score with an offset of one, and then intersected the coverage <em>GRanges</em> with exonic and intronic features of each gene. For each gene,
+the weighted mean and standard deviation of the log-transformed coverage score were computed over all intron and exon parts within the groupings of
+genotype and line. We also computed the bases above descriptor for intron
+features. It refers to the total number of bases within an intron that has a score above the overall average exon coverage score. The scatter plot
+matrix view of these descriptors is shown in figure <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-splom">4.2</a>
+for a single biological group in the experiment. Using these views and
+by summarising over the data descriptors, we came up with thresholds
+for finding genes that have IR-like traces within each biological group.</p>
+<p>(ref:si-splom): A hexbin scatter plot matrix of the data descriptors estimated for the <em>cal</em> rnpc3 knock out zebrafish line. To identify coverage traces with IR like events, we want a set of descriptors that will find genes with the following characteristics: the gene is “expressed” that has a large number of intron bases relative to the coverage of other intron features, and has relatively stable coverage within exon features. To do this we looked at the descriptor, as well as computing the the mean and standard deviation of both exon and intron features.</p>
+<div class="figure" style="text-align: center"><span id="fig:si-splom"></span>
+<img src="img/Cal-Rnpc3_KO-pairs-plot.png" alt="(ref:si-splom)" width="80%" />
+<p class="caption">
+Figure 4.2: (ref:si-splom)
+</p>
 </div>
-<div id="welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p>This is the website for my PhD thesis at Monash University (Australia), titled “Fluent statistical computing interfaces for biological data analysis”.
-It is a work in progress.</p>
-
-<!-- 
-
-# Copyright notice {-}
-
-\textcopyright { }Stuart Lee (\number\the\year). 
-
-\newpage
-
--->
-
+<p>We decided to select genes with the following thresholds: genes have an average exon log-coverage greater than the mean of average exon log-coverage values across all genes, have an average intron log-coverage greater than the average standard deviation of exon log-coverage values over all genes, and
+the standard deviation of intron log-coverage values is twice the standard
+deviation of exon log-coverage values. That is, we are selecting genes that
+are expressed but have large average intron expression that is more variable than the gene’s exon expression. This results in a total of 86 genes selected
+to link back to their underlying coverage traces, with the overlaps shown
+in the UpSet plot in figure <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-upset">4.3</a> <span class="citation">(Lex et al. <a href="bibliography.html#ref-Lex2014-bh">2014</a>)</span>. The procedure produces gene coverage traces with known minor class splice sites affected by the knockout procedure such as ccdc43 and nat15 (figures <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-ccdc43">4.4</a> and <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-nat15">4.5</a>), as well as some that appear to have U12 intron retention like events such as mapk3 or tspan31 (figures <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-mapk3">4.6</a> and <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-tspan31">4.7</a>) that affect other parts of the gene.</p>
+<p>(ref:si-upset): Gene overlaps found between each combination of genotype and line using the thresholds defined in the text. Our procedure mostly finds genes with IR like profiles across all groups (28 shared between all four) or that is unique to a single group, since we do not consider looking at differential IR and run our thresholding separately for each group of replicates. The rnpc3 knockout lines</p>
+<div class="figure" style="text-align: center"><span id="fig:si-upset"></span>
+<img src="img/si-olaps.png" alt="(ref:si-upset)" width="80%" />
+<p class="caption">
+Figure 4.3: (ref:si-upset)
+</p>
+</div>
+<p>(ref:si-cvg-ccdc43): Coverage traces faceted by biological group for the zebrafish knockout experiment, oriented from the 5’ to 3’ end of the gene. Orange areas refer to intronic parts of the gene, while dark green areas refer to the exonic part. The ccdc43 gene is known to have enhanced U12 intron retention in the caliban phenotype and increase retention when rnpc3 is knocked out as can be seen directly from the intron located at around 31.603Mb.</p>
+<div class="figure" style="text-align: center"><span id="fig:si-cvg-ccdc43"></span>
+<img src="img/ccdc43.pdf" alt="(ref:si-cvg-ccdc43)" width="50%" />
+<p class="caption">
+Figure 4.4: (ref:si-cvg-ccdc43)
+</p>
+</div>
+<p>(ref:si-cvg-nat15): The gene nat15 exhibits another example of U12 intron retention (located at around 27.93Mb) in the rnpc3 knockout groups.</p>
+<div class="figure" style="text-align: center"><span id="fig:si-cvg-nat15"></span>
+<img src="img/nat15.pdf" alt="(ref:si-cvg-nat15)" width="50%" />
+<p class="caption">
+Figure 4.5: (ref:si-cvg-nat15)
+</p>
+</div>
+<p>(ref:si-cvg-mapk3): The gene mapk3 appears to have intron retention close to the start of the gene that have different impacts downstream, which result in different IR profiles between the knockout and wild-type groups.</p>
+<div class="figure" style="text-align: center"><span id="fig:si-cvg-mapk3"></span>
+<img src="img/mapk3.pdf" alt="(ref:si-cvg-mapk3)" width="50%" />
+<p class="caption">
+Figure 4.6: (ref:si-cvg-mapk3)
+</p>
+</div>
+<p>(ref:si-cvg-tspan31): The gene tspan31 has a potential cryptic splice site
+within the intron retained in the knockout groups.</p>
+<div class="figure" style="text-align: center"><span id="fig:si-cvg-tspan31"></span>
+<img src="img/tspan31.pdf" alt="(ref:si-cvg-tspan31)" width="50%" />
+<p class="caption">
+Figure 4.7: (ref:si-cvg-tspan31)
+</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="abstract.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="4-2-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-4-discussion-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -279,7 +337,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/sa-lee/thesis/edit/master/index.Rmd",
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//04-intron.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="4-1-introduction-1.html"/>
-<link rel="next" href="4-3-results-1.html"/>
+<link rel="next" href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -172,19 +172,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="3-6-software-availability.html"><a href="3-6-software-availability.html"><i class="fa fa-check"></i><b>3.6</b> Software Availability</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements-2.html"><a href="acknowledgements-2.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Tidy coverage analysis and visualisation with superintronic</a><ul>
+<li class="chapter" data-level="4" data-path="4-ch-intron.html"><a href="4-ch-intron.html"><i class="fa fa-check"></i><b>4</b> Exploratory coverage analysis with superintronic and plyranges</a><ul>
 <li class="chapter" data-level="4.1" data-path="4-1-introduction-1.html"><a href="4-1-introduction-1.html"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
 <li class="chapter" data-level="4.2" data-path="4-2-methods.html"><a href="4-2-methods.html"><i class="fa fa-check"></i><b>4.2</b> Methods</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#motivation-intron-signal-in-rna-seq-data"><i class="fa fa-check"></i><b>4.2.1</b> Motivation: intron signal in RNA-seq data</a></li>
+<li class="chapter" data-level="4.2.1" data-path="4-2-methods.html"><a href="4-2-methods.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.2.1</b> Representation of coverage estimation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-methods.html"><a href="4-2-methods.html#integration-of-external-annotations"><i class="fa fa-check"></i><b>4.2.2</b> Integration of external annotations</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-methods.html"><a href="4-2-methods.html#discovery-of-regions-of-interest-via-data-descriptors"><i class="fa fa-check"></i><b>4.2.3</b> Discovery of regions of interest via ‘data descriptors’</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html"><i class="fa fa-check"></i><b>4.3</b> Results</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="4-3-results-1.html"><a href="4-3-results-1.html#representation-of-coverage-estimation"><i class="fa fa-check"></i><b>4.3.1</b> Representation of coverage estimation</a></li>
-<li class="chapter" data-level="4.3.2" data-path="4-3-results-1.html"><a href="4-3-results-1.html#integration-of-external-gene-annotations"><i class="fa fa-check"></i><b>4.3.2</b> Integration of external gene annotations</a></li>
-<li class="chapter" data-level="4.3.3" data-path="4-3-results-1.html"><a href="4-3-results-1.html#discovery-of-regions-of-interest-via-ranglers"><i class="fa fa-check"></i><b>4.3.3</b> Discovery of regions of interest via ‘ranglers’</a></li>
-<li class="chapter" data-level="4.3.4" data-path="4-3-results-1.html"><a href="4-3-results-1.html#a-superintronic-workflow-for-uncovering-intron-retention"><i class="fa fa-check"></i><b>4.3.4</b> A superintronic workflow for uncovering intron retention</a></li>
-</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html"><i class="fa fa-check"></i><b>4.3</b> A workflow for uncovering intron retention in a zebrafish experiment</a></li>
 <li class="chapter" data-level="4.4" data-path="4-4-discussion-2.html"><a href="4-4-discussion-2.html"><i class="fa fa-check"></i><b>4.4</b> Discussion</a></li>
-<li class="chapter" data-level="4.5" data-path="4-5-conclusion-1.html"><a href="4-5-conclusion-1.html"><i class="fa fa-check"></i><b>4.5</b> Conclusion</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-acknowledgements-3.html"><a href="4-5-acknowledgements-3.html"><i class="fa fa-check"></i><b>4.5</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-1-introduction-2.html"><a href="5-1-introduction-2.html"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
@@ -204,12 +201,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5.3" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-3-single-cell-mouse-retina-data"><i class="fa fa-check"></i><b>5.5.3</b> Case Study 3: Single cell mouse retina data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="5-6-discussion-3.html"><a href="5-6-discussion-3.html"><i class="fa fa-check"></i><b>5.6</b> Discussion</a></li>
-<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-3.html"><a href="5-7-acknowledgements-3.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
+<li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-4.html"><a href="5-7-acknowledgements-4.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-findings-and-limitations.html"><a href="6-1-findings-and-limitations.html"><i class="fa fa-check"></i><b>6.1</b> Findings and limitations</a></li>
-<li class="chapter" data-level="6.2" data-path="6-2-software-development-and-impact.html"><a href="6-2-software-development-and-impact.html"><i class="fa fa-check"></i><b>6.2</b> Software development and impact</a></li>
-<li class="chapter" data-level="6.3" data-path="6-3-further-research.html"><a href="6-3-further-research.html"><i class="fa fa-check"></i><b>6.3</b> Further research</a></li>
+<li class="chapter" data-level="6.1" data-path="6-1-findings-and-impact.html"><a href="6-1-findings-and-impact.html"><i class="fa fa-check"></i><b>6.1</b> Findings and Impact</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html"><i class="fa fa-check"></i><b>6.2</b> Further Research</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-further-research.html"><a href="6-2-further-research.html#scalable-grammars-for-non-rectangular-data-structures"><i class="fa fa-check"></i><b>6.2.1</b> Scalable grammars for non-rectangular data structures</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html#extending-tour-displays-for-large-n-data-sets"><i class="fa fa-check"></i><b>6.2.2</b> Extending tour displays for large <span class="math inline">\(n\)</span> data sets</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -234,8 +233,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="methods" class="section level2">
 <h2><span class="header-section-number">4.2</span> Methods</h2>
-<div id="motivation-intron-signal-in-rna-seq-data" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Motivation: intron signal in RNA-seq data</h3>
+<p><strong>superintronic</strong> is an R package available on GitHub at <a href="https://github.com/sa-lee/superintronic" class="uri">https://github.com/sa-lee/superintronic</a> and used for estimating, representing,
+and visualising per-base coverage scores, that can then be
+flexibly summarised over factors within an experimental design and collapsed
+over regions of the genome using our companion package <strong>plyranges</strong>. The
+aspects of this combined workflow are summarised in figure <a href="4-2-methods.html#fig:si-fig">4.1</a>.</p>
+<p>(ref:si-fig): An overview of the <strong>superintronic</strong> and <strong>plyranges</strong> workflow. Coverage is estimated directly using the design matrix that contains a source column pointing to the locations of BAM files. The long-form representation is output as a <strong>GRanges</strong> object, and contains columns that were part of the design. Additional annotations are add with join functions, here we show the particular case of expanding the coverage <strong>GRanges</strong> to include exonic and intronic parts of a gene. This object can be further analysed using <strong>plyranges</strong> and our data descriptors approach, and then descriptors can be visualised as a scatter plot matrix with the <code>GGally</code> and <code>ggplot2</code> packages <span class="citation">(Schloerke et al. <a href="bibliography.html#ref-ggally">2020</a>; Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz">2016</a>)</span>. Coverage traces can be directly generated with <strong>superintronic</strong> and collapsed over parts of the design matrix to identify differences between groups.</p>
+<div class="figure" style="text-align: center"><span id="fig:si-fig"></span>
+<img src="img/si-workflow.png" alt="(ref:si-fig)" width="80%" />
+<p class="caption">
+Figure 4.1: (ref:si-fig)
+</p>
+</div>
+<div id="representation-of-coverage-estimation" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Representation of coverage estimation</h3>
+<p>The per base coverage score is estimated directly from one or more BAM files
+that represent the units within the experimental design,
+along with an optional experimental design table that is returns
+a long-form tidy <strong>GRanges</strong> data structure. The coverage estimation is
+computed via the <strong>Rsamtools</strong> package, and
+users have the ability to estimate coverage in parallel and drop regions
+in the genome where there is no coverage <span class="citation">(<span class="citeproc-not-found" data-reference-id="rsamtools"><strong>???</strong></span>; <span class="citeproc-not-found" data-reference-id="GenomicRanges"><strong>???</strong></span>)</span>. This
+representation is tidy, since each row of the resulting <strong>GRanges</strong> data
+structure corresponds to position(s) within a given sample with a given
+coverage score alongside any variables such as biological group. While the long-form representation repeats the same information
+for a sample within the design, the size of the resulting <strong>GRanges</strong> in
+memory can be compressed using run-length encoding for any categorical
+variable. This representation allows us to easily transform the coverage scores
+and integrate annotations using the <strong>plyranges</strong> grammar, and visualise traces using <strong>ggplot2</strong> <span class="citation">(Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz">2016</a>)</span>.</p>
+</div>
+<div id="integration-of-external-annotations" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Integration of external annotations</h3>
+<p>External reference annotations, perhaps transcripts or exons,
+can be coerced to <strong>GRanges</strong> objects, are incorporated into the coverage <strong>GRanges</strong> by taking the intersection of
+the annotation with the <strong>GRanges</strong> using an overlap intersect join from the <strong>plyranges</strong> software. The resulting intersection will now contain the
+per base coverage that are overlapped the genomic features in the annotation,
+along side any metadata about the features themselves. Since our main workflow
+interest is in discovering coverage traces with IR profiles, <strong>superintronic</strong>
+provides some syntactic sugar for unravelling gene annotations into their exonic
+and intronic parts, and intersecting them with a coverage <strong>GRanges</strong>.</p>
+</div>
+<div id="discovery-of-regions-of-interest-via-data-descriptors" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Discovery of regions of interest via ‘data descriptors’</h3>
+<p>Once the coverage <strong>GRanges</strong> has reference genomic features, data
+descriptors can be computed via collecting summary statistics across
+the factors of the experimental design and features of interest. This can be
+achieved using <strong>plyranges</strong> directly by first grouping across variables
+of interest, computing descriptors defined by <strong>superintronic</strong> and then
+pivoting the results into a wide form table for additional processing or
+visualisation. There are many descriptors defined by <strong>superintronic</strong>
+that are weighted statistics (as we have to account for the number of bases
+covered, or the width of the range) of the coverage score, such as the mean
+and standard deviation. There are also descriptors that can be used to find
+the number of times the coverage trace is above a certain number of bases
+or score. To find coverage traces that have unusual descriptors,
+the descriptors can be visualised directly as a scatter plot matrix. After that
+thresholds can be applied to filter the genomic features that had extreme
+descriptors on the coverage <strong>GRanges</strong>, and the traces can be visualised.</p>
 </div>
 </div>
             </section>
@@ -244,7 +298,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="4-1-introduction-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="4-3-results-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
