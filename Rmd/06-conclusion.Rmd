@@ -91,7 +91,7 @@ and non-rectangular.
 
 ### Extending tour displays for large $n$ data sets
 
-We showed in chapter \@ref(ch:liminal) that tours provide a global overview
+We showed in chapter \@ref(ch:tsne) that tours provide a global overview
 that can be used as tool for exploring model fits. An issue that arises is
 how to scale the tour as the number of observations increases. There are
 latencies in sending data from the back end to the visualisation client
