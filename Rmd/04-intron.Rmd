@@ -110,6 +110,15 @@ descriptors on the coverage **GRanges**, and the traces can be visualised.
 
 ### A workflow for uncovering intron retention in zebrafish
 
+In the study of gene regulation, there is much interest in uncovering the
+effects of aberrant minor class splicing (called U12 splicing) on the transcriptome.
+Minor class splicing is a regulatory process where a class of 
+introns (called U12 introns in this case but there exist other classes in eukaryotic organisms) are removed from pre-mRNA prior to gene expression. The removal of these introns is catalysed by small ribonucleoproteins (snRNPs)
+which identify key motifs and branch sites in the intron to begin splicing.
+Here we describe an exploratory workflow for finding coverage traces
+with evidence for intron retention using a knockout experiment in zebrafish.
+
+
 
 Read coverage of intronic and exonic regions were calculated for poly(A) RNA and Total RNA HCC827 human cell lines using our \textit{superintronic} package,.
 Genes of interest were restricted to protein coding genes on reference chromosomes, and we removed any genes that overlapped another to simplify the analysis and reduce coverage ambiguity.  
