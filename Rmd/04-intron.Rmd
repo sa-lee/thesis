@@ -55,7 +55,7 @@ aspects of this combined workflow are summarised in figure \@ref(fig:si-fig).
 
 (ref:si-fig): An overview of the **superintronic** and **plyranges** workflow. Coverage is estimated directly using the design matrix that contains a source column pointing to the locations of BAM files. The long-form representation is output as a **GRanges** object, and contains columsns that were part of the design. Additional annotations are add with join functions, here we show the particular case of expanding the coverage **GRanges** to include exonic and intronic parts of a gene. This object can be further anlaysed using **plyranges** and our data descriptors approach, and then descriptors can be visualised as a scatter plot matrix with the `GGally` and `ggplot2` packages [@ggally; @Wickham2016-gz]. Coverage traces can be directly generated with **superintronic** and collapsed over parts of the design matrix to identify differences between groups.
 
-```{r si-fig, fig.cap = "(ref:si-fig)", echo = FALSE}
+```{r si-fig, fig.cap = "(ref:si-fig)", out.width = "80%", echo = FALSE}
 knitr::include_graphics(here::here("img", "si-workflowflow.png"))
 ```
 
@@ -106,316 +106,89 @@ thresholds can be applied to filter the genomic features that had extreme
 descriptors on the coverage **GRanges**, and the traces can be visualised. 
 
 
-## Results
-
-### A workflow for uncovering intron retention in zebrafish
+## A workflow for uncovering intron retention in  a zebrafish experiment
 
 In the study of gene regulation, there is much interest in uncovering the
 effects of aberrant minor class splicing (called U12 splicing) on the transcriptome.
 Minor class splicing is a regulatory process where a class of 
-introns (called U12 introns in this case but there exist other classes in eukaryotic organisms) are removed from pre-mRNA prior to gene expression. The removal of these introns is catalysed by small ribonucleoproteins (snRNPs)
+introns (called U12 introns in this case but there exist other classes in eukaryotic organisms such as U2 introns) are removed from pre-mRNA prior to gene expression. The removal of these introns is catalysed by small ribonucleoproteins (snRNPs)
 which identify key motifs and branch sites in the intron to begin splicing.
 Here we describe an exploratory workflow for finding coverage traces
-with evidence for intron retention using a knockout experiment in zebrafish.
+with evidence for intron retention using RNA-seq data from a knockout experiment in zebrafish obtained from the Heath Lab at WEHI.
 
+The data consist of 11 zebrafish samples from single-end polyA enriched RNA-seq libraries pooled from zebrafish larvae. The experimental factors looked at combinations of genotype (whether the gene rnpc3 has been knocked out or not) and line (whether the zebrafish larvae have the caliban *cal* or mutant caliban *zm-cal* phenotype). Within each combination there are three biological replicates, except for the combination *zm-cal* and wildtype rnpc3 which
+had two replicates.
 
+FASTQ files were aligned to the GRCz11 reference genome using subjunc with
+the default parameters called from Rsubread to produce BAM files for each
+sample. The coverage was then estimated directly from the set of BAM files
+using **superintronic** into the long form *GRanges* representation we described above. 
 
-Read coverage of intronic and exonic regions were calculated for poly(A) RNA and Total RNA HCC827 human cell lines using our \textit{superintronic} package,.
-Genes of interest were restricted to protein coding genes on reference chromosomes, and we removed any genes that overlapped another to simplify the analysis and reduce coverage ambiguity.  
-Genes were then further filtered if they were not expressed in the poly(A) RNA protocol (requiring at least 3 reads overlapping intronic and exonic regions). 
-A total of 3,262 genes were examined and categorised as short, regular or long (roughly 1,087 genes in each category) by splitting the length of each gene into three bins by tertiles. 
+The gene annotation files were
+obtained as GFF files from RefSeq and used that to construct the exonic
+and intronic parts of each gene as **GRanges** object using *superintronic*. 
+We further filtered genes that had a single exon or genes that were overlapping
+others in the annotation and that were not on the main contigs of the reference genome (i.e. exlcuding mitochondria) to simplify our analysis and reduce any coverage ambiguity. This left 18,270 genes available for 
+computing data descriptors on in order to detecting IR-like coverage traces. Accross each combination of genotype and line, we first log$_2$ transformed the coverage score with an offset of one, and then intersected the coverage *GRanges* with exonic and intronic features of each gene. For each gene,
+the weighted mean and standard deviation of the log-transformed coverage score were computed over all intron and exon parts within the groupings of 
+genotype and line. We also computed the bases above descriptor for intron
+features. It refers to the total number of bases within an intron that has a score above the overall average exon coverage score. The scatter plot 
+matrix view of these descriptors is shown in figure \@ref(fig:si-splom)
+for a single biological group in the experiment. Using these views and
+by summarising over the data descriptors, we came up with thresholds
+for finding genes that have IR-like traces within each biological group.
 
-Using associated BAM files and GENCODE v27 annotation GTF, \textit{superintronic} summarised the number of bases covered at a given coverage score for each gene and sample.
-For exonic regions and intronic regions, coverage scores were transformed to log$_2$-scale using an offset of 0.5, and then normalised by dividing by each gene and each sample's maximum log-coverage score.
-Normalised log-coverage scores, or {\it relative log-coverage} (relative to each gene's maximum coverage), were divided into 20 windows along the length of each gene using the \textit{GenomicRanges} package \cite{GenomicRanges}.
-To summarise coverage patterns across genes, \textit{plyranges} \cite{Lee2019plyranges} was applied to relative log-coverage scores by intersecting it with the positional windows.
-Each window's mean coverage score (mean relative log-coverage) was calculated for each gene.
-Based on the position of the windows, they were further summarised across genes by taking its mean. % (mean of mean relative log-coverage).  
-The summary values were calculated separately for genes categorised as short, regular and long to represent general coverage trends along the gene body.
+(ref:si-splom): A hexbin scatter plot matrix of the data descriptors estimated for the *cal* rnpc3 knock out zebrafish line. To identify coverage traces with IR like events, we want a set of descriptors that will find genes with the following characteristics: the gene is "expressed" that has a large number of intron bases relative to the coverage of other intron features, and has  relatively stable coverage within exon features. To do this we looked at the  descriptor, as well as computing the the mean and standard deviation of both exon and intron features.
 
-\textit{Human cell lines} of lung adenocarcinoma HCC827 and NCI-H1975 were cultured on three
-separate occasions by Holik {\it et al.} (2017) \cite{Holik:NAR:2017} giving three pseudo biological replicates. 
-RNA was extracted from each pseudo biological replicate and split into two and prepared as poly(A) RNA and Total RNA libraries.
-Raw sequencing reads were downloaded from the Gene Expression Omnibus (GEO) \citep{GEO:2013} under accession number GSE64098.
-12 libraries were examined for this dataset. 
+```{r si-splom, fig.cap = "(ref:si-splom)", out.width="80%"}
+knitr::include_graphics(here::here("img", "Cal-Rnpc3_KO-pairs-plot.png"))
+```
 
-FASTQ files containing raw sequencing reads were aligned to the human \textit{hg38} or mouse \textit{mm10}
-% or {\color{blue}{zebrafish \textit{GRCz11}}} 
-genome using \textit{subjunc} \citep{Liao:NAR:2013} with default parameters in the \textit{Rsubread} software package \citep{Rsubread:2019}. 
-GENCODE's main \textit{Comprehensive gene annotation} file in GTF format was downloaded from {https://www.gencodegenes.org} for human (Release 27) and mouse (Release M12). 
-Using ``gene types'' (rather than ``transcript types'') from Gencode, the annotation files were simplified by taking the union of two or more overlapping exons from transcripts of the same gene.
-The adjustment provides a simplification of genomic positions on each strand, such that each position is classified as belonging to ``exon'', ``intron'' or otherwise outside of an annotated gene.
-Three resultant annotation files were saved in standard annotation format (SAF) -- exon annotation, intron annotation (region between exons), and genebody annotation (region spanning first to last exon).
-Our Supplementary Materials available at \href{https://github.com/charitylaw/Intron-reads}{https://github.com/charitylaw/Intron-reads} contain the scripts to process annotation files, together with other data analyses and supplementary figures. 
+We decided to select genes with the following thresholds:  genes have an average exon log-coverage greater than the mean of average exon log-coverage values accross all genes, have an average intron log-coverage greater than the average standard deviation of exon log-coverage values over all genes, and
+the standard deviation of intron log-coverage values is twice the standard
+deviation of exon log-coverage values. That is, we are selecting genes that
+are expressed but  have large average intron expression that is more variable than the gene's exon expression. This results in a total of 86 genes selected
+to link back to their underlying coverage traces, with the overlaps shown
+in the UpSet plot in figure \@ref(fig:si-upset). The procedure produces gene coverage traces with known minor class splice sites affected by the knockout procedure such as ccdc43 and nat15 (figures \@ref(fig:si-cvg-ccdc43) and \@ref(fig:si-cvg-nat15)), as well as some that appear to have U12 intron retention like events such as mapk3 or tspan31 (figures \@ref(fig:si-cvg-mapk3) and \@ref(fig:si-cvg-tspan31)) that affect other parts of the gene.
 
+(ref:si-upset): Gene overlaps found between each combination of genotype and line using the thresholds defined in the text. Our procedure mostly finds genes with IR like profiles across all groups (28 shared between all four) or that is unique to a single group, since we do not consider looking at differential IR and run our thresholding seperately for each group of replicates. The rnpc3 knockout lines
 
+```{r si-upset, echo=FALSE, fig.cap = "(ref:si-upset)", out.width="80%"}
+knitr::include_graphics(here::here("img", "si-upset.pdf"))
+```
 
+(ref:si-cvg-ccdc43): Coverage traces facetted by biological group for the zebrafish knockout experiment, oriented from the 5' to 3' end of the gene. Orange areas refer to intronic parts of the gene, while dark green areas refer to the exonic part. The ccdc43 gene is known to have enhanced U12 intron retention in the caliban phenotype and increase retention when rnpc3 is knocked out as can be seen directly from the intron located at around 31.603Mb.  
 
+```{r si-cvg-ccdc43, echo=FALSE, fig.cap = "(ref:si-cvg-ccdc43)", out.width="50%"}
+knitr::include_graphics(here::here("img", "ccdc43.pdf"))
+```
 
-\subsection{\textit{Superintronic} finds genes with IR-like coverage profiles in human cell lines}
+(ref:si-cvg-nat15): The gene nat15 exhibits another example of U12 intron retention (located at around 27.93Mb) in the rnpc3 knockout groups.  
 
-\begin{figure*}[!tpb]
-\centerline{\includegraphics[width=\textwidth]{coverage-si-hits.pdf}}
-\caption{{\it Superintronic} selects genes with IR-like coverage profiles in poly(A) RNA HCC827 cell lines. Genes (a) PSMB7, (b) EIF2S3, and (c) ARGLU1 are highlighted out of 43 genes selected. Whilst the analysis was carried out on poly(A) RNA libraries, coverage is shown for both poly(A) RNA HCC827 (top) and Total RNA HCC827 (bottom) samples to ensure that results are not an artefact of RNA library preparation. Coverage is oriented from 5' to 3', with exon regions coloured green and intron regions coloured orange.
-}\label{fig:ir}
-\end{figure*}
+```{r si-cvg-nat15,  echo=FALSE, fig.cap = "(ref:si-cvg-nat15)", out.width="50%"}
+knitr::include_graphics(here::here("img", "nat15.pdf"))
+```
 
+(ref:si-cvg-mapk3): The gene mapk3 appears to have intron retention close to the start of the gene that have different impacts downstream, which result in different IR profiles between the knockout and wildtype groups.  
 
-Using \textit{superintronic}, poly(A) RNA HCC827 cell lines were examined for genes with IR  after selecting genes in the hg38 reference that were protein coding, did not overlap any other gene and were placed on the main configs -- a total of 6,606 genes. 
-These genes were then split into intron and exon regions and intersected with the coverage of each sample. 
-Per gene intron and exon summary statistics, mean and standard deviation, were computed on log-coverage values. 
-We selected genes enriched for IR-like coverage profiles by looking for ``expressed'' genes, where for a substantial number of intron bases its coverage is much higher than other intron features within the same gene while having similar expression levels to the exon features. 
-To do this we used the following thresholds -- genes had an average exon log-coverage of greater than 2 (corresponding to the mean of average exon log-coverage values across all genes), a standard deviation of intron log-coverage greater than 1.5 (corresponding to the mean of intron standard deviation values across all genes), and genes with a large number of intron bases with log-coverage greater than 2 (top 1\% of genes).
-The thresholds were chosen after examining distributions of the summary statistics (Supplementary Figure 4).
-Forty-three genes met these criteria, where a manual check of coverage profiles revealed that 36 genes indeed appear IR-like (see `Analyses' page in Supplementary Materials).
-We highlight 3 of these genes in Figure~\ref{fig:ir}.
-The coverage of remaining 7 genes appear to be more pre-mRNA-like, with large 
-variation in intron coverage, where at its peak it is expressed similarly to exon features. 
+```{r si-cvg-mapk3,  echo=FALSE, fig.cap = "(ref:si-cvg-mapk3)", out.width="50%"}
+knitr::include_graphics(here::here("img", "mapk3.pdf"))
+```
 
-We use poly(A) RNA samples in our analysis for consistency with previous studies on IR.
-In theory, Total RNA samples may be more appropriate for this exercise since it is less biased towards the 3' end, where high 3' intron coverage as a result of 3' bias in poly(A) RNA libraries can be mistaken as a 3' retained intron. 
-For this reason, we review both the coverage of poly(A) RNA and Total RNA samples in  our \textcolor{red}{S}upplementary \textcolor{red}{M}aterials for all selected genes to ensure that retained introns found in poly(A) RNA samples are not an artifact of RNA library preparation. 
+(ref:si-cvg-tspan31): The gene tspan31 has a potential cryptic splice site
+within the intron retained in the knockout groups.
 
-If differentially retained introns are of interest, one could simply run \textit{superintronic} on two conditions separately and compare lists of IR-like genes between groups.
-We found that differences between the lists of IR-like genes were concordant with \textit{index} results for genes DE by intron counts, as expected (see `Analyses' page in Supplementary Materials).
-For example, 14 genes were uniquely selected as IR-like in Total RNA HCC827 cell line when compared to Total RNA NCI-H1975 cell line using \textit{superintronic}, where 13 of those genes were also found to be DE in intron counts by \textit{index}, and in the expected direction.
-Similarly, 19 genes were uniquely detected as IR-like in Total RNA NCI-H1975 by \textit{superintronic}, 16 of which were also detected as DE in intron counts by \textit{index}.
-Additionally, 12 genes which were found to be IR-like in both cell lines appear to have varying intron expression according to \textit{index} since it is found to be DE in intron counts. 
-
-\textcolor{red}{
-Whilst genes that are uniquely IR-like were concordant with directional changes in intron counts, we did not find that IR-like genes played a large part in \textit{index} gene categorisation.
-This was mostly expected since thousands of genes were detected as significantly DE by \textit{index} and a relatively small number of genes were detected as IR-like by \textit{superintronic}.
-Specifically, IR-like genes did not overlap with one particular \textit{index} category (see `Analyses' page in Supplementary Materials).
-Of genes that are classified as intron+ or intron-, only 3 out of 1,006 genes were also detected by \textit{superintronic} as IR-like.
-In the ``mixed'' category, 2 out of 54 genes were also detected as IR-like.
-}
+```{r si-cvg-tspan31, echo=FALSE, fig.cap = "(ref:si-cvg-tspan31)", out.width="50%"}
+knitr::include_graphics(here::here("img", "tspan31.pdf"))
+```
 
 ## Discussion
 
 
-## Conclusion
 
 
-<!-- ## Data -->
+## Acknowledgements
 
-<!-- We will use data from 12 samples from the human cell line mixture RNA-seq -->
-<!-- data. There are three biological replicates across two library preparation kits, -->
-<!-- a polyA kit and a total RNA kit. The BAM files have been previously aligned -->
-<!-- with subread using the hg20 reference genome.  -->
+We would like to thank Alex Garnham, Stephen Mieruszynski and Joan Heath
+for providing the zebrafish data and helping interpret the results from the workflow.
 
-<!-- ```{r prepare-design, echo= FALSE} -->
-<!-- design <- readRDS(here("data", "superintronic", "design.rds")) -->
-<!-- ``` -->
-
-
-<!-- ## `superintronic` analysis -->
-
-<!-- A superintronic analysis consists of four steps: -->
-<!-- 1. Preparing the annotation and extract exonic/intronic parts -->
-<!-- 2. Computing coverage over regions of interest -->
-<!-- 3. Summarising coverage over regions of interest -->
-<!-- 4. Visualising the results -->
-
-<!-- Steps 1 and 2. are performed in the `scripts/run_coverage.R` -->
-
-<!-- ### Preparing GFF/GTF files -->
-
-<!-- ```{r gff} -->
-<!-- library(superintronic) -->
-<!-- parts <- readRDS(here::here("data", "complete-annotation.rds")) -->
-<!-- parts -->
-<!-- ``` -->
-
-<!-- These can be interrogated as desired, but for our purposes we will keep -->
-<!-- genes that are protein coding, on main chromosomes but not mitochondrial  -->
-<!-- genome, and do not overlap any other genes and have more than one exon. -->
-
-<!-- ```{r default-filter, echo = FALSE} -->
-<!-- parts_sub <- readRDS(here::here("data", "filtered-annotation.rds")) -->
-<!-- parts_sub -->
-<!-- ``` -->
-
-
-<!-- ## Coverage over intronic/exonic regions -->
-
-<!-- Now all the ingredients are in place to merge the coverage scores -->
-<!-- to our prepared annotation with `join_parts()`. This again -->
-<!-- returns a GRanges object, restricted to the intersection of the  -->
-<!-- coverage ranges with intron/exon ranges. Additional columns are added -->
-<!-- corresponding to the properties of the intron/exon. -->
-
-
-<!-- ```{r, load-features, echo = FALSE } -->
-<!-- cvg_over_features <- readRDS(here::here("data", "parts-coverage.rds")) -->
-<!-- ``` -->
-
-<!-- Now we will compute summaries for each cell line and kit to detect IR  -->
-<!-- genes. This consists of three steps -->
-
-<!-- 1. Computing the average log-coverage over all exon/intron features: -->
-
-<!-- ```{r rangenostics-01} -->
-<!-- # compute intron/exon features -->
-<!-- cvg_over_features <- cvg_over_features %>%  -->
-<!--   mutate(log_score = log2(score + 0.5))   -->
-
-<!-- cvg_by_features <- cvg_over_features %>%  -->
-<!--   group_by(Kit, CellLine, gene_id, feature_type) -->
-<!-- E_vals <- cvg_by_features %>%  -->
-<!--   summarise(mn = Hmisc::wtd.mean(log_score, width), -->
-<!--             sd = sqrt(Hmisc::wtd.var(log_score, width)), -->
-<!--             raw_mn = Hmisc::wtd.mean(score, width), -->
-<!--             score = score, -->
-<!--             n_bases = width, -->
-<!--             start = min(start), -->
-<!--             end = max(end), -->
-<!--             seqnames = unlist(unique(seqnames)), -->
-<!--             strand = unlist(unique(feature_strand))) %>%  -->
-<!--   makeGRangesFromDataFrame(keep.extra.columns = TRUE) -->
-<!-- ``` -->
-
-
-<!-- 2. For exon features computing the mean and variance of average log-coverage  -->
-<!--    over all genes (lumpiness). -->
-
-<!-- ```{r rangenostics-02} -->
-<!-- lumpy <- E_vals %>%  -->
-<!--   filter(sd > 0, feature_type == "exon") %>%  -->
-<!--   group_by(Kit, CellLine) %>%  -->
-<!--   summarise( -->
-<!--     E_mu = mean(mn), -->
-<!--     E_sd = mean(sd), -->
-<!--     E_raw = mean(raw_mn) -->
-<!-- ) -->
-<!-- lumpy  -->
-<!-- mcols(E_vals) <- cbind(mcols(E_vals), -->
-<!--                        lumpy[match(paste0(E_vals$Kit, E_vals$CellLine),  -->
-<!--                                    paste0(lumpy$Kit, lumpy$CellLine)), -c(1,2)]) -->
-<!-- E_vals <- E_vals %>%  -->
-<!--   mutate( -->
-<!--     n_bases_E_raw = sum(n_bases[score > E_raw]), -->
-<!--   )  -->
-<!-- ``` -->
-
-
-<!-- 3. Compute the average number of bases with a  -->
-<!--    log-coverage score above the E values defined above. We have also computed -->
-<!--    a smooth between over the intron/exon feature standard deviation against -->
-<!--    the average for visualisation purposes. -->
-
-<!-- ```{r rangenostics-03} -->
-<!-- rango <- E_vals %>%  -->
-<!--   plyranges::select(-n_bases, -score, -seqnames, -start, -end, -width, -strand,  -->
-<!--          .drop_ranges = TRUE) %>%  -->
-<!--   dplyr::as_tibble() %>%  -->
-<!--   group_by(Kit, CellLine, feature_type) %>%  -->
-<!--   tidyr::nest() %>%  -->
-<!--   mutate( -->
-<!--     smooth = lapply(data, function(x) { -->
-<!--       mgcv::gam(sd ~ s(mn), data = x) -->
-<!--       }), -->
-<!--     augment = lapply(smooth, broom::augment), -->
-<!--   ) %>%  -->
-<!--   tidyr::unnest(data, augment) %>%  -->
-<!--   dplyr::select(-dplyr::ends_with("1"), -.sigma) -->
-<!-- ``` -->
-
-<!-- 4. Plot the results. -->
-
-<!-- We get very similar results to a `voom` plot in a standard limma analysis. We -->
-<!-- have also overlaid on the E_mu and E_sigma values as potential cut-offs for -->
-<!-- each feature.  -->
-
-<!-- ```{r voom-like-plot} -->
-<!-- # rangenostics feature_average vs feature_sd coloured by n of bases above -->
-<!-- # average raw exon coverage -->
-<!-- library(ggplot2) -->
-<!-- voom_plot <- function(.x, .y) { -->
-<!--   p <- ggplot(data = .x, aes(x = mn, y = sd)) + -->
-<!--     geom_point() + -->
-<!--     geom_line(aes(y = .fitted), colour = "blue") + -->
-<!--     geom_vline(aes(xintercept = E_mu),  -->
-<!--                data  = dplyr::distinct(.x, feature_type, E_mu)) + -->
-<!--     geom_hline(aes(yintercept = E_sd), -->
-<!--                data = dplyr::distinct(.x, feature_type, E_sd)) + -->
-<!--     facet_wrap(~feature_type) + -->
-<!--     labs( -->
-<!--          subtitle = paste(.y$Kit, .y$CellLine), -->
-<!--          x = "mean log-coverage", -->
-<!--          y = "sd log-covreage" -->
-<!--     ) -->
-<!--   fname <- here::here("img",  -->
-<!--                       paste0(.y$Kit, "-", .y$CellLine,  -->
-<!--                              "voom-like-plot.png") -->
-<!--   ) -->
-<!--   ggsave(fname, p) -->
-<!-- } -->
-<!-- rango %>%  -->
-<!--   group_by(Kit, CellLine) %>%  -->
-<!--   dplyr::group_walk(voom_plot) -->
-<!-- ``` -->
-
-<!-- We also plot pairs of summary values for each feature in a scatter plot matrix -->
-<!-- (using a hexbin scatter plot). Again we get similar results to the plots -->
-<!-- produced by a DE analysis from InDeX. -->
-
-<!-- ```{r rangenostics-pairs} -->
-<!-- all_features <- tidyr::gather(rango, "key", "value",  -->
-<!--                               -Kit, -CellLine, -gene_id, -feature_type,  -->
-<!--                               -E_mu, -E_sd, -E_raw) %>%  -->
-<!--   mutate(var = paste0(feature_type, "_", key)) %>%  -->
-<!--   plyranges::select(-feature_type, -key) %>%  -->
-<!--   arrange(gene_id) %>%  -->
-<!--   tidyr::spread(var, value) -->
-<!-- pairs_plot <- function(.x, .y) { -->
-<!--   sub <- plyranges::select(.x,  -->
-<!--                            exon_mn,  -->
-<!--                            intron_mn,  -->
-<!--                            intron_sd,  -->
-<!--                            bases_above = intron_n_bases_E_raw) -->
-<!--   fname <- here::here("img",  -->
-<!--                       paste0(.y$Kit, "-", .y$CellLine,  -->
-<!--                              "-pairs-plot.png") -->
-<!--   ) -->
-
-<!--   p <- GGally::ggpairs(sub, columns = 1:4, lower = list(continuous = hex)) -->
-<!--   ggsave(fname, p) -->
-<!-- } -->
-<!-- all_features %>%  -->
-<!--   group_by(Kit, CellLine) %>%  -->
-<!--   dplyr::group_walk(pairs_plot) -->
-
-
-<!-- ``` -->
-
-<!-- 5. Decide on cut-off over each feature. It appears that choosing genes -->
-<!-- with high intron feature standard deviations, and with number of bases above -->
-<!-- E_mu in the 99th percentile discriminates intron retention features well. -->
-
-<!-- ```{r rangenositcs-hits} -->
-<!-- hits <- all_features %>%  -->
-<!--   group_by(Kit, CellLine) %>%  -->
-<!--   filter(exon_mn > E_mu,  -->
-<!--          intron_sd > E_sd,  -->
-<!--          intron_n_bases_E_raw > quantile(intron_n_bases_E_raw, 0.99))   -->
-
-<!-- dplyr::count(hits) -->
-<!-- ``` -->
-
-<!-- 6. We can also look at overlaps between sets using an UpSet plot: -->
-
-<!-- ```{r, echo  = FALSE} -->
-<!-- sets <- hits %>%  -->
-<!--   dplyr::distinct(gene_id) %>% -->
-<!--   arrange(gene_id) %>%  -->
-<!--   mutate(value = 1L, var = paste(CellLine, Kit)) %>%  -->
-<!--   ungroup() %>%   -->
-<!--   plyranges::select(gene_id, var, value) %>%  -->
-<!--   tidyr::spread(var, value) %>%  -->
-<!--   dplyr::mutate_at(2:5, .funs = ~ dplyr::if_else(is.na(.), 0L, .))  -->
-<!-- sets <- as.data.frame(sets) -->
-<!-- library(UpSetR) -->
-<!-- pdf(here::here("img", "olaps-superintronic-hits.pdf")) -->
-<!-- upset(sets) -->
-<!-- dev.off() -->
-<!-- ``` -->
