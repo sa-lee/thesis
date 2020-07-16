@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="5-7-acknowledgements-4.html"/>
-<link rel="next" href="6-1-findings-and-impact.html"/>
+<link rel="next" href="6-1-software-development.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -207,11 +207,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-4.html"><a href="5-7-acknowledgements-4.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-findings-and-impact.html"><a href="6-1-findings-and-impact.html"><i class="fa fa-check"></i><b>6.1</b> Findings and Impact</a></li>
-<li class="chapter" data-level="6.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html"><i class="fa fa-check"></i><b>6.2</b> Further Research</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="6-2-further-research.html"><a href="6-2-further-research.html#scalable-grammars-for-non-rectangular-data-structures"><i class="fa fa-check"></i><b>6.2.1</b> Scalable grammars for non-rectangular data structures</a></li>
-<li class="chapter" data-level="6.2.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html#extending-tour-displays-for-large-n-data-sets"><i class="fa fa-check"></i><b>6.2.2</b> Extending tour displays for large <span class="math inline">\(n\)</span> data sets</a></li>
-</ul></li>
+<li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -240,25 +237,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 that are integral to modern biological data science. In particular, I have
 implemented software that facilitates the wrangling, integration, and
 visualisation of high-throughput biological data in a principled and pragmatic
-manner. A significant amount of my work has been devoted to the development of
-open source R/Bioconductor packages: <strong>plyranges</strong>, <strong>superintronic</strong>
-and <strong>liminal</strong>. I have emphasised how coherent software packages
-are tools for thought; they enable analysts to reason about their data and
-models through the composition of workflows.</p>
-<p>Chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a>, “plyranges: a grammar of genomic data
-transformation” developed a new domain specific language for genomics data analysis.
-Chapter <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a>, “Fluent genomics with plyranges and tximeta”
-described techniques integrating data along the genome, and emphasised
-the importance of interoperability between analysis tools. Chapter
-<a href="4-ch-intron.html#ch:intron">4</a>, “Exploratory coverage analysis with superintronic and
+manner. The early chapters of this thesis explored the <em>tidy data</em> semantic and
+its extension to range based genomics data. This culminated in the development
+of “plyranges: a grammar of genomic data transformation” in chapter
+<a href="2-ch-plyranges.html#ch:plyranges">2</a>, which developed a new domain specific language for genomics
+data analysis. The applicability of the <strong>plyranges</strong> interface and use of the
+<em>tidy data</em> concept were further interrogated in chapter <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a>,
+“Fluent genomics with plyranges and tximeta”, which described techniques
+integrating data along the genome, and emphasised the importance of
+interoperability between analysis tools. Similarly, chapter <a href="4-ch-intron.html#ch:intron">4</a>,
+“Exploratory coverage analysis with superintronic and
 plyranges”, tackled data integration from a different angle by looking at
-multiple summaries of variables measured along the genome to putative regions of
-intron retention. Chapter <a href="5-ch-tsne.html#ch:tsne">5</a>, “Casting multiple shadows:
-high-dimensional interactive data visualisation with tours and embeddings”,
-explored pragmatic approaches to high dimensional data visualisation in light of
-the rise of popular non-linear embedding methods.
-To finish, I will discuss the implications of this work and provide
-suggestions for further research.</p>
+multiple summaries of variables measured along the genome to find putative
+regions of intron retention. In the final part of the thesis I moved towards
+visualisation issues as they related to working with high-dimensional data
+common in biological data science. Chapter <a href="5-ch-tsne.html#ch:tsne">5</a>, “Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings”, explored pragmatic approaches to high dimensional data
+visualisation in light of the rise of popular non-linear embedding methods.</p>
+<p>A significant amount of my work has been devoted to the development of
+open source R packages and workflows: <strong>plyranges</strong>, <strong>fluentGenomics</strong>, <strong>superintronic</strong> and <strong>liminal</strong>. I have emphasised how coherent software packages are tools for thought; they enable analysts to reason about their data and models through the composition of workflows. To finish, I will discuss the implications of this work and provide suggestions for further research.</p>
 </div>
             </section>
 
@@ -266,7 +262,7 @@ suggestions for further research.</p>
         </div>
       </div>
 <a href="5-7-acknowledgements-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="6-1-findings-and-impact.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="6-1-software-development.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

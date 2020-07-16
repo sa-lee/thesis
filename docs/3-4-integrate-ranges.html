@@ -207,11 +207,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-4.html"><a href="5-7-acknowledgements-4.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-ch-conclusion.html"><a href="6-ch-conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-findings-and-impact.html"><a href="6-1-findings-and-impact.html"><i class="fa fa-check"></i><b>6.1</b> Findings and Impact</a></li>
-<li class="chapter" data-level="6.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html"><i class="fa fa-check"></i><b>6.2</b> Further Research</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="6-2-further-research.html"><a href="6-2-further-research.html#scalable-grammars-for-non-rectangular-data-structures"><i class="fa fa-check"></i><b>6.2.1</b> Scalable grammars for non-rectangular data structures</a></li>
-<li class="chapter" data-level="6.2.2" data-path="6-2-further-research.html"><a href="6-2-further-research.html#extending-tour-displays-for-large-n-data-sets"><i class="fa fa-check"></i><b>6.2.2</b> Extending tour displays for large <span class="math inline">\(n\)</span> data sets</a></li>
-</ul></li>
+<li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -266,30 +263,30 @@ samples of size equal to the number of DE-genes from the number of rows in
 <pre><code>#&gt; GRanges object with 749 ranges and 3 metadata columns:
 #&gt;         seqnames              ranges strand |            gene_id
 #&gt;            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
-#&gt;     [1]     chr2 172480840-172556596      - |  ENSG00000225205.5
-#&gt;     [2]    chr16   30704067-30745169      + |  ENSG00000282034.1
-#&gt;     [3]     chr7   55365448-55433742      + |  ENSG00000132434.9
-#&gt;     [4]     chr2 206114817-206159603      - | ENSG00000023228.13
-#&gt;     [5]    chr17   35713791-35864615      + |  ENSG00000270647.5
+#&gt;     [1]    chr16   22007638-22087534      + | ENSG00000185716.11
+#&gt;     [2]     chr4   82900684-82919969      + | ENSG00000168152.12
+#&gt;     [3]    chr15   80946289-80989878      - | ENSG00000117899.10
+#&gt;     [4]     chr2 218270392-218346793      + | ENSG00000127838.13
+#&gt;     [5]     chr1 227730425-227735411      - | ENSG00000081692.12
 #&gt;     ...      ...                 ...    ... .                ...
-#&gt;   [745]     chr1 153929501-153946696      - |  ENSG00000198837.9
-#&gt;   [746]    chr13   49247925-49293485      + | ENSG00000102543.14
-#&gt;   [747]    chr16     3725054-3880726      - | ENSG00000005339.14
-#&gt;   [748]    chr17   81976807-82017406      + | ENSG00000169696.15
-#&gt;   [749]    chr16     2737076-2752600      - |  ENSG00000205913.6
-#&gt;                   de_log2FC              de_padj
-#&gt;                   &lt;numeric&gt;            &lt;numeric&gt;
-#&gt;     [1]  0.0307967818486422  1.9647839741285e-06
-#&gt;     [2]  -0.117936449012531 3.96852383812848e-05
-#&gt;     [3] -0.0801367810877628 9.89030657359223e-17
-#&gt;     [4] 0.00463309930590674 4.16738155500915e-14
-#&gt;     [5]  -0.312583120243757   1.246094670009e-16
-#&gt;     ...                 ...                  ...
-#&gt;   [745] -0.0172311501684376 1.96001274120984e-09
-#&gt;   [746]   0.216635305323968   0.0035658444463347
-#&gt;   [747]  0.0820167025707988 6.98425582560914e-14
-#&gt;   [748]  -0.213840555540973 1.66122169019685e-06
-#&gt;   [749]  0.0317215066453741 0.000101817645611865
+#&gt;   [745]     chr2   24819169-24919839      - | ENSG00000138031.14
+#&gt;   [746]     chr3 185190624-185281990      - | ENSG00000113790.10
+#&gt;   [747]     chr5 115828200-115841858      - | ENSG00000145782.12
+#&gt;   [748]     chr7 141002610-141015228      - | ENSG00000090263.15
+#&gt;   [749]    chr11   72836745-73142261      - | ENSG00000137478.14
+#&gt;                  de_log2FC              de_padj
+#&gt;                  &lt;numeric&gt;            &lt;numeric&gt;
+#&gt;     [1]  0.121180940643194 1.86128516322447e-08
+#&gt;     [2]  0.155596208775778 1.26080713317717e-05
+#&gt;     [3]  0.291361576386332 3.53711886038573e-11
+#&gt;     [4] -0.206579495351742 1.27629770434001e-06
+#&gt;     [5] -0.118831238235049  1.2313547712302e-09
+#&gt;     ...                ...                  ...
+#&gt;   [745]  0.141004210305502 0.000154520950586687
+#&gt;   [746]  0.357094978347276  0.00762640438909444
+#&gt;   [747]  0.255536729767158 1.10527779463082e-14
+#&gt;   [748] 0.0686524482361801 9.93163665258309e-18
+#&gt;   [749] -0.381118367519215 1.38754024750076e-05
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
 <p>We can repeat this many times to create many samples via <code>replicate</code>. By

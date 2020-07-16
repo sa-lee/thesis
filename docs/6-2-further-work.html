@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.3 Discussion | Fluent statistical computing interfaces for biological data analysis</title>
-  <meta name="description" content="2.3 Discussion | Fluent statistical computing interfaces for biological data analysis" />
+  <title>6.2 Further Work | Fluent statistical computing interfaces for biological data analysis</title>
+  <meta name="description" content="6.2 Further Work | Fluent statistical computing interfaces for biological data analysis" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.3 Discussion | Fluent statistical computing interfaces for biological data analysis" />
+  <meta property="og:title" content="6.2 Further Work | Fluent statistical computing interfaces for biological data analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.3 Discussion | Fluent statistical computing interfaces for biological data analysis" />
+  <meta name="twitter:title" content="6.2 Further Work | Fluent statistical computing interfaces for biological data analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="2-2-results.html"/>
-<link rel="next" href="2-4-conclusion.html"/>
+<link rel="prev" href="6-1-software-development.html"/>
+<link rel="next" href="bibliography.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -231,102 +231,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="discussion" class="section level2">
-<h2><span class="header-section-number">2.3</span> Discussion</h2>
-<p>The design of <code>plyranges</code> adheres to well understood principles of
-language and API design: cognitive consistency, cohesion,
-endomorphism and expressiveness <span class="citation">(T R G Green AND Petre <a href="bibliography.html#ref-Green1996-qg">1996</a>)</span>.
-To varying degrees, these principles also underlie the
-design of <code>dplyr</code> and the Bioconductor infrastructure.</p>
-<p>We have aimed for <code>plyranges</code> to have a simple and direct mapping to the
-user’s cognitive model, i.e., how the user thinks about the data. This
-requires careful selection of the level of abstraction so that the
-user can express workflows in the language of genomics. This motivates
-the adoption of the tidy GRanges object as our central data
-structure. The basic data.frame and <code>dplyr</code> tibble lack any notion of
-genomic ranges and so could not easily support our genomic grammar,
-with its specific verbs for range-oriented data manipulation. Another
-example of cognitive consistency is how <code>plyranges</code> is insensitive to
-direction/strand by default when, e.g., detecting
-overlaps. <code>GenomicRanges</code> has the opposite behavior. We believe that
-defaulting to purely spatial overlap is most intuitive to most users.</p>
-<p>To further enable cognitive consistency, <code>plyranges</code> functions are cohesive.
-A function is defined to be cohesive if it performs a singular task without
-producing any side-effects. Singular tasks can always be broken
-down further at lower levels of abstraction.
-For example, to resize a range, the user needs to specify which
-position (start, end, midpoint) should be invariant over the
-transformation. The <code>resize()</code> function from the <code>GenomicRanges</code> package
-has a <code>fix</code> argument that sets the anchor, so calling <code>resize()</code>
-coalesces anchoring and width modification. The coupling at the
-function call level is justified since the effect of setting the width
-depends on the anchor. However, <code>plyranges</code> increases cohesion and
-decouples the anchoring into its own function call.</p>
-<p>Increasing cohesion simplifies the interface to each operation, makes
-the meaning of arguments more intuitive, and relies on function names
-as the primary means of expression, instead of a more complex mixture
-of function and argument names. This results in the
-user being able to conceptualize the <code>plyranges</code> DSL as a flat catalog of
-functions, without having to descend further into documentation to understand
-a function’s arguments. A flat function catalog also enhances API
-discoverability, particularly through auto-completion in
-integrated developer environments (IDEs). One downside of pushing cohesion to
-this extreme is that function calls become coupled, and care is
-necessary to treat them as a group when modifying code.</p>
-<p>Like <code>dplyr</code>, <code>plyranges</code> verbs are functional: they are free of side
-effects and are generally endomorphic, meaning that when the input is a GRanges
-object they return a GRanges object. This enables chaining of verbs
-through syntax like the forward pipe operator from the <code>magrittr</code> package.
-This syntax has a direct cognitive mapping to natural language and the intuitive notion of
-pipelines. The low-level object-oriented APIs of Bioconductor tend to
-manipulate data via sub-replacement functions, like <code>start(gr) &lt;- x</code>. These ultimately produce the side effect of replacing a symbol
-mapping in the current environment and thus are not amenable to so-called
-fluent syntax.</p>
-<p>Expressiveness relates to the information content in code: the
-programmer should be able to clarify intent without unnecessary
-verbosity. For example, our overlap-based join operations are more
-concise than the multiple steps necessary to achieve the same effect
-in the original <code>GenomicRanges</code> API. In other cases, the <code>plyranges</code> API
-increases verbosity for the sake of clarity and cohesion. Explicitly
-calling <em>anchor()</em> can require more typing, but the code is easier to
-comprehend. Another example is the set of routines for importing
-genomic annotations, including <em>read_gff()</em>, <em>read_bed()</em>, and
-<em>read_bam()</em>. Compared to the generic <em>import()</em> in <code>rtracklayer</code>, the
-explicit format-based naming in <code>plyranges</code> clarifies intent and the
-type of data being returned. Similarly, every <code>plyranges</code> function that
-computes with strand information indicates its intentions by including
-suffixes such as <em>directed</em>, <em>upstream</em> or <em>downstream</em> in its name,
-otherwise strand is ignored. The <code>GenomicRanges</code> API does not make this
-distinction explicit in its function naming, instead relying on a
-parameter that defaults to strand sensitivity, an arguably confusing
-behavior.</p>
-<p>The implementation of <code>plyranges</code> is built on top of
-Bioconductor infrastructure, meaning most functions are constructed
-by composing generic functions from core Bioconductor packages. As a result, any
-Bioconductor packages that uses data structures that inherit from GRanges will
-be able to use <code>plyranges</code> for free. Another consequence of building on top of
-Bioconductor generics is that the speed and memory usage of <code>plyranges</code>
-functions are similar to the highly optimized methods implemented in Bioconductor
-for GRanges objects.</p>
-<p>A caveat to constructing a compatible interface with <code>dplyr</code> is that
-<code>plyranges</code> makes extensive use of non-standard evaluation in R via
-the <code>rlang</code> package <span class="citation">(Henry and Wickham <a href="bibliography.html#ref-R-rlang">2017</a>)</span>. Simply, this means that computations are
-evaluated in the context of the GRanges objects. Both <code>dplyr</code> and
-<code>plyranges</code> are based on the <code>rlang</code> language, because it allows for more
-expressive code that is free of repeated references to the
-container. Implicitly referencing the container is particularly
-convenient when programming interactively. Consequently, when
-programming with <code>plyranges</code>, a user needs to generally understand
-the <code>rlang</code> language and how to adapt their code accordingly. Users
-familiar with the tidyverse should already have such knowledge.</p>
+<div id="further-work" class="section level2">
+<h2><span class="header-section-number">6.2</span> Further Work</h2>
+<p>A limitation of the grammar as we have implemented it in
+<strong>plyranges</strong> is lack of scalability and computational speed for data sets
+that do not fit in memory. We attempted several techniques for performing
+delayed operations over range-based data, however a more general approach
+that allows for data stored on the cloud or in scientific data formats
+like HDF5 that leverage existing Bioconductor frameworks would be useful.
+We showed in chapters <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a> ad <a href="4-ch-intron.html#ch:intron">4</a> that an a
+analyst is able to do some very complex data transformations and re-sampling
+procedures via casting results into <em>GRanges</em> object. However, it is unclear
+whether the semantics of our grammar can be extended to data that can not be
+easily reshaped into long form tidy representations. Moreover, further work
+is required to explore the design space of grammars for data
+transformations and grammars for graphics when the data large, multifaceted
+and non-rectangular.</p>
+<p>We showed in chapter <a href="5-ch-tsne.html#ch:tsne">5</a> that tours provide a global overview
+that can be used as tool for exploring model fits. An issue that arises is
+how to scale the tour as the number of observations increases. There are
+latencies in sending data from the back end to the visualisation client
+that causes lag during animation. One could also question whether point
+based displays are appropriate in this case, and it would be worth exploring
+the usability of animations based on binning the projections. Moreover,
+when the number of observations are large, the points in the projections are
+concentrated in the centre of the tour display obscuring interesting aspects
+of the data. This is mitigated via having
+the ability to zoom, but further research into transforming the projections
+to avoid crowding would be valuable. An added complexity to changes in visual
+displays are thinking about the design of user interactions, several promising
+avenues based on section tours should be explored <span class="citation">(Laa et al. <a href="bibliography.html#ref-Laa2020-wr">2020</a>; Laa, Cook, and Valencia <a href="bibliography.html#ref-Laa2020-fy">2020</a>)</span>.</p>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="2-2-results.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="2-4-conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="6-1-software-development.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bibliography.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -348,7 +292,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//02-plyranges.Rmd",
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//06-conclusion.Rmd",
 "text": "Edit"
 },
 "history": {
