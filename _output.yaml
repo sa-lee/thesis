@@ -17,6 +17,7 @@ bookdown::gitbook:
     sharing: no
 bookdown::pdf_book:
   template: template/monashthesis.tex
+  latex_engine: lualatex
   dev: "pdf"
   fig_caption: yes
   fig_height: 3.8
