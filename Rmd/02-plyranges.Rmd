@@ -302,7 +302,7 @@ First, we extract the genome information from the BigWig file and filter
 to get the range for chromosome 10. This range will be used as a filter when 
 reading the file.
 
-```{r load-bw, echo = TRUE, cache = TRUE}
+```{r load-bw, echo = TRUE }
 ```
 
 Then we read the BigWig file only extracting scores if they overlap chromosome
@@ -310,7 +310,7 @@ Then we read the BigWig file only extracting scores if they overlap chromosome
 book-keeping is good practice as it ensures the integrity of any 
 downstream operations such as finding overlaps.
 
-```{r chr10-scores-read, echo = TRUE, cache = TRUE}
+```{r chr10-scores-read, echo = TRUE }
 ```
 
 We then filter for regions with a coverage score greater than 8, and following
@@ -319,7 +319,7 @@ This is achieved with the `reduce_ranges()` function, which allows a summary
 to be computed over each island: in this case we take the maximum of 
 the scores to find the coverage peaks over chromosome 10.
 
-```{r chr10-scores-reduce, echo = TRUE, cache = TRUE}
+```{r chr10-scores-reduce, echo = TRUE }
 ```
 
 
@@ -328,13 +328,13 @@ we filter to find the coordinates of the peak containing the maximum coverage
 score. We can then find a 5000 nt region centered around the maximum position 
 by anchoring and modifying the width. 
 
-```{r max-score-region, cache = TRUE}
+```{r max-score-region }
 ```
 
 Finally, the overlap inner join is used to restrict the chromosome 10
 coverage islands, to the islands that are contained in the 5000nt region that surrounds the max peak (figure \@ref(fig:peak-viz)).
 
-```{r peak_region, cache = TRUE}
+```{r peak_region }
 ```
 
 (ref:peak-viz-cap) The final result of the `plyranges` operations to find a 5000nt region surrounding the peak of normalised coverage scores over chromosome 10, displayed as a density plot.
@@ -378,7 +378,7 @@ each tile using an overlap join and merging endpoints.
 
 #### Quality Control Metrics
 
-```{r load-array, cache = TRUE}
+```{r load-array}
 ```
 
 We have created a GRanges object from genotyping performed on the
@@ -393,7 +393,7 @@ First we filter out the indels and mitochondrial variants. Then we
 create a logical vector corresponding to whether there is a transition
 event.
 
-```{r process-array, echo = TRUE, cache = TRUE}
+```{r process-array, echo = TRUE}
 ```
 
 We then compute the transition-transversion ratio over each chromosome using

@@ -36,17 +36,15 @@ common in biological data science. Chapter \@ref(ch:tsne), "Casting multiple sha
 visualisation in light of the rise of popular non-linear embedding methods. 
 
 A significant amount of my work has been devoted to the development of 
-open source R packages and workflows: **plyranges**, **fluentGenomics**, **superintronic** and **liminal**. I have emphasised how coherent software packages are tools for thought; they enable analysts to reason about their data and  models through the composition of workflows. To finish, I will discuss the 
-implications of this work and provide suggestions for further research.
+open source R packages and workflows: **plyranges**, **fluentGenomics**, **superintronic** and **liminal**. I have emphasised how coherent software packages are tools for thought; they enable analysts to reason about their data and  models through the composition of workflows. To finish, I will discuss the implications of this work and provide suggestions for further research.
 
-## Software Development and Impact
-
+## Software Development 
 
 The **plyranges** package develops a suite of verbs for interacting
-with genomicd data as *GRanges* object. Since its release on Bioconductor,
+with genomic data as a *GRanges* object. Since its release on Bioconductor,
 it  has been relatively  successful: it has been downloaded `r plyranges_stats$no_downloads` times from  `r plyranges_stats$no_ip` unique IP addresses. I have also had the privilege of teaching workshops on **plyranges**
 at Bioconductor conferences which also led to the development of the 
-**fluentGenomics** workflow package, outlined inchapter \@ref(ch:fluentGenomics). A broader impact of the work, has been the discussions around the
+**fluentGenomics** workflow package, outlined in chapter \@ref(ch:fluentGenomics). A broader impact of the work, has been the discussions around the
 concepts of fluent interfaces and tidy data within the Bioconductor community,
 which has led to several developments currently in place that are exploring
 different approaches for fluent interfaces for other types of omics data.
