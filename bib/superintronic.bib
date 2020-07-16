@@ -1,613 +1,86 @@
-@UNPUBLISHED{Lee2019-mf,
-  title    = "Covering all your bases: incorporating intron signal from
-              {RNA-seq} data",
-  author   = "Lee, Stuart and Zhang, Albert Y and Su, Shian and Ng, Ashley P
-              and Holik, Aliaksei Z and Asselin-Labat, Marie-Liesse and
-              Ritchie, Matthew E and Law, Charity W",
-  journal  = "bioRxiv",
-  pages    = "352823",
-  month    =  jul,
-  year     =  2019,
-  url      = "https://www.biorxiv.org/content/10.1101/352823v2",
+@ARTICLE{Ritchie2015-mj,
+  title    = "limma powers differential expression analyses for
+              {RNA-sequencing} and microarray studies",
+  author   = "Ritchie, Matthew E and Phipson, Belinda and Wu, Di and Hu, Yifang
+              and Law, Charity W and Shi, Wei and Smyth, Gordon K",
+  abstract = "limma is an R/Bioconductor software package that provides an
+              integrated solution for analysing data from gene expression
+              experiments. It contains rich features for handling complex
+              experimental designs and for information borrowing to overcome
+              the problem of small sample sizes. Over the past decade, limma
+              has been a popular choice for gene discovery through differential
+              expression analyses of microarray and high-throughput PCR data.
+              The package contains particularly strong facilities for reading,
+              normalizing and exploring such data. Recently, the capabilities
+              of limma have been significantly expanded in two important
+              directions. First, the package can now perform both differential
+              expression and differential splicing analyses of RNA sequencing
+              (RNA-seq) data. All the downstream analysis tools previously
+              restricted to microarray data are now available for RNA-seq as
+              well. These capabilities allow users to analyse both RNA-seq and
+              microarray data with very similar pipelines. Second, the package
+              is now able to go past the traditional gene-wise expression
+              analyses in a variety of ways, analysing expression profiles in
+              terms of co-regulated sets of genes or in terms of higher-order
+              expression signatures. This provides enhanced possibilities for
+              biological interpretation of gene expression differences. This
+              article reviews the philosophy and design of the limma package,
+              summarizing both new and historical features, with an emphasis on
+              recent enhancements and features that have not been previously
+              described.",
+  journal  = "Nucleic Acids Res.",
+  volume   =  43,
+  number   =  7,
+  pages    = "e47",
+  month    =  apr,
+  year     =  2015,
+  url      = "http://dx.doi.org/10.1093/nar/gkv007",
   language = "en",
-  doi      = "10.1101/352823"
-}
-
-@string{PNAS =   {Proc Natl Acad Sci U S A}}
-
-
-
-
-@article{LU2016265,
-	title = {{Oxford Nanopore MinION} Sequencing and Genome Assembly},
-	journal = {Genomics, Proteomics \& Bioinformatics},
-	volume = {14},
-	number = {5},
-	pages = {265 - 279},
-	year = {2016},
-	author = {Hengyun Lu and Francesca Giordano and Zemin Ning},
-}
-
-@article{Chappaz:2020,
-	author={S. Chappaz and C. W. Law and M. R. Dowling and K. T. Carey and R. M. Lane and L. H. Ngo and V. O. Wickramasinghe and G. K. Smyth and M. E. Ritchie and B. T. Kile},
-	title = {Germline heterozygous mutations in Nxf1 perturb RNA metabolism and trigger thrombocytopenia and lymphopenia in mice},
-	journal = {Blood Advances},
-	year ={2020},
-    volume = {4},
-	number = {7},
-	pages = {1270-1283}
-	}
-
-@article{RHOADS2015278,
-	author={A. Rhoads and K. F. Au},
-	title = {{PacBio} Sequencing and Its Applications},
-	journal = {Genomics, Proteomics \& Bioinformatics},
-	year ={2015},
-    volume = {13},
-	number = {5},
-	pages = {278-289}
-	}
-
-@Article{cufflinks,
-	author={C. Trapnell and B. A. Williams and G. Pertea and G. Mortazavi and Kwan and M. J. {van Baren} and S. L. Salzberg and B. J. Wold and L. Pachter},
-	title={Transcript assembly and quantification by {RNA-Seq} reveals unannotated transcripts and isoform switching during cell differentiation},
-	journal={Nat Biotechnol},
-    year={2010},
-    volume={28},
-    number={5},
-    page={511-515}
-    }
-
-@Article{zumi,
-	author={S. Parekh and C. Ziegenhain and B. Vieth and W. Enard and I. Hellmann},
-	title={{zUMIs -} A fast and flexible pipeline to process {RNA} sequencing data with {UMIs}},
-	journal={{GigaScience}},
-    year={2018},
-    volume={giy059},
-    number={},
-    url={{https://doi.org/10.1093/gigascience/giy059}}
-    }
-
-@Article{RNAvelocity,
-	author={G. {La Manno} and R. Soldatov and H. Hochgerner and A. Zeisel and V. Petukhov and M. Kastriti and P. Lonnerberg and A. Furlan and J. Fan and Z. Liu and D. {van Bruggen} and J. Guo and E. Sundstrom and G. {Castelo-Branco} and I. Adameyko and S. Linnarsson and P. Kharchenko},
-	title={{RNA} velocity in single cells},
-	journal={{bioRxiv}},
-    year={2018},
-    volume={206052},
-    number={},
-    url={{https://doi.org/10.1101/206052}}
-    }
-
-    @Article{Zhao:2018,
-	author={S. Zhao and Y. Zhang and R. Gamini and B. Zhang and D. {von Schack}},
-	title={Evaluation of two main {RNA-seq approaches} for gene quantification in {clinical RNA} sequencing: {polyA+ selection} versus {rRNA depletion}},
-	journal={Sci Rep},
-    year={2018},
-    volume={8},
-    number={4781}
-    }
-
-@Article{Harati:2014,
-	author={S. Harati and J. H. Phan and M. D. Wang},
-	title={Investigation of factors affecting {RNA}-seq gene expression calls},
-	journal={Conf Proc IEEE Eng Med Biol Soc},
-    year={2014},
-    volume={2014},
-    pages={5232–5235}
-    }
-
-@Article{Kapranov:2012,
-	author={G. {St Laurent} and D. Shtokalo and M. R. Tackett and Z. Yang and T. Eremina and C. Wahlestedt and S. {Urcuqui-Inchima} and B. Seilheimer and T. A. McCaffrey and P. Kapranov},
-	title={Intronic {RNAs constitute} the major fraction of the {non-coding RNA} in mammalian cells},
-	journal={BMC Genomics},
-    year={2012},
-    volume={13},
-    number={504}
-    }
-
- @Article{Kapranov:2010,
-	author={P. Kapranov and G. {St Laurent} and T. Raz and F. Ozsolak and C. P. Reynolds and P. H. B. Sorensen and G. Reaman and P. Milos and R. J. Arceci and J. F. Thompson and T. J. Triche},
-	title={The majority of total nuclear-encoded {non-ribosomal RNA} in a human cell is `dark matter' {unannotated RNA}},
-	journal={BMC Biology},
-    year={2010},
-    volume={8},
-    number={149}
-    }
-
-@Article{Trapnell:2013,
-	author={C. Trapnell and D. G. Hendrickson and M. Sauvageau and L. Goff and J. L. Rinn and L. Pachter},
-	title={Differential analysis of gene regulation at transcript resolution with {RNA-seq}},
-	journal={Nat Biotechnol},
-    year={2013},
-    volume={31},
-    pages={46–53}
-    }
-
-@Article{Patro:2017,
-	author={R. Patro and G Duggal and M. I. Love and R. A. Irizarry and C. Kingsford},
-	title={Salmon: fast and bias-aware quantification of transcript expression using dual-phase inference},
-	journal={Nat Methods},
-    year={2017},
-    volume={14},
-    number={4},
-    pages={417–419}
-    }
-
-@Article{Bray:2016,
-	author={N. L. Bray and H. Pimentel and P. Melsted and L. Pachter},
-	title={Near-optimal probabilistic {RNA}-seq quantification},
-	journal={Nat Biotechnol},
-    year={2016},
-    volume={34},
-    pages={525–527}
-    }
-
-@Article{Mortazavi:2008,
-	author={A. Mortazavi and B. A. Williams and K. {McCue} and L. Schaeffer and B. Wold},
-	title={Mapping and quantifying mammalian transcriptomes
-by {RNA-Seq}},
-	journal={Nature},
-    year={2008},
-    volume={5},
-    number={7}
-    }
-
-@Article{Sultan:2008,
-	author={M. Sultan and M. H. Schulz and H. Richard and A. Magen and A. Klingenhoff and M. Scherf and M. Seifert and T. Borodina and A. Soldatov and D. Parkhomchuk and D. Schmidt and S. O’Keeffe and S. Haas and M. Vingron and H. Lehrach and {M.-L.} Yaspo},
-	title={A Global View of Gene Activity and Alternative Splicing by Deep Sequencing of the Human Transcriptome},
-	journal={Science},
-    year={2008},
-    volume={321},
-    pages={956-960}
-    }
-
- @Article{Braunschweig:2014,
-	author={U. Braunschweig and N. L. {Barbosa-Morais} and Q. Pan and E. N. Nachman and B. Alipanahi and T {Gonatopoulos-Pournatzis} and B. Frey and M. Irimia and B. J. Blencowe},
-	title={Widespread intron retention in mammals functionally tunes transcriptomes},
-	journal={Genome Res},
-    year={2014},
-    volume={11},
-    pages={1774-1786}
-    }
-
-@Article{Rasko:2013,
-	author={J. {J.-L.} Wong and W. Ritchie and O. A. Ebner and M. Selbach and J. W. H. Wong and Y. Huang and D. Gao and N. Pinello and M. Gonzalez and K. Baidya and A. Thoeng and {T.-L.} Khoo and C. G. Bailey and J. Holst and J. E. J. Rasko},
-	title={Orchestrated Intron Retention Regulates Normal Granulocyte Differentiation},
-	journal={Cell},
-    year={2013},
-    volume={154},
-    pages={583–595}
-    }
-
-@Article{Gaidatzis:2015,
-	author={D. Gaidatzis and L. Burger and M. Florescu and M. B. Stadler},
-	title={Analysis of intronic and exonic reads in {RNA-seq} data characterizes transcriptional and post-transcriptional
-regulation},
-	journal={Nat Biotechnol},
-    year={2015},
-    volume={33},
-    number={7}
-    }
-
-@Article{Darnell:2013,
-	author={J. E. Darnell},
-	title={Reflections on the history of pre{-mRNA} processing and highlights of current knowledge: A unified picture},
-	journal={RNA},
-    year={2013},
-    volume={19},
-    pages={443-460}
-    }
-
-@Article{Middleton:2017,
-	author={R. Middleton and D. Gao and A. Thomas and B. Singh and A. Au and J. {J.-L.} Wong and A. Bomane and B. Cosson and E. Eyras and J. E. J. Rasko and W. Ritchie},
-	title={{IRFinder:} assessing the impact of intron retention on mammalian gene expression},
-	journal={Genome Biol},
-    year={2017},
-    volume={18},
-    number={51}
-    }
-
-@Article{Guo:2015,
-	author={Y. Guo and S. Zhao and Q. Sheng and M. Guo and B. Lehmann and J. Pietenpol and D. C. Samuels and Y. Shyr},
-	title={{RNAseq} by {Total RNA} Library Identifies Additional {RNAs}
-Compared to {Poly(A) RNA} Library},
-	journal={Biomed Res Int},
-    year={2015},
-    volume={2015},
-    number={862130}
-    }
-
-@Article{Zlotorynski:2016,
-	author={E. Zlotorynski},
-	title={{RNA metabolism:} Co-transcriptional splicing at nucleotide resolution},
-	journal={Nat Rev Mol Cell Biol},
-    year={2016},
-    volume={17},
-    pages = {264-265}
-    }
-
-@Article{Merkhofer:2014,
-	author={E. C. Merkhofer and P. Hu and T. L. Johnson},
-	title={Introduction to Cotranscriptional {RNA} Splicing},
-	journal={Methods Mol Biol},
-    year={2014},
-    volume={1126},
-    pages = {83–96}
-    }
-
-@Article{Oesterreich:2016,
-	author={F. C. Oesterreich and L. Herzel and K. Straube and K. Hujer and J. Howard and K. M. Neugebauer},
-	title={Splicing of Nascent {RNA} Coincides with Intron Exit from {RNA} Polymerase {II}},
-	journal={Cell},
-    year={2016},
-    volume={165},
-    number={2},
-    pages = {372-381}
-    }
-
-@Article{Khodor:2011,
-	author={Y. L. Khodor and J. Rodriguez and K. C. Abruzzi and C. H. Tang and M. T. Marr and M. Rosbash},
-	title={{Nascent-seq} indicates widespread cotranscriptional {pre-mRNA} splicing in {D}rosophila},
-	journal={Genes Dev},
-    year={2011},
-    volume={25},
-    number={23},
-    pages = {2502-2512}
-    }
-
-@Article{Ameur:2011,
-	author={A. Ameur and A. Zaghlool and J. Halvardson and A. Wetterbom and U. Gyllensten and L. Cavelier and L. Feuk},
-	title={{Total RNA} sequencing reveals nascent transcription and widespread co-transcriptional splicing in the human brain},
-	journal={Nat Struct Mol Biol},
-    year={2011},
-    volume={18},
-    number={12},
-    pages = {1435-1441}
-    }
-
-@Article{Lahens:2014,
-	author={N. F. Lahens and I. H. Kavakli and R. Zhang1 and K. Hayer and M. B. Black and H. Dueck and A. Pizarro and J. Kim and R. Irizarry and R. S. Thomas and G. R, Grant and J. B. Hogenesch},
-	title={{IVT-seq} reveals extreme bias in {RNA} sequencing},
-	journal={Genome Biol},
-    year={2014},
-    volume={15},
-    number={6},
-    pages={R86},
-    }
-
-@Article{Yang:2011,
-	author={L. Yang and M. O. Duff and B. R. Graveley and G. G. Carmichael and {L.-L.} Chen},
-	title={Genomewide characterization of non-polyadenylated {RNAs}},
-	journal={Genome Biol},
-    year={2011},
-    volume={12},
-    number={R16},
-    }
-
-@Article{GEO:2002,
-	author={R. Edgar and M. Domrachev and A. E. Lash},
-	title={{Gene Expression Omnibus: NCBI gene expression and hybridization array data repository}},
-	journal={Nucleic Acids Res},
-    year={2002},
-    volume={30},
-    number={1},
-    pages={207-210},
-    }
-
-@Article{GEO:2013,
-	author={T. Barrett and S. E. Wilhite and P. Ledoux and C. Evangelista and I. F. Kim and M. Tomashevsky and K. A. Marshall and K. H Phillippy and P. M. Sherman and M. Holko and A. Yefanov and H. Lee and N. Zhang and C. L. Robertson and N. Serova and S. Davis and A. Soboleva},
-	title={{NCBI GEO}: archive for functional genomics data sets--update},
-	journal={Nucleic Acids Res},
-    year={2013},
-    volume={41},
-    pages={D991-995},
-    }
-
-@Article{Linsley:2014,
-	author={P. S. Linsley and C. Speake and E. Whalen and D. Chaussabel},
-	title={Copy number loss of the interferon gene cluster in melanomas is linked to reduced {T} cell infiltrate and poor patient prognosis},
-	journal={PLoS One},
-    year={2014},
-    volume={9},
-    number={10},
-    pages={e109760},
-    }
-
-@Article{Holik:NAR:2015,
-    author = {A. Z. Holik and C. W. Law and R. Liu and Z. Wang and W. Wang and J. Ahn and {M.-L.} {Asselin-Labat} and G. K. Smyth and M. E. Ritchie},
-    title = {{RNA-seq} mixology: designing realistic control experiments to compare protocols and analysis methods},
-    journal = {Nucleic Acids Res},
-    year = {2016},
-    volume = {45},
-    number = {5},
-    pages = {e30},
-  }
-
-@Article{Ritchie2015,
-    author = {M. E. Ritchie and B. Phipson and D. Wu and Y. Hu and C. W. Law and W. Shi and G. K. Smyth},
-    title = {{limma} powers differential expression analyses for {RNA}-sequencing and microarray studies},
-    journal = {Nucleic Acids Res},
-    year = {2015},
-    volume = {43},
-    number = {7},
-    pages = {e47},
-  }
-
-@Article{Robinson:Bioinformatics:2010,
-    author = {M. D. Robinson and D. J. McCarthy and G. K. Smyth},
-    title = {{edgeR}: a {Bioconductor} package for differential expression
-  analysis of digital gene expression data.},
-    journal = {Bioinformatics},
-    year = {2010},
-    volume = {26},
-    pages = {139--40},
-  }
-
-@Article{Liao2013,
-    title = {The {S}ubread aligner: fast, accurate and scalable read mapping by seed-and-vote},
-    author = {Y. Liao and G. K. Smyth and W. Shi},
-    journal = {Nucleic Acids Res},
-    year = {2013},
-    volume = {41},
-    issue = {10},
-    pages = {e108},
-  }
-
-@Article{Huber:NatureMethods:2015,
-    author = {W. Huber and V. J. Carey and R. Gentleman and S. Anders and M. Carlson and B. S. Carvalho and H. C. Bravo and S. Davis and L. Gatto and T. Girke and R. Gottardo and F. Hahne and K. D. Hansen and R. A. Irizarry and M. Lawrence and M. I. Love and J. {MacDonald} and V. Obenchain and A. K. {Ole\'s} and A. K. and H. {Pag\`es} and A. Reyes and P. Shannon and G. K. Smyth and D. Tenenbaum and L. Waldron and  M. Morgan},
-    title = {{O}rchestrating high-throughput genomic analysis with {B}ioconductor},
-    journal = {Nat Methods},
-    year = {2015},
-    volume = {12},
-    number = {2},
-    pages = {115--21},
-    url = {http://www.nature.com/nmeth/journal/v12/n2/full/nmeth.3252.html},
-  }
-
-@Article{Liao:Bioinformatics:2014,
-  title={{featureCounts:} an efficient general-purpose program for assigning sequence reads to genomic features.},
-  author={Y. Liao and G. K. Smyth and W. Shi},
-  journal={Bioinformatics},
-  volume={30},
-  number={7},
-  pages={923--30},
-  year={2014}
-}
-
-@Article{Law:GenomeBiol:2014,
-Author = 	 {C. W. Law and Y. Chen and W. Shi and G. K. Smyth},
-Title = 	 {{Voom:} precision weights unlock linear model analysis tools for {RNA-seq} read counts.},
-Journal = 	 {Genome Biol},
-Year = 	 {2014},
-Volume = 	 {15},
-Number =  {},
-Pages = 	 {R29}
-}
-
-@Article{RobinsonOshlack:GenomeBiol:2010,
-Author = 	 {M. D. Robinson and A. Oshlack},
-Title = 	 {A scaling normalization method for differential expression analysis of {RNA-seq data}},
-Journal = 	 {Genome Biol},
-Year = 	 {2010},
-Volume = 	 {11},
-Number =  {},
-Pages = 	 {R25}
-}
-
-% Empirical Bayes
-@Article{Smyth:SAGMB:2004,
-Author = 	 {G. K. Smyth},
-Title = 	 {Linear models and empirical {B}ayes methods for assessing differential expression in microarray experiments},
-Journal = 	 {Stat Appl Genet Mol Biol},
-Year = 	 {2004},
-Volume = 	 {3},
-Number = 	 {1},
-Pages = 	 {Article 3}
-}
-
-@Article{Wu2012,
-author = {D. Wu and G. K. Smyth},
-issn = {1362-4962},
-journal = {Nucleic Acids Res},
-number = {17},
-pages = {e133},
-title = {{Camera: a competitive gene set test accounting for inter-gene correlation.}},
-volume = {40},
-year = {2012}
-}
-
-@article{Wuetal:Bioinf:2010,
-author = {D. Wu and E. Lim and F. Vaillant and M. L. Asselin-Labat and J. E. Visvader and G. K. Smyth},
-title = {{ROAST: rotation gene set tests for complex microarray experiments}},
-journal = {Bioinformatics},
-year = {2010},
-volume = {26},
-number = {17},
-pages = {2176--82}
-}
-
-
-@Manual{R,
-         author = {{R Development Core Team}},
-	  title   = {R: A language and environment for statistical computing},
-	    organization  = {R Foundation for Statistical Computing},
-	    address = {Vienna},
-	    year    = {2016},
-	    url = {http://www.R-project.org}
-}
-
-@Article{Liu:NAR:2015,
-    title = {{Why weight? Combining voom with estimates of sample quality improves power in RNA-seq analyses}},
-    author = {R. Liu and A. Z. Holik and S. Su and N. Jansz and K. Chen and H. S. Leong and M. E. Blewitt and M. L. {Asselin-Labat} and G. K. Smyth and M. E. Ritchie},
-    year = {2015},
-    journal = {Nucleic Acids Res},
-    volume = {43},
-    pages = {e97},
-}
-
-@Manual{Glimma:2016,
-    title = {{Glimma: Interactive HTML graphics for RNA-seq data}},
-    author = {S. Su and M. E. Ritchie},
-    year = {2016},
-    note = {R package version 1.1.1},
-    url = {https://bioconductor.org/packages/devel/bioc/html/Glimma.html}
-}
-
-@Manual{orgMm:2016,
-    title = {{Mus.musculus: Annotation package for the Mus.musculus object}},
-    author = {{Bioconductor Core Team}},
-    year = {2016},
-    note = {R package version 1.3.1},
-    url = {https://bioconductor.org/packages/release/data/annotation/html/Mus.musculus.html}
-}
-
-@Manual{orgHs:2016,
-    title = {{Homo.sapiens: Annotation package for the Homo.sapiens object}},
-    author = {{Bioconductor Core Team}},
-    year = {2016},
-    note = {R package version 1.3.1},
-    url = {https://bioconductor.org/packages/release/data/annotation/html/Homo.sapiens.html}
-}
-
-@Article{Durinck:NatureProtocols:2009,
-    title = {{Mapping identifiers for the integration of genomic datasets with the R/Bioconductor package biomaRt}},
-    author = {S. Durinck and P. Spellman and E. Birney and W. Huber},
-    year = {2009},
-    journal = {Nat Protoc},
-    volume = {4},
-    pages = {1184--91},
-}
-
-@Article{Durinck:Bioinf:2005,
-    title = {{BioMart and Bioconductor: a powerful link between biological databases and microarray data analysis}},
-    author = {S. Durinck and Y. Moreau and A. Kasprzyk and S. Davis and B. {De Moor} and A. Brazma and W. Huber},
-    year = {2005},
-    journal = {Bioinformatics},
-    volume = {21},
-    pages = {3439--40},
-}
-
-@article{Sheridan:BMCCancer:2015,
-author = {J. M. Sheridan and M. E. Ritchie and S. A. Best and K. Jiang and T. J. Beck and F. Vaillant and K. Liu and R. A. Dickins and G. K. Smyth and G. J. Lindeman and J. E. Visvader},
-journal = {BMC Cancer},
-number = {1},
-pages = {221},
-publisher = {BioMed Central},
-title = {{A pooled shRNA screen for regulators of primary mammary stem and progenitor cells identifies roles for Asap1 and Prox1}},
-volume = {15},
-year = {2015}
-}
-
-@article{McCarthy:Bioinf:2009,
-author = {D. J. McCarthy and G. K. Smyth},
-journal = {Bioinformatics},
-number = {},
-pages = {765--71},
-title = {{Testing significance relative to a fold-change threshold is a TREAT}},
-volume = {25},
-year = {2009}
-}
-
-@article{Lim:BreastCancerRes:2010,
-author = {E. Lim and D. Wu and B. Pal and T. Bouras and M. L. {Asselin-Labat} and F. Vaillant and H. Yagita and G. J. Lindeman and G. K. Smyth and J. E. Visvader},
-journal = {Breast Cancer Research},
-number = {2},
-pages = {R21},
-title = {{Transcriptome analyses of mouse and human mammary cell subpopulations reveal multiple conserved genes and pathways.}},
-volume = {12},
-year = {2010}
-}
-
-
-@article{Subramanianetal:PNAS:2005,
-   Author = {Subramanian, A. and Tamayo, P. and Mootha, V. K. and Mukherjee, S. and Ebert, B. L. and Gillette, M. A. and Paulovich, A. and Pomeroy, S. L. and Golub, T. R. and Lander, E. S. and Mesirov, J. P.},
-   Title = {Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles},
-   Journal = PNAS,
-   Volume = {102},
-   Number = {43},
-   Pages = {15545--50},
-   Year = {2005}
-}
-
-@article{Liu:GenomicsData:2016,
-    title = {Transcriptional profiling of the epigenetic regulator {S}mchd1.},
-    author = {R. Liu and K. Chen and N. Jansz and M. E. Blewitt and M. E. Ritchie},
-    year = {2016},
-    journal = {Genomics Data},
-    volume = {7},
-    month = {},
-    pages = {144--7}
-}
-
-@article{Esteller:2011,
-	Author = {M. Esteller},
-    Title = {{Non-coding RNAs} in human disease},
-    year = {2011},
-    Journal = {Nat Rev Genet},
-    Volume = {12},
-    Pages = {861--874}
-}
-
-@article{Mattick:2016,
-	Author = {J.S. Mattick and J.L. Rinn},
-    Title = {Discovery and annotation of long {noncoding RNAs}},
-    year = {2015},
-    Journal = {Nat Struct Mol Biol},
-    Volume = {22},
-    Pages = {5-7}
-}
-
-
-@article{Inoue:2016,
-	Author = {D. Inoue and R.K. Bradley and O. Abdel-Wahab},
-    Year = {2016},
-    Title = {Spliceosomal gene mutations in myelodysplasia: molecular links to clonal abnormalities of hematopoiesis},
-    Journal = {Gene Dev},
-    Volume = {30},
-    Pages = {989-1001}
+  issn     = "0305-1048, 1362-4962",
+  pmid     = "25605792",
+  doi      = "10.1093/nar/gkv007",
+  pmc      = "PMC4402510"
 }
 
 
 
-@Manual{knitr2016,
-    title = {knitr: A General-Purpose Package for Dynamic Report
-      Generation in R},
-    author = {Y. Xie},
-    year = {2016},
-    note = {R package version 1.12.3},
-    url = {http://yihui.name/knitr/},
+@ARTICLE{Liao2013-eb,
+  title    = "The Subread aligner: fast, accurate and scalable read mapping by
+              seed-and-vote",
+  author   = "Liao, Yang and Smyth, Gordon K and Shi, Wei",
+  abstract = "Read alignment is an ongoing challenge for the analysis of data
+              from sequencing technologies. This article proposes an elegantly
+              simple multi-seed strategy, called seed-and-vote, for mapping
+              reads to a reference genome. The new strategy chooses the mapped
+              genomic location for the read directly from the seeds. It uses a
+              relatively large number of short seeds (called subreads)
+              extracted from each read and allows all the seeds to vote on the
+              optimal location. When the read length is <160 bp, overlapping
+              subreads are used. More conventional alignment algorithms are
+              then used to fill in detailed mismatch and indel information
+              between the subreads that make up the winning voting block. The
+              strategy is fast because the overall genomic location has already
+              been chosen before the detailed alignment is done. It is
+              sensitive because no individual subread is required to map
+              exactly, nor are individual subreads constrained to map close by
+              other subreads. It is accurate because the final location must be
+              supported by several different subreads. The strategy extends
+              easily to find exon junctions, by locating reads that contain
+              sets of subreads mapping to different exons of the same gene. It
+              scales up efficiently for longer reads.",
+  journal  = "Nucleic Acids Res.",
+  volume   =  41,
+  number   =  10,
+  pages    = "e108",
+  month    =  may,
+  year     =  2013,
+  url      = "http://dx.doi.org/10.1093/nar/gkt214",
+  language = "en",
+  issn     = "0305-1048, 1362-4962",
+  pmid     = "23558742",
+  doi      = "10.1093/nar/gkt214",
+  pmc      = "PMC3664803"
 }
-
-@Book{knitr2015,
-    title = {Dynamic Documents with {R} and knitr},
-    author = {Y. Xie},
-    publisher = {Chapman and Hall/CRC},
-    address = {Boca Raton, Florida},
-    year = {2015},
-    edition = {2nd},
-    note = {ISBN 978-1498716963},
-    url = {http://yihui.name/knitr/},
-}
-
-@InCollection{knitr2014,
-    booktitle = {Implementing Reproducible Computational Research},
-    editor = {V. Stodden and F. Leisch and R. D. Peng},
-    title = {knitr: A Comprehensive Tool for Reproducible Research in
-      {R}},
-    author = {Y. Xie},
-    publisher = {Chapman and Hall/CRC},
-    year = {2014},
-    note = {ISBN 978-1466561595},
-    url = {http://www.crcpress.com/product/isbn/9781466561595},
-}
-
- @Manual{gplots,
-    title = {gplots: Various R Programming Tools for Plotting Data},
-    author = {G. R. Warnes and B. Bolker and L. Bonebakker and R. Gentleman and W. Huber and A. Liaw and T. Lumley and M. Maechler and A. Magnusson and S. Moeller and M. Schwartz and B. Venables},
-    year = {2016},
-    note = {R package version 3.0.1},
-    url = {https://CRAN.R-project.org/package=gplots},
-  }
 
 
 @ARTICLE{Ramirez2014-sh,
@@ -887,7 +360,3 @@ year = {2010}
   doi      = "10.1093/nar/gkz114",
   pmc      = "PMC6486549"
 }
-
-
-
-

@@ -23,7 +23,7 @@ to a small number of descriptors of each scatter plots properties such as
 density or monotonicity [@Friedman2002-yx;@Wilkinson2005-xt].  Similarly,
 searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead [@Hyndman2015-sc].
 
-Although there are many flexible and powerful software tools, like BEDtools or DeepTools, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantageous to have tooling
+Although there are many flexible and powerful software tools, like BEDtools or deepTools, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantageous to have tooling
 that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
 be possible with a single command line tool. There are also gains in reproducibility as analysts do not have to move between multiple software suites to explore their processed transcriptomics data. 
 
@@ -115,7 +115,7 @@ had two replicates.
 
 FASTQ files were aligned to the GRCz11 reference genome using subjunc with
 the default parameters called from Rsubread to produce BAM files for each
-sample [@Liao2013; @Liao2019-qn]. The coverage was then estimated directly from the set of BAM files
+sample [@Liao2013-eb; @Liao2019-qn]. The coverage was then estimated directly from the set of BAM files
 using **superintronic** into the long form *GRanges* representation we described above. 
 
 The gene annotation files were
@@ -192,7 +192,7 @@ sequence motifs for U12 class of introns, or exploit the experimental
 design to find differential IR like profiles. However, if that was of interest,
 one could look at the overlaps, like we did in figure \@ref(fig:si-upset),
 or combine our data descriptors with external estimates using **limma** 
-[@Ritchie2015], like our proposed index method in @Lee2019-mf. 
+[@Ritchie2015-mj], like our proposed index method in @Lee2019-mf. 
 
 Although the example we have explored has related to finding coverage
 traces with IR-like events, the workflow of building and then visualising
