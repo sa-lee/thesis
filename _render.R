@@ -1,4 +1,6 @@
 options(warn = 1)
+library(bookdown)
+options(bookdown.render.file_scope = FALSE)
 library(cliapp)
 start_app(theme = simple_theme())
 
@@ -43,7 +45,7 @@ if (length(formats) == 0) {
 }
 # render the book to all formats
 for (fmt in formats) {
-  bookdown::render_book("index.Rmd", fmt, quiet = FALSE)
+  render_book("index.Rmd", fmt, quiet = FALSE)
 }
 
 cli_alert_success("You Rock!")

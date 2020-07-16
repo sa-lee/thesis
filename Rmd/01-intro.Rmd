@@ -21,16 +21,16 @@ biological data using a coherent representation and programming interface;
 section \@ref(sec:tidygranges)
 introduces a grammar-based framework for transforming genomics data that is 
 described in chapter \@ref(ch:plyranges). We then look at integrating data and 
-model outputs over genomic regions to gain biological insight; \@ref(sec:intron) 
-introduces a framework for incorporating genomic regions over multiple assays, 
-described in chapter \@ref(ch:fluentGenomics), while \@ref(sec:coverage)
-discusses finding 'interesting' genomic regions via multiple summaries of a 
-single assay, described in \@ref(ch:intron). Next, we consider the challenges in 
-visualising  high dimensional data; section \@ref(sec:va) introduces an 
-interactive visualisation approach for understanding non-linear dimension 
-reduction  techniques described in chapter \@ref(ch:tsne). Lastly, in chapter 
-\@ref(ch:conclusion) I describe the outputs of my thesis and plans for future 
-developments. 
+model outputs over genomic regions to gain biological insight; 
+\@ref(sec:integrate) introduces a framework for incorporating genomic regions 
+over multiple assays, described in chapter \@ref(ch:fluentGenomics), while 
+\@ref(sec:coverage) discusses finding 'interesting' genomic regions via 
+multiple summaries of a single assay, described in \@ref(ch:intron). Next, we 
+consider the challenges in  visualising  high dimensional data; section 
+\@ref(sec:va) introduces an  interactive visualisation approach for 
+understanding non-linear dimension reduction  techniques described in chapter 
+\@ref(ch:tsne). Lastly, in chapter \@ref(ch:conclusion) I describe the outputs 
+of my thesis and plans for future developments. 
 
 ## A grammar for genomic data analysis {#sec:tidygranges}
 

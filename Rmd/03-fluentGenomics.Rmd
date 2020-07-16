@@ -1,6 +1,7 @@
 # Fluent genomics with _plyranges_ and _tximeta_ {#ch:fluentGenomics}
 
 ```{r fluentGenomics-init, echo = FALSE, cache = FALSE, include = FALSE}
+knitr::opts_chunk$set(cache = TRUE)
 knitr::read_chunk(here::here("scripts", "fluentGenomics.R"))
 ```
 
