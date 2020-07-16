@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Introduction | Fluent statistical computing interfaces for biological data analysis</title>
   <meta name="description" content="Chapter 1 Introduction | Fluent statistical computing interfaces for biological data analysis" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Introduction | Fluent statistical computing interfaces for biological data analysis" />
   <meta property="og:type" content="book" />
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="preface.html"/>
+<link rel="prev" href="0-1-open-research.html"/>
 <link rel="next" href="1-1-sec-tidygranges.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -133,11 +133,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="0-1-open-research.html"><a href="0-1-open-research.html"><i class="fa fa-check"></i><b>0.1</b> Open Research</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-sec-tidygranges.html"><a href="1-1-sec-tidygranges.html"><i class="fa fa-check"></i><b>1.1</b> A grammar for genomic data analysis</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-sec-ir.html"><a href="1-2-sec-ir.html"><i class="fa fa-check"></i><b>1.2</b> Integration and representation of genomic data structures</a></li>
-<li class="chapter" data-level="1.3" data-path="1-3-sec-va.html"><a href="1-3-sec-va.html"><i class="fa fa-check"></i><b>1.3</b> Visual analytics for dimension reduction workflows</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-sec-integrate.html"><a href="1-2-sec-integrate.html"><i class="fa fa-check"></i><b>1.2</b> Integration of genomic data structures</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-sec-coverage.html"><a href="1-3-sec-coverage.html"><i class="fa fa-check"></i><b>1.3</b> Representation of genomic data structures</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-sec-va.html"><a href="1-4-sec-va.html"><i class="fa fa-check"></i><b>1.4</b> Interactive visualisation for high-dimensional data</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-ch-plyranges.html"><a href="2-ch-plyranges.html"><i class="fa fa-check"></i><b>2</b> plyranges: a grammar of data transformation for genomics</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-background.html"><a href="2-1-background.html"><i class="fa fa-check"></i><b>2.1</b> Background</a></li>
@@ -248,28 +251,28 @@ to the analyst’s time, results in EDA becoming increasingly difficult and
 neglected.</p>
 <p>This thesis focuses on core aspects of EDA as part of a biological data
 science workflow: wrangling, integration and visualisation, with a focus
-on applications to genomics and transcriptomics. It is organised in
-according to the aforementioned workflow steps. To begin we discuss wrangling
+on applications to genomics and transcriptomics. To begin we discuss wrangling
 biological data using a coherent representation and programming interface;
 section <a href="1-1-sec-tidygranges.html#sec:tidygranges">1.1</a>
 introduces a grammar-based framework for transforming genomics data that is
-described in chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a>. Next, we look at integrating data and
-model outputs over genomic regions to gain biological insight; <a href="1-2-sec-ir.html#sec:ir">1.2</a>
-introduces a framework for incorporating and discovering ‘interesting’ genomic
-regions, described further in chapters <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a> and
-<a href="4-ch-intron.html#ch:intron">4</a>. Third, we consider the challenges in visualising<br />
-high dimensional data; section <a href="1-3-sec-va.html#sec:va">1.3</a> introduces a visual analytics
-approach for understanding non-linear dimension reduction techniques described
-in chapter <a href="5-ch-tsne.html#ch:tsne">5</a>. Lastly, in chapter
-<a href="6-ch-conclusion.html#ch:conclusion">6</a> I describe the outputs of my thesis and plans for future
-developments.</p>
+described in chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a>. We then look at integrating data and
+model outputs over genomic regions to gain biological insight;
+<a href="1-2-sec-integrate.html#sec:integrate">1.2</a> introduces a framework for incorporating genomic regions
+over multiple assays, described in chapter <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a>, while
+<a href="1-3-sec-coverage.html#sec:coverage">1.3</a> discusses finding ‘interesting’ genomic regions via
+multiple summaries of a single assay, described in <a href="4-ch-intron.html#ch:intron">4</a>. Next, we
+consider the challenges in visualising high dimensional data; section
+<a href="1-4-sec-va.html#sec:va">1.4</a> introduces an interactive visualisation approach for
+understanding non-linear dimension reduction techniques described in chapter
+<a href="5-ch-tsne.html#ch:tsne">5</a>. Lastly, in chapter <a href="6-ch-conclusion.html#ch:conclusion">6</a> I describe the outputs
+of my thesis and plans for future developments.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="preface.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="0-1-open-research.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="1-1-sec-tidygranges.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
