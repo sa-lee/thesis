@@ -1,4 +1,15 @@
 # Preface {-}
 
+Chapter \@ref(ch:plyranges) has been published in _Genome Biology_. It
+won the ACEMS Business Analytics Prize for Best Paper in 2019. Chapter \@ref(ch:fluentGenomics) has been published in _F1000 Research_.  Chapter
+\@ref(ch:intron) is based on my software contributions to the submitted
+article @Lee2019-mf. Chapter \@ref(ch:embedding) has not been submitted yet.
+
+## Open Research
+
+This thesis has been written using R Markdown with the **bookdown**
+package [@Xie2016-oa; @Xie2017-ke]. All materials required to build the
+thesis from source can be obtained from https://github.com/sa-lee/thesis. An
+online version of the thesis is available at https://sa-lee.github.io/thesis.
 
 \clearpage\pagenumbering{arabic}\setcounter{page}{0}

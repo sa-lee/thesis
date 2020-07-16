@@ -16,19 +16,19 @@ neglected.
 
 This thesis focuses on core aspects of EDA as part of a biological data
 science workflow: wrangling, integration and visualisation, with a focus 
-on applications to genomics and transcriptomics. It is organised in 
-according to the aforementioned workflow steps. To begin we discuss wrangling
+on applications to genomics and transcriptomics. To begin we discuss wrangling
 biological data using a coherent representation and programming interface; 
 section \@ref(sec:tidygranges)
 introduces a grammar-based framework for transforming genomics data that is 
-described in chapter \@ref(ch:plyranges). Next, we look at integrating data and 
-model outputs over genomic regions to gain biological insight; \@ref(sec:ir) 
-introduces a framework for incorporating and discovering 'interesting' genomic
-regions, described further in chapters \@ref(ch:fluentGenomics) and 
-\@ref(ch:intron). Third, we consider the challenges in visualising  
-high dimensional data; section \@ref(sec:va) introduces a visual analytics 
-approach for understanding non-linear dimension reduction techniques described
-in chapter \@ref(ch:tsne). Lastly, in chapter 
+described in chapter \@ref(ch:plyranges). We then look at integrating data and 
+model outputs over genomic regions to gain biological insight; \@ref(sec:intron) 
+introduces a framework for incorporating genomic regions over multiple assays, 
+described in chapter \@ref(ch:fluentGenomics), while \@ref(sec:coverage)
+discusses finding 'interesting' genomic regions via multiple summaries of a 
+single assay, described in \@ref(ch:intron). Next, we consider the challenges in 
+visualising  high dimensional data; section \@ref(sec:va) introduces an 
+interactive visualisation approach for understanding non-linear dimension 
+reduction  techniques described in chapter \@ref(ch:tsne). Lastly, in chapter 
 \@ref(ch:conclusion) I describe the outputs of my thesis and plans for future 
 developments. 
 
@@ -41,12 +41,8 @@ programming language under a single semantic known as *tidy data*
 rectangular table where each row of the table corresponds to an observation, 
 each column corresponds to a variable and each cell a value. There is a 
 surprisingly large amount of utility that can be achieved with this definition. 
-By having each column representing a variable, variables in the data can be mapped
-to graphical aesthetics of plots. This paradigm enables the grammar of graphics 
-as implemented by *ggplot2* [@Wickham2016-gz; @Wilkinson2005-kq]. User interfaces
-as implemented by *tidyverse*, and in particular the *dplyr* package, are *fluent*; 
-they form a domain specific language (DSL) that gives users a mental model 
-for performing and composing common data transformation tasks 
+By having each column representing a variable, variables in the data can be 
+mapped to graphical aesthetics of plots. This paradigm enables the grammar of graphics as implemented by *ggplot2* [@Wickham2016-gz; @Wilkinson2005-kq]. User interfaces as implemented by *tidyverse*, and in particular the *dplyr* package, are *fluent*;  they form a domain specific language (DSL) that gives users a mental model for performing and composing common data transformation tasks 
 [@Wickham2017-dplyr; @FowlerFluent].
 
 It is unclear whether the *fluent* interfaces as implemented using the
@@ -60,9 +56,9 @@ Chapter \@ref(ch:plyranges) shows that the *tidy data* semantic is applicable
 to range-based genomics data and develops a *fluent* interface to transforming
 it called *plyranges*. The software provides a framework to an assist
 an analyst to compose queries on genomics datasets. This chapter has been 
-published in @Lee2019.
+published as @Lee2019.
 
-## Integration and representation of genomic data structures {#sec:ir}
+## Integration of genomic data structures {#sec:integrate}
 
 It is rare that a biological data analysis will involve
 a single measurement assay or that only one aspect of a measurement assay
@@ -73,40 +69,35 @@ we describe a simple end-to-end workflow for integrating
 results along the genome using *plyranges*. This workflow also shows that
 our grammar based approach does not impair interoperability between
 the *tidyverse* and *Bioconductor* approaches, and in fact they work seamlessly
-together. This chapter has been published in @Lee2020-ie. 
+together. This chapter has been published as @Lee2020-ie. 
 
-Moreover, in chapter \@ref(ch:intron) we explore the limits of the *tidy data*
+## Representation of genomic data structures{#sec:coverage}
+
+In chapter \@ref(ch:intron) we explore the limits of the *tidy data*
 semantic by extending *plyranges* to analyse coverage estimated on RNA-seq
 data by developing a new software tool called *superintronic*. We show that the
 long-form tidy representation is an effective way of combining the experimental
 design and reference annotations into a single genomic data structure for
 exploration. We use *superintronic* to develop a framework for discovering
 interesting regions of coverage and apply our approach to integrating intron
-signal from RNA-seq data. This chapter is based on the preprint @Lee2019-mf. 
+signal from RNA-seq data. This chapter is based on my software and analysis
+contributions to the preprint @Lee2019-mf. 
 
-
-## Visual analytics for dimension reduction workflows {#sec:va}
+## Interactive visualisation for high-dimensional data {#sec:va}
 
 In the final chapter, we move away from data wrangling and towards the 
 integration of visualisation with model-based summaries of high-dimensional
 data sets. We focus on a common tool for EDA (especially applied to single-cell
-transcriptomics): dimension reduction (DR). We consider the incorporation of 
-interactive and dynamic graphics to assist analysts in using DR techniques
+transcriptomics): non-linear dimension reduction (NLDR). We consider the incorporation of 
+interactive and dynamic graphics to assist analysts in using NLDR techniques
 for cluster orientation tasks. In particular, we advocate for the use of tours
-[@Cook1995-bi] alongside a DR visualisation to highlight potential pitfalls and 
-distortions of obtained from a DR method. This approach acknowledges that
-there is no 'one' best visualisation or DR for a high-dimensional dataset,
-and we often want to have an understanding of both the global and local structure
-within our data.
+[@Cook1995-bi] alongside an NLDR visualisation to highlight potential pitfalls 
+and distortions of obtained from an NLDR method. This approach acknowledges that
+there is no 'one' best visualisation or dimension reduction for a 
+high-dimensional dataset, and we often want to have an understanding of both the global and local structure within our data.
 
-
-Chapter \@ref(ch:tsne) introduces
-a software package called *liminal* for constructing these views and
-a user interaction framework for identifying distortions. We present several
-case studies using data sets from both single-cell transcriptomics and 
-machine learning  for using our approach to diagnose the quality of 
-results obtained via popular non-linear DR methods
+Chapter \@ref(ch:tsne) introduces a software package called *liminal* for 
+constructing these views and a user interaction framework for identifying 
+distortions. We present several case studies using data sets from both 
+single-cell transcriptomics and  machine learning  for using our approach to diagnose the quality of  results obtained via popular NLDR methods
 like t-distributed stochastic neighbour embeddings (t-SNE).
-
-
-
