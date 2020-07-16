@@ -62,7 +62,7 @@ along with an optional experimental design table that is returns
 a long-form tidy **GRanges** data structure. The coverage estimation is
 computed via the **Rsamtools** package, and
 users have the ability to estimate coverage in parallel and drop regions
-in the genome where there is no coverage [@rsamtools; @GenomicRanges]. This
+in the genome where there is no coverage [@rsamtools; @granges]. This
 representation is tidy, since each row of the resulting **GRanges** data
 structure corresponds to position(s) within a given sample with a given 
 coverage score alongside any variables such as biological group. While the long-form representation repeats the same information
