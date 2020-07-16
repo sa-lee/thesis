@@ -1,11 +1,14 @@
-```{r bioc-stats, include = FALSE}
+```{r bioc-stats, include = FALSE, cache = TRUE}
 library(dplyr)
 library(ggplot2)
 dl_stats <- BiocPkgTools::biocDownloadStats() %>%
   filter(Package == "plyranges")
 
 plyranges_stats <- dl_stats %>% 
-  summarise(no_ip = sum(Nb_of_distinct_IPs), no_downloads = sum(Nb_of_downloads))
+  summarise(
+    no_ip = sum(Nb_of_distinct_IPs), 
+    no_downloads = sum(Nb_of_downloads)
+  )
 
 ```
 
@@ -15,43 +18,42 @@ In this thesis, I have designed tools to explore workflow steps
 that are integral to modern biological data science. In particular, I have
 implemented software that facilitates the wrangling, integration, and 
 visualisation of high-throughput biological data in a principled and pragmatic
-manner.  A significant amount of my work has been devoted to the development of 
-open source R/Bioconductor packages: **plyranges**, **superintronic**
-and **liminal**. I have emphasised how coherent software packages 
-are tools for thought; they enable analysts to reason about their data and 
-models through the composition of workflows. 
+manner.  The early chapters of this thesis explored the *tidy data* semantic and 
+its extension to range based genomics data. This culminated in the development
+of "plyranges: a grammar of genomic data transformation" in chapter 
+\@ref(ch:plyranges), which developed a new domain specific language for genomics
+data analysis. The applicability of the **plyranges** interface and use of the 
+*tidy data* concept were further interrogated in chapter \@ref(ch:fluentGenomics),
+"Fluent genomics with plyranges and tximeta", which described techniques 
+integrating data along the genome, and emphasised the importance of 
+interoperability between analysis tools. Similarly, chapter  \@ref(ch:intron), 
+"Exploratory coverage analysis with superintronic and 
+plyranges", tackled data integration from a different angle by looking at 
+multiple summaries of variables measured along the genome to find putative 
+regions of intron retention. In the final part of the thesis I moved towards 
+visualisation issues as they related to working with high-dimensional data
+common in biological data science. Chapter \@ref(ch:tsne), "Casting multiple shadows:  high-dimensional interactive data visualisation with tours and embeddings",  explored pragmatic approaches to high dimensional data 
+visualisation in light of the rise of popular non-linear embedding methods. 
 
-Chapter \@ref(ch:plyranges), "plyranges: a grammar of genomic data
-transformation" developed a new domain specific language for genomics data analysis.
-Chapter \@ref(ch:fluentGenomics), "Fluent genomics with plyranges and tximeta"
-described techniques integrating data along the genome, and emphasised
-the importance of interoperability between analysis tools. Chapter 
-\@ref(ch:intron), "Exploratory coverage analysis with superintronic and 
-plyranges", tackled data  integration from a different angle by looking at 
-multiple summaries of variables measured along the genome to putative regions of 
-intron retention.  Chapter \@ref(ch:tsne), "Casting multiple shadows: 
-high-dimensional  interactive data visualisation with tours and embeddings", 
-explored pragmatic approaches to high dimensional data visualisation in light of
-the rise of popular non-linear embedding methods. 
-To finish, I will discuss the implications of this work and provide 
-suggestions for further research.
+A significant amount of my work has been devoted to the development of 
+open source R packages and workflows: **plyranges**, **fluentGenomics**, **superintronic** and **liminal**. I have emphasised how coherent software packages are tools for thought; they enable analysts to reason about their data and  models through the composition of workflows. To finish, I will discuss the 
+implications of this work and provide suggestions for further research.
 
-## Findings and Impact
+## Software Development and Impact
 
-The early chapters of this thesis explored the *tidy data* semantic and its
-extension to range based genomics data. This culminated in the development
-of the **plyranges** package and consequent explorations of the applicability
-of its interface and use of the *tidy data* concept in chapters 
-\@ref(ch:fluentGenomics) and \@ref(ch:intron). The package has been relatively 
-successful: it has been downloaded `r plyranges_stats$no_downloads` times from 
-`r plyranges_stats$no_ip` unique IP addresses since its availability on 
-Bioconductor. I have also had the privilege of teaching workshops on **plyranges**
-at Bioconductor conferences which also led to the development of the work in 
-chapter\@ref(ch:fluentGenomics) and refined the development of the API. A 
-broader impact of the work, has been the discussions around the
+
+The **plyranges** package develops a suite of verbs for interacting
+with genomicd data as *GRanges* object. Since its release on Bioconductor,
+it  has been relatively  successful: it has been downloaded `r plyranges_stats$no_downloads` times from  `r plyranges_stats$no_ip` unique IP addresses. I have also had the privilege of teaching workshops on **plyranges**
+at Bioconductor conferences which also led to the development of the 
+**fluentGenomics** workflow package, outlined inchapter \@ref(ch:fluentGenomics). A broader impact of the work, has been the discussions around the
 concepts of fluent interfaces and tidy data within the Bioconductor community,
 which has led to several developments currently in place that are exploring
 different approaches for fluent interfaces for other types of omics data.
+The **plyranges** package is available to download from 
+https://bioconductor.org/packages/release/bioc/html/plyranges.html and
+the **fluentGenomics** workflow is available to download from 
+https://bioconductor.org/packages/release/workflows/html/fluentGenomics.html.
 
 The **superintronic** software described in chapter \@ref(ch:intron) has
 been used in @Lee2019-mf to disentangle and view intron signal in RNA-seq
@@ -61,18 +63,18 @@ we were then able to create a set of data descriptors that we could link back
 to the raw data to discover genes thought to be associated with a real biological 
 signal. An interesting extension to this work would be applying it to single
 cell and long-read based transcriptomics data, where scalability and much
-larger design matrices would be come an issue. 
+larger design matrices would be come an issue. The **superintronic** package
+is available to download from https://github.com/sa-lee/superintronic.
 
 Finally, the **liminal** software aims to provide a more holistic approach to
 analysis tasks requiring the use of dimensionality reduction algorithms. We
 showed how to incorporate interactive graphics and tours to identify problems
 with embeddings. Based on the case studies provided I believe that the methods
 used in **liminal** could be broadly applicable many high dimensional datasets.
+The **liminal** package is available to download from https://github.com/sa-lee/liminal.
 
 
-## Further Research
-
-### Scalable grammars for non-rectangular data structures
+## Further Work
 
 A limitation of the grammar as we have implemented it in 
 **plyranges** is lack of scalability and computational speed for data sets
@@ -88,8 +90,6 @@ easily reshaped into long form tidy representations. Moreover, further work
 is required to explore the design space of grammars for data 
 transformations and grammars for graphics when the data large, multifaceted
 and non-rectangular. 
-
-### Extending tour displays for large $n$ data sets
 
 We showed in chapter \@ref(ch:tsne) that tours provide a global overview
 that can be used as tool for exploring model fits. An issue that arises is
