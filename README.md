@@ -33,6 +33,8 @@ directory. Since some files are greater than 50Mb, in order to clone this reposi
 * `template/`: Monash thesis template from[robjhydman/MonashThesis](https://github.com/robjhyndman/MonashThesis).
 * `docs/`: the compiled thesis and pdf
 
+Videos are rendered with `media9` for PDF and or hosted on vimeo for html.
+
 
 ## Acknowledgements
 
