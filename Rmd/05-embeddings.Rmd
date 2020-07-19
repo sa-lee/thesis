@@ -15,20 +15,21 @@ display_vid_html <- function(key, lookup) {
   knitr::include_url(video[["url"]])
 }
 
-disply_vid_latex <- function(key, lookup) {
+display_vid_latex <- function(key, lookup) {
     video <- lookup[lookup$key == key, ]
     glue::glue(
     "\\begin{{center}}
    \\includemedia[
-    activate=pageopen,
-    width=640pt,
-    height=400pt,
+    width=0.6\\linewidth,
+    height=0.4\\linewidth,
     keepaspectratio=true,
     addresource={video},
     flashvars={{%
-      src={video}
-      &scaleMode=stretch}
-  ]{{}}{{StrobeMediaPlayback.swf}}
+      source={video}
+      &autohide=1
+      &autoPlay=true
+      &loop=true}
+  ]{{}}{{VPlayer.swf}}
   \\end{{center}}",
   video = video[["path"]]
   )
