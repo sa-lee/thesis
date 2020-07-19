@@ -470,35 +470,42 @@
   doi      = "10.1109/T-C.1973.223640"
 }
 
-@UNPUBLISHED{Ovchinnikova2019-gf,
+
+@ARTICLE{Ovchinnikova2020-sy,
   title    = "Exploring dimension-reduced embeddings with Sleepwalk",
   author   = "Ovchinnikova, Svetlana and Anders, Simon",
-  abstract = "Abstract Dimension-reduction methods, such as t-SNE or UMAP, are
-              widely used when exploring high-dimensional data describing many
-              entities, e.g., RNA-Seq data for many single cells. However,
-              dimension reduction is unavoidably prone to introducing
-              artefacts, and we hence need means to see where a
+  abstract = "Dimension-reduction methods, such as t-SNE or UMAP, are widely
+              used when exploring high-dimensional data describing many
+              entities, for example, RNA-seq data for many single cells.
+              However, dimension reduction is commonly prone to introducing
+              artifacts, and we hence need means to see where a
               dimension-reduced embedding is a faithful representation of the
-              local neighbourhood and where it is not.We present Sleepwalk, a
+              local neighborhood and where it is not. We present Sleepwalk, a
               simple but powerful tool that allows the user to interactively
-              explore an embedding, using colour to depict ``true''
-              similarities of all points to the cell under the mouse cursor. We
-              show how this approach not only highlights distortions, but also
+              explore an embedding, using color to depict original or any other
+              distances from all points to the cell under the mouse cursor. We
+              show how this approach not only highlights distortions but also
               reveals otherwise hidden characteristics of the data, and how
-              Sleepwalk's comparative modes help integrate multi-sample data
-              and understand differences between embedding and preprocessing
+              Sleepwalk's comparative modes help integrate multisample data and
+              understand differences between embedding and preprocessing
               methods. Sleepwalk is a versatile and intuitive tool that unlocks
               the full power of dimension reduction and will be of value not
-              only in single-cell RNA-Seq but also in any other area with
+              only in single-cell RNA-seq but also in any other area with
               matrix-shaped big data.",
-  journal  = "bioRxiv",
-  pages    = "603589",
-  month    =  apr,
-  year     =  2019,
-  url      = "https://www.biorxiv.org/content/10.1101/603589v1",
+  journal  = "Genome Res.",
+  volume   =  30,
+  number   =  5,
+  pages    = "749--756",
+  month    =  may,
+  year     =  2020,
+  url      = "http://dx.doi.org/10.1101/gr.251447.119",
   language = "en",
-  doi      = "10.1101/603589"
+  issn     = "1088-9051, 1549-5469",
+  pmid     = "32430339",
+  doi      = "10.1101/gr.251447.119",
+  pmc      = "PMC7263188"
 }
+
 
 @ARTICLE{Pezzotti2017-cz,
   title    = "Approximated and User Steerable {tSNE} for Progressive Visual
@@ -732,6 +739,21 @@
   arxivid       = "1710.00992",
   doi           = "10.1109/TVCG.2018.2865194"
 }
+
+
+
+@MISC{Coenen2019-to,
+  title        = "Understanding {UMAP}",
+  author       = "Coenen, Andy and Pearce, Adam",
+  abstract     = "UMAP is a new dimensionality reduction technique that offers
+                  increased speed and better preservation of global structure.",
+  year         =  2019,
+  url          = "https://pair-code.github.io/understanding-umap/",
+  howpublished = "\url{https://pair-code.github.io/understanding-umap/}",
+  note         = "Accessed: 2020-4-17"
+}
+
+
 
 @ARTICLE{McInnes2018-co,
   title         = "{UMAP}: Uniform Manifold Approximation and Projection for
@@ -1511,3 +1533,606 @@
   primaryClass  = "cs.LG",
   arxivid       = "1602.00370"
 }
+
+
+@ARTICLE{Lee2009-zb,
+  title     = "Quality assessment of dimensionality reduction: Rank-based
+               criteria",
+  author    = "Lee, John A and Verleysen, Michel",
+  abstract  = "Dimensionality reduction aims at providing low-dimensional
+               representations of high-dimensional data sets. Many new
+               nonlinear methods have been proposed for the last years, yet the
+               question of their assessment and comparison remains open. This
+               paper first reviews some of the existing quality measures that
+               are based on distance ranking and K-ary neighborhoods. Next, the
+               definition of the co-ranking matrix provides a tool for
+               comparing the ranks in the initial data set and some
+               low-dimensional embedding. Rank errors and concepts such as
+               neighborhood intrusions and extrusions can then be associated
+               with different blocks of the co-ranking matrix. Several quality
+               criteria can be cast within this unifying framework; they are
+               shown to involve one or several of these characteristic blocks.
+               Following this line, simple criteria are proposed, which
+               quantify two aspects of the embedding quality, namely its
+               overall quality and its tendency to favor intrusions or
+               extrusions. They are applied to several recent dimensionality
+               reduction methods in two experiments, with both artificial and
+               real data.",
+  journal   = "Neurocomputing",
+  publisher = "Elsevier",
+  volume    =  72,
+  number    =  7,
+  pages     = "1431--1443",
+  month     =  mar,
+  year      =  2009,
+  url       = "http://www.sciencedirect.com/science/article/pii/S0925231209000101",
+  keywords  = "Dimensionality reduction; Embedding; Quality assessment;
+               Co-ranking matrix; Trustworthiness and continuity; Intrusion and
+               extrusion fractions",
+  issn      = "0925-2312",
+  doi       = "10.1016/j.neucom.2008.12.017"
+}
+
+@Manual{Rtsne,
+    title = {{Rtsne}: T-Distributed Stochastic Neighbor Embedding using Barnes-Hut
+Implementation},
+    author = {Jesse H. Krijthe},
+    year = {2015},
+    note = {R package version 0.15},
+    url = {https://github.com/jkrijthe/Rtsne},
+  }
+
+
+@MISC{quickdraw-paper,
+  title        = "Quick, Draw! The Data",
+  abstract     = "What would you do with 50,000,000 drawings made by real
+                  people on the internet?",
+  url          = "https://quickdraw.withgoogle.com/data",
+  howpublished = "\url{https://quickdraw.withgoogle.com/data}",
+  note         = "Accessed: 2020-4-23"
+}
+
+@Manual{quickdrawR,
+    title = {quickdraw: An API for pulling QuickDraw data from Google},
+    author = {Sherry Zhang and Stuart Lee},
+    year = {2020},
+    note = {R package version 0.0.0.9000},
+    url = {https://github.com/huizezhang-sherry/quickdraw},
+}
+
+
+@ARTICLE{Macosko2015-ot,
+  title    = "Highly Parallel Genome-wide Expression Profiling of Individual
+              Cells Using Nanoliter Droplets",
+  author   = "Macosko, Evan Z and Basu, Anindita and Satija, Rahul and Nemesh,
+              James and Shekhar, Karthik and Goldman, Melissa and Tirosh, Itay
+              and Bialas, Allison R and Kamitaki, Nolan and Martersteck, Emily
+              M and Trombetta, John J and Weitz, David A and Sanes, Joshua R
+              and Shalek, Alex K and Regev, Aviv and McCarroll, Steven A",
+  abstract = "Cells, the basic units of biological structure and function, vary
+              broadly in type and state. Single-cell genomics can characterize
+              cell identity and function, but limitations of ease and scale
+              have prevented its broad application. Here we describe Drop-seq,
+              a strategy for quickly profiling thousands of individual cells by
+              separating them into nanoliter-sized aqueous droplets,
+              associating a different barcode with each cell's RNAs, and
+              sequencing them all together. Drop-seq analyzes mRNA transcripts
+              from thousands of individual cells simultaneously while
+              remembering transcripts' cell of origin. We analyzed
+              transcriptomes from 44,808 mouse retinal cells and identified 39
+              transcriptionally distinct cell populations, creating a molecular
+              atlas of gene expression for known retinal cell classes and novel
+              candidate cell subtypes. Drop-seq will accelerate biological
+              discovery by enabling routine transcriptional profiling at
+              single-cell resolution. VIDEO ABSTRACT.",
+  journal  = "Cell",
+  volume   =  161,
+  number   =  5,
+  pages    = "1202--1214",
+  month    =  may,
+  year     =  2015,
+  url      = "http://dx.doi.org/10.1016/j.cell.2015.05.002",
+  language = "en",
+  issn     = "0092-8674, 1097-4172",
+  pmid     = "26000488",
+  doi      = "10.1016/j.cell.2015.05.002",
+  pmc      = "PMC4481139"
+}
+
+@Article{McCarthy2017,
+    author = {Davis J. McCarthy and Kieran R. Campbell and Aaron T. L. Lun and Quin F. Willis},
+    title = {Scater: pre-processing, quality control, normalisation and visualisation of single-cell {R}{N}{A}-seq data in {R}},
+    journal = {Bioinformatics},
+    year = {2017},
+    volume = {33},
+    issue = {8},
+    pages = {1179-1186},
+    doi = {10.1093/bioinformatics/btw777},
+}
+
+@Article{Lun2016,
+    author = {Aaron T. L. Lun and Davis J. McCarthy and John C. Marioni},
+    title = {A step-by-step workflow for low-level analysis of single-cell RNA-seq data with Bioconductor},
+    journal = {F1000Res.},
+    year = {2016},
+    volume = {5},
+    pages = {2122},
+    doi = {10.12688/f1000research.9501.2},
+}
+
+
+@ARTICLE{Amezquita2020-at,
+  title    = "Orchestrating single-cell analysis with Bioconductor",
+  author   = "Amezquita, Robert A and Lun, Aaron T L and Becht, Etienne and
+              Carey, Vince J and Carpp, Lindsay N and Geistlinger, Ludwig and
+              Marini, Federico and Rue-Albrecht, Kevin and Risso, Davide and
+              Soneson, Charlotte and Waldron, Levi and Pag{\`e}s, Herv{\'e} and
+              Smith, Mike L and Huber, Wolfgang and Morgan, Martin and
+              Gottardo, Raphael and Hicks, Stephanie C",
+  abstract = "Recent technological advancements have enabled the profiling of a
+              large number of genome-wide features in individual cells.
+              However, single-cell data present unique challenges that require
+              the development of specialized methods and software
+              infrastructure to successfully derive biological insights. The
+              Bioconductor project has rapidly grown to meet these demands,
+              hosting community-developed open-source software distributed as R
+              packages. Featuring state-of-the-art computational methods,
+              standardized data infrastructure and interactive data
+              visualization tools, we present an overview and online book
+              (https://osca.bioconductor.org) of single-cell methods for
+              prospective users.",
+  journal  = "Nat. Methods",
+  volume   =  17,
+  number   =  2,
+  pages    = "137--145",
+  month    =  feb,
+  year     =  2020,
+  url      = "http://dx.doi.org/10.1038/s41592-019-0654-x",
+  language = "en",
+  issn     = "1548-7091, 1548-7105",
+  pmid     = "31792435",
+  doi      = "10.1038/s41592-019-0654-x"
+}
+
+@Manual{scRNAseq-d,
+    title = {scRNAseq: Collection of Public Single-Cell RNA-Seq Datasets},
+    author = {Davide Risso and Michael Cole},
+    year = {2019},
+    note = {R package version 2.0.2},
+  }
+
+@Manual{quickdrawR,
+    title = {quickdraw: An API for pulling QuickDraw data from Google},
+    author = {Sherry Zhang and Stuart Lee},
+    year = {2020},
+    note = {R package version 0.0.0.9000},
+    url = {https://github.com/huizezhang-sherry/quickdraw},
+  }
+
+
+@ARTICLE{Li2020-rh,
+  title   = "Visualizing Neural Networks with the Grand Tour",
+  author  = "Li, Mingwei and Zhao, Zhenge and Scheidegger, Carlos",
+  journal = "Distill",
+  volume  =  5,
+  number  =  3,
+  month   =  mar,
+  year    =  2020,
+  url     = "https://distill.pub/2020/grand-tour",
+  issn    = "2476-0757",
+  doi     = "10.23915/distill.00025"
+}
+
+
+
+@ARTICLE{Coifman2005-ak,
+  title    = "Geometric diffusions as a tool for harmonic analysis and
+              structure definition of data: diffusion maps",
+  author   = "Coifman, R R and Lafon, S and Lee, A B and Maggioni, M and
+              Nadler, B and Warner, F and Zucker, S W",
+  abstract = "We provide a framework for structural multiscale geometric
+              organization of graphs and subsets of R(n). We use diffusion
+              semigroups to generate multiscale geometries in order to organize
+              and represent complex structures. We show that appropriately
+              selected eigenfunctions or scaling functions of Markov matrices,
+              which describe local transitions, lead to macroscopic
+              descriptions at different scales. The process of iterating or
+              diffusing the Markov matrix is seen as a generalization of some
+              aspects of the Newtonian paradigm, in which local infinitesimal
+              transitions of a system lead to global macroscopic descriptions
+              by integration. We provide a unified view of ideas from data
+              analysis, machine learning, and numerical analysis.",
+  journal  = "Proc. Natl. Acad. Sci. U. S. A.",
+  volume   =  102,
+  number   =  21,
+  pages    = "7426--7431",
+  month    =  may,
+  year     =  2005,
+  url      = "http://dx.doi.org/10.1073/pnas.0500334102",
+  language = "en",
+  issn     = "0027-8424",
+  pmid     = "15899970",
+  doi      = "10.1073/pnas.0500334102",
+  pmc      = "PMC1140422"
+}
+
+
+
+@ARTICLE{Silva2003-xw,
+  title     = "Global versus local methods in nonlinear dimensionality
+               reduction",
+  author    = "Silva, V D and Tenenbaum, J B",
+  abstract  = "Recently proposed algorithms for nonlinear dimensionality
+               reduction fall broadly into two categories which have different
+               advantages and disadvantages: global (Isomap [1]), and local
+               (Locally Linear Embedding [2], Laplacian Eigenmaps [3]). We
+               present two variants of …",
+  journal   = "Adv. Neural Inf. Process. Syst.",
+  publisher = "papers.nips.cc",
+  year      =  2003,
+  url       = "http://papers.nips.cc/paper/2141-global-versus-local-methods-in-nonlinear-dimensionality-reduction.pdf",
+  issn      = "1049-5258"
+}
+
+
+@ARTICLE{Torgerson1952-am,
+  title     = "Multidimensional scaling: I. Theory and method",
+  author    = "Torgerson, Warren S",
+  abstract  = "Multidimensional scaling can be considered as involving three
+               basic steps. In the first step, a scale of comparative distances
+               between all pairs of stimuli is obtained. This scale is
+               analogous to the scale of stimuli obtained in the traditional
+               paired comparisons methods. In this scale, however, instead of
+               locating each stimulus-object on a given continuum, the
+               distances between each pair of stimuli are located on a distance
+               continuum. As in paired comparisons, the procedures for
+               obtaining a scale of comparative distances leave the true zero
+               point undetermined. Hence, a comparative distance is not a
+               distance in the usual sense of the term, but is a distance minus
+               an unknown constant. The second step involves estimating this
+               unknown constant. When the unknown constant is obtained, the
+               comparative distances can be converted into absolute distances.
+               In the third step, the dimensionality of the psychological space
+               necessary to account for these absolute distances is determined,
+               and the projections of stimuli on axes of this space are
+               obtained. A set of analytical procedures was developed for each
+               of the three steps given above, including a least-squares
+               solution for obtaining comparative distances by the complete
+               method of triads, two practical methods for estimating the
+               additive constant, and an extension of Young and Householder's
+               Euclidean model to include procedures for obtaining the
+               projections of stimuli on axes from fallible absolute distances.",
+  journal   = "Psychometrika",
+  publisher = "Springer-Verlag",
+  volume    =  17,
+  number    =  4,
+  pages     = "401--419",
+  month     =  dec,
+  year      =  1952,
+  url       = "https://link.springer.com/article/10.1007/BF02288916",
+  language  = "en",
+  issn      = "0033-3123, 1860-0980",
+  doi       = "10.1007/BF02288916"
+}
+
+
+@ARTICLE{Kruskal1964-cz,
+  title     = "Multidimensional scaling by optimizing goodness of fit to a
+               nonmetric hypothesis",
+  author    = "Kruskal, J B",
+  abstract  = "Multidimensional scaling is the problem of representingn objects
+               geometrically byn points, so that the interpoint distances
+               correspond in some sense to experimental dissimilarities between
+               objects. In just what sense distances and dissimilarities should
+               correspond has been left rather vague in most approaches, thus
+               leaving these approaches logically incomplete. Our fundamental
+               hypothesis is that dissimilarities and distances are
+               monotonically related. We define a quantitative, intuitively
+               satisfying measure of goodness of fit to this hypothesis. Our
+               technique of multidimensional scaling is to compute that
+               configuration of points which optimizes the goodness of fit. A
+               practical computer program for doing the calculations is
+               described in a companion paper.",
+  journal   = "Psychometrika",
+  publisher = "Springer-Verlag",
+  volume    =  29,
+  number    =  1,
+  pages     = "1--27",
+  month     =  mar,
+  year      =  1964,
+  url       = "https://link.springer.com/article/10.1007/BF02289565",
+  language  = "en",
+  issn      = "0033-3123, 1860-0980",
+  doi       = "10.1007/BF02289565"
+}
+
+
+@ARTICLE{Kruskal1964-cw,
+  title    = "Nonmetric multidimensional scaling: A numerical method",
+  author   = "Kruskal, J B",
+  abstract = "We describe the numerical methods required in our approach to
+              multi-dimensional scaling. The rationale of this approach has
+              appeared previously.",
+  journal  = "Psychometrika",
+  volume   =  29,
+  number   =  2,
+  pages    = "115--129",
+  month    =  jun,
+  year     =  1964,
+  url      = "https://doi.org/10.1007/BF02289694",
+  issn     = "0033-3123, 1860-0980",
+  doi      = "10.1007/BF02289694"
+}
+
+@Manual{fnn-pkg,
+    title = {FNN: Fast Nearest Neighbor Search Algorithms and Applications},
+    author = {Alina Beygelzimer and Sham Kakadet and John Langford and Sunil Arya and David Mount and Shengqiao Li},
+    year = {2019},
+    note = {R package version 1.1.3},
+    url = {https://CRAN.R-project.org/package=FNN},
+  }
+
+@Manual{rcpp-annoy-pkg,
+    title = {RcppAnnoy: 'Rcpp' Bindings for 'Annoy', a Library for Approximate Nearest
+Neighbors},
+    author = {Dirk Eddelbuettel},
+    year = {2020},
+    note = {R package version 0.0.16},
+    url = {https://CRAN.R-project.org/package=RcppAnnoy},
+  }
+
+
+
+
+@MISC{Rauber2009-vh,
+  title        = "Multi-challenge Data Set",
+  booktitle    = "Machine Learning Datasets",
+  author       = "Rauber, Andreas",
+  month        =  dec,
+  year         =  2009,
+  url          = "http://ifs.tuwien.ac.at/dm/dataSets.html",
+  howpublished = "\url{http://ifs.tuwien.ac.at/dm/dataSets.html}",
+  note         = "Accessed: 2020-09-17"
+}
+
+
+@ARTICLE{Blondel2008-bx,
+  title     = "Fast unfolding of communities in large networks",
+  author    = "Blondel, Vincent D and Guillaume, Jean-Loup and Lambiotte,
+               Renaud and Lefebvre, Etienne",
+  abstract  = "We propose a simple method to extract the community structure of
+               large networks. Our method is a heuristic method that is based
+               on modularity optimization. It is shown to outperform all other
+               known community detection methods in terms of computation time.
+               Moreover, the quality of the communities detected is very good,
+               as measured by the so-called modularity. This is shown first by
+               identifying language communities in a Belgian mobile phone
+               network of 2 million customers and by analysing a web graph of
+               118 million nodes and more than one billion links. The accuracy
+               of our algorithm is also verified on ad hoc modular networks.",
+  journal   = "J. Stat. Mech.",
+  publisher = "IOP Publishing",
+  volume    =  2008,
+  number    =  10,
+  pages     = "P10008",
+  month     =  oct,
+  year      =  2008,
+  url       = "https://iopscience.iop.org/article/10.1088/1742-5468/2008/10/P10008/meta",
+  language  = "en",
+  issn      = "1742-5468",
+  doi       = "10.1088/1742-5468/2008/10/P10008"
+}
+
+
+@ARTICLE{Korem2015-af,
+  title    = "Geometry of the Gene Expression Space of Individual Cells",
+  author   = "Korem, Yael and Szekely, Pablo and Hart, Yuval and Sheftel, Hila
+              and Hausser, Jean and Mayo, Avi and Rothenberg, Michael E and
+              Kalisky, Tomer and Alon, Uri",
+  abstract = "There is a revolution in the ability to analyze gene expression
+              of single cells in a tissue. To understand this data we must
+              comprehend how cells are distributed in a high-dimensional gene
+              expression space. One open question is whether cell types form
+              discrete clusters or whether gene expression forms a continuum of
+              states. If such a continuum exists, what is its geometry? Recent
+              theory on evolutionary trade-offs suggests that cells that need
+              to perform multiple tasks are arranged in a polygon or polyhedron
+              (line, triangle, tetrahedron and so on, generally called
+              polytopes) in gene expression space, whose vertices are the
+              expression profiles optimal for each task. Here, we analyze
+              single-cell data from human and mouse tissues profiled using a
+              variety of single-cell technologies. We fit the data to shapes
+              with different numbers of vertices, compute their statistical
+              significance, and infer their tasks. We find cases in which
+              single cells fill out a continuum of expression states within a
+              polyhedron. This occurs in intestinal progenitor cells, which
+              fill out a tetrahedron in gene expression space. The four
+              vertices of this tetrahedron are each enriched with genes for a
+              specific task related to stemness and early differentiation. A
+              polyhedral continuum of states is also found in spleen dendritic
+              cells, known to perform multiple immune tasks: cells fill out a
+              tetrahedron whose vertices correspond to key tasks related to
+              maturation, pathogen sensing and communication with lymphocytes.
+              A mixture of continuum-like distributions and discrete clusters
+              is found in other cell types, including bone marrow and
+              differentiated intestinal crypt cells. This approach can be used
+              to understand the geometry and biological tasks of a wide range
+              of single-cell datasets. The present results suggest that the
+              concept of cell type may be expanded. In addition to discreet
+              clusters in gene-expression space, we suggest a new possibility:
+              a continuum of states within a polyhedron, in which the vertices
+              represent specialists at key tasks.",
+  journal  = "PLoS Comput. Biol.",
+  volume   =  11,
+  number   =  7,
+  pages    = "e1004224",
+  month    =  jul,
+  year     =  2015,
+  url      = "http://dx.doi.org/10.1371/journal.pcbi.1004224",
+  language = "en",
+  issn     = "1553-734X, 1553-7358",
+  pmid     = "26161936",
+  doi      = "10.1371/journal.pcbi.1004224",
+  pmc      = "PMC4498931"
+}
+
+
+@ARTICLE{McCarthy2009-qx,
+  title    = "Testing significance relative to a fold-change threshold is a
+              {TREAT}",
+  author   = "McCarthy, Davis J and Smyth, Gordon K",
+  abstract = "MOTIVATION: Statistical methods are used to test for the
+              differential expression of genes in microarray experiments. The
+              most widely used methods successfully test whether the true
+              differential expression is different from zero, but give no
+              assurance that the differences found are large enough to be
+              biologically meaningful. RESULTS: We present a method, t-tests
+              relative to a threshold (TREAT), that allows researchers to test
+              formally the hypothesis (with associated p-values) that the
+              differential expression in a microarray experiment is greater
+              than a given (biologically meaningful) threshold. We have
+              evaluated the method using simulated data, a dataset from a
+              quality control experiment for microarrays and data from a
+              biological experiment investigating histone deacetylase
+              inhibitors. When the magnitude of differential expression is
+              taken into account, TREAT improves upon the false discovery rate
+              of existing methods and identifies more biologically relevant
+              genes. AVAILABILITY: R code implementing our methods is
+              contributed to the software package limma available at
+              http://www.bioconductor.org.",
+  journal  = "Bioinformatics",
+  volume   =  25,
+  number   =  6,
+  pages    = "765--771",
+  month    =  mar,
+  year     =  2009,
+  url      = "http://dx.doi.org/10.1093/bioinformatics/btp053",
+  language = "en",
+  issn     = "1367-4803, 1367-4811",
+  pmid     = "19176553",
+  doi      = "10.1093/bioinformatics/btp053",
+  pmc      = "PMC2654802"
+}
+
+
+@ARTICLE{Wickham2011-st,
+  title    = "tourr: An {R} Package for Exploring Multivariate Data with
+              Projections",
+  author   = "Wickham, Hadley and Cook, Dianne and Hofmann, Heike and Buja,
+              Andreas",
+  abstract = "This paper describes an R package which produces tours of
+              multivariate data. The package includes functions for creating
+              different types of tours, including grand, guided, and little
+              tours, which project multivariate data (p-D) down to 1, 2, 3, or,
+              more generally, d ($\leq$ p) dimensions. The projected data can
+              be rendered as densities or histograms, scatterplots, anaglyphs,
+              glyphs, scatterplot matrices, parallel coordinate plots, time
+              series or images, and viewed using an R graphics device, passed
+              to GGobi, or saved to disk. A tour path can be stored for
+              visualisation or replay. With this package it is possible to
+              quickly experiment with different, and new, approaches to tours
+              of data. This paper contains animations that can be viewed using
+              the Adobe Acrobat PDF viewer.",
+  journal  = "Journal of Statistical Software, Articles",
+  volume   =  40,
+  number   =  2,
+  pages    = "1--18",
+  year     =  2011,
+  url      = "https://www.jstatsoft.org/v040/i02",
+  issn     = "1548-7660",
+  doi      = "10.18637/jss.v040.i02"
+}
+
+
+@ARTICLE{Laa2020-wr,
+  title         = "Hole or grain? A Section Pursuit Index for Finding Hidden
+                   Structure in Multiple Dimensions",
+  author        = "Laa, Ursula and Cook, Dianne and Buja, Andreas and Valencia,
+                   German",
+  abstract      = "Multivariate data is often visualized using linear
+                   projections, produced by techniques such as principal
+                   component analysis, linear discriminant analysis, and
+                   projection pursuit. A problem with projections is that they
+                   obscure low and high density regions near the center of the
+                   distribution. Sections, or slices, can help to reveal them.
+                   This paper develops a section pursuit method, building on
+                   the extensive work in projection pursuit, to search for
+                   interesting slices of the data. Linear projections are used
+                   to define sections of the parameter space, and to calculate
+                   interestingness by comparing the distribution of
+                   observations, inside and outside a section. By optimizing
+                   this index, it is possible to reveal features such as holes
+                   (low density) or grains (high density). The optimization is
+                   incorporated into a guided tour so that the search for
+                   structure can be dynamic. The approach can be useful for
+                   problems when data distributions depart from uniform or
+                   normal, as in visually exploring nonlinear manifolds, and
+                   functions in multivariate space. Two applications of section
+                   pursuit are shown: exploring decision boundaries from
+                   classification models, and exploring subspaces induced by
+                   complex inequality conditions from multiple parameter model.
+                   The new methods are available in R, in the tourr package.",
+  month         =  apr,
+  year          =  2020,
+  url           = "http://arxiv.org/abs/2004.13327",
+  archivePrefix = "arXiv",
+  eprint        = "2004.13327",
+  primaryClass  = "stat.CO",
+  arxivid       = "2004.13327"
+}
+
+
+@MISC{Chang2020-bq,
+  title  = "shiny: Web Application Framework for {R}",
+  author = "Chang, Winston and Cheng, Joe and Allaire, J J and Xie, Yihui and
+            McPherson, Jonathan",
+  year   =  2020,
+  url    = "https://CRAN.R-project.org/package=shiny"
+}
+
+
+@ARTICLE{Satyanarayan2017-gs,
+  title    = "{Vega-Lite}: A Grammar of Interactive Graphics",
+  author   = "Satyanarayan, Arvind and Moritz, Dominik and Wongsuphasawat,
+              Kanit and Heer, Jeffrey",
+  abstract = "We present Vega-Lite, a high-level grammar that enables rapid
+              specification of interactive data visualizations. Vega-Lite
+              combines a traditional grammar of graphics, providing visual
+              encoding rules and a composition algebra for layered and
+              multi-view displays, with a novel grammar of interaction. Users
+              specify interactive semantics by composing selections. In
+              Vega-Lite, a selection is an abstraction that defines input event
+              processing, points of interest, and a predicate function for
+              inclusion testing. Selections parameterize visual encodings by
+              serving as input data, defining scale extents, or by driving
+              conditional logic. The Vega-Lite compiler automatically
+              synthesizes requisite data flow and event handling logic, which
+              users can override for further customization. In contrast to
+              existing reactive specifications, Vega-Lite selections decompose
+              an interaction design into concise, enumerable semantic units. We
+              evaluate Vega-Lite through a range of examples, demonstrating
+              succinct specification of both customized interaction methods and
+              common techniques such as panning, zooming, and linked selection.",
+  journal  = "IEEE Trans. Vis. Comput. Graph.",
+  volume   =  23,
+  number   =  1,
+  pages    = "341--350",
+  month    =  jan,
+  year     =  2017,
+  url      = "http://dx.doi.org/10.1109/TVCG.2016.2599030",
+  language = "en",
+  issn     = "1077-2626, 1941-0506",
+  pmid     = "27875150",
+  doi      = "10.1109/TVCG.2016.2599030"
+}
+
+@MISC{Lyttle2020-hp,
+  title  = "vegawidget: 'Htmlwidget' for 'Vega' and {'Vega-Lite'}",
+  author = "Lyttle, Ian and {Vega/Vega-Lite Developers}",
+  year   =  2020,
+  url    = "https://CRAN.R-project.org/package=vegawidget"
+}
+
+
+
+
