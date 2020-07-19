@@ -1,12 +1,12 @@
 ```{r setup-videos, cache = FALSE}
 vid_lookup <- tibble::tribble(
   ~key, ~url, ~path,
-  "gaussian",  "https://player.vimeo.com/video/439635921", here::here("video", "liminal-gaussian.mov"),
-  "hierachical", "https://player.vimeo.com/video/439635905", here::here("video", "liminal-hierachical.mov"),
-  "trees-01", "https://player.vimeo.com/video/439635892", here::here("video", "liminal-trees-01.mov"),
-  "trees-02", "https://player.vimeo.com/video/439635863", here::here("video", "liminal-trees-02.mov"),
-  "mouse-01", "https://player.vimeo.com/video/439635812", here::here("video", "liminal-mouse-01.mov"),
-  "mouse-02", "https://player.vimeo.com/video/439635843", here::here("video", "liminal-mouse-02.mov")
+  "gaussian",  "https://player.vimeo.com/video/439635921", here::here("video", "liminal-gaussian.mp4"),
+  "hierachical", "https://player.vimeo.com/video/439635905", here::here("video", "liminal-hierachical.mp4"),
+  "trees-01", "https://player.vimeo.com/video/439635892", here::here("video", "liminal-trees-01.mp4"),
+  "trees-02", "https://player.vimeo.com/video/439635863", here::here("video", "liminal-trees-02.mp4"),
+  "mouse-01", "https://player.vimeo.com/video/439635812", here::here("video", "liminal-mouse-01.mp4"),
+  "mouse-02", "https://player.vimeo.com/video/439635843", here::here("video", "liminal-mouse-02.mp4")
 )
 
 
@@ -21,12 +21,12 @@ display_vid_latex <- function(key, lookup) {
     "\\begin{{center}}
    \\includemedia[
     width=0.6\\linewidth,
-    height=0.4\\linewidth,
+    height=0.45\\linewidth,
     keepaspectratio=true,
+    activate=pageopen
     addresource={video},
     flashvars={{%
       source={video}
-      &autohide=1
       &autoPlay=true
       &loop=true}
   ]{{}}{{VPlayer.swf}}
