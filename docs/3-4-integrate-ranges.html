@@ -188,20 +188,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-ch-tsne.html"><a href="5-ch-tsne.html"><i class="fa fa-check"></i><b>5</b> Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-1-introduction-2.html"><a href="5-1-introduction-2.html"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="5-2-dimensionality-reduction.html"><a href="5-2-dimensionality-reduction.html"><i class="fa fa-check"></i><b>5.2</b> Dimensionality Reduction</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-dimensionality-reduction-background.html"><a href="5-2-dimensionality-reduction-background.html"><i class="fa fa-check"></i><b>5.2</b> Dimensionality Reduction Background</a></li>
 <li class="chapter" data-level="5.3" data-path="5-3-visual-design.html"><a href="5-3-visual-design.html"><i class="fa fa-check"></i><b>5.3</b> Visual Design</a><ul>
 <li class="chapter" data-level="5.3.1" data-path="5-3-visual-design.html"><a href="5-3-visual-design.html#finding-gestalt-focus-and-context"><i class="fa fa-check"></i><b>5.3.1</b> Finding Gestalt: focus and context</a></li>
 <li class="chapter" data-level="5.3.2" data-path="5-3-visual-design.html"><a href="5-3-visual-design.html#posing-queries-multiple-views-many-contexts"><i class="fa fa-check"></i><b>5.3.2</b> Posing Queries: multiple views, many contexts</a></li>
 <li class="chapter" data-level="5.3.3" data-path="5-3-visual-design.html"><a href="5-3-visual-design.html#making-comparisons-revising-embeddings"><i class="fa fa-check"></i><b>5.3.3</b> Making comparisons: revising embeddings</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="5-4-software-infrastructure.html"><a href="5-4-software-infrastructure.html"><i class="fa fa-check"></i><b>5.4</b> Software Infrastructure</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="5-4-software-infrastructure.html"><a href="5-4-software-infrastructure.html#tours-as-a-streaming-data-problem"><i class="fa fa-check"></i><b>5.4.1</b> Tours as a streaming data problem</a></li>
-<li class="chapter" data-level="5.4.2" data-path="5-4-software-infrastructure.html"><a href="5-4-software-infrastructure.html#linking-views-via-brushes"><i class="fa fa-check"></i><b>5.4.2</b> Linking views via brushes</a></li>
+<li class="chapter" data-level="5.4.1" data-path="5-4-software-infrastructure.html"><a href="5-4-software-infrastructure.html#tours-explore-the-subspace-of-d-dimensional-projections"><i class="fa fa-check"></i><b>5.4.1</b> Tours explore the subspace of <span class="math inline">\(d\)</span>-dimensional projections</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-software-infrastructure.html"><a href="5-4-software-infrastructure.html#tours-as-a-streaming-data-problem"><i class="fa fa-check"></i><b>5.4.2</b> Tours as a streaming data problem</a></li>
+<li class="chapter" data-level="5.4.3" data-path="5-4-software-infrastructure.html"><a href="5-4-software-infrastructure.html#linking-and-highlighting-views-via-interactions"><i class="fa fa-check"></i><b>5.4.3</b> Linking and highlighting views via interactions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html"><i class="fa fa-check"></i><b>5.5</b> Case Studies</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-1-exploring-tree-structured-data-with-tours-and-t-sne"><i class="fa fa-check"></i><b>5.5.1</b> Case Study 1: Exploring tree structured data with tours and t-SNE</a></li>
-<li class="chapter" data-level="5.5.2" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-2-clustering-pbmc-10x-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.5.2</b> Case Study 2: Clustering PBMC 10x single cell RNA-seq data</a></li>
-<li class="chapter" data-level="5.5.3" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-3-single-cell-mouse-retina-data"><i class="fa fa-check"></i><b>5.5.3</b> Case Study 3: Single cell mouse retina data</a></li>
+<li class="chapter" data-level="5.5.1" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-1-exploring-simulation-data-with-tours-and-t-sne"><i class="fa fa-check"></i><b>5.5.1</b> Case Study 1: Exploring simulation data with tours and t-SNE</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-2-clustering-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.5.2</b> Case Study 2: Clustering single cell RNA-seq data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="5-6-discussion-3.html"><a href="5-6-discussion-3.html"><i class="fa fa-check"></i><b>5.6</b> Discussion</a></li>
 <li class="chapter" data-level="5.7" data-path="5-7-acknowledgements-4.html"><a href="5-7-acknowledgements-4.html"><i class="fa fa-check"></i><b>5.7</b> Acknowledgements</a></li>
@@ -263,30 +263,30 @@ samples of size equal to the number of DE-genes from the number of rows in
 <pre><code>#&gt; GRanges object with 749 ranges and 3 metadata columns:
 #&gt;         seqnames              ranges strand |            gene_id
 #&gt;            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
-#&gt;     [1]    chr16   22007638-22087534      + | ENSG00000185716.11
-#&gt;     [2]     chr4   82900684-82919969      + | ENSG00000168152.12
-#&gt;     [3]    chr15   80946289-80989878      - | ENSG00000117899.10
-#&gt;     [4]     chr2 218270392-218346793      + | ENSG00000127838.13
-#&gt;     [5]     chr1 227730425-227735411      - | ENSG00000081692.12
+#&gt;     [1]    chr19     6737925-6751526      + | ENSG00000125733.17
+#&gt;     [2]     chr1   53946077-53968168      + | ENSG00000116212.14
+#&gt;     [3]     chr2 200908973-200963680      - |  ENSG00000115942.8
+#&gt;     [4]     chr8   22604632-22621514      + | ENSG00000158941.16
+#&gt;     [5]     chrX   74585217-74614617      - | ENSG00000131263.12
 #&gt;     ...      ...                 ...    ... .                ...
-#&gt;   [745]     chr2   24819169-24919839      - | ENSG00000138031.14
-#&gt;   [746]     chr3 185190624-185281990      - | ENSG00000113790.10
-#&gt;   [747]     chr5 115828200-115841858      - | ENSG00000145782.12
-#&gt;   [748]     chr7 141002610-141015228      - | ENSG00000090263.15
-#&gt;   [749]    chr11   72836745-73142261      - | ENSG00000137478.14
-#&gt;                  de_log2FC              de_padj
-#&gt;                  &lt;numeric&gt;            &lt;numeric&gt;
-#&gt;     [1]  0.121180940643194 1.86128516322447e-08
-#&gt;     [2]  0.155596208775778 1.26080713317717e-05
-#&gt;     [3]  0.291361576386332 3.53711886038573e-11
-#&gt;     [4] -0.206579495351742 1.27629770434001e-06
-#&gt;     [5] -0.118831238235049  1.2313547712302e-09
-#&gt;     ...                ...                  ...
-#&gt;   [745]  0.141004210305502 0.000154520950586687
-#&gt;   [746]  0.357094978347276  0.00762640438909444
-#&gt;   [747]  0.255536729767158 1.10527779463082e-14
-#&gt;   [748] 0.0686524482361801 9.93163665258309e-18
-#&gt;   [749] -0.381118367519215 1.38754024750076e-05
+#&gt;   [745]     chr7 100673531-100679174      + |  ENSG00000172354.9
+#&gt;   [746]     chrX   48801377-48824982      + | ENSG00000094631.19
+#&gt;   [747]     chr7 155295918-155297541      - |  ENSG00000273117.1
+#&gt;   [748]    chr14   94026329-94048930      + |  ENSG00000089723.9
+#&gt;   [749]    chr15   30938941-30991607      - | ENSG00000166912.16
+#&gt;                   de_log2FC              de_padj
+#&gt;                   &lt;numeric&gt;            &lt;numeric&gt;
+#&gt;     [1] 0.00175158903442046 0.000371941524958935
+#&gt;     [2]   0.299631002940515 2.49946353306387e-05
+#&gt;     [3]   0.137424901258186 3.63651010370865e-06
+#&gt;     [4]  -0.316292320448147 5.91898147798135e-11
+#&gt;     [5]  0.0605046966776318 3.35792534882791e-14
+#&gt;     ...                 ...                  ...
+#&gt;   [745]   0.301794961853862  4.9677852019558e-11
+#&gt;   [746]   0.204021684548961 3.73704955567283e-06
+#&gt;   [747]  0.0757638877944266  0.00030631043610893
+#&gt;   [748]   0.189733974471945   0.0027335828243482
+#&gt;   [749]   0.143823284310084 1.77445877546165e-19
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
 <p>We can repeat this many times to create many samples via <code>replicate</code>. By
