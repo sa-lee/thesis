@@ -31,10 +31,8 @@ directory. Since some files are greater than 50Mb, in order to clone this reposi
 * `img/`: Images made with other tools to illustrate ideas. 
 * `bib/`: Bibliography files.
 * `template/`: Monash thesis template from[robjhydman/MonashThesis](https://github.com/robjhyndman/MonashThesis).
+* `video`: Videos made with other tools to illustrate ideas. Videos are rendered with `media9` LaTeX package for PDF and or hosted on vimeo for html.
 * `docs/`: the compiled thesis and pdf
-
-Videos are rendered with `media9` for PDF and or hosted on vimeo for html.
-
 
 ## Acknowledgements
 
