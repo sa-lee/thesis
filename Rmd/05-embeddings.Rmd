@@ -46,7 +46,7 @@ the natural sciences as part of cluster orientation and dimension reduction
 workflows. The appropriate use of these methods is made difficult by their
 complex parameterisations and the multitude of decisions required to balance
 the preservation of local and global structure in the resulting visualisation.
-We present a visual analytics framework for the pragmatic usage of NLDR methods
+We present a visual <change word here> framework for the pragmatic usage of NLDR methods
 by combining them with a technique called the tour. A tour is a sequence of
 interpolated linear projections of multivariate data onto a lower dimensional
 space. The sequence is displayed as a dynamic visualisation, allowing a user to
@@ -101,9 +101,12 @@ the tour. A tour is a sequence of projections of a high dimensional dataset
 onto a low-dimensional basis matrix, and is represented as a
 animated visualization. Given the dynamic nature of the tour, user interaction is 
 important for controlling and exploring the visualisation: the tour has been
-used previously by @Wickham2015-cx and @Li2020-rh as a tool for 
+used previously by @Wickham2015-cx and  
 exploring statistical model fits and by @Buja1996-fk for exploring the space of 
 factorial experimental designs.
+
+<!--- add tour reference; linked brushing -->
+
 
 While there has been much work on the algorithmic details of
 embedding methods, there has been relatively few tools designed to assist users
@@ -121,7 +124,7 @@ running some non-liner embedding methods live in the browser and
 provides interactions  to colour points, and select nearest neighbours
 [@Smilkov2016-hp]. Finally, the work by @Pezzotti2017-cz provides a user 
 guided and modified form of the  t-SNE algorithm, that allows users to modified 
-optimisation parameters in real-time.
+optimisation parameters in real-time. <!-- add visualising with mds reference -->
 
 There is no one-size fits all: finding an appropriate embedding for a given
 dataset is a difficult and a somewhat poorly defined problem. For non-linear
@@ -135,7 +138,7 @@ cluster orientation tasks. This workflow is incorporated into an R package
 called **liminal** (Available: https://github.com/sa-lee/liminal).
 
 
-## Dimensionality Reduction Background
+## Overview of Dimension Reduction
 
 In the following section, we provide a brief overview of the goals of DR
 methods with respect to the data analyst, in addition to their high level the
@@ -276,8 +279,6 @@ supposedly preserves global structure better than t-SNE [@Coenen2019-to].
 Tours provide a supportive visualisation to NLDR graphics, and 
 can be easily incorporated into an analysts workflow with our interface in 
 **liminal**. 
-We have made extensive use of ensemble graphics, that is
-aligning related plots alongside each other to provide context [@Unwin2018-zb]. 
 As we will see in the case studies, this allows analysts to quickly compare 
 views from embedding methods and allows them to see how the embedding method 
 alters the global structure of their data. Using ensembles allows the use of 
@@ -285,6 +286,7 @@ interaction techniques, that allow analysts to perform cluster orientation
 tasks via linking multiple views. This approach allows our interface, to achieve 
 the three principles for interactive high-dimensional data visualisation outlined
 by @Buja1996-fk: finding gestalt, posing queries, and making comparisons.
+
 
 ### Finding Gestalt: focus and context
 
@@ -449,6 +451,9 @@ instances of images from different labels that appear similar.
 
 ### Case Study 1: Exploring simulation data with tours and t-SNE
 
+
+#### Spherical Gaussian Clusters
+
 To begin we look at simulated datasets that reproduce known facts
 about the  t-SNE algorithm. Our first data set consists of five spherical 5-$d$
 Gaussian clusters embedded in 10-$d$ space, each cluster has the same 
@@ -472,6 +477,10 @@ where once we start the animation, the five clusters begin to appear but
 generally points are more concentrated in the projection view compared to 
 the t-SNE layout. This can be seen from our brushing action on the t-SNE side. 
 
+
+
+#### Spherical Gaussian clusters with hierarchical structure
+
 We repeat the process of simulating Gaussian clusters in the next video, 
 but this time we have a cluster that has more granular structure. This time we have two
 Gaussian clusters with equal covariance embedded in $10-d$, and a third cluster
@@ -493,6 +502,7 @@ cat(display_vid_latex("hierachical", vid_lookup))
 display_vid_html("hierachical", vid_lookup)
 ```
 
+#### 
 
 Next explore some simulated noisy tree structured data (figure
 \@ref(fig:fake-trees)), our interest here is how t-SNE visualisations break
@@ -613,7 +623,8 @@ The tour appears to form a tetrahedron like shape, with points lying on
 surface and along the vertices of the the tetrahedron in 5-$d$ PCA space -
 a phenomena that has also been observed in @Korem2015-af. Brushing on
 the tour view, reveals points in cluster 9 that are diffuse in the embedding 
-view, points in cluster 9 are relatively far away and spread apart from other clusters in the tour view, but has points placed in cluster 3 and 9 in the embedding. 
+view, points in cluster 9 are relatively far away and spread apart from other 
+clusters in the tour view, but has points placed in cluster 3 and 9 in the embedding. 
 
 Next, we identify marker genes for clusters using one sided Welch t-tests with
 a minimum log fold change of one as recommended by @Amezquita2020-at, which
@@ -708,3 +719,5 @@ work from topological statistics [@Rieck2017-kk; @Genovese2017-iq].
 
 We would like to thank David Frazier, Ursula Laa and Paul Harrison for their
 feedback on this work. 
+
+<!-- add supplementary materials --> 
