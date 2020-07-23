@@ -720,4 +720,4 @@ work from topological statistics [@Rieck2017-kk; @Genovese2017-iq].
 We would like to thank David Frazier, Ursula Laa and Paul Harrison for their
 feedback on this work. 
 
-<!-- add supplementary materials --> 
+<!-- add supplementary materials here --> 
