@@ -145,7 +145,7 @@ methods with respect to the data analyst, in addition to their high level the
 mathematical details. Here we restrict our attention to two recent methods that
 are commonly used in the literature: t-distributed stochastic neighbour embedding 
 (t-SNE) and uniform manifold alignment and projection (UMAP); however we do 
-mention several other techniques. 
+mention several other techniques [@Maaten2008-sk; @McInnes2018-co]. 
 
 To begin we suppose the data is in the form rectangular
 matrix of real numbers, $X = [\mathbf{x_1}, \dots, \mathbf{x_n}]$, where $n$ is
@@ -193,7 +193,7 @@ The t-SNE algorithm estimates
 the pair-wise similarity of (Euclidean) distances of points in a high
 dimensional space using a Gaussian distribution and then estimates a
 configuration in the low dimensional embedding space by modelling similarities
-using a t-distribution with 1 degree of freedom. There are several subtleties
+using a t-distribution with 1 degree of freedom [@Maaten2008-sk]. There are several subtleties
 to the to use of the algorithm that are revealed by stepping through its
 machinery.
 
