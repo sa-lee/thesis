@@ -10,6 +10,8 @@ plyranges_stats <- dl_stats %>%
     no_downloads = sum(Nb_of_downloads)
   )
 
+nice <- function(x) prettyNum(x, big.mark = ",", scientific = FALSE)
+
 ```
 
 # Conclusion  {#ch:conclusion}
@@ -42,7 +44,7 @@ open source R packages and workflows: **plyranges**, **fluentGenomics**, **super
 
 The **plyranges** package develops a suite of verbs for interacting
 with genomic data as a *GRanges* object. Since its release on Bioconductor,
-it  has been relatively  successful: it has been downloaded `r plyranges_stats$no_downloads` times from  `r plyranges_stats$no_ip` unique IP addresses. I have also had the privilege of teaching workshops on **plyranges**
+it  has been relatively  successful: it has been downloaded `r nice(plyranges_stats$no_downloads)` times from  `r nice(plyranges_stats$no_ip)` unique IP addresses. I have also had the privilege of teaching workshops on **plyranges**
 at Bioconductor conferences which also led to the development of the 
 **fluentGenomics** workflow package, outlined in chapter \@ref(ch:fluentGenomics). A broader impact of the work, has been the discussions around the
 concepts of fluent interfaces and tidy data within the Bioconductor community,
@@ -68,7 +70,8 @@ Finally, the **liminal** software aims to provide a more holistic approach to
 analysis tasks requiring the use of dimensionality reduction algorithms. We
 showed how to incorporate interactive graphics and tours to identify problems
 with embeddings. Based on the case studies provided I believe that the methods
-used in **liminal** could be broadly applicable many high dimensional datasets.
+used in **liminal** could be broadly applicable to many high dimensional datasets
+and NLDR methods.
 The **liminal** package is available to download from https://github.com/sa-lee/liminal.
 
 
@@ -80,9 +83,9 @@ that do not fit in memory. We attempted several techniques for performing
 delayed operations over range-based data, however a more general approach
 that allows for data stored on the cloud or in scientific data formats
 like HDF5 that leverage existing Bioconductor frameworks would be useful.
-We showed in chapters \@ref(ch:fluentGenomics) ad \@ref(ch:intron) that an a
+We showed in chapters \@ref(ch:fluentGenomics) ad \@ref(ch:intron) that an
 analyst is able to do some very complex data transformations and re-sampling 
-procedures via casting results into *GRanges* object. However, it is unclear 
+procedures via casting results into _GRanges_ object. However, it is unclear 
 whether the semantics of our grammar can be extended to data that can not be 
 easily reshaped into long form tidy representations. Moreover, further work
 is required to explore the design space of grammars for data 
@@ -101,6 +104,6 @@ concentrated in the centre of the tour display obscuring interesting aspects
 of the data. This is mitigated via having
 the ability to zoom, but further research into transforming the projections
 to avoid crowding would be valuable. An added complexity to changes in visual
-displays are thinking about the design of user interactions, several promising
-avenues based on section tours should be explored [@Laa2020-wr; @Laa2020-fy].
+displays are thinking about the design of user interactions, and several promising
+avenues based on section tours could be explored [@Laa2020-wr; @Laa2020-fy].
 
