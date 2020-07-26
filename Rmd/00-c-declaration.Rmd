@@ -13,7 +13,7 @@ co-authors, including my  primary supervisors Professor Dianne Cook (DC) in the
 Department of Econometrics and Business Statistics at Monash University
 and Associate Professor Matthew Ritchie in the Epigenetics and Development 
 Division at the Walter and Eliza Hall Institute. The following table details
-the publications and my and my fellow co-authors contributions:
+the publications, including my and my fellow co-authors contributions:
 
 \begin{table}
 \centering\footnotesize\tabcolsep=0.12cm
@@ -22,7 +22,7 @@ the publications and my and my fellow co-authors contributions:
 \RaggedRight\textbf{Thesis Chapter}  & \RaggedRight\textbf{Publication Title}  & \RaggedRight\textbf{Status (published, in press, accepted or returned for revision)}  & \RaggedRight\textbf{Nature and} {\%} \RaggedRight\textbf{of student contribution} & \RaggedRight\textbf{Co-author name(s) Nature and} {\%} \RaggedRight\textbf{of Co-author’s contribution} & \RaggedRight\textbf{Co-author(s), Monash student Y/N} \\ \hline
 2 & plyranges: a grammar of genomic data transformation & Published  & 70\%. Concept, software development, data analysis, and manuscript writing & (1) Dianne Cook, Concept and manuscript revision 10\% (2) Michael Lawrence, Concept and software development  20\% & \multicolumn{1}{c|}{N}  \\
 \hline
-3 & Fluent genomics with \textit{plyranges} and \textit{tximeta} & Published (awaiting peer review) & 60\%. Concept, software development, data analysis and manuscript writing  & (1) Michael Lawrence, manuscript feedback and editing 5\% (2) Michael I Love, Concept, data analysis and manuscript writing 35\% & \multicolumn{1}{c|}{N} \\
+3 & Fluent genomics with \textbf{plyranges} and \textbf{tximeta} & Published & 60\%. Concept, software development, data analysis and manuscript writing  & (1) Michael Lawrence, manuscript feedback and editing 5\% (2) Michael I Love, Concept, data analysis and manuscript writing 35\% & \multicolumn{1}{c|}{N} \\
 \hline
 5 & Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings & To be submitted & 80\%. Concept, software development, and manuscript writing & (1) Dianne Cook, Concept and manuscript writing 15\% & \multicolumn{1}{c|}{N} \\
 \hline
@@ -31,12 +31,11 @@ the publications and my and my fellow co-authors contributions:
 
 \FloatBarrier
 
-Note that chapter \@ref(ch:intron), reflects my  contribution (in the form of a 
-software package and data analysis) to the submitted manuscript entitled 
+Chapter \@ref(ch:intron), reflects my contribution (in the form of a 
+software package) to the submitted manuscript entitled 
 _Covering all your bases: incorporating intron signal from RNA-seq data_
-[@Lee2019-mf] and is joint work under the supervision of Dr Charity Law
+[@Lee2019-mf], and includes new data analyses not found in the paper.  It is joint work under the supervision of Dr Charity Law
 and Associate Professor Matthew Ritchie. 
-
 
 \textbf{Student name:} Stuart Andrew Lee
 
