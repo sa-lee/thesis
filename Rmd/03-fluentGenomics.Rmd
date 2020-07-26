@@ -375,7 +375,7 @@ the **fluentGenomics** and can be loaded as follows:
 
 ### Finding overlaps with **plyranges**
 
-We have already used **plyrange**  a number of times above, to `filter()`,
+We have already used **plyranges**  a number of times above, to `filter()`,
 `mutate()`, and `select()` on _GRanges_ objects, as well as ensuring the correct
 genome annotation and style has been used. The **plyranges** package provides a
 grammar for performing transformations of genomic data [@Lee2019]. Computations

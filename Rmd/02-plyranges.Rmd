@@ -86,7 +86,7 @@ enable a user to write human readable analysis workflows.
 We have created a genomic DSL called **plyranges** that reformulates
 notions from existing genomic algebras and embeds them in R as a
 genomic extension of **dplyr**. By analogy, **plyranges** is to the
-genomic algebra, as **dply**` is to the relational algebra.  The
+genomic algebra, as **dplyr**` is to the relational algebra.  The
 **plyranges`**Bioconductor package implements the language on top of a
 key subset of Bioconductor data structures and thus fully integrates
 with the Bioconductor framework, gaining access to its scalable data
@@ -134,39 +134,39 @@ algebra, and borrow its syntax conventions and design principles.
   \hline
   & Verb &  Description \\ 
   \hline
-   & \textbf{\emph{summarize()}} & aggregate over column(s) \\ 
-   Aggregate & \textt{disjoin\_ranges()} & aggregate column(s) over the union of end coordinates \\
-   &  \textt{reduce\_ranges()} & aggregate column(s) by merging overlapping and neighboring ranges \\
+   & \textbf{\texttt{summarize()}} & aggregate over column(s) \\ 
+   Aggregate & \texttt{disjoin\_ranges()} & aggregate column(s) over the union of end coordinates \\
+   &  \texttt{reduce\_ranges()} & aggregate column(s) by merging overlapping and neighboring ranges \\
    \hline
-   &  \textbf{\textt{mutate()}} & modifies any column \\
-   & \textbf{\textt{select()}} & select columns \\
-  Modify (Unary) & \textbf{\textt{arrange()}} & sort by columns \\
-   & \textt{stretch()} & extend range by fixed amount \\
-   &  \textt{shift\_(direction)} & shift coordinates \\
-   & \textt{flank\_(direction)} & generate flanking regions \\
-   & \textt{\%intersection\% } & row-wise intersection \\
-   & \textt{\%union\%} & row-wise union \\
-   & \textt{compute\_coverage} & coverage over all ranges \\
-  Modify (Binary) &  \textt{\%setdiff\%} & row-wise set difference \\
-   & \textt{between()} & row-wise gap range \\
-   & \textt{span()} & row-wise spanning range \\
+   &  \textbf{\texttt{mutate()}} & modifies any column \\
+   & \textbf{\texttt{select()}} & select columns \\
+  Modify (Unary) & \textbf{\texttt{arrange()}} & sort by columns \\
+   & \texttt{stretch()} & extend range by fixed amount \\
+   &  \texttt{shift\_(direction)} & shift coordinates \\
+   & \texttt{flank\_(direction)} & generate flanking regions \\
+   & \texttt{\%intersection\% } & row-wise intersection \\
+   & \texttt{\%union\%} & row-wise union \\
+   & \texttt{compute\_coverage} & coverage over all ranges \\
+  Modify (Binary) &  \texttt{\%setdiff\%} & row-wise set difference \\
+   & \texttt{between()} & row-wise gap range \\
+   & \texttt{span()} & row-wise spanning range \\
    \hline
-    & \textt{join\_overlap\_*()} & merge by overlapping ranges \\
-    & \textt{join\_nearest} & merge by nearest neighbor ranges \\
-    & \textt{join\_follow} & merge by following ranges \\
-    Merge & \textt{join\_precedes} & merge by preceding ranges \\
-    & \textt{union\_ranges} & range-wise union \\
-    & \textt{intersect\_ranges} & range-wise intersect \\
-    & \textt{setdiff\_ranges} & range-wise set difference \\
-    & \textt{complement\_ranges} & range-wise set complement \\
+    & \texttt{join\_overlap\_*()} & merge by overlapping ranges \\
+    & \texttt{join\_nearest} & merge by nearest neighbor ranges \\
+    & \texttt{join\_follow} & merge by following ranges \\
+    Merge & \texttt{join\_precedes} & merge by preceding ranges \\
+    & \texttt{union\_ranges} & range-wise union \\
+    & \texttt{intersect\_ranges} & range-wise intersect \\
+    & \texttt{setdiff\_ranges} & range-wise set difference \\
+    & \texttt{complement\_ranges} & range-wise set complement \\
   \hline
-   & \textt{anchor\_direction()} & fix coordinates at direction \\
-  Operate & \textbf{\textt{group\_by()}} & partition by column(s)  \\ 
-   & \textt{group\_by\_overlaps()} & partition by overlaps \\
+   & \texttt{anchor\_direction()} & fix coordinates at direction \\
+  Operate & \textbf{\texttt{group\_by()}} & partition by column(s)  \\ 
+   & \texttt{group\_by\_overlaps()} & partition by overlaps \\
    \hline
-   & \textbf{\textt{filter()}} & subset rows \\
-  Restrict & \textt{filter\_by\_overlaps()} & subset by overlap \\
-    & \textt{filter\_by\_non\_overlaps()} & subset by no overlap \\
+   & \textbf{\texttt{filter()}} & subset rows \\
+  Restrict & \texttt{filter\_by\_overlaps()} & subset by overlap \\
+    & \texttt{filter\_by\_non\_overlaps()} & subset by no overlap \\
    \hline
 \end{tabular}
 \caption{Overview of the \textbf{plyranges} grammar. The core verbs are
@@ -530,7 +530,7 @@ representing experimental results (e.g., counts) from multiple sample
 experiments in conjunction with feature and sample metadata. Although,
 the _SummarizedExperiment_ is not strictly tidy, it does consist of 
 three tidy data structures that are related by feature and sample identifiers. 
-Therefore, the grammar and design of the **plryanges** DSL is naturally 
+Therefore, the grammar and design of the **plyranges** DSL is naturally 
 extensible to the _SummarizedExperiment_.
 
 As the **plyranges** interface encourages tidy data practices, it

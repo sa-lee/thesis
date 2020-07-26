@@ -197,7 +197,7 @@ design to find differential IR like profiles. However, if that was of interest,
 one could look at the overlaps, like we did in figure \@ref(fig:si-upset),
 or combine our data descriptors with external estimates using **limma** 
 [@Ritchie2015-mj], like our proposed index method in @Lee2019-mf. The gene
-candiates obtain by our thresholds have been validated by the Heath lab
+candidates obtain by our thresholds have been validated by the Heath lab
 using qPCR. 
 
 Although the example we have explored has related to finding coverage

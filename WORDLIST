@@ -2,6 +2,7 @@ ACEMS
 Acknowledgements
 arabic
 authorname
+AnnotationHub
 atac
 ATAC
 bam
@@ -11,6 +12,8 @@ BigWig
 bioconductor
 BiocAsia
 BiocFileCache
+BiocManager
+Biostrings
 BiocWorkflowTools
 bookdown
 caliban
@@ -81,6 +84,7 @@ infty
 interoperate
 iPSC
 ir
+IRanges
 isoform
 isoforms
 Isomap
@@ -101,6 +105,7 @@ mathbb
 mathbf
 mathcal
 macrophage
+magrittr
 maplot
 mapk
 markdown
@@ -126,6 +131,7 @@ pluripotent
 plyranges
 polyA
 pybedtools
+qPCR
 quantifications
 RaggedRight
 ranglers
@@ -134,10 +140,12 @@ RefSeq
 recode
 ribonucleoproteins
 rightarrow
+rlang
 rnpc
 rmarkdown
 rmu
 rowMeans
+rtracklayer
 RTP
 Rtsne
 Rsamtools
@@ -198,3 +206,4 @@ Zenodo
 zebrafish
 tourr
 vegawidget
+Snakemake
