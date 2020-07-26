@@ -92,7 +92,7 @@ and interpretation of embedding methods as well. @Sedlmair2013-pn showed that
 they also noted that often multiple embeddings were required. For the task of
 cluster identification, @Lewis2012-ai showed experimentally that novice users
 of non-linear embedding techniques were more likely to consider clusters of
-points on a 2d scatter plot to be the result of a spurious embedding compared
+points on a 2D scatter plot to be the result of a spurious embedding compared
 to advanced users who were aware of the inner workings of the embedding
 algorithm.
 
