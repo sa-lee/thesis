@@ -1,8 +1,12 @@
 ## ----setup, include = FALSE------------------------
 library(fluentGenomics)
 dir <- system.file("extdata", package="macrophage")
-
+library(readr)
+library(dplyr)
+library(SummarizedExperiment)
 library(tximeta)
+library(DESeq2)
+library(plyranges)
 makeLinkedTxome(
   indexDir=file.path(dir, "gencode.v29_salmon_0.12.0"),
   source="Gencode",
@@ -13,7 +17,9 @@ makeLinkedTxome(
   gtf=file.path(dir, "gencode.v29.annotation.gtf.gz"), # local version
   write=FALSE
 )
-
+# alias to plyranges
+n_distinct <- plyranges::n_distinct
+n <- plyranges::n
 
 ## ----setdir----------------------------------------
 dir <- system.file("extdata", package="macrophage")
@@ -24,13 +30,13 @@ library(readr)
 library(dplyr)
 colfile <- file.path(dir, "coldata.csv")
 coldata <- read_csv(colfile) %>%
-  dplyr::select(
+  select(
     names,
     id = sample_id,
     line = line_id,
     condition = condition_name
   ) %>%
-  dplyr::mutate(
+  mutate(
     files = file.path(dir, "quants", names, "quant.sf.gz"),
     line = factor(line),
     condition = relevel(factor(condition), "naive")
@@ -39,7 +45,7 @@ coldata
 
 
 ## ----tximeta-run-----------------------------------
-suppressPackageStartupMessages(library(SummarizedExperiment))
+library(SummarizedExperiment)
 library(tximeta)
 se <- tximeta(coldata, dropInfReps=TRUE)
 se
@@ -74,7 +80,7 @@ DESeq2::plotMA(res, ylim=c(-10,10))
 
 
 ## ----results-GRanges-------------------------------
-suppressPackageStartupMessages(library(plyranges))
+library(plyranges)
 de_genes <- results(dds,
                     contrast=c("condition","IFNg","naive"),
                     lfcThreshold=1,
@@ -120,25 +126,25 @@ da_peaks <- peaks %>%
 
 ## ----slice-example---------------------------------
 size <- length(de_genes)
-slice(other_genes, sample.int(plyranges::n(), size))
+slice(other_genes, sample.int(n(), size))
 
 
 ## ----boot-set-01-----------------------------------
 # set a seed for the results
 set.seed(2019-08-02)
-boot_genes <- replicate(10,
-                        slice(other_genes, sample.int(plyranges::n(), size)),
-                        simplify = FALSE)
+subsamp_genes <- replicate(10,
+                           slice(other_genes, sample.int(n(), size)),
+                           simplify = FALSE)
 
 
 ## ----boot-set-02-----------------------------------
-boot_genes <- bind_ranges(boot_genes, .id = "resample")
+subsamp <- bind_ranges(subsamp, .id = "resample")
 
 
 ## ----combine-results-------------------------------
 all_genes <- bind_ranges(
   de=de_genes,
-  not_de = boot_genes,
+  not_de = subsamp,
   .id="origin"
 ) %>%
   mutate(
@@ -170,7 +176,7 @@ genes_olap_peaks
 gene_peak_max_lfc <- genes_olap_peaks %>%
   group_by(gene_id, origin)  %>%
   reduce_ranges_directed(
-    peak_count = sum(!is.na(da_padj)) / plyranges::n_distinct(resample),
+    peak_count = sum(!is.na(da_padj)) / n_distinct(resample),
     peak_max_lfc = max(abs(da_log2FC))
   )
 
@@ -188,18 +194,19 @@ gene_peak_max_lfc %>%
 origin_peak_lfc <- genes_olap_peaks %>%
   group_by(origin) %>%
   summarize(
-    peak_count = sum(!is.na(da_padj)) / plyranges::n_distinct(resample),
-    lfc1_peak_count =sum(abs(da_log2FC) > 1, na.rm=TRUE)/ plyranges::n_distinct(resample),
-    lfc2_peak_count = sum(abs(da_log2FC) > 2, na.rm=TRUE)/ plyranges::n_distinct(resample)
+    peak_count = sum(!is.na(da_padj)) / n_distinct(resample),
+    lfc1_peak_count =sum(abs(da_log2FC) > 1, na.rm=TRUE)/ n_distinct(resample),
+    lfc2_peak_count = sum(abs(da_log2FC) > 2, na.rm=TRUE)/ n_distinct(resample)
   )
 origin_peak_lfc
 
 
 ## ----pivot-enrich----------------------------------
+library(tidyr)
 origin_peak_lfc %>%
   as.data.frame() %>%
-  tidyr::pivot_longer(cols = -origin) %>%
-  tidyr::pivot_wider(names_from = origin, values_from = value) %>%
+  pivot_longer(cols = -origin) %>%
+  pivot_wider(names_from = origin, values_from = value) %>%
   mutate(enrichment = de / not_de)
 
 
@@ -212,10 +219,10 @@ genes_olap_peaks %>%
   ) %>%
   group_by(origin) %>%
   summarize(
-    lfc1_gene_count = sum(lfc1 > 0) / plyranges::n_distinct(resample),
-    lfc1_peak_count = sum(lfc1) / plyranges::n_distinct(resample),
-    lfc2_gene_count = sum(lfc2 > 0) / plyranges::n_distinct(resample),
-    lfc2_peak_count = sum(lfc2) / plyranges::n_distinct(resample)
+    lfc1_gene_count = sum(lfc1 > 0) / n_distinct(resample),
+    lfc1_peak_count = sum(lfc1) / n_distinct(resample),
+    lfc2_gene_count = sum(lfc2 > 0) / n_distinct(resample),
+    lfc2_peak_count = sum(lfc2) / n_distinct(resample)
   )
 
 
@@ -248,24 +255,25 @@ origin_peak_all_thresholds <- genes_peak_all_thresholds %>%
   expand_ranges() %>%
   group_by(origin, threshold) %>%
   summarize(
-    gene_count = sum(value > 0) / plyranges::n_distinct(resample),
-    peak_count = sum(value) / plyranges::n_distinct(resample)
+    gene_count = sum(value > 0) / n_distinct(resample),
+    peak_count = sum(value) / n_distinct(resample)
   )
 origin_peak_all_thresholds
 
 
-## ----line-chart, fig.cap = "(ref:linechart)"-------
+## ----line-chart-data-------
 origin_threshold_counts <- origin_peak_all_thresholds %>%
   as.data.frame() %>%
-  tidyr::pivot_longer(cols = -c(origin, threshold),
-                      names_to = c("type", "var"),
-                      names_sep = "_",
-                      values_to = "count") %>%
-  dplyr::select(-var)
+  pivot_longer(cols = -c(origin, threshold),
+               names_to = c("type", "var"),
+               names_sep = "_",
+               values_to = "count") %>%
+  select(-var)
 
+## ----line-chart, fig.cap = "(ref:linechart)"-------
 origin_threshold_counts %>%
   filter(type == "peak") %>%
-  tidyr::pivot_wider(names_from = origin, values_from = count) %>%
+  pivot_wider(names_from = origin, values_from = count) %>%
   mutate(enrichment =  de / not_de) %>%
   ggplot(aes(x = threshold, y = enrichment)) +
   geom_line() +
