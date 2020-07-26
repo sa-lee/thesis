@@ -707,9 +707,8 @@ through alternate tour paths and displays. The recent work
 by @Laa2020-wr is a promising area for further investigation, as well as
 work from topological statistics [@Rieck2017-kk; @Genovese2017-iq]. 
 
-## Acknowledgements
+## Acknowledgements {-}
 
-We would like to thank David Frazier, Ursula Laa and Paul Harrison for their
-feedback on this work. 
+We would like to thank Dr David Frazier, Dr Ursula Laa and Dr Paul Harrison for their feedback on this work. 
 
 <!-- add supplementary materials here --> 
