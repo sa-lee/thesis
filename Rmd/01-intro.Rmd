@@ -20,7 +20,7 @@ neglected.
 
 (ref:wflow-integrate) Data from multiple assays can be combined together using modelling and transformations. Data and model results can combined, tidied and transformed to have a common representation across different granularities of the genome.
 
-(ref:wflow-integrate) Visualisation is a tool for making sense of models. Here we explore, how well a model has captured the structure within the data using interactive graphics.  
+(ref:wflow-explore) Visualisation is a tool for making sense of models. Here we explore, how well a model has captured the structure within the data using interactive graphics.  
 
 ```{r wflow-cycle, fig.cap="(ref:wflow-cycle)"}
 knitr::include_graphics(here::here("img", "wflow-thesis-cycle.png"))
