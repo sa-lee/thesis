@@ -30,11 +30,12 @@ directory. Since some files are greater than 50Mb, in order to clone this reposi
 * `data-raw/`: R code to generate data in `data/`..
 * `img/`: Images made with other tools to illustrate ideas. 
 * `bib/`: Bibliography files.
-* `template/`: Monash thesis template from[robjhydman/MonashThesis](https://github.com/robjhyndman/MonashThesis).
-* `video`: Videos made with other tools to illustrate ideas. Videos are rendered with `media9` LaTeX package for PDF and or hosted on vimeo for html.
-* `docs/`: the compiled thesis and pdf
+* `template/`: Monash thesis template from [robjhydman/MonashThesis](https://github.com/robjhyndman/MonashThesis).
+* `video/`: Videos made with other tools to illustrate ideas. These are in
+mp4 format, screenshots are provided in the pdf version.
+* `docs/`: the compiled thesis as pdf and website.
 
 ## Acknowledgements
 
-Shout out to [Earo Wang](https://earo.me), who initially created this amazing
-reproducible thesis template that I forked and modified.
+Thank you [Earo Wang](https://earo.me), who initially created this 
+reproducible thesis template that I have forked and modified.

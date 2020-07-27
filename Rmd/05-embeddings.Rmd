@@ -15,26 +15,6 @@ display_vid_html <- function(key, lookup) {
   knitr::include_url(video[["url"]])
 }
 
-display_vid_latex <- function(key, lookup) {
-    video <- lookup[lookup$key == key, ]
-    glue::glue(
-    "\\begin{{center}}
-   \\includemedia[
-    width=0.6\\linewidth,
-    height=0.45\\linewidth,
-    keepaspectratio=true,
-    activate=pageopen
-    addresource={video},
-    flashvars={{%
-      source={video}
-      &autoPlay=true
-      &loop=true}
-  ]{{}}{{VPlayer.swf}}
-  \\end{{center}}",
-  video = video[["path"]]
-  )
-}
-
 ```
 
 # Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings {#ch:tsne}
@@ -455,8 +435,7 @@ and set up the **liminal** linked interface with grand tour on the 10-$d$
 observations: 
 
 
-```{r gaussian, results="asis", eval = knitr::is_latex_output()}
-cat(display_vid_latex("gaussian", vid_lookup))
+```{r gaussian, eval = knitr::is_latex_output()}
 ```
 
 ```{r gaussian-h, eval = knitr::is_html_output()}
@@ -487,14 +466,13 @@ relative placement is again exaggerated, with the tour showing that they
 are indeed much closer than the impression the t-SNE view gives.
 
 ```{r hierachical, results='asis', eval = knitr::is_latex_output()}
-cat(display_vid_latex("hierachical", vid_lookup))
 ```
 
 ```{r hierachical-h, eval = knitr::is_html_output()}
 display_vid_html("hierachical", vid_lookup)
 ```
 
-#### 
+#### Piecewise linear structure
 
 Next explore some simulated noisy tree structured data (figure
 \@ref(fig:fake-trees)), our interest here is how t-SNE visualisations break
@@ -516,8 +494,7 @@ keeps the first 50 PCs, sets the perplexity to equal 30 and performs random
 initialisation). We then create a linked
 tour with t-SNE layout with **liminal** as shown in the following video:
 
-```{r trees-01, results='asis', eval = knitr::is_latex_output()}
-cat(display_vid_latex("trees-01", vid_lookup))
+```{r trees-01, eval = knitr::is_latex_output()}
 ```
 
 ```{r trees01-h, eval = knitr::is_html_output()}
@@ -542,8 +519,7 @@ two PCs (scaled to have standard deviation 1e-4) instead of the default random
 initialisation and increase the perplexity from 30 to 100. We then combine
 these results with our tour view as displayed in the video:
 
-```{r trees-02, results='asis', eval = knitr::is_latex_output()}
-cat(display_vid_latex("trees-02", vid_lookup))
+```{r trees-02, eval = knitr::is_latex_output()}
 ```
 
 ```{r trees-02-h, eval = knitr::is_html_output()}
@@ -598,8 +574,7 @@ data size - 4,590 cells. Although this is not ideal, it still allows us to
 get a sense of the shape of the clusters as seen in the video below:
 
 
-```{r mouse-01, results='asis', eval = knitr::is_latex_output()}
-cat(display_vid_latex("mouse-01", vid_lookup))
+```{r mouse-01, eval = knitr::is_latex_output()}
 ```
 
 ```{r mouse-01-h, eval = knitr::is_html_output()}
@@ -628,8 +603,7 @@ generation (shown as the biplot on the left view) reflects the relative
 weighting of each gene. We run the tour directly on the 
 log normalised expression values using the same subset as before:
 
-```{r mouse-02, results='asis', eval = knitr::is_latex_output()}
-cat(display_vid_latex("mouse-02", vid_lookup))
+```{r mouse-02, eval = knitr::is_latex_output()}
 ```
 
 ```{r mouse-02-h, eval = knitr::is_html_output()}
