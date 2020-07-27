@@ -1,12 +1,16 @@
 ## ----setup, include = FALSE------------------------
+# due to bookdown loading everything at once, we
+# first detach and reattach to avoid conflicts
+detach("package:plyranges", unload = TRUE)
 library(fluentGenomics)
-dir <- system.file("extdata", package="macrophage")
-library(readr)
-library(dplyr)
 library(SummarizedExperiment)
 library(tximeta)
 library(DESeq2)
-library(plyranges)
+library(readr)
+library(dplyr)
+
+dir <- system.file("extdata", package="macrophage")
+
 makeLinkedTxome(
   indexDir=file.path(dir, "gencode.v29_salmon_0.12.0"),
   source="Gencode",
@@ -17,9 +21,9 @@ makeLinkedTxome(
   gtf=file.path(dir, "gencode.v29.annotation.gtf.gz"), # local version
   write=FALSE
 )
-# alias to plyranges
-n_distinct <- plyranges::n_distinct
-n <- plyranges::n
+# # alias to plyranges
+# n_distinct <- plyranges::n_distinct
+# n <- plyranges::n
 
 ## ----setdir----------------------------------------
 dir <- system.file("extdata", package="macrophage")
@@ -41,7 +45,7 @@ coldata <- read_csv(colfile) %>%
     line = factor(line),
     condition = relevel(factor(condition), "naive")
   )
-coldata
+glimpse(coldata)
 
 
 ## ----tximeta-run-----------------------------------
@@ -80,7 +84,7 @@ DESeq2::plotMA(res, ylim=c(-10,10))
 
 
 ## ----results-GRanges-------------------------------
-library(plyranges)
+suppressPackageStartupMessages(library(plyranges))
 de_genes <- results(dds,
                     contrast=c("condition","IFNg","naive"),
                     lfcThreshold=1,
@@ -92,7 +96,7 @@ de_genes
 ## ----de-genes--------------------------------------
 de_genes <- de_genes %>%
   filter(padj < 0.01) %>%
-  dplyr::select(
+  select(
     gene_id,
     de_log2FC = log2FoldChange,
     de_padj = padj
@@ -107,7 +111,7 @@ other_genes <- results(dds,
                        format="GRanges") %>%
   filter(padj < 0.01) %>%
   names_to_column("gene_id") %>%
-  dplyr::select(
+  select(
     gene_id,
     de_log2FC = log2FoldChange,
     de_padj = padj
@@ -138,13 +142,13 @@ subsamp_genes <- replicate(10,
 
 
 ## ----boot-set-02-----------------------------------
-subsamp <- bind_ranges(subsamp, .id = "resample")
+subsamp_genes <- bind_ranges(subsamp_genes, .id = "resample")
 
 
 ## ----combine-results-------------------------------
 all_genes <- bind_ranges(
   de=de_genes,
-  not_de = subsamp,
+  not_de = subsamp_genes,
   .id="origin"
 ) %>%
   mutate(

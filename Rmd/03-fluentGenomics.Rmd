@@ -159,7 +159,7 @@ The result is a _SummarizedExperiment_ object.
 
 ```{r tximeta-run, echo = TRUE}
 ```
-<!-- should we describe the data structure in more detail, or use a figure -->
+
 
 On a machine with a working internet connection, the above command works
 without any extra steps, as the **tximeta** function obtains any necessary
@@ -420,7 +420,7 @@ objects:
 ```{r boot-set-02, echo = TRUE}
 ```
 
-Similarly, we can then combine the `boot_genes` _GRanges_, with the DE
+Similarly, we can then combine the `subsamp_genes` _GRanges_, with the DE
 _GRanges_ object. As the resample column was not present on the DE *GRanges*
 object, this is given a missing value which we recode to a 0 using `mutate()`
 
@@ -454,7 +454,7 @@ total width of 20kb, or 10kb both upstream and downstream of the TSS.
 ### Use overlap joins to find relative enrichment
 
 We are now ready to compute overlaps between RNA-seq genes (our DE set and
-bootstrap sets) and the ATAC-seq peaks. In **plyranges**, overlaps are defined as
+resampled sets) and the ATAC-seq peaks. In **plyranges**, overlaps are defined as
 joins between two *GRanges* objects: a _left_ and a _right_ *GRanges* object.
 In an overlap join, a match is any range on the _left_ *GRanges* that is
 overlapped by the _right_ *GRanges*. One powerful aspect of the overlap joins
@@ -612,7 +612,7 @@ There are several further steps that would be interesting to perform in this
 analysis; for example, we could modify window size around the TSS to see how it
 affects enrichment, and vary the FDR cut-offs for both the DE gene and DA peak
 sets. We could also have computed variance in addition to the mean of the
-bootstrap set, and so drawn an interval around the enrichment line.
+resampled set, and so drawn an interval around the enrichment line.
 
 Finally, our workflow illustrates the benefits of using appropriate data
 abstractions provided by Bioconductor such as the _SummarizedExperiment_ and
