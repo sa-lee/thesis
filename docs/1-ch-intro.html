@@ -240,30 +240,37 @@ understanding their data; revealing all it’s messes and
 uncovering hidden insights <span class="citation">(Tukey <a href="bibliography.html#ref-Tukey1977-pn">1977</a>; Grolemund and Wickham <a href="bibliography.html#ref-Grolemund2017-uc">2017</a>)</span>.
 It is an iterative process involving computation and visualization,
 leading to new hypotheses that can be tested and formalised using
-statistical modelling. As datasets grow in complexity and become
+statistical modelling (figures <a href="1-ch-intro.html#fig:wflow-cycle">1.1</a>). As datasets grow in complexity and become
 increasingly heterogeneous and multidimensional,
 the use of EDA becomes vital to ensure the integrity and quality of analysis
 outputs. This is certainly true in high-throughput biological
 data science, where constraints on computation time and memory, in addition
 to the analyst’s time, results in EDA becoming increasingly difficult and
 neglected.</p>
+
+
+
+
+<div class="figure" style="text-align: center"><span id="fig:wflow-cycle"></span>
+<img src="img/wflow-thesis-cycle.png" alt="An idealised model of the biological data science workflow (adapted from Grolemund and Wickham (2017)). We begin with data generated from one or more biological assay(s) corresponding to a research hypothesis or question. Our primary focus is on data generated from bulk assays that measure gene expression (RNA-seq), genetic variation (DNA-seq), and gene regulation (ChIP-seq, ATAC-seq). Throughout this process, we need computational tools to gain insight into the biology under study and communicate our analysis in a reproducible manner." width="100%" />
+<p class="caption">
+Figure 1.1: An idealised model of the biological data science workflow (adapted from <span class="citation">Grolemund and Wickham (<a href="bibliography.html#ref-Grolemund2017-uc">2017</a>)</span>). We begin with data generated from one or more biological assay(s) corresponding to a research hypothesis or question. Our primary focus is on data generated from bulk assays that measure gene expression (RNA-seq), genetic variation (DNA-seq), and gene regulation (ChIP-seq, ATAC-seq). Throughout this process, we need computational tools to gain insight into the biology under study and communicate our analysis in a reproducible manner.
+</p>
+</div>
 <p>This thesis focuses on core aspects of EDA as part of a biological data
 science workflow: wrangling, integration and visualisation, with a focus
 on applications to genomics and transcriptomics. To begin we discuss wrangling
-biological data using a coherent representation and programming interface;
-section <a href="1-1-sec-tidygranges.html#sec:tidygranges">1.1</a>
+biological data using a coherent representation and programming interface
+(figure <a href="1-1-sec-tidygranges.html#fig:wflow-wrangle">1.2</a>). Section <a href="1-1-sec-tidygranges.html#sec:tidygranges">1.1</a>
 introduces a grammar-based framework for transforming genomics data that is
 described in chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a>. We then look at integrating data and
-model outputs over genomic regions to gain biological insight;
-<a href="1-2-sec-integrate.html#sec:integrate">1.2</a> introduces a framework for incorporating genomic regions
-over multiple assays, described in chapter <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a>, while
-<a href="1-3-sec-coverage.html#sec:coverage">1.3</a> discusses finding ‘interesting’ genomic regions via
-multiple summaries of a single assay, described in <a href="4-ch-intron.html#ch:intron">4</a>. Next, we
-consider the challenges in visualising high dimensional data; section
-<a href="1-4-sec-va.html#sec:va">1.4</a> introduces an interactive visualisation approach for
-understanding non-linear dimension reduction techniques described in chapter
-<a href="5-ch-tsne.html#ch:tsne">5</a>. Lastly, in chapter <a href="6-ch-conclusion.html#ch:conclusion">6</a> I describe the outputs
-of my thesis and plans for future developments.</p>
+model outputs over genomic regions to gain biological insight (<a href="1-2-sec-integrate.html#fig:wflow-integrate">1.3</a>). Section <a href="1-2-sec-integrate.html#sec:integrate">1.2</a> introduces a
+framework for incorporating genomic regions over multiple assays, described in
+chapter <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a>, while <a href="1-3-sec-coverage.html#sec:coverage">1.3</a> discusses finding ‘interesting’ genomic regions via combining multiple summaries of a single assay, described in <a href="4-ch-intron.html#ch:intron">4</a>. Next, we
+consider the challenges in visualising high dimensional data (figure <a href="1-4-sec-va.html#fig:wflow-explore">1.4</a>). Section <a href="1-4-sec-va.html#sec:va">1.4</a> introduces an interactive
+visualisation approach for understanding non-linear dimension reduction
+techniques described in chapter <a href="5-ch-tsne.html#ch:tsne">5</a>. Lastly, in
+chapter <a href="6-ch-conclusion.html#ch:conclusion">6</a> describes the outputs of the thesis and plans for future developments.</p>
 </div>
             </section>
 

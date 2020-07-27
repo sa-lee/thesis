@@ -264,30 +264,30 @@ samples of size equal to the number of DE-genes from the number of rows in
 <pre><code>#&gt; GRanges object with 749 ranges and 3 metadata columns:
 #&gt;         seqnames              ranges strand |            gene_id
 #&gt;            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
-#&gt;     [1]     chr8   65717510-65842322      - | ENSG00000205268.10
-#&gt;     [2]     chr5 140664676-140674124      + | ENSG00000120314.18
-#&gt;     [3]     chr1 156290089-156295689      - | ENSG00000198715.12
-#&gt;     [4]    chr19   52064466-52095765      - | ENSG00000197608.11
-#&gt;     [5]     chr7 127346790-127431924      - |  ENSG00000048405.9
+#&gt;     [1]    chr16   28553915-28591790      + |  ENSG00000176476.8
+#&gt;     [2]     chr7   67302621-67362950      + | ENSG00000106610.15
+#&gt;     [3]    chr21   33589341-33643926      - | ENSG00000205758.11
+#&gt;     [4]    chr11   22813799-22830299      - |  ENSG00000198168.8
+#&gt;     [5]    chr11     3826978-3840983      - |  ENSG00000177105.9
 #&gt;     ...      ...                 ...    ... .                ...
-#&gt;   [745]    chr12     6942978-6946003      + | ENSG00000111678.10
-#&gt;   [746]     chrX 103576231-103587736      + | ENSG00000133142.17
-#&gt;   [747]     chr7     6022244-6059230      - | ENSG00000086232.12
-#&gt;   [748]     chr8   10764963-10839884      - |  ENSG00000254093.8
-#&gt;   [749]    chr12   69359703-69390796      + |  ENSG00000127337.6
+#&gt;   [745]    chr14   35538352-35809304      - | ENSG00000174373.16
+#&gt;   [746]    chr16     3018445-3022383      + | ENSG00000006327.13
+#&gt;   [747]     chr5 159263081-159286040      + |  ENSG00000164332.7
+#&gt;   [748]    chr20   18137873-18143169      + |  ENSG00000232838.3
+#&gt;   [749]    chr19   29604017-29617237      + |  ENSG00000105171.9
 #&gt;                   de_log2FC              de_padj
 #&gt;                   &lt;numeric&gt;            &lt;numeric&gt;
-#&gt;     [1] -0.0557987291918096  0.00180483656453946
-#&gt;     [2]     0.5525993104427 2.75562835997049e-05
-#&gt;     [3]   0.460452070307282 0.000958727544297686
-#&gt;     [4]   0.252895535866397 0.000116910313496572
-#&gt;     [5]   0.303222389299227 4.72690906677285e-11
+#&gt;     [1]   0.214956747765835 8.28377157905113e-05
+#&gt;     [2]    0.17526271481818 5.87673682556914e-06
+#&gt;     [3]  0.0985670601529985 5.06452877457465e-12
+#&gt;     [4]  -0.145347351358543 3.84662835421657e-05
+#&gt;     [5] -0.0356784449179355 1.35468390279095e-09
 #&gt;     ...                 ...                  ...
-#&gt;   [745]   0.117500186273576 1.53949171038076e-07
-#&gt;   [746]  -0.420743357064401 1.00387052601188e-05
-#&gt;   [747] -0.0317793020997053  2.9028367467488e-16
-#&gt;   [748]   -0.28638875715517 0.000318960319915727
-#&gt;   [749]  -0.483544095554557  0.00719206108974365
+#&gt;   [745]  0.0485364941743758 1.05508381568449e-10
+#&gt;   [746] -0.0549421857575768 0.000518903601480259
+#&gt;   [747] -0.0645912219057716 6.49101647010005e-29
+#&gt;   [748]   -0.26520188353115 0.000307157334458398
+#&gt;   [749] 0.00724144706040695 5.56925973621819e-35
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
 <p>We can repeat this many times to create many samples via <code>replicate()</code>. By
@@ -303,7 +303,7 @@ together using <code>bind_ranges()</code>. This function creates a new column
 called <em>resample</em> on the result that identifies each of the input <em>GRanges</em>
 objects:</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">subsamp_genes &lt;-<span class="st"> </span><span class="kw">bind_ranges</span>(subsamp_genes, <span class="dt">.id =</span> <span class="st">&quot;resample&quot;</span>)</a></code></pre></div>
-<p>Similarly, we can then combine the <code>boot_genes</code> <em>GRanges</em>, with the DE
+<p>Similarly, we can then combine the <code>subsamp_genes</code> <em>GRanges</em>, with the DE
 <em>GRanges</em> object. As the resample column was not present on the DE <em>GRanges</em>
 object, this is given a missing value which we recode to a 0 using <code>mutate()</code></p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">all_genes &lt;-<span class="st"> </span><span class="kw">bind_ranges</span>(</a>
@@ -371,7 +371,7 @@ total width of 20kb, or 10kb both upstream and downstream of the TSS.</p>
 <div id="use-overlap-joins-to-find-relative-enrichment" class="section level3">
 <h3><span class="header-section-number">3.4.4</span> Use overlap joins to find relative enrichment</h3>
 <p>We are now ready to compute overlaps between RNA-seq genes (our DE set and
-bootstrap sets) and the ATAC-seq peaks. In <strong>plyranges</strong>, overlaps are defined as
+resampled sets) and the ATAC-seq peaks. In <strong>plyranges</strong>, overlaps are defined as
 joins between two <em>GRanges</em> objects: a <em>left</em> and a <em>right</em> <em>GRanges</em> object.
 In an overlap join, a match is any range on the <em>left</em> <em>GRanges</em> that is
 overlapped by the <em>right</em> <em>GRanges</em>. One powerful aspect of the overlap joins
@@ -471,10 +471,12 @@ thresholds of 1 or 2 as follows:</p>
 <a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb56-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
 <a class="sourceLine" id="cb56-4" data-line-number="4">    <span class="dt">peak_count =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(da_padj)) <span class="op">/</span><span class="st"> </span><span class="kw">n_distinct</span>(resample),</a>
-<a class="sourceLine" id="cb56-5" data-line-number="5">    <span class="dt">lfc1_peak_count =</span><span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="st"> </span><span class="kw">n_distinct</span>(resample),</a>
-<a class="sourceLine" id="cb56-6" data-line-number="6">    <span class="dt">lfc2_peak_count =</span> <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)<span class="op">/</span><span class="st"> </span><span class="kw">n_distinct</span>(resample)</a>
-<a class="sourceLine" id="cb56-7" data-line-number="7">  )</a>
-<a class="sourceLine" id="cb56-8" data-line-number="8">origin_peak_lfc</a></code></pre></div>
+<a class="sourceLine" id="cb56-5" data-line-number="5">    <span class="dt">lfc1_peak_count =</span></a>
+<a class="sourceLine" id="cb56-6" data-line-number="6">      <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">n_distinct</span>(resample),</a>
+<a class="sourceLine" id="cb56-7" data-line-number="7">    <span class="dt">lfc2_peak_count =</span></a>
+<a class="sourceLine" id="cb56-8" data-line-number="8">      <span class="kw">sum</span>(<span class="kw">abs</span>(da_log2FC) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">n_distinct</span>(resample)</a>
+<a class="sourceLine" id="cb56-9" data-line-number="9">  )</a>
+<a class="sourceLine" id="cb56-10" data-line-number="10">origin_peak_lfc</a></code></pre></div>
 <pre><code>#&gt; DataFrame with 2 rows and 4 columns
 #&gt;     origin peak_count lfc1_peak_count lfc2_peak_count
 #&gt;   &lt;factor&gt;  &lt;numeric&gt;       &lt;numeric&gt;       &lt;numeric&gt;
