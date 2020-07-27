@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.2 Further Work | Fluent statistical computing interfaces for biological data analysis</title>
-  <meta name="description" content="6.2 Further Work | Fluent statistical computing interfaces for biological data analysis" />
+  <title>5.2 Overview of Dimension Reduction | Fluent statistical computing interfaces for biological data analysis</title>
+  <meta name="description" content="5.2 Overview of Dimension Reduction | Fluent statistical computing interfaces for biological data analysis" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.2 Further Work | Fluent statistical computing interfaces for biological data analysis" />
+  <meta property="og:title" content="5.2 Overview of Dimension Reduction | Fluent statistical computing interfaces for biological data analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.2 Further Work | Fluent statistical computing interfaces for biological data analysis" />
+  <meta name="twitter:title" content="5.2 Overview of Dimension Reduction | Fluent statistical computing interfaces for biological data analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="6-1-software-development.html"/>
-<link rel="next" href="bibliography.html"/>
+<link rel="prev" href="5-1-introduction-2.html"/>
+<link rel="next" href="5-3-visual-design.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -232,46 +232,151 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="further-work" class="section level2">
-<h2><span class="header-section-number">6.2</span> Further Work</h2>
-<p>A limitation of the grammar as we have implemented it in
-<strong>plyranges</strong> is lack of scalability and computational speed for data sets
-that do not fit in memory. We attempted several techniques for performing
-delayed operations over range-based data, however a more general approach
-that allows for data stored on the cloud or in scientific data formats
-like HDF5 that leverage existing Bioconductor frameworks would be useful.
-We showed in chapters <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a> ad <a href="4-ch-intron.html#ch:intron">4</a> that an
-analyst is able to do some very complex data transformations and re-sampling
-procedures via casting results into <em>GRanges</em> object. However, it is unclear
-whether the semantics of our grammar can be extended to data that can not be
-easily reshaped into long form tidy representations. Moreover, further work
-is required to explore the design space of grammars for data
-transformations and grammars for graphics when the data large, multifaceted
-and non-rectangular.</p>
-<p>We showed in chapter <a href="5-ch-tsne.html#ch:tsne">5</a> that tours provide a global overview
-that can be used as tool for exploring model fits. An issue that arises is
-how to scale the tour as the number of observations increases. There are
-latencies in sending data from the back end to the visualisation client
-that causes lag during animation. One could also question whether point
-based displays are appropriate in this case, and it would be worth exploring
-the usability of animations based on binning the projections. Moreover,
-when the number of observations are large, the points in the projections are
-concentrated in the centre of the tour display obscuring interesting aspects
-of the data. This is mitigated via having
-the ability to zoom, but further research into transforming the projections
-to avoid crowding would be valuable. An added complexity to changes in visual
-displays are thinking about the design of user interactions, and several promising
-avenues based on section tours could be explored <span class="citation">(Laa et al. <a href="bibliography.html#ref-Laa2020-wr">2020</a>; Laa, Cook, and Valencia <a href="bibliography.html#ref-Laa2020-fy">2020</a>)</span>.</p>
-
+<div id="overview-of-dimension-reduction" class="section level2">
+<h2><span class="header-section-number">5.2</span> Overview of Dimension Reduction</h2>
+<p>In the following section, we provide a brief overview of the goals of DR
+methods with respect to the data analyst, in addition to their high level the
+mathematical details. Here we restrict our attention to two recent methods that
+are commonly used in the literature: t-distributed stochastic neighbour embedding
+(t-SNE) and uniform manifold alignment and projection (UMAP); however we do
+mention several other techniques <span class="citation">(Maaten and Hinton <a href="bibliography.html#ref-Maaten2008-sk">2008</a>; McInnes, Healy, and Melville <a href="bibliography.html#ref-McInnes2018-co">2018</a>)</span>.</p>
+<p>To begin we suppose the data is in the form rectangular
+matrix of real numbers, <span class="math inline">\(X = [\mathbf{x_1}, \dots, \mathbf{x_n}]\)</span>, where <span class="math inline">\(n\)</span> is
+the number of observations in <span class="math inline">\(p\)</span> dimensions. The purpose of any DR algorithm
+is to find a low-dimensional representation of the data,
+<span class="math inline">\(Y = [\mathbf{y_1}, \dots, \mathbf{y_n}]\)</span>, such that <span class="math inline">\(Y\)</span> is an <span class="math inline">\(n \times d\)</span>
+matrix where <span class="math inline">\(d \ll p\)</span>. The hope of the analyst is that the DR procedure to
+produces <span class="math inline">\(Y\)</span> will remove noise in the original dataset while retaining any
+latent structure.</p>
+<p>DR methods can be classified into two broad classes: linear and non-linear
+methods. Linear methods perform a linear transformation of the data, that is,
+<span class="math inline">\(Y\)</span> is a linear transformation of <span class="math inline">\(X\)</span>; one example is principal components
+analysis (PCA) which performs an eigendecomposition of the estimated sample
+covariance matrix. The eigenvalues are sorted in decreasing order and represent
+the variance explained by each component (eigenvector).
+A common approach to deciding on the number of principal components to retain is
+to plot the proportion of variance explained by each component and choose a
+cut-off.</p>
+<p>For non-linear methods <span class="math inline">\(Y\)</span> is generated via a pre-processed form of the input
+<span class="math inline">\(X\)</span> such as the <span class="math inline">\(k\)</span>-nearest neighbours graph or via a kernel transformation.
+Multidimensional scaling (MDS) is a class of DR methods that aims to construct
+an embedding <span class="math inline">\(Y\)</span> such that the pair-wise distances (inner products) in <span class="math inline">\(Y\)</span>
+approximate the pair-wise distances (inner products) in <span class="math inline">\(X\)</span>
+<span class="citation">(Torgerson <a href="bibliography.html#ref-Torgerson1952-am">1952</a>; Kruskal <a href="bibliography.html#ref-Kruskal1964-cz">1964</a><a href="bibliography.html#ref-Kruskal1964-cz">a</a>)</span>. There are many
+variants of MDS, such as non-metric scaling which amounts to replacing
+distances with ranks instead <span class="citation">(Kruskal <a href="bibliography.html#ref-Kruskal1964-cw">1964</a><a href="bibliography.html#ref-Kruskal1964-cw">b</a>)</span>.
+A related technique is Isomap which uses a <span class="math inline">\(k\)</span>-nearest neighbour graph
+to estimate the pair-wise geodesic distance of points in <span class="math inline">\(X\)</span> then uses classical
+MDS to construct <span class="math inline">\(Y\)</span> <span class="citation">(Silva and Tenenbaum <a href="bibliography.html#ref-Silva2003-xw">2003</a>)</span>. Other approaches are based on diffusion
+processes such as diffusion maps <span class="citation">(Coifman et al. <a href="bibliography.html#ref-Coifman2005-ak">2005</a>)</span>. A recent example of this
+approach is the PHATE algorithm <span class="citation">(Moon et al. <a href="bibliography.html#ref-Moon2019-ce">2019</a>)</span>. Here an affinity matrix is
+estimated via the pair-wise distance matrix and k-nearest neighbours graph of <span class="math inline">\(X\)</span>.
+The algorithm de-noises estimated distances in high-dimensional space via
+transforming the affinity matrix into a Markov transition probability matrix
+and diffusing this matrix over a fixed number of time steps. Then the diffused
+probabilities are transformed once more to construct a distance matrix,
+and classical MDS is used to generate <span class="math inline">\(Y\)</span>. A general difficulty with using
+non-linear DR methods for exploratory data analysis is selecting and tuning
+appropriate parameters. To see the extent of these choices
+we now examine the underpinnings of t-SNE and UMAP.</p>
+<p>The t-SNE algorithm estimates
+the pair-wise similarity of (Euclidean) distances of points in a high
+dimensional space using a Gaussian distribution and then estimates a
+configuration in the low dimensional embedding space by modelling similarities
+using a t-distribution with 1 degree of freedom <span class="citation">(Maaten and Hinton <a href="bibliography.html#ref-Maaten2008-sk">2008</a>)</span>. There are several subtleties
+to the to use of the algorithm that are revealed by stepping through its
+machinery.</p>
+<p>To begin, t-SNE transforms pair-wise distances between <span class="math inline">\(\mathbf{x_i}\)</span> and
+<span class="math inline">\(\mathbf{x_j}\)</span> to similarities using a Gaussian kernel:</p>
+<p><span class="math display">\[ p_{i|j} = \frac{\exp(-\lVert \mathbf{x_i - x_j} \rVert ^ 2 /
+2\sigma_i^2)}{\sum_{k \ne i}\exp(-\lVert \mathbf{x_j - x_k} \rVert ^ 2 /
+2\sigma_i^2)} \]</span></p>
+<p>The conditional probabilities are then normalised and symmetrised to form a
+joint probability distribution via averaging:</p>
+<p><span class="math display">\[ p_{ij} = \frac{p_{i|j} + p_{j|i}}{2n} \]</span></p>
+<p>The variance parameter of the Gaussian kernel is controlled by the analyst
+using a fixed value of perplexity for all observations:</p>
+<p><span class="math display">\[ \text{perplexity}_i = \exp(-\log(2) \sum_{i \ne j}p_{j|i}\log_2(p_{j|i})) \]</span>
+As the perplexity increases, <span class="math inline">\(\sigma^2_{i}\)</span> increases, until its bounded above
+by the number of observations , <span class="math inline">\(n-1\)</span>, in the data, corresponding to
+<span class="math inline">\(\sigma^2_{i} \rightarrow \infty\)</span>. This essentially turns <span class="math inline">\(t-SNE\)</span> into a
+nearest neighbours algorithm, <span class="math inline">\(p_{i|j}\)</span> will be close to zero for all
+observations that are not in the <span class="math inline">\(\mathcal{O}(\text{perplexity}_i)\)</span>
+neighbourhood graph of the <span class="math inline">\(i\)</span>th observation <span class="citation">(Van Der Maaten <a href="bibliography.html#ref-Van_Der_Maaten2014-zn">2014</a>)</span>.</p>
+<p>Next, the target low-dimensional space, <span class="math inline">\(Y\)</span>, pair-wise distances between
+<span class="math inline">\(\mathbf{y_i}\)</span> and <span class="math inline">\(\mathbf{y_j}\)</span> are modelled as a symmetric probability
+distribution using a Cauchy kernel:</p>
+<p><span class="math display">\[ q_{ij} = \frac{w_{ij}}{Z} \\ \text{where } w_{ij} = \frac{1}{ 1 + \lVert
+\mathbf{y_i - y_j} \rVert ^ 2} \text{ and } Z = \sum_{k \ne l} w_{kl}. \]</span></p>
+<p>The resulting embedding <span class="math inline">\(Y\)</span> is the one that minimizes the Kullback-Leibler
+divergence between the probability distributions formed via similarities of
+observations in <span class="math inline">\(X\)</span>, <span class="math inline">\(\mathcal{P}\)</span> and similarities of observations in <span class="math inline">\(Y\)</span>,
+<span class="math inline">\(\mathcal{Q}\)</span>:</p>
+<p><span class="math display">\[ \mathcal{L(\mathcal{P}, \mathcal{Q})} = \sum_{i \ne j} p_{ij} \log
+\frac{p_{ij}}{q_{ij}}\]</span></p>
+<p>Re-writing the loss function in terms of attractive (right) and repulsive
+(left) forces we obtain:</p>
+<p><span class="math display">\[ \mathcal{L(\mathcal{P}, \mathcal{Q})} = -\sum_{i \ne j} p_{ij}\log w_{ij} +
+\log\sum_{i \ne j} w_{ij} \]</span></p>
+<p>So when the the loss function is minimised this corresponds to large attractive
+forces, that is, the pair-wise distances in <span class="math inline">\(Y\)</span> are small when there are
+non-zero <span class="math inline">\(p_{ij}\)</span>, i.e. <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span> are close together. The repulsive force
+should also be small when the loss function is minimised, that is, when
+pair-wise distances in <span class="math inline">\(Y\)</span> are large regardless of the magnitude of the
+corresponding distances in <span class="math inline">\(X\)</span>.</p>
+<p>Taken together, these details reveal the sheer number of decisions that an
+analyst must make. How does one choose the perplexity? How should the
+parameters that control the optimisation of the loss function (done with
+stochastic gradient descent), like the number of iterations, or early
+exaggeration ( a multiplier of the attractive force at the beginning of the
+optimisation), or the learning rate be selected? It is a known problem that
+t-SNE can have trouble recovering topology and that configurations can be
+highly dependent on how the algorithm is initialised and parameterized
+<span class="citation">(Wattenberg, Viégas, and Johnson <a href="bibliography.html#ref-Wattenberg2016-ji">2016</a>; Kobak and Berens <a href="bibliography.html#ref-Kobak2019-lm">2019</a>; Melville <a href="bibliography.html#ref-Melville2020">2020</a>)</span>. If the goal is cluster
+orientation a recent theoretical contribution by <span class="citation">Linderman and Steinerberger (<a href="bibliography.html#ref-Linderman2019-dq">2019</a>)</span> proved that
+t-SNE can recover spherical and well separated cluster shapes, and proposed new
+approaches for tuning the optimisation parameters. However, the cluster sizes
+and their relative orientation from a <span class="math inline">\(t-SNE\)</span> view can be misleading
+perceptually, due to the algorithms emphasis on locality.</p>
+<p>Another recent method, UMAP, has seen a large rise in popularity (at least in
+single cell transcriptomics) <span class="citation">(McInnes, Healy, and Melville <a href="bibliography.html#ref-McInnes2018-co">2018</a>)</span>. It is a method that is related to
+LargeVis <span class="citation">(Tang et al. <a href="bibliography.html#ref-Tang2016-oz">2016</a>)</span>, and like t-SNE acts on the k-nearest neighbour graph.
+Its main differences are that it uses a different cost function (cross entropy)
+which is optimized using stochastic gradient descent and defines a different
+kernel for similarities in the low dimensional space. Due to its computational
+speed it is possible to generate UMAP embeddings in more than three dimensions.
+It appears to suffer from the same perceptual issues as t-SNE, however it supposedly preserves global structure better than t-SNE <span class="citation">(Coenen and Pearce <a href="bibliography.html#ref-Coenen2019-to">2019</a>)</span>.</p>
+<div id="tours-explore-the-subspace-of-d-dimensional-projections" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Tours explore the subspace of <span class="math inline">\(d\)</span>-dimensional projections</h3>
+<p>The tour is a visualisation technique that is grounded in
+mathematical theory, and is able to ascertain
+the shape and global structure of a dataset via inspection of the subspace generated by the set of low-dimensional projections. In fact, in some
+of the case studies below, we first sphere our data via principal
+components to reduce dimensionality of our input.</p>
+<p>Like, when using other DR techniques, the tour assumes we have a real data matrix
+<span class="math inline">\(X\)</span> consisting of <span class="math inline">\(n\)</span> observations in <span class="math inline">\(p\)</span> dimensions. First, the tour generates
+a sequence of <span class="math inline">\(p \times d\)</span> orthonormal projection matrices (bases)
+<span class="math inline">\(A_{t \in \mathbb{N}}\)</span>, where <span class="math inline">\(d\)</span> is typically <span class="math inline">\(1\)</span> or <span class="math inline">\(2\)</span>. For each pair of
+orthonormal bases <span class="math inline">\(A_{t}\)</span> and <span class="math inline">\(A_{t+1}\)</span> that are generated, the geodesic
+path between them is interpolated to form intermediate frames, and giving the
+sense of continuous movement from one basis to another. The tour is then the
+continuous visualisation of the projections <span class="math inline">\(Y_{t} = XA_{t}\)</span>, that is the
+projection of <span class="math inline">\(X\)</span> onto <span class="math inline">\(A_{t}\)</span> as the tour path is interpolated between
+successive bases. A <em>grand tour</em> corresponds to choosing new orthonormal
+bases at random; allowing a user to ascertain structure via exploring the
+subspace of <span class="math inline">\(d\)</span>-dimensional projections. Instead of picking projections at
+random, a <em>guided tour</em> can be used to generate a sequence ‘interesting’
+projections as quantified by an index function. While <strong>liminal</strong> is able to
+visualise guided tours, our focus in the case studies uses the grand tour to see global structure in the data.</p>
 </div>
-<!-- </div> -->
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="6-1-software-development.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bibliography.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="5-1-introduction-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-3-visual-design.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -293,7 +398,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//06-conclusion.Rmd",
+"link": "https://github.com/sa-lee/thesis/edit/master/Rmd//05-embeddings.Rmd",
 "text": "Edit"
 },
 "history": {
