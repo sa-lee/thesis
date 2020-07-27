@@ -6,7 +6,7 @@ understanding their data; revealing all it’s messes and
 uncovering hidden insights [@Tukey1977-pn; @Grolemund2017-uc]. 
 It is an iterative process involving computation and visualization,
 leading to new hypotheses that can be tested and formalised using 
-statistical modelling. As datasets grow in complexity and become
+statistical modelling (figures \@ref(fig:wflow-cycle)). As datasets grow in complexity and become
 increasingly heterogeneous and multidimensional, 
 the use of EDA becomes vital to ensure the integrity and quality of analysis 
 outputs. This is certainly true in high-throughput biological 
@@ -14,25 +14,39 @@ data science, where constraints on computation time and memory, in addition
 to the analyst's time, results in EDA becoming increasingly difficult and 
 neglected.
 
+(ref:wflow-cycle): An idealised model of the biological data science workflow (adapted from  @Grolemund2017-uc). We begin with data generated from one or more biological assay(s) corresponding to a research hypothesis or question. Our primary focus is on data generated from bulk assays that measure gene expression (RNA-seq), genetic variation (DNA-seq), and gene regulation (ChIP-seq, ATAC-seq). Throughout this process, we need computational tools to gain insight into the biology under study and communicate our analysis in a reproducible manner. 
+
+(ref:wflow-wrangle): In the wrangle phase of the workflow, data from an assay is imported into a programming language. It is then tidied into a new representation that should capture the biological semantics of the measurements. Following this, the representation can be transformed to generate new summaries. 
+
+(ref:wflow-integrate): Data from multiple assays can be combined together using modelling and transformations. Data and model results can combined, tidied and transformed to have a common representation across different granularities of the genome.
+
+(ref:wflow-integrate): Visualisation is a tool for making sense of models. Here we explore, how well a model has captured the structure within the data using interactive graphics.  
+
+```{r wflow-cycle, fig.cap="(ref:wflow-cycle)"}
+knitr::include_graphics(here::here("img", "wflow-thesis-cycle.png"))
+```
+
+
 This thesis focuses on core aspects of EDA as part of a biological data
 science workflow: wrangling, integration and visualisation, with a focus 
 on applications to genomics and transcriptomics. To begin we discuss wrangling
-biological data using a coherent representation and programming interface; 
-section \@ref(sec:tidygranges)
+biological data using a coherent representation and programming interface 
+(figure \@ref(fig:wflow-wrangle)). Section \@ref(sec:tidygranges)
 introduces a grammar-based framework for transforming genomics data that is 
 described in chapter \@ref(ch:plyranges). We then look at integrating data and 
-model outputs over genomic regions to gain biological insight; 
-\@ref(sec:integrate) introduces a framework for incorporating genomic regions 
-over multiple assays, described in chapter \@ref(ch:fluentGenomics), while 
-\@ref(sec:coverage) discusses finding 'interesting' genomic regions via 
-multiple summaries of a single assay, described in \@ref(ch:intron). Next, we 
-consider the challenges in  visualising  high dimensional data; section 
-\@ref(sec:va) introduces an  interactive visualisation approach for 
-understanding non-linear dimension reduction  techniques described in chapter 
-\@ref(ch:tsne). Lastly, in chapter \@ref(ch:conclusion) I describe the outputs 
-of my thesis and plans for future developments. 
+model outputs over genomic regions to gain biological insight (\@ref(fig:wflow-integrate)). Section \@ref(sec:integrate) introduces a 
+framework for incorporating genomic regions  over multiple assays, described in 
+chapter \@ref(ch:fluentGenomics), while  \@ref(sec:coverage) discusses finding 'interesting' genomic regions via combining multiple summaries of a single assay, described in \@ref(ch:intron). Next, we 
+consider the challenges in  visualising  high dimensional data (figure \@ref(fig:wflow-explore)). Section  \@ref(sec:va) introduces an interactive 
+visualisation approach for  understanding non-linear dimension reduction 
+techniques described in chapter  \@ref(ch:tsne). Lastly, in 
+chapter \@ref(ch:conclusion) describes the outputs of the thesis and plans for future developments. 
 
 ## A grammar for genomic data analysis {#sec:tidygranges}
+
+```{r wflow-wrangle, fig.cap="(ref:wflow-wrangle)"}
+knitr::include_graphics(here::here("img", "wflow-thesis-wrangle.png"))
+```
 
 The approach taken by the suite of software packages collectively known as the 
 *tidyverse*  is an attempt to formalise aspects of the EDA process in the R
@@ -60,6 +74,10 @@ published as @Lee2019.
 
 ## Integration of genomic data structures {#sec:integrate}
 
+```{r wflow-integrate, fig.cap="(ref:wflow-integrate)"}
+knitr::include_graphics(here::here("img", "wflow-thesis-integrate.png"))
+```
+
 It is rare that a biological data analysis will involve
 a single measurement assay or that only one aspect of a measurement assay
 will be of interest to the biological question under study. While there are 
@@ -84,6 +102,10 @@ signal from RNA-seq data. This chapter is based on my software and analysis
 contributions to the preprint @Lee2019-mf. 
 
 ## Interactive visualisation for high-dimensional data {#sec:va}
+
+```{r wflow-explore, fig.cap="(ref:wflow-explore)"}
+knitr::include_graphics(here::here("img", "wflow-thesis-explore.png"))
+```
 
 In the final chapter, we move away from data wrangling and towards the 
 integration of visualisation with model-based summaries of high-dimensional
