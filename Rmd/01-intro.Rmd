@@ -14,13 +14,13 @@ data science, where constraints on computation time and memory, in addition
 to the analyst's time, results in EDA becoming increasingly difficult and 
 neglected.
 
-(ref:wflow-cycle): An idealised model of the biological data science workflow (adapted from  @Grolemund2017-uc). We begin with data generated from one or more biological assay(s) corresponding to a research hypothesis or question. Our primary focus is on data generated from bulk assays that measure gene expression (RNA-seq), genetic variation (DNA-seq), and gene regulation (ChIP-seq, ATAC-seq). Throughout this process, we need computational tools to gain insight into the biology under study and communicate our analysis in a reproducible manner. 
+(ref:wflow-cycle) An idealised model of the biological data science workflow (adapted from  @Grolemund2017-uc). We begin with data generated from one or more biological assay(s) corresponding to a research hypothesis or question. Our primary focus is on data generated from bulk assays that measure gene expression (RNA-seq), genetic variation (DNA-seq), and gene regulation (ChIP-seq, ATAC-seq). Throughout this process, we need computational tools to gain insight into the biology under study and communicate our analysis in a reproducible manner. 
 
-(ref:wflow-wrangle): In the wrangle phase of the workflow, data from an assay is imported into a programming language. It is then tidied into a new representation that should capture the biological semantics of the measurements. Following this, the representation can be transformed to generate new summaries. 
+(ref:wflow-wrangle) In the wrangle phase of the workflow, data from an assay is imported into a programming language. It is then tidied into a new representation that should capture the biological semantics of the measurements. Following this, the representation can be transformed to generate new summaries. 
 
-(ref:wflow-integrate): Data from multiple assays can be combined together using modelling and transformations. Data and model results can combined, tidied and transformed to have a common representation across different granularities of the genome.
+(ref:wflow-integrate) Data from multiple assays can be combined together using modelling and transformations. Data and model results can combined, tidied and transformed to have a common representation across different granularities of the genome.
 
-(ref:wflow-integrate): Visualisation is a tool for making sense of models. Here we explore, how well a model has captured the structure within the data using interactive graphics.  
+(ref:wflow-integrate) Visualisation is a tool for making sense of models. Here we explore, how well a model has captured the structure within the data using interactive graphics.  
 
 ```{r wflow-cycle, fig.cap="(ref:wflow-cycle)"}
 knitr::include_graphics(here::here("img", "wflow-thesis-cycle.png"))
