@@ -199,8 +199,10 @@ origin_peak_lfc <- genes_olap_peaks %>%
   group_by(origin) %>%
   summarize(
     peak_count = sum(!is.na(da_padj)) / n_distinct(resample),
-    lfc1_peak_count =sum(abs(da_log2FC) > 1, na.rm=TRUE)/ n_distinct(resample),
-    lfc2_peak_count = sum(abs(da_log2FC) > 2, na.rm=TRUE)/ n_distinct(resample)
+    lfc1_peak_count =
+      sum(abs(da_log2FC) > 1, na.rm=TRUE) / n_distinct(resample),
+    lfc2_peak_count =
+      sum(abs(da_log2FC) > 2, na.rm=TRUE) / n_distinct(resample)
   )
 origin_peak_lfc
 
