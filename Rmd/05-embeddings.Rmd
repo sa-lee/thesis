@@ -449,39 +449,48 @@ Gaussian clusters embedded in 10-$d$ space, each cluster has the same
 covariance matrix. We then computed a t-SNE layout with default settings 
 using the **Rtsne** package [@Rtsne],
 and set up the **liminal** linked interface with grand tour on the 10-$d$
-observations: 
+observations. 
 
+(ref:liminal-gaussian) Screenshots of the **liminal** interface applied to well clustered data, a video of the tour animation is available at https://player.vimeo.com/video/439635921. *(a)*: 
 
-```{r gaussian, eval = knitr::is_latex_output()}
+```{r gaussian, fig.cap = "(ref:liminal-gaussian)"}
 ```
 
 ```{r gaussian-h, eval = knitr::is_html_output()}
 display_vid_html("gaussian", vid_lookup)
 ```
 
-We see in the video that t-SNE has correctly split out each cluster and
-laid them out in a star like formation. This is agrees with the tour view,
+We see in figure \@ref(fig:gaussian) and linked video that t-SNE has 
+correctly split out each cluster and laid them out in a star like formation. 
+This is agrees with the tour view,
 where once we start the animation, the five clusters begin to appear but
 generally points are more concentrated in the projection view compared to 
-the t-SNE layout. This can be seen from our brushing action on the t-SNE side. 
+the t-SNE layout (figure \@ref(fig:gaussian)a). 
+This can be confirmed via brushing the t-SNE view (figure \@ref(fig:gaussian)b). 
 
 
 ### Case Study 2: Exploring spherical Gaussian clusters with hierarchical structure
 
-We repeat the process of simulating Gaussian clusters in the next video, 
-but this time we have a cluster that has more granular structure. This time we have two
-Gaussian clusters with equal covariance embedded in $10-d$, and a third cluster
+We repeat the process of viewing Gaussian clusters from the 
+_Multi Challenge Dataset_, a benchmark simulation data set for clustering tasks
+[@Rauber2009-vh]. This dataset has two Gaussian clusters with equal covariance 
+embedded in $10-d$, and a third cluster
 with hierarchical structure. This cluster has two 3-$d$ clusters embedded in 
-10-$d$, where the second cluster is subdivided into three smaller clusters, that are each equidistant from each other and have the same covariance structure.
+10-$d$, where the second cluster is subdivided into three smaller clusters, 
+that are each equidistant from each other and have the same covariance structure.
 Again t-SNE has correctly identified the sub-clusters but their relative 
 locations to each other is distorted, with the orange and blue groups being
-far from each other in the tour view. We see in this case that is difficult
+far from each other in the tour view (figure \@ref(fig:hierachical)a). We see 
+in this case that is difficult
 to see the sub-clusters in the tour view, however, once we zoom and highlight
-they become more apparent. When we brush the sub-clusters in the t-SNE, their
+they become more apparent (figure \@ref(fig:hierachical)b). When we brush 
+the sub-clusters in the t-SNE, their
 relative placement is again exaggerated, with the tour showing that they
 are indeed much closer than the impression the t-SNE view gives.
 
-```{r hierachical, results='asis', eval = knitr::is_latex_output()}
+(ref:liminal-hierachical) Screenshots of the **liminal** interface applied to subclustered data, a video of the tour animation is .available at https://player.vimeo.com/video/43963590 
+
+```{r hierachical, fig.cap="(ref:liminal-hierachical)"}
 ```
 
 ```{r hierachical-h, eval = knitr::is_html_output()}
@@ -508,48 +517,55 @@ explained in the data) to use with the grand tour.
 Moreover, we run t-SNE using the default arguments on the complete data (this
 keeps the first 50 PCs, sets the perplexity to equal 30 and performs random
 initialisation). We then create a linked
-tour with t-SNE layout with **liminal** as shown in the following video:
+tour with t-SNE layout with **liminal** as shown in figure \@ref(fig:trees-01).
 
-```{r trees-01, eval = knitr::is_latex_output()}
+(ref:trees-01) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635892.   
+
+```{r trees-01, fig.cap = "(ref:trees-01)"}
 ```
 
 ```{r trees01-h, eval = knitr::is_html_output()}
 display_vid_html("trees-01", vid_lookup)
 ```
 
-From the video, we see that the t-SNE view has been unable to recapitulate the
+We see that the t-SNE view has been unable to recapitulate the
 topology of the tree - the backbone (blue) branch has been split into three
-fragments. We can see this immediately via the linked highlighting over both
+fragments (figure \@ref(fig:trees-01)a). We can see this immediately via the linked highlighting over both
 plots. If we click on the legend for the zero branch, the blue coloured points
 on each view are highlighted and the remaining points are made transparent.
 From, here it becomes apparent from the tour view that the blue branch forms
 the backbone of the tree and is connected to all other branches. We can also
 again see that cluster sizes formed via t-SNE can be misleading; from the tour
 view there is a lot of noise along the branches, while this does not appear to
-be the case for the t-SNE result.
+be the case for the t-SNE result (figure \@ref(fig:trees-01)b).
 
 From the first view, we modify the inputs to the t-SNE view, to try and produce
 a better trade-off between local structure and retain the topology of the data.
 We keep every parameter the same except that we initialise $Y$ with the first
 two PCs (scaled to have standard deviation 1e-4) instead of the default random
 initialisation and increase the perplexity from 30 to 100. We then combine
-these results with our tour view as displayed in the video:
+these results with our tour view as displayed in figure \@ref(fig:trees-02).
 
-```{r trees-02, eval = knitr::is_latex_output()}
+
+(ref:trees-02) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635863.  
+
+```{r trees-02, fig.cap = "(ref:trees-02)"}
 ```
 
 ```{r trees-02-h, eval = knitr::is_html_output()}
 display_vid_html("trees-02", vid_lookup)
 ```
 
-The video shows that this selection of parameters results in the the tips of
-the branches (the three black dots in figure \@ref(fig:fake-trees) a) being split
-into three clusters representing the terminal branches of the tree. However, there
-are perceptual issues following the placement of the three groupings on the
-t-SNE view that become apparent via simple linked brushing. If we brush the
+Figure \@(ref:trees-02) shows that this selection of parameters results in the 
+tips of the branches (the three black dots in figure \@ref(fig:fake-trees)a) 
+being split into three clusters representing the terminal branches of the tree. 
+However, there are perceptual issues following the placement of the three 
+groupings on the t-SNE view that become apparent via simple linked brushing. 
+If we brush the
 tips of the yellow and brown branches (which appear to be close to each other
 on the t-SNE view), we immediately see the placement is distorted in the t-SNE
-view, and in the tour view these tips are at opposite ends of the tree.
+view, and in the tour view these tips are at opposite ends of the tree 
+(figure \@ref(fig:trees-02)b).
 Although, this is a known issue of the t-SNE algorithm, we can easily identify
 it via simple interactivity without knowing the inner workings of the method.
 
@@ -587,27 +603,31 @@ along side the t-SNE view which was computed from all 25 PCs.
 Due to latency of the interface we do weighted sample of rows based on
 cluster membership, leaving us with approximately 10 per cent of the original
 data size - 4,590 cells. Although this is not ideal, it still allows us to
-get a sense of the shape of the clusters as seen in the video below:
+get a sense of the shape of the clusters as seen in figure \@ref(fig:mouse-01).
 
 
-```{r mouse-01, eval = knitr::is_latex_output()}
+(ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data. A video of the tour animation is available at https://player.vimeo.com/video/439635812. 
+
+```{r mouse-01, fig.cap = "(ref:mouse-01)" }
 ```
 
 ```{r mouse-01-h, eval = knitr::is_html_output()}
 display_vid_html("mouse-01", vid_lookup)
 ```
 
-In the following video we can observe that the embedding has mostly captured the
+We observe that the embedding has mostly captured the
 clusters relative location to each other to their location in high dimensional space, with a notable exception of points in cluster 3 and 10 as shown with
-linked brushing. As expected avoids t-SNE mitigates the crowding problem that is
+linked brushing (figure \@ref(fig:mouse-01)a). As expected, t-SNE mitigates the crowding problem that is
 an issue for tour in this case, where points in clusters 2,4,6, and 11 are
-clumped together in tour view, but are blown up in the embedding view. 
+clumped together in tour view, but are blown up in the embedding view (figure \@ref(fig:mouse-01)b). 
 The tour appears to form a tetrahedron like shape, with points lying on
 surface and along the vertices of the the tetrahedron in 5-$d$ PCA space -
-a phenomena that has also been observed in @Korem2015-af. Brushing on
+a phenomena that has also been observed in @Korem2015-af 
+(figure \@ref(fig:mouse-01)c). Brushing on
 the tour view, reveals points in cluster 9 that are diffuse in the embedding 
 view, points in cluster 9 are relatively far away and spread apart from other 
-clusters in the tour view, but has points placed in cluster 3 and 9 in the embedding. 
+clusters in the tour view, but has points placed in cluster 3 and 9 in the embedding
+(figure \@ref(fig:mouse-01)d). 
 
 Next, we identify marker genes for clusters using one sided Welch t-tests with
 a minimum log fold change of one as recommended by @Amezquita2020-at, which
@@ -617,16 +637,19 @@ when we toured on principal components. Here the tour becomes an alternative
 to a standard heatmap view for assessing shared markers; the basis
 generation (shown as the biplot on the left view) reflects the relative 
 weighting of each gene. We run the tour directly on the 
-log normalised expression values using the same subset as before:
+log normalised expression values using the same subset as before figure \@ref(fig:mouse-02).
 
-```{r mouse-02, eval = knitr::is_latex_output()}
+(ref:mouse-01) Screenshots of the **liminal** tour applied to a marker gene set. A video of the tour animation is available at https://player.vimeo.com/video/439635843.
+
+
+```{r mouse-02, fig.cap = "(ref:mouse-02)"}
 ```
 
 ```{r mouse-02-h, eval = knitr::is_html_output()}
 display_vid_html("mouse-02", vid_lookup)
 ```
 
-We see that the expression of the marker genes using t, appear to separate
+We see that the expression of the marker genes, appear to separate
 the previously clumped clusters 2,4,6, and 11 from the other clusters, 
 indicating that these genes are expressed in all four clusters, and the 
 magnitude of expression in these genes is similar across these groups, 
