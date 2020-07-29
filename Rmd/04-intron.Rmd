@@ -35,7 +35,7 @@ multiple summary statistics, "data descriptors", to find coverage traces that ap
 coverage analysis by extending and integrating our previous software package,
 **plyranges** [@Lee2019]. 
 
-In this chapter, we describe methodology for establishing data descriptors by turning coverage vectors into long form tidy data using **superintronic**
+In this paper, we describe methodology for establishing data descriptors by turning coverage vectors into long form tidy data using **superintronic**
 and **plyranges**. We provide a workflow below
 using a zebrafish RNA-seq dataset for developing data descriptors to find IR like coverage traces within genes known to have minor class splicing events. 
 
