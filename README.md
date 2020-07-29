@@ -11,15 +11,28 @@ via the BiocManager package:
 BiocManager::install("sa-lee/thesis")
 ```
 
+## Summary
+
+This work contributes new computing interfaces for the analysis of data 
+collected from technologies that measure changes in biology, like gene 
+expression. The first interface is a new tool that unites data measured along
+the genome under a common language of transformation. This interface enables
+analysts to interpret and combine multiple results from different technologies
+in a clear and simple way. The second interface provides a framework for 
+identifying interesting regions along the genome. The third interface empowers
+analysts to interrogate complex models using visual diagnostics. All 
+are provided as open source software packages. 
+
 ## Caching local resources 
 
 The `data-raw/` directory provides scripts used to download and 
-cache large/raw files contained in this thesis. Thesea are then managed
-and transfered into R friendly data formats and managed with
+cache large/raw files contained in this thesis. These are then managed
+and transferred into R friendly data formats and managed with
 `BiocFileCache`. 
 
 Processed data files are stored as `.rds` and are located in the `data`
-directory. Since some files are greater than 50Mb, in order to clone this repository you will need to install `git lfs` and run `git lfs clone https://github.com/sa-lee/thesis`
+directory. Since some files are greater than 50Mb, in order to clone this 
+repository you will need to install `git lfs` and run `git lfs clone https://github.com/sa-lee/thesis`
 
 
 ## Project Structure
