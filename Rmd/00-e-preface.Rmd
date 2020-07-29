@@ -5,7 +5,7 @@ won the ACEMS Business Analytics Prize for Best Paper in 2019. Chapter \@ref(ch:
 \@ref(ch:intron) is based on my software contributions to the submitted
 article @Lee2019-mf. Chapter \@ref(ch:tsne) has not been submitted.
 
-## Open Research
+## Open Research {-}
 
 This thesis has been written using R Markdown with the **bookdown**
 package [@Xie2016-oa; @Xie2017-ke]. All materials required to build the
