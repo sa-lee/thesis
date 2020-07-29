@@ -649,7 +649,7 @@ generation (shown as the biplot on the left view) reflects the relative
 weighting of each gene. We run the tour directly on the 
 log normalised expression values using the same subset as before figure \@ref(fig:mouse-02).
 
-(ref:mouse-01) Screenshots of the **liminal** tour applied to a marker gene set. A video of the tour animation is available at https://player.vimeo.com/video/439635843. *(a)*: the axis (left) and tour (right) view of 10 marker genes, using linked highlighting we see that the marker genes separate clusters 2, 4, 6, and 11 from the other groups. *(b)*: after zooming, it appears that the marker genes give rise to a gradient along the clusters.  
+(ref:mouse-02) Screenshots of the **liminal** tour applied to a marker gene set. A video of the tour animation is available at https://player.vimeo.com/video/439635843. *(a)*: the axis (left) and tour (right) view of 10 marker genes, using linked highlighting we see that the marker genes separate clusters 2, 4, 6, and 11 from the other groups. *(b)*: after zooming, it appears that the marker genes give rise to a gradient along the clusters.  
 
 
 ```{r mouse-02, fig.cap = "(ref:mouse-02)"}
