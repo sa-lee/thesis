@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="0.1" data-path="0-1-open-research.html"><a href="0-1-open-research.html"><i class="fa fa-check"></i><b>0.1</b> Open Research</a></li>
+<li class="chapter" data-level="" data-path="open-research.html"><a href="open-research.html"><i class="fa fa-check"></i>Open Research</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-sec-tidygranges.html"><a href="1-1-sec-tidygranges.html"><i class="fa fa-check"></i><b>1.1</b> A grammar for genomic data analysis</a></li>
@@ -201,8 +201,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="5-4-software-infrastructure.html"><a href="5-4-software-infrastructure.html#linking-and-highlighting-views-via-interactions"><i class="fa fa-check"></i><b>5.4.2</b> Linking and highlighting views via interactions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html"><i class="fa fa-check"></i><b>5.5</b> Case Studies</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-1-exploring-simulation-data-with-tours-and-t-sne"><i class="fa fa-check"></i><b>5.5.1</b> Case Study 1: Exploring simulation data with tours and t-SNE</a></li>
-<li class="chapter" data-level="5.5.2" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-2-clustering-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.5.2</b> Case Study 2: Clustering single cell RNA-seq data</a></li>
+<li class="chapter" data-level="5.5.1" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-1-exploring-spherical-gaussian-clusters"><i class="fa fa-check"></i><b>5.5.1</b> Case Study 1: Exploring spherical Gaussian clusters</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-2-exploring-spherical-gaussian-clusters-with-hierarchical-structure"><i class="fa fa-check"></i><b>5.5.2</b> Case Study 2: Exploring spherical Gaussian clusters with hierarchical structure</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-3-exploring-data-with-piecewise-linear-structure"><i class="fa fa-check"></i><b>5.5.3</b> Case Study 3: Exploring data with piecewise linear structure</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-4-clustering-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.5.4</b> Case Study 4: Clustering single cell RNA-seq data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="5-6-discussion-3.html"><a href="5-6-discussion-3.html"><i class="fa fa-check"></i><b>5.6</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements-4.html"><a href="acknowledgements-4.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
@@ -235,10 +237,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="software-infrastructure" class="section level2">
 <h2><span class="header-section-number">5.4</span> Software Infrastructure</h2>
 <p>We have implemented the above design as an open source R package called
-<strong>liminal</strong>. The package allows analysts to construct concatenated
-visualisations, via the Vega-Lite grammar of interactive graphics via
-the <strong>vegawidget</strong> package <span class="citation">(Satyanarayan et al. <a href="bibliography.html#ref-Satyanarayan2017-gs">2017</a>; Lyttle and Vega/Vega-Lite Developers <a href="bibliography.html#ref-Lyttle2020-hp">2020</a>)</span>. It provides an interface for constructing linked
-and stand alone interfaces for manipulating tour paths via the <strong>shiny</strong> and <strong>tourr</strong> packages <span class="citation">(Chang et al. <a href="bibliography.html#ref-Chang2020-bq">2020</a>; Wickham et al. <a href="bibliography.html#ref-Wickham2011-st">2011</a>)</span>.</p>
+<strong>liminal</strong> <span class="citation">(S. Lee and Cook <a href="bibliography.html#ref-r-liminal">2020</a>)</span>. The package allows analysts to construct concatenated
+visualisations, drawn with the <strong>Vega-Lite</strong> grammar of interactive graphics via
+the <strong>vegawidget</strong> package <span class="citation">(Satyanarayan et al. <a href="bibliography.html#ref-Satyanarayan2017-gs">2017</a>; Lyttle and Vega/Vega-Lite Developers <a href="bibliography.html#ref-Lyttle2020-hp">2020</a>)</span>. It provides
+an interface for constructing linked and stand alone interfaces for
+manipulating tour paths via the <strong>shiny</strong> and <strong>tourr</strong> packages
+<span class="citation">(Chang et al. <a href="bibliography.html#ref-Chang2020-bq">2020</a>; Wickham et al. <a href="bibliography.html#ref-Wickham2011-st">2011</a>)</span>.</p>
 <div id="tours-as-a-streaming-data-problem" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Tours as a streaming data problem</h3>
 <p>The process of generating successive bases and interpolating between them to<br />
@@ -270,7 +274,12 @@ when a brush is active, points will be highlighted in the adjacent view.
 Because the tour is dynamic, brush events that become active will pause the
 animation, so that a user can interrogate the current view. By default,
 brushing on the embedding view will produce a one-to-one linking with the tour
-view. For interpreting specific combinations of clusters, the legend</p>
+view. For interpreting specific combinations of clusters, the multiple
+guides on the legend can be selected in order to see their relative orientations.
+The interface is constructed as a <strong>shiny</strong> gadget specifically designed for
+interactive data analysis. Selections such as brushing regions and the current
+tour path are returned after the user clicks done on the interface and become
+available for further investigation.</p>
 </div>
 </div>
             </section>

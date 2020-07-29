@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="0.1" data-path="0-1-open-research.html"><a href="0-1-open-research.html"><i class="fa fa-check"></i><b>0.1</b> Open Research</a></li>
+<li class="chapter" data-level="" data-path="open-research.html"><a href="open-research.html"><i class="fa fa-check"></i>Open Research</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-sec-tidygranges.html"><a href="1-1-sec-tidygranges.html"><i class="fa fa-check"></i><b>1.1</b> A grammar for genomic data analysis</a></li>
@@ -201,8 +201,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="5-4-software-infrastructure.html"><a href="5-4-software-infrastructure.html#linking-and-highlighting-views-via-interactions"><i class="fa fa-check"></i><b>5.4.2</b> Linking and highlighting views via interactions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html"><i class="fa fa-check"></i><b>5.5</b> Case Studies</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-1-exploring-simulation-data-with-tours-and-t-sne"><i class="fa fa-check"></i><b>5.5.1</b> Case Study 1: Exploring simulation data with tours and t-SNE</a></li>
-<li class="chapter" data-level="5.5.2" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-2-clustering-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.5.2</b> Case Study 2: Clustering single cell RNA-seq data</a></li>
+<li class="chapter" data-level="5.5.1" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-1-exploring-spherical-gaussian-clusters"><i class="fa fa-check"></i><b>5.5.1</b> Case Study 1: Exploring spherical Gaussian clusters</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-2-exploring-spherical-gaussian-clusters-with-hierarchical-structure"><i class="fa fa-check"></i><b>5.5.2</b> Case Study 2: Exploring spherical Gaussian clusters with hierarchical structure</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-3-exploring-data-with-piecewise-linear-structure"><i class="fa fa-check"></i><b>5.5.3</b> Case Study 3: Exploring data with piecewise linear structure</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-4-clustering-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.5.4</b> Case Study 4: Clustering single cell RNA-seq data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="5-6-discussion-3.html"><a href="5-6-discussion-3.html"><i class="fa fa-check"></i><b>5.6</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements-4.html"><a href="acknowledgements-4.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
@@ -256,7 +258,7 @@ intron retention (IR) events, and developed a workflow based on combining
 multiple summary statistics, “data descriptors”, to find coverage traces that appear to have IR-like events by collapsing coverage scores over a design matrix alongside the exonic and intronic parts of a gene. To do this we developed a new R package called <strong>superintronic</strong> that provides tooling for exploratory
 coverage analysis by extending and integrating our previous software package,
 <strong>plyranges</strong> <span class="citation">(S. Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019">2019</a>)</span>.</p>
-<p>In this chapter, we describe methodology for establishing data descriptors by turning coverage vectors into long form tidy data using <strong>superintronic</strong>
+<p>In this paper, we describe methodology for establishing data descriptors by turning coverage vectors into long form tidy data using <strong>superintronic</strong>
 and <strong>plyranges</strong>. We provide a workflow below
 using a zebrafish RNA-seq dataset for developing data descriptors to find IR like coverage traces within genes known to have minor class splicing events.</p>
 </div>

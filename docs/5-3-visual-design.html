@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="0.1" data-path="0-1-open-research.html"><a href="0-1-open-research.html"><i class="fa fa-check"></i><b>0.1</b> Open Research</a></li>
+<li class="chapter" data-level="" data-path="open-research.html"><a href="open-research.html"><i class="fa fa-check"></i>Open Research</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-sec-tidygranges.html"><a href="1-1-sec-tidygranges.html"><i class="fa fa-check"></i><b>1.1</b> A grammar for genomic data analysis</a></li>
@@ -201,8 +201,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="5-4-software-infrastructure.html"><a href="5-4-software-infrastructure.html#linking-and-highlighting-views-via-interactions"><i class="fa fa-check"></i><b>5.4.2</b> Linking and highlighting views via interactions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html"><i class="fa fa-check"></i><b>5.5</b> Case Studies</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-1-exploring-simulation-data-with-tours-and-t-sne"><i class="fa fa-check"></i><b>5.5.1</b> Case Study 1: Exploring simulation data with tours and t-SNE</a></li>
-<li class="chapter" data-level="5.5.2" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-2-clustering-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.5.2</b> Case Study 2: Clustering single cell RNA-seq data</a></li>
+<li class="chapter" data-level="5.5.1" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-1-exploring-spherical-gaussian-clusters"><i class="fa fa-check"></i><b>5.5.1</b> Case Study 1: Exploring spherical Gaussian clusters</a></li>
+<li class="chapter" data-level="5.5.2" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-2-exploring-spherical-gaussian-clusters-with-hierarchical-structure"><i class="fa fa-check"></i><b>5.5.2</b> Case Study 2: Exploring spherical Gaussian clusters with hierarchical structure</a></li>
+<li class="chapter" data-level="5.5.3" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-3-exploring-data-with-piecewise-linear-structure"><i class="fa fa-check"></i><b>5.5.3</b> Case Study 3: Exploring data with piecewise linear structure</a></li>
+<li class="chapter" data-level="5.5.4" data-path="5-5-case-studies.html"><a href="5-5-case-studies.html#case-study-4-clustering-single-cell-rna-seq-data"><i class="fa fa-check"></i><b>5.5.4</b> Case Study 4: Clustering single cell RNA-seq data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="5-6-discussion-3.html"><a href="5-6-discussion-3.html"><i class="fa fa-check"></i><b>5.6</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements-4.html"><a href="acknowledgements-4.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
@@ -235,13 +237,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="visual-design" class="section level2">
 <h2><span class="header-section-number">5.3</span> Visual Design</h2>
 <p>Tours provide a supportive visualisation to NLDR graphics, and
-can be easily incorporated into an analysts workflow with our interface in
-<strong>liminal</strong>.
-As we will see in the case studies, this allows analysts to quickly compare
-views from embedding methods and allows them to see how the embedding method
-alters the global structure of their data. Using ensembles allows the use of
-interaction techniques, that allow analysts to perform cluster orientation
-tasks via linking multiple views. This approach allows our interface, to achieve
+can be easily incorporated into an analysts workflow with our software package,
+<strong>liminal</strong>. Our interface allows analysts to quickly compare
+views from embedding methods and see how an embedding method
+preserves or alters the geometry of their data. Using multiple concatenated and
+linked views with the tour enhances interaction techniques, and allows
+analysts to perform cluster orientation tasks via linked highlighting and
+brushing <span class="citation">(McDonald <a href="bibliography.html#ref-McDonald1982-ew">1982</a>; Becker and Cleveland <a href="bibliography.html#ref-Becker1987-gd">1987</a>)</span>.
+This approach allows our interface to achieve
 the three principles for interactive high-dimensional data visualisation outlined
 by <span class="citation">Buja, Cook, and Swayne (<a href="bibliography.html#ref-Buja1996-fk">1996</a>)</span>: finding gestalt, posing queries, and making comparisons.</p>
 <div id="finding-gestalt-focus-and-context" class="section level3">
@@ -253,17 +256,19 @@ step, and then tour a subset of those components instead, i.e. by selecting
 them from a scree plot. The default tour layout is a scatter plot with an axis
 layout displaying the magnitude and direction of each basis vector. Since the
 tour is dynamic, it is often useful to be able to pause and highlight a
-particular view. In our interface, brushing will pause the tour path, allowing
-users to identify ‘interesting’ projections. The domain of the axis scales from
-running a tour is called the half range, and is computed by rescaling the input
-data onto hyper-dimensional unit cube. We bind the half range to a mouse wheel
-event, allowing a user to pan and zoom on the tour view dynamically. This is
-useful for peeling back dense clumps of points to reveal structure.</p>
+particular view. In addition to pause, play and reset buttons, brushing will
+pause the tour path, allowing users to identify ‘interesting’ projections. The
+domain of the axis scales from running a tour is called the half range, and is
+computed by rescaling the input data onto hyper-dimensional unit cube. We bind
+the half range to a mouse wheel event, allowing a user to pan and zoom on the
+tour view dynamically. This is useful for peeling back dense clumps of points
+to reveal structure.</p>
 </div>
 <div id="posing-queries-multiple-views-many-contexts" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> Posing Queries: multiple views, many contexts</h3>
 <p>We have combined the tour view in a side by side layout with a scatter plot
-view that represents the output of an embedding algorithm. These views are
+view as has been done in previous tour interfaces <strong>XGobi</strong> and <strong>DataViewer</strong>
+<span class="citation">(Buja, Hurley, and McDonald <a href="bibliography.html#ref-Buja1986-ku">1986</a>; Swayne, Cook, and Buja <a href="bibliography.html#ref-Swayne1998-uq">1998</a>)</span>. These views are
 linked; analysts can brush regions or highlight collections of points in either
 view. Linked highlighting can be performed when points have been previously
 labelled according to some discrete structure, i.e. cluster labels are
@@ -305,7 +310,7 @@ quality of their embedding and revise them iteratively.</p>
 In the simplest case, a local continuity check can be assessed via one to
 one linked brushing from the embedding to the tour view. Similarly, diffusions
 are identified from linked brushing on the tour view, highlighting points
-in the embedding view. Section &lt;&gt; details</p>
+in the embedding view.</p>
 </div>
 </div>
             </section>
