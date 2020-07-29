@@ -1,18 +1,23 @@
 ```{r setup-videos, cache = FALSE}
 vid_lookup <- tibble::tribble(
   ~key, ~url, ~path,
-  "gaussian",  "https://player.vimeo.com/video/439635921", here::here("video", "liminal-gaussian.mp4"),
-  "hierachical", "https://player.vimeo.com/video/439635905", here::here("video", "liminal-hierachical.mp4"),
-  "trees-01", "https://player.vimeo.com/video/439635892", here::here("video", "liminal-trees-01.mp4"),
-  "trees-02", "https://player.vimeo.com/video/439635863", here::here("video", "liminal-trees-02.mp4"),
-  "mouse-01", "https://player.vimeo.com/video/439635812", here::here("video", "liminal-mouse-01.mp4"),
-  "mouse-02", "https://player.vimeo.com/video/439635843", here::here("video", "liminal-mouse-02.mp4")
+  "gaussian",  "https://player.vimeo.com/video/439635921", here::here("img", "liminal-screenshot-gaussian.png"),
+  "hierarchical", "https://player.vimeo.com/video/439635905", here::here("img", "liminal-screenshot-hierarchical.png"),
+  "trees-01", "https://player.vimeo.com/video/439635892", here::here("img", "liminal-screenshot-trees-01.png"),
+  "trees-02", "https://player.vimeo.com/video/439635863", here::here("img", "liminal-screenshot-trees-02.png"),
+  "mouse-01", "https://player.vimeo.com/video/439635812", here::here("img", "liminal-screenshot-mouse-01.png"),
+  "mouse-02", "https://player.vimeo.com/video/439635843", here::here("img", "liminal-screenshot-mouse-02.png")
 )
 
 
 display_vid_html <- function(key, lookup) {
   video <- lookup[lookup$key == key, ]
   knitr::include_url(video[["url"]])
+}
+
+display_screenshot <- function(key, lookup) {
+  img <- lookup[lookup$key == key, ]
+  knitr::include_graphics(img[["path"]])
 }
 
 ```
@@ -87,12 +92,12 @@ factorial experimental designs.
 
 While there has been much work on the algorithmic details of
 embedding methods, there are relatively few tools designed to assist users
-to interact with these techniques: when is an embedding suffucient for the
+to interact with these techniques: when is an embedding sufficient for the
 task at hand? Several
 interactive interfaces have been proposed for evaluating or using embedding
 techniques. @Buja2008-fn used tours to guide analysts during the optimisation
 of multidimensional scaling methods by extending their interactive visualisation
-toolkits, **XGobi** and **GGobi** into a new tool called **GGvis** 
+software called **XGobi** and **GGobi** into a new tool called **GGvis** 
 [@Swayne1998-uq; @Swayne2003-qd; @Swayne2004-ua].
 Their interface allows the analyst to dynamically modify and check whether
 an MDS configuration has preserved the locality and closeness
@@ -293,7 +298,7 @@ can be easily incorporated into an analysts workflow with our software package,
 **liminal**.  Our interface allows analysts to quickly compare 
 views from embedding methods and see how an embedding method 
 preserves or alters the geometry of their data. Using multiple concatenated and
-linked views with the tour enchances interaction techniques, and allows 
+linked views with the tour enhances interaction techniques, and allows 
 analysts to perform  cluster orientation tasks via linked highlighting and 
 brushing [@McDonald1982-ew; @Becker1987-gd]. 
 This approach allows our interface to achieve 
@@ -320,7 +325,7 @@ to reveal structure.
 ### Posing Queries: multiple views, many contexts
 
 We have combined the tour view in a side by side layout with a scatter plot
-view as has been done in previous tour interfaces **XGobi** and **DataViwer** 
+view as has been done in previous tour interfaces **XGobi** and **DataViewer** 
 [@Buja1986-ku; @Swayne1998-uq]. These views are
 linked; analysts can brush regions or highlight collections of points in either
 view. Linked highlighting can be performed when points have been previously
@@ -423,8 +428,8 @@ available for further investigation.
 The next section steps through case studies cases of our approach using simulated
 and real data.
 
-The first three case studies qw use simulations where cluster structure and
-geometery of the underlying data is known. We start with a simple example
+The first three case studies use simulations where the cluster structure and
+geometry of the underlying data is known. We start with a simple example
 where we generated spherical clusters that are embedded well by t-SNE. Then
 we move onto more complex examples where the tour provides insight, such
 as clusters that have substructure and where there is more complex geometry
@@ -451,9 +456,10 @@ using the **Rtsne** package [@Rtsne],
 and set up the **liminal** linked interface with grand tour on the 10-$d$
 observations. 
 
-(ref:liminal-gaussian) Screenshots of the **liminal** interface applied to well clustered data, a video of the tour animation is available at https://player.vimeo.com/video/439635921. *(a)*: 
+(ref:liminal-gaussian) Screenshots of the **liminal** interface applied to well clustered data, a video of the tour animation is available at https://player.vimeo.com/video/439635921. *(a)*: t-SNE (left) and tour (right) in side by side layout coloured by cluster. *(b)*: brushing the red cluster on the t-SNE view, shows the corresponding points on the tour.
 
 ```{r gaussian, fig.cap = "(ref:liminal-gaussian)"}
+display_screenshot("gaussian", vid_lookup)
 ```
 
 ```{r gaussian-h, eval = knitr::is_html_output()}
@@ -480,21 +486,22 @@ with hierarchical structure. This cluster has two 3-$d$ clusters embedded in
 that are each equidistant from each other and have the same covariance structure.
 Again t-SNE has correctly identified the sub-clusters but their relative 
 locations to each other is distorted, with the orange and blue groups being
-far from each other in the tour view (figure \@ref(fig:hierachical)a). We see 
+far from each other in the tour view (figure \@ref(fig:hierarchical)a). We see 
 in this case that is difficult
 to see the sub-clusters in the tour view, however, once we zoom and highlight
-they become more apparent (figure \@ref(fig:hierachical)b). When we brush 
+they become more apparent (figure \@ref(fig:hierarchical)b). When we brush 
 the sub-clusters in the t-SNE, their
 relative placement is again exaggerated, with the tour showing that they
 are indeed much closer than the impression the t-SNE view gives.
 
-(ref:liminal-hierachical) Screenshots of the **liminal** interface applied to subclustered data, a video of the tour animation is .available at https://player.vimeo.com/video/43963590 
+(ref:liminal-hierarchical) Screenshots of the **liminal** interface applied to sub-clustered data, a video of the tour animation is available at https://player.vimeo.com/video/43963590. *(a)* t-SNE has identified and spread out the clusters with substructure. *(b)* Using linked highlighting and brushing, the tour view shows that sub-clusters are much closer together in high dimensional space than the t-SNE view implies.  
 
-```{r hierachical, fig.cap="(ref:liminal-hierachical)"}
+```{r hierarchical, fig.cap="(ref:liminal-hierarchical)"}
+display_screenshot("hierarchical", vid_lookup)
 ```
 
-```{r hierachical-h, eval = knitr::is_html_output()}
-display_vid_html("hierachical", vid_lookup)
+```{r hierarchicall-h, eval = knitr::is_html_output()}
+display_vid_html("hierarchical", vid_lookup)
 ```
 
 ### Case Study 3: Exploring data with piecewise linear structure
@@ -519,9 +526,10 @@ keeps the first 50 PCs, sets the perplexity to equal 30 and performs random
 initialisation). We then create a linked
 tour with t-SNE layout with **liminal** as shown in figure \@ref(fig:trees-01).
 
-(ref:trees-01) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635892.   
+(ref:trees-01) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635892. *(a)*: Default t-SNE has difficulties embedding the tree. *(b)* linked highlighting shows that the backbone of the tree has been broken by the embedding.    
 
 ```{r trees-01, fig.cap = "(ref:trees-01)"}
+display_screenshot("trees-01", vid_lookup)
 ```
 
 ```{r trees01-h, eval = knitr::is_html_output()}
@@ -550,6 +558,7 @@ these results with our tour view as displayed in figure \@ref(fig:trees-02).
 (ref:trees-02) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635863.  
 
 ```{r trees-02, fig.cap = "(ref:trees-02)"}
+display_screenshot("trees-02", vid_lookup)
 ```
 
 ```{r trees-02-h, eval = knitr::is_html_output()}
@@ -606,9 +615,10 @@ data size - 4,590 cells. Although this is not ideal, it still allows us to
 get a sense of the shape of the clusters as seen in figure \@ref(fig:mouse-01).
 
 
-(ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data. A video of the tour animation is available at https://player.vimeo.com/video/439635812. 
+(ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data. A video of the tour animation is available at https://player.vimeo.com/video/439635812. *(a)*: linked brushing identifies distortions in cluster placement by the embedding. *(b)*: t-SNE spreads out larger clusters like cluster 2, 4, 6, and 11 which are concentrated in the tour view. *(c)*: the tour view gives a sense of the geometry of the data; the PCs appear to form a tetrahedron like shape. *(d)*: brushing on the tour view highlights diffusions, points in cluster 9 are close together in the tour view are far away in the t-SNE view. 
 
 ```{r mouse-01, fig.cap = "(ref:mouse-01)" }
+display_screenshot("mouse-01", vid_lookup)
 ```
 
 ```{r mouse-01-h, eval = knitr::is_html_output()}
@@ -639,10 +649,11 @@ generation (shown as the biplot on the left view) reflects the relative
 weighting of each gene. We run the tour directly on the 
 log normalised expression values using the same subset as before figure \@ref(fig:mouse-02).
 
-(ref:mouse-01) Screenshots of the **liminal** tour applied to a marker gene set. A video of the tour animation is available at https://player.vimeo.com/video/439635843.
+(ref:mouse-01) Screenshots of the **liminal** tour applied to a marker gene set. A video of the tour animation is available at https://player.vimeo.com/video/439635843. *(a)*: the axis (left) and tour (right) view of 10 marker genes, using linked highlighting we see that the marker genes separate clusters 2, 4, 6, and 11 from the other groups. *(b)*: after zooming, it appears that the marker genes give rise to a gradient along the clusters.  
 
 
 ```{r mouse-02, fig.cap = "(ref:mouse-02)"}
+display_screenshot("mouse-02", vid_lookup)
 ```
 
 ```{r mouse-02-h, eval = knitr::is_html_output()}
@@ -651,9 +662,10 @@ display_vid_html("mouse-02", vid_lookup)
 
 We see that the expression of the marker genes, appear to separate
 the previously clumped clusters 2,4,6, and 11 from the other clusters, 
-indicating that these genes are expressed in all four clusters, and the 
-magnitude of expression in these genes is similar across these groups, 
-consistent with the results of marker gene analysis.
+indicating that these genes are expressed in all four clusters (figure \@ref(fig:mouse-02)a). Using zooming, we can see a trajectory forming along
+the clusters, while the axis view shows that magnitude of expression in 
+the marker genes is similar across these separated clusters which is 
+consistent with the results of marker gene analysis (figure \@ref(fig:mouse-02)b).
 
 
 ## Discussion
@@ -705,7 +717,6 @@ work from topological statistics [@Rieck2017-kk; @Genovese2017-iq].
 
 ## Acknowledgements {-}
 
-We would like to thank Dr David Frazier, Dr Ursula Laa and Dr Paul Harrison for their feedback on this work. 
-
-
-<!-- add supplementary materials here --> 
+We would like to thank Dr David Frazier, Dr Ursula Laa and Dr Paul Harrison for 
+their feedback on this work. The screenshots and images were compiled using the 
+**cowplot** and **ggplot2** packages [@r-cowplot; @Wickham2016-gz].

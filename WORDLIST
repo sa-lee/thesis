@@ -208,4 +208,10 @@ tourr
 vegawidget
 Snakemake
 wflow
+cowplot
+DataViewer
+GGobi
+XGobi
+GGvis
+
 
