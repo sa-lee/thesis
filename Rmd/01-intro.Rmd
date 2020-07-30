@@ -11,8 +11,7 @@ increasingly heterogeneous and multidimensional,
 the use of EDA becomes vital to ensure the integrity and quality of analysis 
 outputs. This is certainly true in high-throughput biological 
 data science, where constraints on computation time and memory, in addition
-to the analyst's time, results in EDA becoming increasingly difficult and 
-neglected.
+to the analyst's time, makes EDA difficult and neglected, which impacts the robustness and reliability of any downstream analysis.  
 
 (ref:wflow-cycle) An idealised model of the biological data science workflow (adapted from  @Grolemund2017-uc). We begin with data generated from one or more biological assay(s) corresponding to a research hypothesis or question. Our primary focus is on data generated from bulk assays that measure gene expression (RNA-seq), genetic variation (DNA-seq), and gene regulation (ChIP-seq, ATAC-seq). Throughout this process, we need computational tools to gain insight into the biology under study and communicate our analysis in a reproducible manner. 
 
@@ -62,7 +61,7 @@ mapped to graphical aesthetics of plots. This paradigm enables the grammar of gr
 It is unclear whether the *fluent* interfaces as implemented using the
 *tidy data* framework can be more generally applied and useful
 in fields such as high-throughput biology where domain specific semantics are 
-required. This is particularly true in the Bioconductor ecosystem, where much 
+required (figure \@ref(fig:wflow-wrangle)). This is particularly true in the Bioconductor ecosystem, where much 
 thought has gone into the design of data structures that enable interoperability
 between different tools, biological assays and analysis goals [@Huber2015-ei].
 
@@ -80,7 +79,7 @@ knitr::include_graphics(here::here("img", "wflow-thesis-integrate.png"))
 
 It is rare that a biological data analysis will involve
 a single measurement assay or that only one aspect of a measurement assay
-will be of interest to the biological question under study. While there are 
+will be of interest to the biological question under study (figure \@ref(fig:wflow-integrate)). While there are 
 many approaches to integrating data sets from multiple assays using multivariate
 statistical techniques [@Meng2016-pz], in chapter \@ref(ch:fluentGenomics)
 we describe a simple end-to-end workflow for integrating 
@@ -109,7 +108,7 @@ knitr::include_graphics(here::here("img", "wflow-thesis-explore.png"))
 
 In the final chapter, we move away from data wrangling and towards the 
 integration of visualisation with model-based summaries of high-dimensional
-data sets. We focus on a common tool for EDA (especially applied to single-cell
+data sets (figure \@ref(fig:wflow-explore)). We focus on a common tool for EDA (especially applied to single-cell
 transcriptomics): non-linear dimension reduction (NLDR). We consider the incorporation of 
 interactive and dynamic graphics to assist analysts in using NLDR techniques
 for cluster orientation tasks. In particular, we advocate for the use of tours
