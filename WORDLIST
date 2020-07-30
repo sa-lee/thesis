@@ -213,5 +213,9 @@ DataViewer
 GGobi
 XGobi
 GGvis
+scran
+scater
+RcppAnnoy
+FNN
 
 
