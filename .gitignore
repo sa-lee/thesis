@@ -11,3 +11,6 @@ data-raw/*.txt.gz
 thesis\.tex
 img/signature.png
 docs/img/signature.png
+diagram/
+comments/
+
