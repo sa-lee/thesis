@@ -6,7 +6,7 @@ understanding their data; revealing all it’s messes and
 uncovering hidden insights [@Tukey1977-pn; @Grolemund2017-uc]. 
 It is an iterative process involving computation and visualization,
 leading to new hypotheses that can be tested and formalised using 
-statistical modelling (figures \@ref(fig:wflow-cycle)). As datasets grow in complexity and become
+statistical modelling (figure \@ref(fig:wflow-cycle)). As datasets grow in complexity and become
 increasingly heterogeneous and multidimensional, 
 the use of EDA becomes vital to ensure the integrity and quality of analysis 
 outputs. This is certainly true in high-throughput biological 
@@ -17,7 +17,7 @@ to the analyst's time, makes EDA difficult and neglected, which impacts the robu
 
 (ref:wflow-wrangle) In the wrangle phase of the workflow, data from an assay is imported into a programming language. It is then tidied into a new representation that should capture the biological semantics of the measurements. Following this, the representation can be transformed to generate new summaries. 
 
-(ref:wflow-integrate) Data from multiple assays can be combined together using modelling and transformations. Data and model results can combined, tidied and transformed to have a common representation across different granularities of the genome.
+(ref:wflow-integrate) Data from multiple assays can be combined together using modelling and transformations. Data and model results can be combined, tidied and transformed to have a common representation across different granularities of the genome.
 
 (ref:wflow-explore) Visualisation is a tool for making sense of models. Here we explore, how well a model has captured the structure within the data using interactive graphics.  
 

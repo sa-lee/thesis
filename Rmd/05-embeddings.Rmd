@@ -84,11 +84,9 @@ algorithm.
 A complementary approach for visualizing structure in high dimensional data is 
 the tour. A tour is a sequence of projections of a high dimensional dataset
 onto a low-dimensional basis matrix, and is represented as a
-animated visualization [@Asimov1985-vp; @Buja1986-zr]. Given the dynamic nature
-of the tour, user interaction is  important for controlling and exploring the 
-visualisation: the tour has been used previously by @Wickham2015-cx and  
-exploring statistical model fits and by @Buja1996-fk for exploring the space of 
-factorial experimental designs.
+animated visualization [@Asimov1985-vp; @Buja1986-zr]. Given the dynamic nature of the tour, user interaction is  important for controlling and 
+exploring the visualisation: the tour has been used previously by 
+@Wickham2015-cx and exploring statistical model fits and by @Buja1996-fk for exploring the space of factorial experimental designs.
 
 While there has been much work on the algorithmic details of
 embedding methods, there are relatively few tools designed to assist users
