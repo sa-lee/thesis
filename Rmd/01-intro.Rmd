@@ -49,26 +49,26 @@ knitr::include_graphics(here::here("img", "wflow-thesis-wrangle.png"))
 ```
 
 The approach taken by the suite of software packages collectively known as the 
-*tidyverse*  is an attempt to formalise aspects of the EDA process in the R
+**tidyverse**  is an attempt to formalise aspects of the EDA process in the R
 programming language under a single semantic known as *tidy data* 
 [@baser; @tidyverse; @Wickham2014-jc]. Simply put, a *tidy data* set is a 
 rectangular table where each row of the table corresponds to an observation, 
 each column corresponds to a variable and each cell a value. There is a 
 surprisingly large amount of utility that can be achieved with this definition. 
 By having each column representing a variable, variables in the data can be 
-mapped to graphical aesthetics of plots. This paradigm enables the grammar of graphics as implemented by *ggplot2* [@Wickham2016-gz; @Wilkinson2005-kq]. User interfaces as implemented by *tidyverse*, and in particular the *dplyr* package, are *fluent*;  they form a domain specific language (DSL) that gives users a mental model for performing and composing common data transformation tasks 
+mapped to graphical aesthetics of plots. This paradigm enables the grammar of graphics as implemented by **ggplot2** [@Wickham2016-gz; @Wilkinson2005-kq]. User interfaces as implemented by **tidyverse**, and in particular the **dplyr** package, are *fluent*;  they form a domain specific language (DSL) that gives users a mental model for performing and composing common data transformation tasks 
 [@Wickham2017-dplyr; @FowlerFluent].
 
 It is unclear whether the *fluent* interfaces as implemented using the
 *tidy data* framework can be more generally applied and useful
 in fields such as high-throughput biology where domain specific semantics are 
-required. This is particularly true in the *Bioconductor* ecosystem, where much 
+required. This is particularly true in the Bioconductor ecosystem, where much 
 thought has gone into the design of data structures that enable interoperability
 between different tools, biological assays and analysis goals [@Huber2015-ei].
 
 Chapter \@ref(ch:plyranges) shows that the *tidy data* semantic is applicable
 to range-based genomics data and develops a *fluent* interface to transforming
-it called *plyranges*. The software provides a framework to an assist
+it called **plyranges**. The software provides a framework to an assist
 an analyst to compose queries on genomics datasets. This chapter has been 
 published as @Lee2019.
 
@@ -84,19 +84,19 @@ will be of interest to the biological question under study. While there are
 many approaches to integrating data sets from multiple assays using multivariate
 statistical techniques [@Meng2016-pz], in chapter \@ref(ch:fluentGenomics)
 we describe a simple end-to-end workflow for integrating 
-results along the genome using *plyranges*. This workflow also shows that
+results along the genome using **plyranges**. This workflow also shows that
 our grammar based approach does not impair interoperability between
-the *tidyverse* and *Bioconductor* approaches, and in fact they work seamlessly
+the **tidyverse** and Bioconductor approaches, and in fact they work seamlessly
 together. This chapter has been published as @Lee2020-ie. 
 
 ## Representation of genomic data structures{#sec:coverage}
 
 In chapter \@ref(ch:intron) we explore the limits of the *tidy data*
-semantic by extending *plyranges* to analyse coverage estimated on RNA-seq
-data by developing a new software tool called *superintronic*. We show that the
+semantic by extending **plyranges** to analyse coverage estimated on RNA-seq
+data by developing a new software tool called **superintronic**. We show that the
 long-form tidy representation is an effective way of combining the experimental
 design and reference annotations into a single genomic data structure for
-exploration. We use *superintronic* to develop a framework for discovering
+exploration. We use **superintronic** to develop a framework for discovering
 interesting regions of coverage and apply our approach to integrating intron
 signal from RNA-seq data. This chapter is based on my software and analysis
 contributions to the preprint @Lee2019-mf. 
@@ -118,7 +118,7 @@ and distortions obtained from an NLDR method. This approach acknowledges that
 there is no 'one' best visualisation or dimension reduction for a 
 high-dimensional dataset, and we often want to have an understanding of both the global and local structure within our data.
 
-Chapter \@ref(ch:tsne) introduces a software package called *liminal* for 
+Chapter \@ref(ch:tsne) introduces a software package called **liminal** for 
 constructing these views and a user interaction framework for identifying 
 distortions. We present several case studies using data sets  both 
 single-cell transcriptomics and  machine learning  for using our approach to diagnose the quality   results obtained via popular NLDR methods
