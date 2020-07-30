@@ -596,10 +596,10 @@ and look at marker genes through the lens of the tour.
 First, we downloaded the raw mouse retinal single cell RNA-seq data from
 @Macosko2015-ot using the **scRNAseq** Bioconductor package [@scRNAseq-d]. We
 have followed a standard workflow for pre-processing and normalizing this data 
-(described by @Amezquita2020-at): we performed QC using the the `scater`
+(described by @Amezquita2020-at): we performed QC using the the **scater**
 by removing cells with high proportion of mitochondrial gene expression and low
 numbers of genes detected, we log-transformed and normalised the expression 
-values and  finally selected highly variable genes (HVGs) using `scran` 
+values and  finally selected highly variable genes (HVGs) using **scran** 
 [@McCarthy2017; @Lun2016]. The top ten percent of HVGs were used to subset
 the normalised expression matrix and compute PCA using the first 25 components.
 Using the PCs we built a shared nearest neighbours graph (with $k = 10$) and 
@@ -697,7 +697,7 @@ all the points that match the graphs edges are selected on the
 corresponding tour view.  The reference data set for computing
 nearest neighbours (for example a distance matrix, or the complete data matrix)
 can be independent of the tour or embedding views. The estimation of neighbours
-can be computed efficiently with the `FNN` or `RcppAnnoy` packages
+can be computed efficiently with the **FNN** or ***RcppAnnoy** packages
 on the server side [@fnn-pkg; @rcpp-annoy-pkg]. In place of highlighting, one 
 could use opacity or binned colour scales to encode distances or ranks instead 
 of the neighbouring points. Brush composition, such as 'and', 'or',

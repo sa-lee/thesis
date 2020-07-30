@@ -118,13 +118,13 @@ The data consist of 11 zebrafish samples from single-end polyA enriched RNA-seq 
 had two replicates.
 
 FASTQ files were aligned to the GRCz11 reference genome using subjunc with
-the default parameters called from Rsubread to produce BAM files for each
+the default parameters called from **Rsubread** to produce BAM files for each
 sample [@Liao2013-eb; @Liao2019-qn]. The coverage was then estimated directly from the set of BAM files
 using **superintronic** into the long form _GRanges_ representation we described above. 
 
 The gene annotation files were
 obtained as GFF files from RefSeq and used that to construct the exonic
-and intronic parts of each gene as _GRanges_ object using *superintronic*. 
+and intronic parts of each gene as _GRanges_ object using **superintronic**. 
 We further filtered genes that had a single exon or genes that were overlapping
 others in the annotation and that were not on the main contigs of the reference genome (i.e. excluding mitochondria) to simplify our analysis and reduce any coverage ambiguity. This left 18,270 genes available for 
 computing data descriptors on in order to detecting IR-like coverage traces. Across each combination of genotype and line, we first $log_2$ transformed the coverage score with an offset of one, and then intersected the coverage _GRanges_ with exonic and intronic features of each gene. For each gene,
