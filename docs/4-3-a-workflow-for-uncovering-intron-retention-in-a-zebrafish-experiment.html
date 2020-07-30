@@ -247,12 +247,12 @@ for this analysis is available at <a href="https://github.com/sa-lee/thesis/tree
 <p>The data consist of 11 zebrafish samples from single-end polyA enriched RNA-seq libraries pooled from zebrafish larvae. The experimental factors looked at combinations of genotype (whether the gene rnpc3 has been knocked out or not) and line (whether the zebrafish larvae have the caliban <em>cal</em> or mutant caliban <em>zm-cal</em> phenotype). Within each combination there are three biological replicates, except for the combination <em>zm-cal</em> and wild-type rnpc3 which
 had two replicates.</p>
 <p>FASTQ files were aligned to the GRCz11 reference genome using subjunc with
-the default parameters called from Rsubread to produce BAM files for each
+the default parameters called from <strong>Rsubread</strong> to produce BAM files for each
 sample <span class="citation">(Liao, Smyth, and Shi <a href="bibliography.html#ref-Liao2013-eb">2013</a>, <a href="bibliography.html#ref-Liao2019-qn">2019</a>)</span>. The coverage was then estimated directly from the set of BAM files
 using <strong>superintronic</strong> into the long form <em>GRanges</em> representation we described above.</p>
 <p>The gene annotation files were
 obtained as GFF files from RefSeq and used that to construct the exonic
-and intronic parts of each gene as <em>GRanges</em> object using <em>superintronic</em>.
+and intronic parts of each gene as <em>GRanges</em> object using <strong>superintronic</strong>.
 We further filtered genes that had a single exon or genes that were overlapping
 others in the annotation and that were not on the main contigs of the reference genome (i.e. excluding mitochondria) to simplify our analysis and reduce any coverage ambiguity. This left 18,270 genes available for
 computing data descriptors on in order to detecting IR-like coverage traces. Across each combination of genotype and line, we first <span class="math inline">\(log_2\)</span> transformed the coverage score with an offset of one, and then intersected the coverage <em>GRanges</em> with exonic and intronic features of each gene. For each gene,

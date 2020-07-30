@@ -388,10 +388,10 @@ and look at marker genes through the lens of the tour.</p>
 <p>First, we downloaded the raw mouse retinal single cell RNA-seq data from
 <span class="citation">Macosko et al. (<a href="bibliography.html#ref-Macosko2015-ot">2015</a>)</span> using the <strong>scRNAseq</strong> Bioconductor package <span class="citation">(Risso and Cole <a href="bibliography.html#ref-scRNAseq-d">2019</a>)</span>. We
 have followed a standard workflow for pre-processing and normalizing this data
-(described by <span class="citation">Amezquita et al. (<a href="bibliography.html#ref-Amezquita2020-at">2020</a>)</span>): we performed QC using the the <code>scater</code>
+(described by <span class="citation">Amezquita et al. (<a href="bibliography.html#ref-Amezquita2020-at">2020</a>)</span>): we performed QC using the the <strong>scater</strong>
 by removing cells with high proportion of mitochondrial gene expression and low
 numbers of genes detected, we log-transformed and normalised the expression
-values and finally selected highly variable genes (HVGs) using <code>scran</code>
+values and finally selected highly variable genes (HVGs) using <strong>scran</strong>
 <span class="citation">(McCarthy et al. <a href="bibliography.html#ref-McCarthy2017">2017</a>; Lun, McCarthy, and Marioni <a href="bibliography.html#ref-Lun2016">2016</a>)</span>. The top ten percent of HVGs were used to subset
 the normalised expression matrix and compute PCA using the first 25 components.
 Using the PCs we built a shared nearest neighbours graph (with <span class="math inline">\(k = 10\)</span>) and

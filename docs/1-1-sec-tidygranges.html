@@ -243,24 +243,24 @@ Figure 1.2: In the wrangle phase of the workflow, data from an assay is imported
 </p>
 </div>
 <p>The approach taken by the suite of software packages collectively known as the
-<em>tidyverse</em> is an attempt to formalise aspects of the EDA process in the R
+<strong>tidyverse</strong> is an attempt to formalise aspects of the EDA process in the R
 programming language under a single semantic known as <em>tidy data</em>
 <span class="citation">(R Core Team <a href="bibliography.html#ref-baser">2019</a>; Wickham et al. <a href="bibliography.html#ref-tidyverse">2019</a>; Wickham <a href="bibliography.html#ref-Wickham2014-jc">2014</a>)</span>. Simply put, a <em>tidy data</em> set is a
 rectangular table where each row of the table corresponds to an observation,
 each column corresponds to a variable and each cell a value. There is a
 surprisingly large amount of utility that can be achieved with this definition.
 By having each column representing a variable, variables in the data can be
-mapped to graphical aesthetics of plots. This paradigm enables the grammar of graphics as implemented by <em>ggplot2</em> <span class="citation">(Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz">2016</a>; Wilkinson <a href="bibliography.html#ref-Wilkinson2005-kq">2005</a>)</span>. User interfaces as implemented by <em>tidyverse</em>, and in particular the <em>dplyr</em> package, are <em>fluent</em>; they form a domain specific language (DSL) that gives users a mental model for performing and composing common data transformation tasks
+mapped to graphical aesthetics of plots. This paradigm enables the grammar of graphics as implemented by <strong>ggplot2</strong> <span class="citation">(Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz">2016</a>; Wilkinson <a href="bibliography.html#ref-Wilkinson2005-kq">2005</a>)</span>. User interfaces as implemented by <strong>tidyverse</strong>, and in particular the <strong>dplyr</strong> package, are <em>fluent</em>; they form a domain specific language (DSL) that gives users a mental model for performing and composing common data transformation tasks
 <span class="citation">(Wickham et al. <a href="bibliography.html#ref-Wickham2017-dplyr">2017</a>; Fowler, <a href="bibliography.html#ref-FowlerFluent">n.d.</a>)</span>.</p>
 <p>It is unclear whether the <em>fluent</em> interfaces as implemented using the
 <em>tidy data</em> framework can be more generally applied and useful
 in fields such as high-throughput biology where domain specific semantics are
-required. This is particularly true in the <em>Bioconductor</em> ecosystem, where much
+required (figure <a href="1-1-sec-tidygranges.html#fig:wflow-wrangle">1.2</a>). This is particularly true in the Bioconductor ecosystem, where much
 thought has gone into the design of data structures that enable interoperability
 between different tools, biological assays and analysis goals <span class="citation">(Huber et al. <a href="bibliography.html#ref-Huber2015-ei">2015</a><a href="bibliography.html#ref-Huber2015-ei">a</a>)</span>.</p>
 <p>Chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a> shows that the <em>tidy data</em> semantic is applicable
 to range-based genomics data and develops a <em>fluent</em> interface to transforming
-it called <em>plyranges</em>. The software provides a framework to an assist
+it called <strong>plyranges</strong>. The software provides a framework to an assist
 an analyst to compose queries on genomics datasets. This chapter has been
 published as <span class="citation">S. Lee, Cook, and Lawrence (<a href="bibliography.html#ref-Lee2019">2019</a>)</span>.</p>
 </div>
