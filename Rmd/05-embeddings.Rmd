@@ -73,20 +73,22 @@ ground truth.
 
 As part of a visualization workflow, it's important to consider the perception
 and interpretation of embedding methods as well. @Sedlmair2013-pn showed that
-2D scatter plots were mostly sufficient for detecting class separation, however
+scatter plots were mostly sufficient for detecting class separation, however
 they also noted that often multiple embeddings were required. For the task of
 cluster identification, @Lewis2012-ai showed experimentally that novice users
 of non-linear embedding techniques were more likely to consider clusters of
-points on a 2D scatter plot to be the result of a spurious embedding compared
+points on a scatter plot to be the result of a spurious embedding compared
 to advanced users who were aware of the inner workings of the embedding
 algorithm.
 
 A complementary approach for visualizing structure in high dimensional data is 
 the tour. A tour is a sequence of projections of a high dimensional dataset
 onto a low-dimensional basis matrix, and is represented as a
-animated visualization [@Asimov1985-vp; @Buja1986-zr]. Given the dynamic nature of the tour, user interaction is  important for controlling and 
+animated visualization [@Asimov1985-vp; @Buja1986-zr]. Given the dynamic 
+nature of the tour, user interaction is  important for controlling and 
 exploring the visualisation: the tour has been used previously by 
-@Wickham2015-cx and exploring statistical model fits and by @Buja1996-fk for exploring the space of factorial experimental designs.
+@Wickham2015-cx and exploring statistical model fits and by @Buja1996-fk for 
+exploring the space of factorial experimental designs.
 
 While there has been much work on the algorithmic details of
 embedding methods, there are relatively few tools designed to assist users
@@ -437,11 +439,10 @@ In the final case study, we apply our approach to clustering
 the mouse retina data from @Macosko2015-ot, and apply the tour
 to the process of verifying marker genes that separate clusters. 
 
-The videos presented show the visual 
+We *strongly* recommend viewing the linked videos for each case study
+while reading. The videos presented show the visual 
 appearance of the **liminal** interface, and how we can interact with the tour
-via the controls previously described. Both code and videos available for 
-reproducing this paper are available at https://github.com/sa-lee/paper-liminal.
-
+via the controls previously described.
 
 ### Case Study 1: Exploring spherical Gaussian clusters
 
@@ -475,10 +476,10 @@ This can be confirmed via brushing the t-SNE view (figure \@ref(fig:gaussian)b).
 
 ### Case Study 2: Exploring spherical Gaussian clusters with hierarchical structure
 
-We repeat the process of viewing Gaussian clusters from the 
+Next we view Gaussian clusters from the 
 _Multi Challenge Dataset_, a benchmark simulation data set for clustering tasks
 [@Rauber2009-vh]. This dataset has two Gaussian clusters with equal covariance 
-embedded in $10-d$, and a third cluster
+embedded in 10-$d$, and a third cluster
 with hierarchical structure. This cluster has two 3-$d$ clusters embedded in 
 10-$d$, where the second cluster is subdivided into three smaller clusters, 
 that are each equidistant from each other and have the same covariance structure.
@@ -679,28 +680,30 @@ detected through the use linked brushing and highlighting. In the case when
 the data has a piecewise linear geometry, like the tree simulation, the tour
 preserves the shape of the data which can be obscured by the embedding method.
 
-Our holistic framework is also useful in real data situations, as displayed
-in our second case study. The tour when combined with t-SNE allowed us
+Our framework can also be useful in practice, as displayed
+in the fourth case study. The tour when combined with t-SNE allowed us
 to identify clusters, while giving us an idea of their orientation to 
 each other. Moreover, we could visually inspect the separation of clusters
 using a tour on marker gene sets. We see our approach as being valuable
 to the single cell analyst who wants to make their embeddings more 
 interpretable.
 
-In future implementations it will be possible to shift from one to one linked
-brushing to one to many linked brushing. This form of brushing acts directly on
-a $k$-nearest neighbours ($k$-nn) graph computed from a
+We have shown in the case studies, that one to one linked brushing can
+be used to identify distortions in the embedding, however we would
+like extend this to one to many linked brushing, which would allow us to directly interrogate neighbourhood preservation. This form of brushing acts directly on a $k$-nearest neighbours ($k$-nn) graph computed from a
 reference dataset: when a user brushes over a region in the embedding,
 all the points that match the graphs edges are selected on the 
-corresponding tour view.  The reference data set for computing
-nearest neighbours (for example a distance matrix, or the complete data matrix)
-can be independent of the tour or embedding views. The estimation of neighbours
-can be computed efficiently with the **FNN** or ***RcppAnnoy** packages
-on the server side [@fnn-pkg; @rcpp-annoy-pkg]. In place of highlighting, one 
-could use opacity or binned colour scales to encode distances or ranks instead 
-of the neighbouring points. Brush composition, such as 'and', 'or',
-or 'not' brushes, could be used to interrogate mismatches between the 
-$k$-nn graphs estimated from both the embedding and tour views.
+corresponding tour view. The reference data set for computing
+nearest neighbours (for example a distance matrix, or the complete data matrix) 
+can be independent of the tour or embedding views. In place of 
+highlighting, one  could use opacity or binned colour scales to encode 
+distances or ranks instead of the neighbouring points. We have begun 
+implementing this brush in **liminal**,  using the  **FNN** or **RcppAnnoy**
+packages for fast neighbourhood estimation on the server side, however there
+are still technicalaties that need be resolved [@fnn-pkg; @rcpp-annoy-pkg]. 
+Brush composition, such as 'and', 'or', or 'not' brushes, could be used to 
+further investigate mismatches between the $k$-nn graphs estimated from both the embedding and tour views.
+
 
 There are some limitations
 in using the **liminal** interface for larger datasets. First,
@@ -718,3 +721,14 @@ work from topological statistics [@Rieck2017-kk; @Genovese2017-iq].
 We would like to thank Dr David Frazier, Dr Ursula Laa and Dr Paul Harrison for 
 their feedback on this work. The screenshots and images were compiled using the 
 **cowplot** and **ggplot2** packages [@r-cowplot; @Wickham2016-gz].
+
+## Supplementary Materials {-}
+
+Code, data, and video for reproducing this paper are available at https://github.com/sa-lee/paper-liminal. Direct links to videos for viewing
+online are available in table \@ref(tab:vimeo).
+
+```{r vimeo}
+knitr::kable(dplyr::select(vid_lookup, `Case Study` = key, `URL` = url), 
+             caption = "Case Study Videos",
+             booktabs = TRUE)
+```
