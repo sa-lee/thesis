@@ -14,18 +14,16 @@ Imports:
     bookdown,
     cliapp,
     plyranges,
-    BioStrings,
+    Biostrings,
     stringr,
     readr,
     dplyr,
     tourr,
-    gt,
     kableExtra,
     knitr,
     magick,
     showtext,
     spelling,
-    fluentGenomics,
     macrophage,
     tidyr,
     ggplot2,
@@ -36,6 +34,7 @@ Imports:
     BiocPkgTools
 Remotes:
     sa-lee/liminal,
-    sa-lee/superintronic
+    sa-lee/superintronic,
+    sa-lee/fluentGenomics
 Language: en-GB
 URL: https://github.com/sa-lee/thesis
