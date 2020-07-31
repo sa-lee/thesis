@@ -2,3 +2,12 @@
 ^\.travis\.yml$
 ^Dockerfile$
 ^data-raw$
+^bib$
+^Rmd$
+^data$
+^docs$
+^img$
+^Rmd$
+^template$
+^video$
+^WORDLIST
