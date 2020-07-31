@@ -700,7 +700,7 @@ highlighting, one  could use opacity or binned colour scales to encode
 distances or ranks instead of the neighbouring points. We have begun 
 implementing this brush in **liminal**,  using the  **FNN** or **RcppAnnoy**
 packages for fast neighbourhood estimation on the server side, however there
-are still technicalaties that need be resolved [@fnn-pkg; @rcpp-annoy-pkg]. 
+are still technicalities that need be resolved [@fnn-pkg; @rcpp-annoy-pkg]. 
 Brush composition, such as 'and', 'or', or 'not' brushes, could be used to 
 further investigate mismatches between the $k$-nn graphs estimated from both the embedding and tour views.
 
