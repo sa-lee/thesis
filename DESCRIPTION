@@ -35,8 +35,7 @@ Imports:
     liminal,
     BiocPkgTools
 Remotes:
-    rstudio/gt
-    sa-lee/liminal
+    sa-lee/liminal,
     sa-lee/superintronic
 Language: en-GB
 URL: https://github.com/sa-lee/thesis
