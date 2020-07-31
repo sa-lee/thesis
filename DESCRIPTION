@@ -27,6 +27,7 @@ Imports:
     macrophage,
     tidyr,
     ggplot2,
+    ggbio,
     DESeq2,
     vegawidget,
     superintronic,
