@@ -440,9 +440,12 @@ the mouse retina data from @Macosko2015-ot, and apply the tour
 to the process of verifying marker genes that separate clusters. 
 
 We *strongly* recommend viewing the linked videos for each case study
-while reading. The videos presented show the visual 
+while reading. The videos are available to view online from the links
+in the captions of each sections figures. The videos presented show the visual 
 appearance of the **liminal** interface, and how we can interact with the tour
-via the controls previously described.
+via the controls previously described. If you are unable to view the videos,
+the figures in each case study consist of screenshots that summarise what is
+learned from combining the tour and an embedding view.
 
 ### Case Study 1: Exploring spherical Gaussian clusters
 
@@ -465,13 +468,13 @@ display_screenshot("gaussian", vid_lookup)
 display_vid_html("gaussian", vid_lookup)
 ```
 
-We see in figure \@ref(fig:gaussian) and linked video that t-SNE has 
+From the video linked inn figure \@ref(fig:gaussian), we learn that t-SNE has 
 correctly split out each cluster and laid them out in a star like formation. 
 This is agrees with the tour view,
 where once we start the animation, the five clusters begin to appear but
 generally points are more concentrated in the projection view compared to 
 the t-SNE layout (figure \@ref(fig:gaussian)a). 
-This can be confirmed via brushing the t-SNE view (figure \@ref(fig:gaussian)b). 
+This can be seen via brushing the t-SNE view (figure \@ref(fig:gaussian)b). 
 
 
 ### Case Study 2: Exploring spherical Gaussian clusters with hierarchical structure
@@ -483,7 +486,8 @@ embedded in 10-$d$, and a third cluster
 with hierarchical structure. This cluster has two 3-$d$ clusters embedded in 
 10-$d$, where the second cluster is subdivided into three smaller clusters, 
 that are each equidistant from each other and have the same covariance structure.
-Again t-SNE has correctly identified the sub-clusters but their relative 
+From the video linked in figure \@ref(fig:hierarchical), we see 
+that t-SNE has correctly identified the sub-clusters. However, their relative 
 locations to each other is distorted, with the orange and blue groups being
 far from each other in the tour view (figure \@ref(fig:hierarchical)a). We see 
 in this case that is difficult
@@ -509,7 +513,7 @@ Next we explore some simulated noisy tree structured data (figure
 \@ref(fig:fake-trees)), our interest here is how t-SNE visualisations break
 topology of the data, and then seeing if we can resolve this by tweaking the
 default parameters with reference to the global view of the data set. 
-This simulation aims to mimick branching trajectories of cell differentiation:
+This simulation aims to mimic branching trajectories of cell differentiation:
 if there were only mature cells, we would just see the tips of the branches 
 which have a hierarchical pattern of clustering.
 
@@ -539,14 +543,15 @@ display_screenshot("trees-01", vid_lookup)
 display_vid_html("trees-01", vid_lookup)
 ```
 
-We see that the t-SNE view has been unable to recapitulate the
-topology of the tree - the backbone (blue) branch has been split into three
-fragments (figure \@ref(fig:trees-01)a). We can see this immediately via the linked highlighting over both
+From the linked video, we see that the t-SNE view has been unable to 
+recapitulate the topology of the tree - the backbone (blue) branch has been 
+split into three fragments (figure \@ref(fig:trees-01)a). We can see 
+this immediately via the linked highlighting over both
 plots. If we click on the legend for the zero branch, the blue coloured points
 on each view are highlighted and the remaining points are made transparent.
 From, here it becomes apparent from the tour view that the blue branch forms
-the backbone of the tree and is connected to all other branches. We can also
-again see that cluster sizes formed via t-SNE can be misleading; from the tour
+the backbone of the tree and is connected to all other branches. From the video 
+it is easy to see that cluster sizes formed via t-SNE can be misleading; from the tour
 view there is a lot of noise along the branches, while this does not appear to
 be the case for the t-SNE result (figure \@ref(fig:trees-01)b).
 
@@ -555,7 +560,8 @@ a better trade-off between local structure and retain the topology of the data.
 We keep every parameter the same except that we initialise $Y$ with the first
 two PCs (scaled to have standard deviation 1e-4) instead of the default random
 initialisation and increase the perplexity from 30 to 100. We then combine
-these results with our tour view as displayed in figure \@ref(fig:trees-02).
+these results with our tour view as displayed in the linked video in the caption
+of figure \@ref(fig:trees-02).
 
 
 (ref:trees-02) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635863.  
@@ -611,14 +617,13 @@ the normalised expression matrix and compute PCA using the first 25 components.
 Using the PCs we built a shared nearest neighbours graph (with $k = 10$) and 
 used Louvain clustering to generate clusters [@Blondel2008-bx]. 
 
-
 To check and verify the clustering we construct a **liminal** view. 
 We tour the first five PCs (approximately 20% of the variance in expression),
 alongside the t-SNE view which was computed from all 25 PCs. 
 Due to latency of the interface we do a weighted sample of  the rows based on
 cluster membership, leaving us with approximately 10 per cent of the original
 data size - 4,590 cells. Although this is not ideal, it still allows us to
-get a sense of the shape of the clusters as seen in figure \@ref(fig:mouse-01).
+get a sense of the shape of the clusters as seen from the linked video in figure \@ref(fig:mouse-01).
 
 
 (ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data. A video of the tour animation is available at https://player.vimeo.com/video/439635812. *(a)*: linked brushing identifies distortions in cluster placement by the embedding. *(b)*: t-SNE spreads out larger clusters like cluster 2, 4, 6, and 11 which are concentrated in the tour view. *(c)*: the tour view gives a sense of the geometry of the data; the PCs appear to form a tetrahedron like shape. *(d)*: brushing on the tour view highlights diffusions, points in cluster 9 are close together in the tour view are far away in the t-SNE view. 
@@ -631,7 +636,7 @@ display_screenshot("mouse-01", vid_lookup)
 display_vid_html("mouse-01", vid_lookup)
 ```
 
-We observe that the embedding has mostly captured the
+From the video linked in figure \@ref(fig:mouse-01), we learn that the embedding has mostly captured the
 clusters relative location to each other to their location in high dimensional space, with a notable exception of points in cluster 3 and 10 as shown with
 linked brushing (figure \@ref(fig:mouse-01)a). As expected, t-SNE mitigates the crowding problem that is
 an issue for tour in this case, where points in clusters 2,4,6, and 11 are
@@ -653,7 +658,7 @@ when we toured on principal components. Here the tour becomes an alternative
 to a standard heatmap view for assessing shared markers; the basis
 generation (shown as the biplot on the left view) reflects the relative 
 weighting of each gene. We run the tour directly on the 
-log normalised expression values using the same subset as before (figure \@ref(fig:mouse-02)).
+log normalised expression values using the same subset as before.
 
 (ref:mouse-02) Screenshots of the **liminal** tour applied to a marker gene set. A video of the tour animation is available at https://player.vimeo.com/video/439635843. *(a)*: the axis (left) and tour (right) view of 10 marker genes, using linked highlighting we see that the marker genes separate clusters 2, 4, 6, and 11 from the other groups. *(b)*: after zooming, it appears that the marker genes give rise to a gradient along the clusters.  
 
@@ -666,13 +671,13 @@ display_screenshot("mouse-02", vid_lookup)
 display_vid_html("mouse-02", vid_lookup)
 ```
 
-We see that the expression of the marker genes, appear to separate
+From the video linked in figure \@ref(fig:mouse-02), we see that the 
+expression of the marker genes, appear to separate
 the previously clumped clusters 2,4,6, and 11 from the other clusters, 
-indicating that these genes are expressed in all four clusters (figure \@ref(fig:mouse-02)a). Using zooming, we can see a trajectory forming along
+indicating that these genes are expressed in all four clusters (figure \@ref(fig:mouse-02)a). After zooming, we can see a trajectory forming along
 the clusters, while the axis view shows that magnitude of expression in 
 the marker genes is similar across these separated clusters which is 
 consistent with the results of marker gene analysis (figure \@ref(fig:mouse-02)b).
-
 
 ## Discussion
 
@@ -735,7 +740,9 @@ Code, data, and video for reproducing this paper are available at https://github
 online are available in table \@ref(tab:vimeo).
 
 ```{r vimeo}
-knitr::kable(dplyr::select(vid_lookup, `Case Study` = key, `URL` = url), 
+vid_lookup$`Case Study` <- c(1, 2, 3,3,4,4)
+knitr::kable(dplyr::select(vid_lookup, `Case Study`, 
+                           `Example` = key, `URL` = url), 
              caption = "Case Study Videos",
              booktabs = TRUE)
 ```
