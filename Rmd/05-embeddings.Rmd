@@ -458,9 +458,9 @@ using the **Rtsne** package [@Rtsne],
 and set up the **liminal** linked interface with grand tour on the 10-$d$
 observations. 
 
-(ref:liminal-gaussian) Screenshots of the **liminal** interface applied to well clustered data, a video of the tour animation is available at https://player.vimeo.com/video/439635921. *(a)*: t-SNE (left) and tour (right) in side by side layout coloured by cluster. *(b)*: brushing the red cluster on the t-SNE view, shows the corresponding points on the tour.
+(ref:liminal-gaussian) Screenshots of the **liminal** interface applied to well clustered data, a video of the tour animation is available at https://player.vimeo.com/video/439635921.
 
-```{r gaussian, fig.cap = "(ref:liminal-gaussian)"}
+```{r gaussian, fig.cap = "(ref:liminal-gaussian)", out.height = "75%"}
 display_screenshot("gaussian", vid_lookup)
 ```
 
@@ -497,9 +497,9 @@ the sub-clusters in the t-SNE, their
 relative placement is again exaggerated, with the tour showing that they
 are indeed much closer than the impression the t-SNE view gives.
 
-(ref:liminal-hierarchical) Screenshots of the **liminal** interface applied to sub-clustered data, a video of the tour animation is available at https://player.vimeo.com/video/43963590. *(a)* t-SNE has identified and spread out the clusters with substructure. *(b)* Using linked highlighting and brushing, the tour view shows that sub-clusters are much closer together in high dimensional space than the t-SNE view implies.  
+(ref:liminal-hierarchical) Screenshots of the **liminal** interface applied to sub-clustered data, a video of the tour animation is available at https://player.vimeo.com/video/43963590.
 
-```{r hierarchical, fig.cap="(ref:liminal-hierarchical)"}
+```{r hierarchical, fig.cap="(ref:liminal-hierarchical)", out.height = "75%"}
 display_screenshot("hierarchical", vid_lookup)
 ```
 
@@ -533,9 +533,9 @@ keeps the first 50 PCs, sets the perplexity to equal 30 and performs random
 initialisation). We then create a linked
 tour with t-SNE layout with **liminal** as shown in figure \@ref(fig:trees-01).
 
-(ref:trees-01) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635892. *(a)*: Default t-SNE has difficulties embedding the tree. *(b)* linked highlighting shows that the backbone of the tree has been broken by the embedding.    
+(ref:trees-01) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635892.    
 
-```{r trees-01, fig.cap = "(ref:trees-01)"}
+```{r trees-01, fig.cap = "(ref:trees-01)", out.height = "75%" }
 display_screenshot("trees-01", vid_lookup)
 ```
 
@@ -626,9 +626,9 @@ data size - 4,590 cells. Although this is not ideal, it still allows us to
 get a sense of the shape of the clusters as seen from the linked video in figure \@ref(fig:mouse-01).
 
 
-(ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data. A video of the tour animation is available at https://player.vimeo.com/video/439635812. *(a)*: linked brushing identifies distortions in cluster placement by the embedding. *(b)*: t-SNE spreads out larger clusters like cluster 2, 4, 6, and 11 which are concentrated in the tour view. *(c)*: the tour view gives a sense of the geometry of the data; the PCs appear to form a tetrahedron like shape. *(d)*: brushing on the tour view highlights diffusions, points in cluster 9 are close together in the tour view are far away in the t-SNE view. 
+(ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data, a video of the tour animation is available at https://player.vimeo.com/video/439635812. 
 
-```{r mouse-01, fig.cap = "(ref:mouse-01)" }
+```{r mouse-01, fig.cap = "(ref:mouse-01)", out.height = "75%"}
 display_screenshot("mouse-01", vid_lookup)
 ```
 
@@ -660,10 +660,10 @@ generation (shown as the biplot on the left view) reflects the relative
 weighting of each gene. We run the tour directly on the 
 log normalised expression values using the same subset as before.
 
-(ref:mouse-02) Screenshots of the **liminal** tour applied to a marker gene set. A video of the tour animation is available at https://player.vimeo.com/video/439635843. *(a)*: the axis (left) and tour (right) view of 10 marker genes, using linked highlighting we see that the marker genes separate clusters 2, 4, 6, and 11 from the other groups. *(b)*: after zooming, it appears that the marker genes give rise to a gradient along the clusters.  
+(ref:mouse-02) Screenshots of the **liminal** tour applied to a marker gene set, a video of the tour animation is available at https://player.vimeo.com/video/439635843. 
 
 
-```{r mouse-02, fig.cap = "(ref:mouse-02)"}
+```{r mouse-02, fig.cap = "(ref:mouse-02)", out.height = "75%"}
 display_screenshot("mouse-02", vid_lookup)
 ```
 
