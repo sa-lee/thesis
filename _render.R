@@ -24,7 +24,7 @@ for (i in img_pdf) {
   file_pdf <- paste0("img/", i)
   dest_pdf <- paste0("img/", sub("pdf$", "png", i))
   if (file.exists(dest_pdf)) {
-    break
+    next
   }
   magick::image_write(
     magick::image_read(file_pdf, 300), dest_pdf, "png",
