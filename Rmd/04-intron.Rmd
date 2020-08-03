@@ -149,8 +149,9 @@ are expressed but  have large average intron expression that is more variable th
 to link back to their underlying coverage traces, with the overlaps shown
 in the UpSet plot in figure \@ref(fig:si-upset) [@Lex2014-bh]. The procedure produces gene coverage traces with known minor class splice sites affected by the knockout procedure such as ccdc43 and nat15 (figures \@ref(fig:si-cvg-ccdc43) and \@ref(fig:si-cvg-nat15)), as well as some that appear to have U12 intron retention like events such as mapk3 or tspan31 (figures \@ref(fig:si-cvg-mapk3) and \@ref(fig:si-cvg-tspan31)) that affect other parts of the gene.
 
-(ref:si-upset) Gene overlaps found between each combination of genotype and line using the thresholds defined in the text. Our procedure mostly finds genes with IR like profiles across all groups (28 shared between all four) or that is unique to a single group, since we do not consider looking at differential IR and run our thresholding separately for each group of replicates. The rnpc3 knockout lines 
-share the largest overlap in results. 
+
+(ref:si-upset) Gene overlaps found between each combination of genotype and line using the thresholds defined in the text. Our procedure mostly finds genes with IR like profiles across all groups (28 shared between all four) or that is unique to a single group, since we do not consider looking at differential IR and run our thresholding separately for each group of replicates. The rnpc3 knockout lines share the largest overlap in results. 
+
 
 ```{r si-upset, echo=FALSE, fig.cap = "(ref:si-upset)", out.width="80%"}
 knitr::include_graphics(here::here("img", "si-olaps.png"))
@@ -159,25 +160,29 @@ knitr::include_graphics(here::here("img", "si-olaps.png"))
 (ref:si-cvg-ccdc43) The ccdc43 gene is known to have enhanced U12 intron retention in the caliban phenotype and increase retention when rnpc3 is knocked out as can be seen directly from the intron located at around 31.603Mb.  
 
 ```{r si-cvg-ccdc43, echo=FALSE, fig.cap = "(ref:si-cvg-ccdc43)", out.width="80%"}
-knitr::include_graphics(here::here("img", "ccdc43.pdf"))
+ext <- ifelse(knitr::is_latex_output(), ".pdf", ".png")
+
+knitr::include_graphics(here::here("img", paste0("ccdc43", ext)))
 ```
 
-(ref:si-cvg-nat15) The gene nat15 exhibits another example of U12 intron retention (located at around 27.93Mb) in the rnpc3 knockout groups.  
+(ref:si-cvg-nat15) The gene nat15 exhibits another example of U12 intron retention, located at around 27.93Mb, in the rnpc3 knockout groups.  
 
 ```{r si-cvg-nat15,  echo=FALSE, fig.cap = "(ref:si-cvg-nat15)", out.width="80%"}
-knitr::include_graphics(here::here("img", "nat15.pdf"))
+knitr::include_graphics(here::here("img", paste0("nat15", ext)))
 ```
+
 
 (ref:si-cvg-mapk3) The gene mapk3 appears to have intron retention close to the start of the gene that have different impacts downstream, which result in different IR profiles between the knockout and wild-type groups.  
 
+
 ```{r si-cvg-mapk3,  echo=FALSE, fig.cap = "(ref:si-cvg-mapk3)", out.width="80%"}
-knitr::include_graphics(here::here("img", "mapk3.pdf"))
+knitr::include_graphics(here::here("img", paste0("mapk3", ext)))
 ```
 
 (ref:si-cvg-tspan31) The gene tspan31 has a potential cryptic splice site within the intron retained in the knockout groups.
 
 ```{r si-cvg-tspan31, echo=FALSE, fig.cap = "(ref:si-cvg-tspan31)", out.width="80%"}
-knitr::include_graphics(here::here("img", "tspan31.pdf"))
+knitr::include_graphics(here::here("img", paste0("tspan31", ext)))
 ```
 
 ## Discussion

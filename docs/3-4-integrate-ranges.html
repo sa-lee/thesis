@@ -133,9 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="" data-path="abstract.html"><a href="abstract.html"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="open-research.html"><a href="open-research.html"><i class="fa fa-check"></i>Open Research</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-ch-intro.html"><a href="1-ch-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-sec-tidygranges.html"><a href="1-1-sec-tidygranges.html"><i class="fa fa-check"></i><b>1.1</b> A grammar for genomic data analysis</a></li>
 <li class="chapter" data-level="1.2" data-path="1-2-sec-integrate.html"><a href="1-2-sec-integrate.html"><i class="fa fa-check"></i><b>1.2</b> Integration of genomic data structures</a></li>
@@ -267,30 +265,30 @@ samples of size equal to the number of DE-genes from the number of rows in
 <pre><code>#&gt; GRanges object with 749 ranges and 3 metadata columns:
 #&gt;         seqnames              ranges strand |            gene_id
 #&gt;            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
-#&gt;     [1]    chr16   28553915-28591790      + |  ENSG00000176476.8
-#&gt;     [2]     chr7   67302621-67362950      + | ENSG00000106610.15
-#&gt;     [3]    chr21   33589341-33643926      - | ENSG00000205758.11
-#&gt;     [4]    chr11   22813799-22830299      - |  ENSG00000198168.8
-#&gt;     [5]    chr11     3826978-3840983      - |  ENSG00000177105.9
+#&gt;     [1]    chr16   89215211-89217653      - |  ENSG00000259877.2
+#&gt;     [2]     chr9   37766978-37801437      - | ENSG00000107371.12
+#&gt;     [3]     chr5 108747822-109196841      + | ENSG00000151422.12
+#&gt;     [4]    chr22   28883592-29057487      + | ENSG00000183579.15
+#&gt;     [5]    chr20   45934628-45948023      + | ENSG00000100982.11
 #&gt;     ...      ...                 ...    ... .                ...
-#&gt;   [745]    chr14   35538352-35809304      - | ENSG00000174373.16
-#&gt;   [746]    chr16     3018445-3022383      + | ENSG00000006327.13
-#&gt;   [747]     chr5 159263081-159286040      + |  ENSG00000164332.7
-#&gt;   [748]    chr20   18137873-18143169      + |  ENSG00000232838.3
-#&gt;   [749]    chr19   29604017-29617237      + |  ENSG00000105171.9
+#&gt;   [745]    chr19   38815422-38832005      - |  ENSG00000104823.8
+#&gt;   [746]    chr11   18606401-18634791      - | ENSG00000179119.14
+#&gt;   [747]     chr4     3293028-3439913      + | ENSG00000159788.19
+#&gt;   [748]     chr1 202940823-202958572      - | ENSG00000159346.12
+#&gt;   [749]    chr16   74296775-74306288      + | ENSG00000103035.10
 #&gt;                   de_log2FC              de_padj
 #&gt;                   &lt;numeric&gt;            &lt;numeric&gt;
-#&gt;     [1]   0.214956747765835 8.28377157905113e-05
-#&gt;     [2]    0.17526271481818 5.87673682556914e-06
-#&gt;     [3]  0.0985670601529985 5.06452877457465e-12
-#&gt;     [4]  -0.145347351358543 3.84662835421657e-05
-#&gt;     [5] -0.0356784449179355 1.35468390279095e-09
+#&gt;     [1] -0.0827393503489097 1.50126916205224e-05
+#&gt;     [2] -0.0158535120326949 1.18716926746603e-23
+#&gt;     [3] 0.00120814323680294 6.63298327548477e-09
+#&gt;     [4] -0.0751228051605012  0.00499282127795854
+#&gt;     [5]  0.0363168854859248 7.38497090210929e-26
 #&gt;     ...                 ...                  ...
-#&gt;   [745]  0.0485364941743758 1.05508381568449e-10
-#&gt;   [746] -0.0549421857575768 0.000518903601480259
-#&gt;   [747] -0.0645912219057716 6.49101647010005e-29
-#&gt;   [748]   -0.26520188353115 0.000307157334458398
-#&gt;   [749] 0.00724144706040695 5.56925973621819e-35
+#&gt;   [745]  -0.199793484466807  2.3057422067959e-05
+#&gt;   [746] -0.0765868305145381   1.249129443624e-18
+#&gt;   [747]   0.098708840818052 6.41185992506546e-05
+#&gt;   [748]  -0.326218689952586 1.36447789891195e-11
+#&gt;   [749]    0.23134251554382 5.97216669345342e-28
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
 <p>We can repeat this many times to create many samples via <code>replicate()</code>. By
