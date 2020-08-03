@@ -123,12 +123,12 @@ sample [@Liao2013-eb; @Liao2019-qn]. The coverage was then estimated directly fr
 using **superintronic** into the long form _GRanges_ representation we described above. 
 
 The gene annotation files were
-obtained as GFF files from RefSeq and used that to construct the exonic
+obtained as GFF files from RefSeq and used to construct the exonic
 and intronic parts of each gene as _GRanges_ object using **superintronic**. 
 We further filtered genes that had a single exon or genes that were overlapping
 others in the annotation and that were not on the main contigs of the reference genome (i.e. excluding mitochondria) to simplify our analysis and reduce any coverage ambiguity. This left 18,270 genes available for 
-computing data descriptors on in order to detecting IR-like coverage traces. Across each combination of genotype and line, we first $log_2$ transformed the coverage score with an offset of one, and then intersected the coverage _GRanges_ with exonic and intronic features of each gene. For each gene,
-the weighted mean and standard deviation of the log-transformed coverage score were computed over all intron and exon parts within the groupings of 
+computing data descriptors on in order to detecting IR-like coverage traces. Across each combination of genotype and line, we first $\log_2$ transformed the coverage score with an offset of one, and then intersected the coverage _GRanges_ with exonic and intronic features of each gene. For each gene,
+the mean and standard deviation of the log-transformed coverage score weighted by the number of bases covered were computed over all intron and exon parts within the groupings of 
 genotype and line. We also computed the bases above descriptor for intron
 features. It refers to the total number of bases within an intron that has a score above the overall average exon coverage score. The scatter plot 
 matrix view of these descriptors is shown in figure \@ref(fig:si-splom)
@@ -182,7 +182,7 @@ knitr::include_graphics(here::here("img", "tspan31.pdf"))
 
 ## Discussion
 
-We have shown how to coverage can be represented in the tidy data framework
+We have shown how coverage can be represented in the tidy data framework
 and integrated with experimental metadata and reference annotations. This
 framework allowed us to build data descriptions that are simple aggregations of
 various aspects of genomic features over factors within a designed experiment
