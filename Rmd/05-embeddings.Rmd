@@ -440,8 +440,8 @@ the mouse retina data from @Macosko2015-ot, and apply the tour
 to the process of verifying marker genes that separate clusters. 
 
 We *strongly* recommend viewing the linked videos for each case study
-while reading. The videos are available to view online from the links
-in the captions of each sections figures. The videos presented show the visual 
+while reading. Links to the videos are available in table \@ref(tab:vimeo) 
+and in the figures for each case study. The videos presented show the visual 
 appearance of the **liminal** interface, and how we can interact with the tour
 via the controls previously described. If you are unable to view the videos,
 the figures in each case study consist of screenshots that summarise what is
