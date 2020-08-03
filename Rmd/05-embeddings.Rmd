@@ -628,7 +628,7 @@ get a sense of the shape of the clusters as seen from the linked video in figure
 
 (ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data, a video of the tour animation is available at https://player.vimeo.com/video/439635812. 
 
-```{r mouse-01, fig.cap = "(ref:mouse-01)", out.height = "75%"}
+```{r mouse-01, fig.cap = "(ref:mouse-01)", out.height = "85%"}
 display_screenshot("mouse-01", vid_lookup)
 ```
 
