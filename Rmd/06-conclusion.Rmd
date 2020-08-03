@@ -87,7 +87,7 @@ We showed in chapters \@ref(ch:fluentGenomics) ad \@ref(ch:intron) that an
 analyst is able to do some very complex data transformations and re-sampling 
 procedures via casting results into _GRanges_ object. However, it is unclear 
 whether the semantics of our grammar can be extended to data that can not be 
-effeciently reshaped into long form tidy representations. Moreover, further work
+efficiently reshaped into long form tidy representations. Moreover, further work
 is required to explore the design space of grammars for data 
 transformations and grammars for graphics when the data are large, multifaceted
 and non-rectangular. 
