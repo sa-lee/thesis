@@ -63,7 +63,7 @@ we were then able to create a set of data descriptors that we could link back
 to the raw data to discover genes thought to be associated with a real biological 
 signal. An interesting extension to this work would be applying it to single
 cell and long-read based transcriptomics data, where scalability and much
-larger design matrices would be come an issue. The **superintronic** package
+larger design matrices would become an issue. The **superintronic** package
 is available to download from https://github.com/sa-lee/superintronic.
 
 Finally, the **liminal** software aims to provide a more holistic approach to
@@ -87,9 +87,9 @@ We showed in chapters \@ref(ch:fluentGenomics) ad \@ref(ch:intron) that an
 analyst is able to do some very complex data transformations and re-sampling 
 procedures via casting results into _GRanges_ object. However, it is unclear 
 whether the semantics of our grammar can be extended to data that can not be 
-easily reshaped into long form tidy representations. Moreover, further work
+effeciently reshaped into long form tidy representations. Moreover, further work
 is required to explore the design space of grammars for data 
-transformations and grammars for graphics when the data large, multifaceted
+transformations and grammars for graphics when the data are large, multifaceted
 and non-rectangular. 
 
 We showed in chapter \@ref(ch:tsne) that tours provide a global overview
