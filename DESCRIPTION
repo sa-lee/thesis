@@ -1,41 +1,43 @@
 Type: Compendium
 Package: thesis
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: 
     person(given = "Stuart",
            family = "Lee",
            role = c("aut", "cre"),
            email = "stuart.andrew.leeg@gmail.com")
+URL: https://github.com/sa-lee/thesis
 BugReports: https://github.com/sa-lee/thesis/issues
 Depends:
-    R (>= 3.5)
+    R (>= 3.6)
 Imports:
     AnnotationHub,
+    BiocPkgTools,
+    Biostrings,
     bookdown,
     cliapp,
-    plyranges,
-    Biostrings,
-    stringr,
-    readr,
+    DESeq2,
     dplyr,
-    tourr,
+    fluentGenomics,
+    ggbio,
+    ggplot2,
     kableExtra,
     knitr,
+    liminal,
+    macrophage,
     magick,
+    plyranges (>= 1.7.7),
+    readr,
     showtext,
     spelling,
-    macrophage,
-    tidyr,
-    ggplot2,
-    ggbio,
-    DESeq2,
-    vegawidget,
+    stringr,
     superintronic,
-    liminal,
-    BiocPkgTools
+    tidyr,
+    tourr,
+    vegawidget
 Remotes:
+    sa-lee/fluentGenomics,
     sa-lee/liminal,
-    sa-lee/superintronic,
-    sa-lee/fluentGenomics
+    sa-lee/superintronic
+Encoding: UTF-8
 Language: en-GB
-URL: https://github.com/sa-lee/thesis

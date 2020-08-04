@@ -4,12 +4,6 @@ This repo contains source files for my PhD thesis, entitled
 
 > Fluent statistical computing interfaces for biological data analysis    
 
-The R packages used in this thesis can be installed 
-via the BiocManager package:
-
-```r
-BiocManager::install("sa-lee/thesis")
-```
 
 ## Summary
 
@@ -34,6 +28,16 @@ Processed data files are stored as `.rds` and are located in the `data`
 directory. Since some files are greater than 50Mb, in order to clone this 
 repository you will need to install `git lfs` and run `git lfs clone https://github.com/sa-lee/thesis`
 
+## Reproducibility
+
+The environment and R packages used to construct this thesis
+can be recovered using the `renv` package. Run the following
+code to install the packages used in this thesis:
+
+```r
+# install.packages("renv")
+renv::restore()
+```
 
 ## Project Structure
 
@@ -44,11 +48,9 @@ repository you will need to install `git lfs` and run `git lfs clone https://git
 * `img/`: Images made with other tools to illustrate ideas. 
 * `bib/`: Bibliography files.
 * `template/`: Monash thesis template from [robjhydman/MonashThesis](https://github.com/robjhyndman/MonashThesis).
-* `video/`: Videos made with other tools to illustrate ideas. These are in
-mp4 format, screenshots are provided in the pdf version.
+* `video/`: Videos made with other tools to illustrate ideas. These are in mp4 format, screenshots are provided in the pdf version.
 * `docs/`: the compiled thesis as pdf and website.
 
 ## Acknowledgements
 
-Thank you [Earo Wang](https://earo.me), who initially created this 
-reproducible thesis template that I have forked and modified.
+Thank you [Earo Wang](https://earo.me), who initially created this  reproducible thesis template that I have forked and modified.
