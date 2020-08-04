@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -236,12 +236,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="software-infrastructure" class="section level2">
 <h2><span class="header-section-number">5.4</span> Software Infrastructure</h2>
 <p>We have implemented the above design as an open source R package called
-<strong>liminal</strong> <span class="citation">(S. Lee and Cook <a href="bibliography.html#ref-r-liminal">2020</a>)</span>. The package allows analysts to construct concatenated
+<strong>liminal</strong> <span class="citation">(Lee and Cook <a href="bibliography.html#ref-r-liminal" role="doc-biblioref">2020</a>)</span>. The package allows analysts to construct concatenated
 visualisations, drawn with the <strong>Vega-Lite</strong> grammar of interactive graphics via
-the <strong>vegawidget</strong> package <span class="citation">(Satyanarayan et al. <a href="bibliography.html#ref-Satyanarayan2017-gs">2017</a>; Lyttle and Vega/Vega-Lite Developers <a href="bibliography.html#ref-Lyttle2020-hp">2020</a>)</span>. It provides
+the <strong>vegawidget</strong> package <span class="citation">(Satyanarayan et al. <a href="bibliography.html#ref-Satyanarayan2017-gs" role="doc-biblioref">2017</a>; Lyttle and Vega/Vega-Lite Developers <a href="bibliography.html#ref-Lyttle2020-hp" role="doc-biblioref">2020</a>)</span>. It provides
 an interface for constructing linked and stand alone interfaces for
 manipulating tour paths via the <strong>shiny</strong> and <strong>tourr</strong> packages
-<span class="citation">(Chang et al. <a href="bibliography.html#ref-Chang2020-bq">2020</a>; Wickham et al. <a href="bibliography.html#ref-Wickham2011-st">2011</a>)</span>.</p>
+<span class="citation">(Chang et al. <a href="bibliography.html#ref-Chang2020-bq" role="doc-biblioref">2020</a>; Wickham et al. <a href="bibliography.html#ref-Wickham2011-st" role="doc-biblioref">2011</a>)</span>.</p>
 <div id="tours-as-a-streaming-data-problem" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Tours as a streaming data problem</h3>
 <p>The process of generating successive bases and interpolating between them to<br />

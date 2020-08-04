@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -238,8 +238,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the study of gene regulation, there is much interest in uncovering the
 effects of aberrant minor class splicing (called U12 splicing) on the transcriptome.
 Minor class splicing is a regulatory process where a class of
-introns (called U12 introns in this case but there exist other classes in eukaryotic organisms such as U2 introns) are removed from pre-mRNA prior to gene expression <span class="citation">(Turunen et al. <a href="bibliography.html#ref-Turunen2013-qu">2013</a>)</span>. The removal of these introns is catalysed by small ribonucleoproteins (snRNPs)
-which identify key motifs and branch sites in the intron to begin splicing <span class="citation">(Markmiller et al. <a href="bibliography.html#ref-Markmiller2014-kg">2014</a>)</span>.
+introns (called U12 introns in this case but there exist other classes in eukaryotic organisms such as U2 introns) are removed from pre-mRNA prior to gene expression <span class="citation">(Turunen et al. <a href="bibliography.html#ref-Turunen2013-qu" role="doc-biblioref">2013</a>)</span>. The removal of these introns is catalysed by small ribonucleoproteins (snRNPs)
+which identify key motifs and branch sites in the intron to begin splicing <span class="citation">(Markmiller et al. <a href="bibliography.html#ref-Markmiller2014-kg" role="doc-biblioref">2014</a>)</span>.
 Here we describe an exploratory workflow for finding coverage traces
 with evidence for intron retention using RNA-seq data from a knockout experiment in zebrafish obtained from the Heath Lab at Walter and Eliza Hall Institute. Code
 for this analysis is available at <a href="https://github.com/sa-lee/thesis/tree/master/scripts/superintronic.R" class="uri">https://github.com/sa-lee/thesis/tree/master/scripts/superintronic.R</a>.</p>
@@ -247,7 +247,7 @@ for this analysis is available at <a href="https://github.com/sa-lee/thesis/tree
 had two replicates.</p>
 <p>FASTQ files were aligned to the GRCz11 reference genome using subjunc with
 the default parameters called from <strong>Rsubread</strong> to produce BAM files for each
-sample <span class="citation">(Liao, Smyth, and Shi <a href="bibliography.html#ref-Liao2013-eb">2013</a>, <a href="bibliography.html#ref-Liao2019-qn">2019</a>)</span>. The coverage was then estimated directly from the set of BAM files
+sample <span class="citation">(Liao, Smyth, and Shi <a href="bibliography.html#ref-Liao2013-eb" role="doc-biblioref">2013</a>, <a href="bibliography.html#ref-Liao2019-qn" role="doc-biblioref">2019</a>)</span>. The coverage was then estimated directly from the set of BAM files
 using <strong>superintronic</strong> into the long form <em>GRanges</em> representation we described above.</p>
 <p>The gene annotation files were
 obtained as GFF files from RefSeq and used to construct the exonic
@@ -274,7 +274,7 @@ the standard deviation of intron log-coverage values is twice the standard
 deviation of exon log-coverage values. That is, we are selecting genes that
 are expressed but have large average intron expression that is more variable than the gene’s exon expression. This results in a total of 86 genes selected
 to link back to their underlying coverage traces, with the overlaps shown
-in the UpSet plot in figure <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-upset">4.3</a> <span class="citation">(Lex et al. <a href="bibliography.html#ref-Lex2014-bh">2014</a>)</span>. The procedure produces gene coverage traces with known minor class splice sites affected by the knockout procedure such as ccdc43 and nat15 (figures <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-ccdc43">4.4</a> and <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-nat15">4.5</a>), as well as some that appear to have U12 intron retention like events such as mapk3 or tspan31 (figures <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-mapk3">4.6</a> and <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-tspan31">4.7</a>) that affect other parts of the gene.</p>
+in the UpSet plot in figure <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-upset">4.3</a> <span class="citation">(Lex et al. <a href="bibliography.html#ref-Lex2014-bh" role="doc-biblioref">2014</a>)</span>. The procedure produces gene coverage traces with known minor class splice sites affected by the knockout procedure such as ccdc43 and nat15 (figures <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-ccdc43">4.4</a> and <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-nat15">4.5</a>), as well as some that appear to have U12 intron retention like events such as mapk3 or tspan31 (figures <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-mapk3">4.6</a> and <a href="4-3-a-workflow-for-uncovering-intron-retention-in-a-zebrafish-experiment.html#fig:si-cvg-tspan31">4.7</a>) that affect other parts of the gene.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:si-upset"></span>
 <img src="img/si-olaps.png" alt="Gene overlaps found between each combination of genotype and line using the thresholds defined in the text. Our procedure mostly finds genes with IR like profiles across all groups (28 shared between all four) or that is unique to a single group, since we do not consider looking at differential IR and run our thresholding separately for each group of replicates. The rnpc3 knockout lines share the largest overlap in results." width="80%" />

@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -236,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-1" class="section level2">
 <h2><span class="header-section-number">4.1</span> Introduction</h2>
 <p>In high-throughput sequencing data sets, coverage is the estimated number of
-reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omics analysis such peak-calling in ChIP-seq or variant calling in DNA-seq <span class="citation">(Sims et al. <a href="bibliography.html#ref-Sims2014-qk">2014</a>)</span>. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data. By faceting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
+reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omics analysis such peak-calling in ChIP-seq or variant calling in DNA-seq <span class="citation">(Sims et al. <a href="bibliography.html#ref-Sims2014-qk" role="doc-biblioref">2014</a>)</span>. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data. By faceting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
 insight into biological signal under study.
 Of course, due to the sheer size of most reference genome annotations
 it would take an extremely long time for an analyst to look at every
@@ -245,18 +245,18 @@ coverage trace. Because visualisation does not scale, we need to search the poss
 identifying traces with interesting biology. We have taken inspiration from
 visualisation literature; in particular the idea of scatter plot diagnostics (“scagnostics”) for summarising the space of all possible 2D scatter plots
 to a small number of descriptors of each scatter plots properties such as
-density or monotonicity <span class="citation">(Friedman and Stuetzle <a href="bibliography.html#ref-Friedman2002-yx">2002</a>; Wilkinson, Anand, and Grossman <a href="bibliography.html#ref-Wilkinson2005-xt">2005</a>)</span>. Similarly,
-searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead <span class="citation">(Hyndman, Wang, and Laptev <a href="bibliography.html#ref-Hyndman2015-sc">2015</a>)</span>.</p>
-<p>Although there are many flexible and powerful software tools, like BEDtools or deepTools, for exploring and estimating coverage from common genomic data formats <span class="citation">(Quinlan and Hall <a href="bibliography.html#ref-Quinlan2010-gc">2010</a>; Ramı'rez et al. <a href="bibliography.html#ref-Ramirez2014-sh">2014</a>)</span>, it is advantageous to have tooling
+density or monotonicity <span class="citation">(Friedman and Stuetzle <a href="bibliography.html#ref-Friedman2002-yx" role="doc-biblioref">2002</a>; Wilkinson, Anand, and Grossman <a href="bibliography.html#ref-Wilkinson2005-xt" role="doc-biblioref">2005</a>)</span>. Similarly,
+searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead <span class="citation">(Hyndman, Wang, and Laptev <a href="bibliography.html#ref-Hyndman2015-sc" role="doc-biblioref">2015</a>)</span>.</p>
+<p>Although there are many flexible and powerful software tools, like BEDtools or deepTools, for exploring and estimating coverage from common genomic data formats <span class="citation">(Quinlan and Hall <a href="bibliography.html#ref-Quinlan2010-gc" role="doc-biblioref">2010</a>; Ramírez et al. <a href="bibliography.html#ref-Ramirez2014-sh" role="doc-biblioref">2014</a>)</span>, it is advantageous to have tooling
 that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
 be possible with a single command line tool. There are also gains in reproducibility as analysts do not have to move between multiple software suites to explore their processed transcriptomics data.</p>
-<p>In <span class="citation">S. Lee et al. (<a href="bibliography.html#ref-Lee2019-mf">2019</a>)</span>, we showed that there is evidence that a major
+<p>In <span class="citation">Lee et al. (<a href="bibliography.html#ref-Lee2019-mf" role="doc-biblioref">2019</a>)</span>, we showed that there is evidence that a major
 source of intron reads in RNA-seq datasets is pre-mRNA, and sought data analysis techniques to unravel different aspects of intron signal. In light of this,
 we made the assumption that most intron reads do not necessarily point to
 intron retention (IR) events, and developed a workflow based on combining
 multiple summary statistics, “data descriptors”, to find coverage traces that appear to have IR-like events by collapsing coverage scores over a design matrix alongside the exonic and intronic parts of a gene. To do this we developed a new R package called <strong>superintronic</strong> that provides tooling for exploratory
 coverage analysis by extending and integrating our previous software package,
-<strong>plyranges</strong> <span class="citation">(S. Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019">2019</a>)</span>.</p>
+<strong>plyranges</strong> <span class="citation">(Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019" role="doc-biblioref">2019</a>)</span>.</p>
 <p>In this paper, we describe methodology for establishing data descriptors by turning coverage vectors into long form tidy data using <strong>superintronic</strong>
 and <strong>plyranges</strong>. We provide a workflow below
 using a zebrafish RNA-seq dataset for developing data descriptors to find IR like coverage traces within genes known to have minor class splicing events.</p>

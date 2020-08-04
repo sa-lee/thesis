@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -242,10 +242,10 @@ views from embedding methods and see how an embedding method
 preserves or alters the geometry of their data. Using multiple concatenated and
 linked views with the tour enhances interaction techniques, and allows
 analysts to perform cluster orientation tasks via linked highlighting and
-brushing <span class="citation">(McDonald <a href="bibliography.html#ref-McDonald1982-ew">1982</a>; Becker and Cleveland <a href="bibliography.html#ref-Becker1987-gd">1987</a>)</span>.
+brushing <span class="citation">(McDonald <a href="bibliography.html#ref-McDonald1982-ew" role="doc-biblioref">1982</a>; Becker and Cleveland <a href="bibliography.html#ref-Becker1987-gd" role="doc-biblioref">1987</a>)</span>.
 This approach allows our interface to achieve
 the three principles for interactive high-dimensional data visualisation outlined
-by <span class="citation">Buja, Cook, and Swayne (<a href="bibliography.html#ref-Buja1996-fk">1996</a>)</span>: finding gestalt, posing queries, and making comparisons.</p>
+by <span class="citation">Buja, Cook, and Swayne (<a href="bibliography.html#ref-Buja1996-fk" role="doc-biblioref">1996</a>)</span>: finding gestalt, posing queries, and making comparisons.</p>
 <div id="finding-gestalt-focus-and-context" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> Finding Gestalt: focus and context</h3>
 <p>To investigate latent structure and the shape of a high dimensional dataset, a
@@ -267,7 +267,7 @@ to reveal structure.</p>
 <h3><span class="header-section-number">5.3.2</span> Posing Queries: multiple views, many contexts</h3>
 <p>We have combined the tour view in a side by side layout with a scatter plot
 view as has been done in previous tour interfaces <strong>XGobi</strong> and <strong>DataViewer</strong>
-<span class="citation">(Buja, Hurley, and McDonald <a href="bibliography.html#ref-Buja1986-ku">1986</a>; Swayne, Cook, and Buja <a href="bibliography.html#ref-Swayne1998-uq">1998</a>)</span>. These views are
+<span class="citation">(Buja, Hurley, and McDonald <a href="bibliography.html#ref-Buja1986-ku" role="doc-biblioref">1986</a>; Swayne, Cook, and Buja <a href="bibliography.html#ref-Swayne1998-uq" role="doc-biblioref">1998</a>)</span>. These views are
 linked; analysts can brush regions or highlight collections of points in either
 view. Linked highlighting can be performed when points have been previously
 labelled according to some discrete structure, i.e. cluster labels are
@@ -302,7 +302,7 @@ near in the original data. Whether, points are near, or far is reliant on the
 distance metric used; distortions and diffusions can be thought of as the
 preservation of distances or the nearest neighbours graphs between the
 high-dimensional space and the embedding space. As distances can be noisy in
-high-dimensions, ranks can be used instead as has been proposed by <span class="citation">Lee and Verleysen (<a href="bibliography.html#ref-Lee2009-zb">2009</a>)</span>.
+high-dimensions, ranks can be used instead as has been proposed by <span class="citation">Lee and Verleysen (<a href="bibliography.html#ref-Lee2009-zb" role="doc-biblioref">2009</a>)</span>.
 Identifying distortions and diffusions allows an analyst to investigate the
 quality of their embedding and revise them iteratively.</p>
 <p>These checks are done visually using our side-by-side tour and embedding views.

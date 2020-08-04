@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -264,7 +264,7 @@ highlighting, one could use opacity or binned colour scales to encode
 distances or ranks instead of the neighbouring points. We have begun
 implementing this brush in <strong>liminal</strong>, using the <strong>FNN</strong> or <strong>RcppAnnoy</strong>
 packages for fast neighbourhood estimation on the server side, however there
-are still technicalities that need be resolved <span class="citation">(Beygelzimer et al. <a href="bibliography.html#ref-fnn-pkg">2019</a>; Eddelbuettel <a href="bibliography.html#ref-rcpp-annoy-pkg">2020</a>)</span>.
+are still technicalities that need be resolved <span class="citation">(Beygelzimer et al. <a href="bibliography.html#ref-fnn-pkg" role="doc-biblioref">2019</a>; Eddelbuettel <a href="bibliography.html#ref-rcpp-annoy-pkg" role="doc-biblioref">2020</a>)</span>.
 Brush composition, such as ‘and’, ‘or’, or ‘not’ brushes, could be used to
 further investigate mismatches between the <span class="math inline">\(k\)</span>-nn graphs estimated from both the embedding and tour views.</p>
 <p>There are some limitations
@@ -275,8 +275,8 @@ centre of the projection and become difficult to see.
 Second, as <span class="math inline">\(n\)</span> increases the animation becomes slower as there is more data
 passing from the server to the client. Both of these issues could be mitigated
 through alternate tour paths and displays. The recent work
-by <span class="citation">Laa et al. (<a href="bibliography.html#ref-Laa2020-wr">2020</a>)</span> is a promising area for further investigation, as well as
-work from topological statistics <span class="citation">(Rieck <a href="bibliography.html#ref-Rieck2017-kk">2017</a>; Genovese et al. <a href="bibliography.html#ref-Genovese2017-iq">2017</a>)</span>.</p>
+by <span class="citation">Laa et al. (<a href="bibliography.html#ref-Laa2020-wr" role="doc-biblioref">2020</a>)</span> is a promising area for further investigation, as well as
+work from topological statistics <span class="citation">(Rieck <a href="bibliography.html#ref-Rieck2017-kk" role="doc-biblioref">2017</a>; Genovese et al. <a href="bibliography.html#ref-Genovese2017-iq" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
             </section>
 

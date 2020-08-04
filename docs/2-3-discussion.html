@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -237,7 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.3</span> Discussion</h2>
 <p>The design of <strong>plyranges</strong> adheres to well understood principles of
 language and API design: cognitive consistency, cohesion,
-endomorphism and expressiveness <span class="citation">(T R G Green AND Petre <a href="bibliography.html#ref-Green1996-qg">1996</a>)</span>.
+endomorphism and expressiveness <span class="citation">(T R G Green AND Petre <a href="bibliography.html#ref-Green1996-qg" role="doc-biblioref">1996</a>)</span>.
 To varying degrees, these principles also underlie the
 design of <strong>dplyr</strong> and the Bioconductor infrastructure.</p>
 <p>We have aimed for <strong>plyranges</strong> to have a simple and direct mapping to the
@@ -312,7 +312,7 @@ functions are similar to the highly optimized methods implemented in Bioconducto
 for <em>GRanges</em> objects.</p>
 <p>A caveat to constructing a compatible interface with <strong>dplyr</strong> is that
 <strong>plyranges</strong> makes extensive use of non-standard evaluation in R via
-the <strong>rlang</strong> package <span class="citation">(Henry and Wickham <a href="bibliography.html#ref-R-rlang">2017</a>)</span>. Simply, this means that computations are
+the <strong>rlang</strong> package <span class="citation">(Henry and Wickham <a href="bibliography.html#ref-R-rlang" role="doc-biblioref">2017</a>)</span>. Simply, this means that computations are
 evaluated in the context of the <em>GRanges</em> objects. Both <strong>dplyr</strong> and
 <strong>plyranges</strong> are based on the <strong>rlang</strong> language, because it allows for more
 expressive code that is free of repeated references to the

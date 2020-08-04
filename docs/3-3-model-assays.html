@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -238,28 +238,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="rna-seq-differential-gene-expression-analysis" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> RNA-seq differential gene expression analysis</h3>
 <p>We can easily run a differential expression analysis with <strong>DESeq2</strong> using the
-following code chunks <span class="citation">(Love, Huber, and Anders <a href="bibliography.html#ref-Love2014">2014</a>)</span>. The design formula indicates that we want to
+following code chunks <span class="citation">(Love, Huber, and Anders <a href="bibliography.html#ref-Love2014" role="doc-biblioref">2014</a>)</span>. The design formula indicates that we want to
 control for the donor baselines (<em>line</em>) and test for differences in gene
 expression on the condition. For a more comprehensive discussion of DE
-workflows in Bioconductor see <span class="citation">Love et al. (<a href="bibliography.html#ref-Love2016-f1000">2016</a>)</span> and <span class="citation">Law et al. (<a href="bibliography.html#ref-Law2018-f1000">2018</a>)</span>.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(DESeq2)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">dds &lt;-<span class="st"> </span><span class="kw">DESeqDataSet</span>(gse, <span class="op">~</span>line <span class="op">+</span><span class="st"> </span>condition)</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="co"># filter out lowly expressed genes</span></a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="co"># at least 10 counts in at least 6 samples</span></a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">keep &lt;-<span class="st"> </span><span class="kw">rowSums</span>(<span class="kw">counts</span>(dds) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb29-6" data-line-number="6">dds &lt;-<span class="st"> </span>dds[keep,]</a></code></pre></div>
+workflows in Bioconductor see <span class="citation">Love et al. (<a href="bibliography.html#ref-Love2016-f1000" role="doc-biblioref">2016</a>)</span> and <span class="citation">Law et al. (<a href="bibliography.html#ref-Law2018-f1000" role="doc-biblioref">2018</a>)</span>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">library</span>(DESeq2)</a>
+<a class="sourceLine" id="cb29-2" title="2">dds &lt;-<span class="st"> </span><span class="kw">DESeqDataSet</span>(gse, <span class="op">~</span>line <span class="op">+</span><span class="st"> </span>condition)</a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="co"># filter out lowly expressed genes</span></a>
+<a class="sourceLine" id="cb29-4" title="4"><span class="co"># at least 10 counts in at least 6 samples</span></a>
+<a class="sourceLine" id="cb29-5" title="5">keep &lt;-<span class="st"> </span><span class="kw">rowSums</span>(<span class="kw">counts</span>(dds) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>) <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb29-6" title="6">dds &lt;-<span class="st"> </span>dds[keep,]</a></code></pre></div>
 <p>The model is fit with the following line of code:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">dds &lt;-<span class="st"> </span><span class="kw">DESeq</span>(dds)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">dds &lt;-<span class="st"> </span><span class="kw">DESeq</span>(dds)</a></code></pre></div>
 <p>Below we set the contrast on the condition variable, indicating we are
 estimating the <span class="math inline">\(\log_2\)</span> fold change (LFC) of IFNg stimulated cell lines against
 naive cell lines. We are interested in LFC greater than 1 at a nominal false
 discovery rate (FDR) of 1%.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">               <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3">               <span class="dt">lfcThreshold=</span><span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.01</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">res &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</a>
+<a class="sourceLine" id="cb31-2" title="2">               <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</a>
+<a class="sourceLine" id="cb31-3" title="3">               <span class="dt">lfcThreshold=</span><span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.01</span>)</a></code></pre></div>
 <p>To see the results of the expression analysis, we can generate a summary table
 and an MA plot:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">summary</span>(res)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">summary</span>(res)</a></code></pre></div>
 <pre><code>#&gt; 
 #&gt; out of 17806 with nonzero total read count
 #&gt; adjusted p-value &lt; 0.01
@@ -270,7 +270,7 @@ and an MA plot:</p>
 #&gt; (mean count &lt; 3)
 #&gt; [1] see &#39;cooksCutoff&#39; argument of ?results
 #&gt; [2] see &#39;independentFiltering&#39; argument of ?results</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">DESeq2<span class="op">::</span><span class="kw">plotMA</span>(res, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">DESeq2<span class="op">::</span><span class="kw">plotMA</span>(res, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:ma-plot"></span>
 <img src="img/ma-plot-1.png" alt="Visualization of DESeq2 results as an “MA plot”. Genes that have an adjusted p-value below 0.01 are colored red." width="100%" />
 <p class="caption">
@@ -287,13 +287,13 @@ reference genome as “hg38”, and this has also been added to the <strong>GRan
 the results columns. This kind of book-keeping is vital once overlap operations
 are performed to ensure that <strong>plyranges</strong> is not comparing across incompatible
 genomes.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(plyranges))</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">de_genes &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</a>
-<a class="sourceLine" id="cb35-3" data-line-number="3">                    <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</a>
-<a class="sourceLine" id="cb35-4" data-line-number="4">                    <span class="dt">lfcThreshold=</span><span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb35-5" data-line-number="5">                    <span class="dt">format=</span><span class="st">&quot;GRanges&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="st">  </span><span class="kw">names_to_column</span>(<span class="st">&quot;gene_id&quot;</span>)</a>
-<a class="sourceLine" id="cb35-7" data-line-number="7">de_genes</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(plyranges))</a>
+<a class="sourceLine" id="cb35-2" title="2">de_genes &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</a>
+<a class="sourceLine" id="cb35-3" title="3">                    <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</a>
+<a class="sourceLine" id="cb35-4" title="4">                    <span class="dt">lfcThreshold=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb35-5" title="5">                    <span class="dt">format=</span><span class="st">&quot;GRanges&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-6" title="6"><span class="st">  </span><span class="kw">names_to_column</span>(<span class="st">&quot;gene_id&quot;</span>)</a>
+<a class="sourceLine" id="cb35-7" title="7">de_genes</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 17806 ranges and 7 metadata columns:
 #&gt;           seqnames              ranges strand |            gene_id
 #&gt;              &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;
@@ -338,65 +338,65 @@ genomes.</p>
 #&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
 <p>From this, we can restrict the results to those that meet our FDR threshold and
 select (and rename) the metadata columns we’re interested in:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">de_genes &lt;-<span class="st"> </span>de_genes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb37-4" data-line-number="4">    gene_id,</a>
-<a class="sourceLine" id="cb37-5" data-line-number="5">    <span class="dt">de_log2FC =</span> log2FoldChange,</a>
-<a class="sourceLine" id="cb37-6" data-line-number="6">    <span class="dt">de_padj =</span> padj</a>
-<a class="sourceLine" id="cb37-7" data-line-number="7">  )</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">de_genes &lt;-<span class="st"> </span>de_genes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">filter</span>(padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb37-4" title="4">    gene_id,</a>
+<a class="sourceLine" id="cb37-5" title="5">    <span class="dt">de_log2FC =</span> log2FoldChange,</a>
+<a class="sourceLine" id="cb37-6" title="6">    <span class="dt">de_padj =</span> padj</a>
+<a class="sourceLine" id="cb37-7" title="7">  )</a></code></pre></div>
 <p>We now wish to extract genes for which there is evidence that the LFC is <em>not</em>
 large. We perform this test by specifying an LFC threshold and an alternative
 hypothesis (<code>altHypothesis</code>) that the LFC is less than the threshold in
 absolute value. To visualize the result of this test, you can run <code>results</code>
-without <code>format=&quot;GRanges&quot;</code>, and pass this object to <code>plotMA()</code> as before. We
+without <code>format="GRanges"</code>, and pass this object to <code>plotMA()</code> as before. We
 label these genes as <code>other_genes</code> and later as “non-DE genes”, for comparison
 with our <code>de_genes</code> set.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">other_genes &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2">                       <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</a>
-<a class="sourceLine" id="cb38-3" data-line-number="3">                       <span class="dt">lfcThreshold=</span><span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb38-4" data-line-number="4">                       <span class="dt">altHypothesis=</span><span class="st">&quot;lessAbs&quot;</span>,</a>
-<a class="sourceLine" id="cb38-5" data-line-number="5">                       <span class="dt">format=</span><span class="st">&quot;GRanges&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="st">  </span><span class="kw">names_to_column</span>(<span class="st">&quot;gene_id&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb38-9" data-line-number="9">    gene_id,</a>
-<a class="sourceLine" id="cb38-10" data-line-number="10">    <span class="dt">de_log2FC =</span> log2FoldChange,</a>
-<a class="sourceLine" id="cb38-11" data-line-number="11">    <span class="dt">de_padj =</span> padj</a>
-<a class="sourceLine" id="cb38-12" data-line-number="12">  )</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">other_genes &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</a>
+<a class="sourceLine" id="cb38-2" title="2">                       <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</a>
+<a class="sourceLine" id="cb38-3" title="3">                       <span class="dt">lfcThreshold=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb38-4" title="4">                       <span class="dt">altHypothesis=</span><span class="st">&quot;lessAbs&quot;</span>,</a>
+<a class="sourceLine" id="cb38-5" title="5">                       <span class="dt">format=</span><span class="st">&quot;GRanges&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-6" title="6"><span class="st">  </span><span class="kw">filter</span>(padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-7" title="7"><span class="st">  </span><span class="kw">names_to_column</span>(<span class="st">&quot;gene_id&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-8" title="8"><span class="st">  </span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb38-9" title="9">    gene_id,</a>
+<a class="sourceLine" id="cb38-10" title="10">    <span class="dt">de_log2FC =</span> log2FoldChange,</a>
+<a class="sourceLine" id="cb38-11" title="11">    <span class="dt">de_padj =</span> padj</a>
+<a class="sourceLine" id="cb38-12" title="12">  )</a></code></pre></div>
 </div>
 <div id="atac-seq-peak-differential-abundance-analysis" class="section level3">
 <h3><span class="header-section-number">3.3.2</span> ATAC-seq peak differential abundance analysis</h3>
 <p>The following section describes the process we have used for generating a
-<em>GRanges</em> object of differential peaks from the ATAC-seq data in <span class="citation">Alasoo et al. (<a href="bibliography.html#ref-alasoo">2018</a>)</span>. The
+<em>GRanges</em> object of differential peaks from the ATAC-seq data in <span class="citation">Alasoo et al. (<a href="bibliography.html#ref-alasoo" role="doc-biblioref">2018</a>)</span>. The
 code chunks for the remainder of this section are not run.</p>
-<p>For assessing differential accessibility, we run <strong>limma</strong> <span class="citation">(Smyth <a href="bibliography.html#ref-Smyth2004">2004</a>)</span>, and
+<p>For assessing differential accessibility, we run <strong>limma</strong> <span class="citation">(Smyth <a href="bibliography.html#ref-Smyth2004" role="doc-biblioref">2004</a>)</span>, and
 generate the a summary of LFCs and adjusted p-values for the peaks:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">library</span>(limma)</a>
-<a class="sourceLine" id="cb39-2" data-line-number="2">design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span>donor <span class="op">+</span><span class="st"> </span>condition, <span class="kw">colData</span>(atac))</a>
-<a class="sourceLine" id="cb39-3" data-line-number="3">fit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(<span class="kw">assay</span>(atac), design)</a>
-<a class="sourceLine" id="cb39-4" data-line-number="4">fit &lt;-<span class="st"> </span><span class="kw">eBayes</span>(fit)</a>
-<a class="sourceLine" id="cb39-5" data-line-number="5">idx &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(fit<span class="op">$</span>coefficients) <span class="op">==</span><span class="st"> &quot;conditionIFNg&quot;</span>)</a>
-<a class="sourceLine" id="cb39-6" data-line-number="6">tt &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit, <span class="dt">coef=</span>idx, <span class="dt">sort.by=</span><span class="st">&quot;none&quot;</span>, <span class="dt">n=</span><span class="kw">nrow</span>(atac))</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">library</span>(limma)</a>
+<a class="sourceLine" id="cb39-2" title="2">design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span>donor <span class="op">+</span><span class="st"> </span>condition, <span class="kw">colData</span>(atac))</a>
+<a class="sourceLine" id="cb39-3" title="3">fit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(<span class="kw">assay</span>(atac), design)</a>
+<a class="sourceLine" id="cb39-4" title="4">fit &lt;-<span class="st"> </span><span class="kw">eBayes</span>(fit)</a>
+<a class="sourceLine" id="cb39-5" title="5">idx &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(fit<span class="op">$</span>coefficients) <span class="op">==</span><span class="st"> &quot;conditionIFNg&quot;</span>)</a>
+<a class="sourceLine" id="cb39-6" title="6">tt &lt;-<span class="st"> </span><span class="kw">topTable</span>(fit, <span class="dt">coef=</span>idx, <span class="dt">sort.by=</span><span class="st">&quot;none&quot;</span>, <span class="dt">n=</span><span class="kw">nrow</span>(atac))</a></code></pre></div>
 <p>We now take the <code>rowRanges()</code> of the <em>SummarizedExperiment</em> and attach the LFCs
 and adjusted p-values from <strong>limma</strong>, so that we can consider the overlap with
 differential expression. Note that we set the genome build to “hg38” and
-restyle the chromosome information to use the “UCSC” style (e.g. “chr1”,
+restyle the chromosome information to use the “UCSC” style (e.g. “chr1”,
 “chr2”, etc.). Again, we know the genome build from the Zenodo entry for the
 ATAC-seq data.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">atac_peaks &lt;-<span class="st"> </span><span class="kw">rowRanges</span>(atac) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">  </span><span class="kw">remove_names</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb40-4" data-line-number="4">    <span class="dt">da_log2FC =</span> tt<span class="op">$</span>logFC,</a>
-<a class="sourceLine" id="cb40-5" data-line-number="5">    <span class="dt">da_padj =</span> tt<span class="op">$</span>adj.P.Val</a>
-<a class="sourceLine" id="cb40-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;hg38&quot;</span>)</a>
-<a class="sourceLine" id="cb40-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb40-9" data-line-number="9"><span class="kw">seqlevelsStyle</span>(atac_peaks) &lt;-<span class="st"> &quot;UCSC&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">atac_peaks &lt;-<span class="st"> </span><span class="kw">rowRanges</span>(atac) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="st">  </span><span class="kw">remove_names</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb40-4" title="4">    <span class="dt">da_log2FC =</span> tt<span class="op">$</span>logFC,</a>
+<a class="sourceLine" id="cb40-5" title="5">    <span class="dt">da_padj =</span> tt<span class="op">$</span>adj.P.Val</a>
+<a class="sourceLine" id="cb40-6" title="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-7" title="7"><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;hg38&quot;</span>)</a>
+<a class="sourceLine" id="cb40-8" title="8"></a>
+<a class="sourceLine" id="cb40-9" title="9"><span class="kw">seqlevelsStyle</span>(atac_peaks) &lt;-<span class="st"> &quot;UCSC&quot;</span></a></code></pre></div>
 <p>The final <em>GRanges</em> object containing the DA peaks is included in
 the <strong>fluentGenomics</strong> and can be loaded as follows:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">library</span>(fluentGenomics)</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2">peaks</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">library</span>(fluentGenomics)</a>
+<a class="sourceLine" id="cb41-2" title="2">peaks</a></code></pre></div>
 <pre><code>#&gt; GRanges object with 296220 ranges and 3 metadata columns:
 #&gt;            seqnames              ranges strand |          peak_id
 #&gt;               &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |      &lt;character&gt;

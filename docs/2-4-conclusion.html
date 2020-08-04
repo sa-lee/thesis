@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -258,7 +258,7 @@ three tidy data structures that are related by feature and sample identifiers.
 Therefore, the grammar and design of the <strong>plyranges</strong> DSL is naturally
 extensible to the <em>SummarizedExperiment</em>.</p>
 <p>As the <strong>plyranges</strong> interface encourages tidy data practices, it
-integrates well with the grammar of graphics <span class="citation">(Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz">2016</a>)</span>. To
+integrates well with the grammar of graphics <span class="citation">(Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz" role="doc-biblioref">2016</a>)</span>. To
 achieve responsive performance, interactive graphics rely on lazy data
 access and computing patterns, so the deferred mechanisms within
 <strong>plyranges</strong> should help support interactive genomics applications.</p>

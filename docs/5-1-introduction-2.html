@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -244,13 +244,13 @@ for downstream analysis .</p>
 <p>Choosing an appropriate embedding presents a challenge to the analyst. How does
 an analyst know whether the embedding has captured the underlying topology and
 geometry of the high dimensional space? The answer depends on the analyst’s
-workflow. <span class="citation">Brehmer et al. (<a href="bibliography.html#ref-Brehmer2014-hk">2014</a>)</span> characterised two main workflow steps that an
+workflow. <span class="citation">Brehmer et al. (<a href="bibliography.html#ref-Brehmer2014-hk" role="doc-biblioref">2014</a>)</span> characterised two main workflow steps that an
 analyst performs when using embedding techniques: dimension reduction and
 cluster orientation. The first relates to dimension reduction achieved by using
 an embedding method, here an analyst wants to characterise and map meaning onto
 the embedded form, for example identifying batch effects from a high throughput
 sequencing experiment, or identifying a gradient or trajectory along the
-embedded form <span class="citation">(Nguyen and Holmes <a href="bibliography.html#ref-Nguyen2019-yh">2019</a>)</span>. The second relates to using embeddings as part of
+embedded form <span class="citation">(Nguyen and Holmes <a href="bibliography.html#ref-Nguyen2019-yh" role="doc-biblioref">2019</a>)</span>. The second relates to using embeddings as part of
 a clustering workflow. Here analysts are interested in identifying and naming
 clusters and verifying them by either applying known labels or colouring by
 variables that are a-priori known to distinguish clusters. Both of these
@@ -258,10 +258,10 @@ workflow steps rely on the embedding being representative of the original high
 dimensional dataset, and becomes much more difficult when there is no underlying
 ground truth.</p>
 <p>As part of a visualization workflow, it’s important to consider the perception
-and interpretation of embedding methods as well. <span class="citation">Sedlmair, Munzner, and Tory (<a href="bibliography.html#ref-Sedlmair2013-pn">2013</a>)</span> showed that
+and interpretation of embedding methods as well. <span class="citation">Sedlmair, Munzner, and Tory (<a href="bibliography.html#ref-Sedlmair2013-pn" role="doc-biblioref">2013</a>)</span> showed that
 scatter plots were mostly sufficient for detecting class separation, however
 they also noted that often multiple embeddings were required. For the task of
-cluster identification, <span class="citation">Lewis, Maaten, and Sa (<a href="bibliography.html#ref-Lewis2012-ai">2012</a>)</span> showed experimentally that novice users
+cluster identification, <span class="citation">Lewis, Maaten, and Sa (<a href="bibliography.html#ref-Lewis2012-ai" role="doc-biblioref">2012</a>)</span> showed experimentally that novice users
 of non-linear embedding techniques were more likely to consider clusters of
 points on a scatter plot to be the result of a spurious embedding compared
 to advanced users who were aware of the inner workings of the embedding
@@ -269,31 +269,31 @@ algorithm.</p>
 <p>A complementary approach for visualizing structure in high dimensional data is
 the tour. A tour is a sequence of projections of a high dimensional dataset
 onto a low-dimensional basis matrix, and is represented as an
-animated visualization <span class="citation">(Asimov <a href="bibliography.html#ref-Asimov1985-vp">1985</a>; Buja and Asimov <a href="bibliography.html#ref-Buja1986-zr">1986</a>)</span>. Given the dynamic
+animated visualization <span class="citation">(Asimov <a href="bibliography.html#ref-Asimov1985-vp" role="doc-biblioref">1985</a>; Buja and Asimov <a href="bibliography.html#ref-Buja1986-zr" role="doc-biblioref">1986</a>)</span>. Given the dynamic
 nature of the tour, user interaction is important for controlling and
 exploring the visualisation: the tour has been used previously by
-<span class="citation">Wickham, Cook, and Hofmann (<a href="bibliography.html#ref-Wickham2015-cx">2015</a>)</span> for exploring statistical model fits and by <span class="citation">Buja, Cook, and Swayne (<a href="bibliography.html#ref-Buja1996-fk">1996</a>)</span> for
+<span class="citation">Wickham, Cook, and Hofmann (<a href="bibliography.html#ref-Wickham2015-cx" role="doc-biblioref">2015</a>)</span> for exploring statistical model fits and by <span class="citation">Buja, Cook, and Swayne (<a href="bibliography.html#ref-Buja1996-fk" role="doc-biblioref">1996</a>)</span> for
 exploring the space of factorial experimental designs.</p>
 <p>While there has been much work on the algorithmic details of
 embedding methods, there are relatively few tools designed to assist users
 to interact with these techniques: when is an embedding sufficient for the
 task at hand? Several
 interactive interfaces have been proposed for evaluating or using embedding
-techniques. <span class="citation">Buja et al. (<a href="bibliography.html#ref-Buja2008-fn">2008</a>)</span> used tours to guide analysts during the optimisation
+techniques. <span class="citation">Buja et al. (<a href="bibliography.html#ref-Buja2008-fn" role="doc-biblioref">2008</a>)</span> used tours to guide analysts during the optimisation
 of multidimensional scaling methods by extending their interactive visualisation
 software called <strong>XGobi</strong> and <strong>GGobi</strong> into a new tool called <strong>GGvis</strong>
-<span class="citation">(Swayne, Cook, and Buja <a href="bibliography.html#ref-Swayne1998-uq">1998</a>; Swayne et al. <a href="bibliography.html#ref-Swayne2003-qd">2003</a>; Swayne and Buja <a href="bibliography.html#ref-Swayne2004-ua">2004</a>)</span>.
+<span class="citation">(Swayne, Cook, and Buja <a href="bibliography.html#ref-Swayne1998-uq" role="doc-biblioref">1998</a>; Swayne et al. <a href="bibliography.html#ref-Swayne2003-qd" role="doc-biblioref">2003</a>; Swayne and Buja <a href="bibliography.html#ref-Swayne2004-ua" role="doc-biblioref">2004</a>)</span>.
 Their interface allows the analyst to dynamically modify and check whether
 an MDS configuration has preserved the locality and closeness
 of points between the configuration and the original data.
-<span class="citation">Ovchinnikova and Anders (<a href="bibliography.html#ref-Ovchinnikova2020-sy">2020</a>)</span> created the <strong>Sleepwalk</strong> interface for checking
+<span class="citation">Ovchinnikova and Anders (<a href="bibliography.html#ref-Ovchinnikova2020-sy" role="doc-biblioref">2020</a>)</span> created the <strong>Sleepwalk</strong> interface for checking
 non-linear embeddings in single cell RNA-seq data. It provides a click and
 highlight visualisation for colouring points in an embedding according to an
 estimated pairwise distance in the original high-dimensional space.
 Similarly, the <strong>TensorFlow</strong> embedding projector is a web interface to
 running some non-liner embedding methods live in the browser and
 provides interactions to colour points, and select nearest neighbours
-<span class="citation">(Smilkov et al. <a href="bibliography.html#ref-Smilkov2016-hp">2016</a>)</span>. Finally, the work by <span class="citation">Pezzotti et al. (<a href="bibliography.html#ref-Pezzotti2017-cz">2017</a>)</span> provides a user
+<span class="citation">(Smilkov et al. <a href="bibliography.html#ref-Smilkov2016-hp" role="doc-biblioref">2016</a>)</span>. Finally, the work by <span class="citation">Pezzotti et al. (<a href="bibliography.html#ref-Pezzotti2017-cz" role="doc-biblioref">2017</a>)</span> provides a user
 guided and modified form of the t-SNE algorithm, that allows users to modify
 optimisation parameters in real-time.</p>
 <p>There is no one-size fits all: finding an appropriate embedding for a given

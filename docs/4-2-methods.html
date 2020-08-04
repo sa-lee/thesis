@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -244,7 +244,7 @@ aspects of this combined workflow are summarised in figure <a href="4-2-methods.
 <div class="figure" style="text-align: center"><span id="fig:si-fig"></span>
 <img src="img/si-workflow.png" alt="An overview of the superintronic and plyranges workflow. Coverage is estimated directly using the design matrix that contains a source column pointing to the locations of BAM files. The long-form representation is output as a GRanges object, and contains columns that were part of the design. Additional annotations are add with join functions, here we show the particular case of expanding the coverage GRanges to include exonic and intronic parts of a gene. This object can be further analysed using plyranges and our data descriptors approach, and then descriptors can be visualised as a scatter plot matrix with the GGally and ggplot2 packages (Schloerke et al. 2020; Wickham, Hadley 2016). Coverage traces can be directly generated with superintronic and collapsed over parts of the design matrix to identify differences between groups." width="100%" />
 <p class="caption">
-Figure 4.1: An overview of the <strong>superintronic</strong> and <strong>plyranges</strong> workflow. Coverage is estimated directly using the design matrix that contains a source column pointing to the locations of BAM files. The long-form representation is output as a <strong>GRanges</strong> object, and contains columns that were part of the design. Additional annotations are add with join functions, here we show the particular case of expanding the coverage <strong>GRanges</strong> to include exonic and intronic parts of a gene. This object can be further analysed using <strong>plyranges</strong> and our data descriptors approach, and then descriptors can be visualised as a scatter plot matrix with the <code>GGally</code> and <code>ggplot2</code> packages <span class="citation">(Schloerke et al. <a href="bibliography.html#ref-ggally">2020</a>; Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz">2016</a>)</span>. Coverage traces can be directly generated with <strong>superintronic</strong> and collapsed over parts of the design matrix to identify differences between groups.
+Figure 4.1: An overview of the <strong>superintronic</strong> and <strong>plyranges</strong> workflow. Coverage is estimated directly using the design matrix that contains a source column pointing to the locations of BAM files. The long-form representation is output as a <strong>GRanges</strong> object, and contains columns that were part of the design. Additional annotations are add with join functions, here we show the particular case of expanding the coverage <strong>GRanges</strong> to include exonic and intronic parts of a gene. This object can be further analysed using <strong>plyranges</strong> and our data descriptors approach, and then descriptors can be visualised as a scatter plot matrix with the <code>GGally</code> and <code>ggplot2</code> packages <span class="citation">(Schloerke et al. <a href="bibliography.html#ref-ggally" role="doc-biblioref">2020</a>; Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz" role="doc-biblioref">2016</a>)</span>. Coverage traces can be directly generated with <strong>superintronic</strong> and collapsed over parts of the design matrix to identify differences between groups.
 </p>
 </div>
 <div id="representation-of-coverage-estimation" class="section level3">
@@ -255,14 +255,14 @@ along with an optional experimental design table that is returns
 a long-form tidy <em>GRanges</em> data structure. The coverage estimation is
 computed via the <strong>Rsamtools</strong> package, and
 users have the ability to estimate coverage in parallel and drop regions
-in the genome where there is no coverage <span class="citation">(Morgan et al. <a href="bibliography.html#ref-rsamtools">2020</a>; Lawrence et al. <a href="bibliography.html#ref-granges">2013</a><a href="bibliography.html#ref-granges">b</a>)</span>. This
+in the genome where there is no coverage <span class="citation">(Morgan et al. <a href="bibliography.html#ref-rsamtools" role="doc-biblioref">2020</a>; Lawrence et al. <a href="bibliography.html#ref-granges" role="doc-biblioref">2013</a><a href="bibliography.html#ref-granges" role="doc-biblioref">b</a>)</span>. This
 representation is tidy, since each row of the resulting <em>GRanges</em> data
 structure corresponds to position(s) within a given sample with a given
 coverage score alongside any variables such as biological group. While the long-form representation repeats the same information
 for a sample within the design, the size of the resulting <em>GRanges</em> in
 memory can be compressed using run-length encoding for any categorical
 variable. This representation allows us to easily transform the coverage scores
-and integrate annotations using the <strong>plyranges</strong> grammar, and visualise traces using <strong>ggplot2</strong> <span class="citation">(Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz">2016</a>)</span>.</p>
+and integrate annotations using the <strong>plyranges</strong> grammar, and visualise traces using <strong>ggplot2</strong> <span class="citation">(Wickham, Hadley <a href="bibliography.html#ref-Wickham2016-gz" role="doc-biblioref">2016</a>)</span>.</p>
 </div>
 <div id="integration-of-external-annotations" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Integration of external annotations</h3>
