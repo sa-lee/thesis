@@ -22,16 +22,22 @@ are provided as open source software packages.
 The `data-raw/` directory provides scripts used to download and 
 cache large/raw files contained in this thesis. These are then managed
 and transferred into R friendly data formats and managed with
-`BiocFileCache`. 
+**BiocFileCache**. 
 
 Processed data files are stored as `.rds` and are located in the `data`
 directory. Since some files are greater than 50Mb, in order to clone this 
-repository you will need to install `git lfs` and run `git lfs clone https://github.com/sa-lee/thesis`
+repository you will need to install (git lfs)[https://git-lfs.github.com/] and run 
+
+
+```
+git lfs install
+git clone https://github.com/sa-lee/thesis
+```
 
 ## Reproducibility
 
 The environment and R packages used to construct this thesis
-can be recovered using the `renv` package. Run the following
+can be recovered using the **renv** package. Run the following
 code to install the packages used in this thesis:
 
 ```r
@@ -43,12 +49,13 @@ renv::restore()
 
 * `Rmd/`: R Markdown source documents for thesis document.
 * `scripts/`: R code to reproduce tables, figures and analyses for each chapter.
+* `renv/`: Package environment captured by **renv**
 * `data/`: Cleaned data used for thesis document.
 * `data-raw/`: R code to generate data in `data/`..
 * `img/`: Images made with other tools to illustrate ideas. 
+* `video/`: Videos made with other tools to illustrate ideas. These are in mp4 format, screenshots are provided in the pdf version.
 * `bib/`: Bibliography files.
 * `template/`: Monash thesis template from [robjhydman/MonashThesis](https://github.com/robjhyndman/MonashThesis).
-* `video/`: Videos made with other tools to illustrate ideas. These are in mp4 format, screenshots are provided in the pdf version.
 * `docs/`: the compiled thesis as pdf and website.
 
 ## Acknowledgements
