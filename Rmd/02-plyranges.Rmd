@@ -86,8 +86,8 @@ enable a user to write human readable analysis workflows.
 We have created a genomic DSL called **plyranges** that reformulates
 notions from existing genomic algebras and embeds them in R as a
 genomic extension of **dplyr**. By analogy, **plyranges** is to the
-genomic algebra, as **dplyr**` is to the relational algebra.  The
-**plyranges`**Bioconductor package implements the language on top of a
+genomic algebra, as **dplyr** is to the relational algebra.  The
+**plyranges** Bioconductor package implements the language on top of a
 key subset of Bioconductor data structures and thus fully integrates
 with the Bioconductor framework, gaining access to its scalable data
 representations and sophisticated statistical methods.
@@ -240,7 +240,7 @@ genomic regions as variants of the relational join operator. A join
 acts on two _GRanges_ objects: _x_ and _y_. The join operator
 is relational in the sense that metadata from the _x_ and _y_
 ranges are retained in the joined range.  All join operators in the
-`plyranges` DSL generate a set of hits based on overlap or proximity
+**plyranges** DSL generate a set of hits based on overlap or proximity
 of ranges and use those hits to merge the two datasets in different
 ways. There are four supported matching algorithms: _overlap_,
 _nearest_, _precede_, and _follow_ (figure 
@@ -504,7 +504,7 @@ container. Implicitly referencing the container is particularly
 convenient when programming interactively.  Consequently, when
 programming with **plyranges**, a user needs to generally understand
 the **rlang** language and how to adapt their code accordingly. Users
-familiar with the tidyverse should already have such knowledge.
+familiar with the **tidyverse** should already have such knowledge.
 
 ## Conclusion
 

@@ -108,17 +108,20 @@ knitr::include_graphics(here::here("img", "wflow-thesis-explore.png"))
 
 In the final chapter, we move away from data wrangling and towards the 
 integration of visualisation with model-based summaries of high-dimensional
-data sets (figure \@ref(fig:wflow-explore)). We focus on a common tool for EDA (especially applied to single-cell
-transcriptomics): non-linear dimension reduction (NLDR). We consider the incorporation of 
-interactive and dynamic graphics to assist analysts in using NLDR techniques
-for cluster orientation tasks. In particular, we advocate for the use of tours
-[@Cook1995-bi] alongside an NLDR visualisation to highlight potential pitfalls 
-and distortions obtained from an NLDR method. This approach acknowledges that
-there is no 'one' best visualisation or dimension reduction for a 
-high-dimensional dataset, and we often want to have an understanding of both the global and local structure within our data.
+data sets (figure \@ref(fig:wflow-explore)). We focus on a common tool for EDA 
+(especially applied to single-cell transcriptomics): non-linear dimension 
+reduction (NLDR). We consider the incorporation of interactive and dynamic 
+graphics to assist analysts in using  NLDR techniques for cluster orientation 
+tasks. In particular, we advocate  for the use of tours [@Cook1995-bi] alongside
+an NLDR visualisation to  highlight potential pitfalls  and distortions obtained
+from an NLDR method. This approach acknowledges that there is no 'one' best 
+visualisation or dimension reduction for a high-dimensional dataset, and we 
+often want to  have an understanding of both the global and local structure 
+within our data.
 
 Chapter \@ref(ch:tsne) introduces a software package called **liminal** for 
 constructing these views and a user interaction framework for identifying 
-distortions. We present several case studies using data sets  both 
-single-cell transcriptomics and  machine learning  for using our approach to diagnose the quality   results obtained via popular NLDR methods
-like t-distributed stochastic neighbour embeddings (t-SNE) [@Maaten2008-sk].
+distortions. We present several case studies using data that capture aspects of
+single cell transcriptomics workflows, and use our approach to diagnose the
+quality of results obtained  via popular NLDR methods like t-distributed 
+stochastic neighbour embeddings (t-SNE) [@Maaten2008-sk].
