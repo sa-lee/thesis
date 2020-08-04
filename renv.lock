@@ -796,6 +796,13 @@
       "Repository": "CRAN",
       "Hash": "2c0406b8e0a4c3516ab37be62da74e3c"
     },
+    "hexbin": {
+      "Package": "hexbin",
+      "Version": "1.28.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "3d59212f2814d65dff517e6899813c58"
+    },
     "highr": {
       "Package": "highr",
       "Version": "0.8",
@@ -944,10 +951,10 @@
     },
     "lattice": {
       "Package": "lattice",
-      "Version": "0.20-40",
+      "Version": "0.20-41",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "61339152c288b871facca5f68f401f89"
+      "Hash": "fbd9285028b0263d76d18c95ae51a53d"
     },
     "latticeExtra": {
       "Package": "latticeExtra",
@@ -973,8 +980,14 @@
     "liminal": {
       "Package": "liminal",
       "Version": "0.0.5.9999",
-      "Source": "unknown",
-      "Hash": "26cd6d266e13351d0a5d3263f5ebb0cb"
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "sa-lee",
+      "RemoteRepo": "liminal",
+      "RemoteRef": "master",
+      "RemoteSha": "2055238b77d6d8d80800cd284a6cb4b20c104dbd",
+      "Hash": "4ecf06db2f85fe217a55ccf9413f1369"
     },
     "limma": {
       "Package": "limma",
@@ -1130,9 +1143,15 @@
     },
     "plyranges": {
       "Package": "plyranges",
-      "Version": "1.7.16",
-      "Source": "Bioconductor",
-      "Hash": "19ca35552ff0fe9cb767c1826cd5c5a2"
+      "Version": "1.9.3",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "sa-lee",
+      "RemoteRepo": "plyranges",
+      "RemoteRef": "master",
+      "RemoteSha": "0cf2e40071004ab0926f075f4196e28ad7a17889",
+      "Hash": "701170eedd431231b183da30bbcc5fb7"
     },
     "png": {
       "Package": "png",
@@ -1215,7 +1234,8 @@
       "Package": "renv",
       "Version": "0.11.0",
       "Source": "Repository",
-      "Repository": "CRAN"
+      "Repository": "CRAN",
+      "Hash": "1c3ef87cbb81c23ac96797781ec7aecc"
     },
     "reshape": {
       "Package": "reshape",
@@ -1411,8 +1431,14 @@
     "superintronic": {
       "Package": "superintronic",
       "Version": "0.99.4",
-      "Source": "unknown",
-      "Hash": "116bbbe8508e36715fe8ccdfeb01e987"
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "sa-lee",
+      "RemoteRepo": "superintronic",
+      "RemoteRef": "master",
+      "RemoteSha": "56143c0e022961b8d6b5077888d2c57342660161",
+      "Hash": "3fb90b438a107966864a823369f76864"
     },
     "survival": {
       "Package": "survival",

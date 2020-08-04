@@ -38,6 +38,7 @@ Imports:
 Remotes:
     sa-lee/fluentGenomics,
     sa-lee/liminal,
-    sa-lee/superintronic
+    sa-lee/superintronic,
+    sa-lee/plyranges
 Encoding: UTF-8
 Language: en-GB
