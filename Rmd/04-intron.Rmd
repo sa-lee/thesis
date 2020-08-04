@@ -23,7 +23,7 @@ to a small number of descriptors of each scatter plots properties such as
 density or monotonicity [@Friedman2002-yx;@Wilkinson2005-xt].  Similarly,
 searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead [@Hyndman2015-sc].
 
-Although there are many flexible and powerful software tools, like BEDtools or deepTools, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantageous to have tooling
+Although there are many flexible and powerful software tools, like **BEDtools** or **deepTools**, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantageous to have tooling
 that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
 be possible with a single command line tool. There are also gains in reproducibility as analysts do not have to move between multiple software suites to explore their processed transcriptomics data. 
 
@@ -48,7 +48,7 @@ flexibly summarised over factors within an experimental design and collapsed
 over regions of the genome using our companion package **plyranges**. The
 aspects of this combined workflow are summarised in figure \@ref(fig:si-fig). 
 
-(ref:si-fig) An overview of the **superintronic** and **plyranges** workflow. Coverage is estimated directly using the design matrix that contains a source column pointing to the locations of BAM files. The long-form representation is output as a **GRanges** object, and contains columns that were part of the design. Additional annotations are add with join functions, here we show the particular case of expanding the coverage **GRanges** to include exonic and intronic parts of a gene. This object can be further analysed using **plyranges** and our data descriptors approach, and then descriptors can be visualised as a scatter plot matrix with the `GGally` and `ggplot2` packages [@ggally; @Wickham2016-gz]. Coverage traces can be directly generated with **superintronic** and collapsed over parts of the design matrix to identify differences between groups.
+(ref:si-fig) An overview of the **superintronic** and **plyranges** workflow. Coverage is estimated directly using the design matrix that contains a source column pointing to the locations of BAM files. The long-form representation is output as a _GRanges_ object, and contains columns that were part of the design. Additional annotations are added with join functions, here we show the particular case of expanding the coverage _GRanges_ to include exonic and intronic parts of a gene. This object can be further analysed using **plyranges** and our data descriptors approach, and then descriptors can be visualised as a scatter plot matrix with the **GGally** and **ggplot2** packages [@ggally; @Wickham2016-gz]. Coverage traces can be directly generated with **superintronic** and collapsed over parts of the design matrix to identify differences between groups.
 
 ```{r si-fig, fig.cap = "(ref:si-fig)", echo = FALSE}
 knitr::include_graphics(here::here("img", "si-workflow.png"))
@@ -202,7 +202,7 @@ design to find differential IR like profiles. However, if that was of interest,
 one could look at the overlaps, like we did in figure \@ref(fig:si-upset),
 or combine our data descriptors with external estimates using **limma** 
 [@Ritchie2015-mj], like our proposed index method in @Lee2019-mf. The gene
-candidates obtain by our thresholds have been validated by the Heath lab
+candidates obtained by our thresholds have been validated by the Heath lab
 using qPCR. 
 
 Although the example we have explored has related to finding coverage

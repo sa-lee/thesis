@@ -47,7 +47,7 @@ will emphasize the use of the Bioconductor packages **plyranges** and **tximeta*
 The **plyranges** package fluently transforms data tied to genomic ranges using
 operations like shifting, window construction, overlap detection, etc. It is
 described by @Lee2019 and leverages underlying core Bioconductor infrastructure
-[@granges; @bioc] and the tidyverse design principles @tidyverse.
+[@granges; @bioc] and the **tidyverse** design principles @tidyverse.
 
 The **tximeta** package described by @Love2019-tximeta is used to read RNA-seq
 quantification data into R/Bioconductor, such that the transcript ranges and
@@ -57,7 +57,7 @@ values and differential expression results.
 ### Experimental Data
 
 The data used in this workflow is available from two packages: the **macrophage**
-Bioconductor ExperimentData package and from the workflow package 
+Bioconductor **ExperimentData** package and from the workflow package 
 **fluentGenomics**.
 
 The **macrophage** package contains RNA-seq quantification from 24 RNA-seq
@@ -143,7 +143,7 @@ and `condition` columns into factors.  In the case of `condition`, we specify
 the "naive" cell line as the reference level.  The `files` column points to the
 quantifications for each observation -- these files have been gzipped, but
 would typically not have the 'gz' ending if used from **Salmon** directly. One
-other thing to note is the use of the pipe operator,`%>%`, which can be read as
+other thing to note is the use of the pipe operator, `%>%`, which can be read as
 "then", i.e. first read the data, *then* select columns, *then* mutate them.
 
 Now we have a table summarizing the experimental design and the locations of
@@ -153,9 +153,7 @@ in this case), locating the relevant reference transcriptome,
 attaching the transcript ranges to the data, and fetching genome information.
 Inferential replicates are especially useful for performing transcript-level
 analysis, but here we will use a point estimate for the per-gene counts and
-perform gene-level analysis.
-
-The result is a _SummarizedExperiment_ object.
+perform gene-level analysis. The result is a _SummarizedExperiment_ object.
 
 ```{r tximeta-run, echo = TRUE}
 ```
@@ -165,7 +163,7 @@ On a machine with a working internet connection, the above command works
 without any extra steps, as the **tximeta** function obtains any necessary
 metadata via FTP, unless it is already cached locally. The **tximeta** package
 can also be used without an internet connection, in this case the linked
-transcriptome can be created directly from a *Salmon* index and gtf.
+transcriptome can be created directly from a **Salmon** index and gtf.
 
 ```{r linkedtxome-ex, eval = FALSE, echo = TRUE}
 makeLinkedTxome(
@@ -191,9 +189,9 @@ One final note is that the _start_ of positive strand genes and the _end_ of
 negative strand genes is now dictated by the genomic extent of the isoforms of
 the gene (so the _start_ and _end_ of the reduced *GRanges*). Another
 alternative would be to either operate on transcript abundance, and perform
-differential analysis on transcript (and so avoid defining the TSS of a set of
-isoforms), or to use gene-level summarized expression but to pick the most
-representative TSS based on isoform expression.
+differential analysis on transcript, and so avoid defining the transcription start
+site (TSS) of a set of isoforms, or to use gene-level summarized expression 
+but to pick the most representative TSS based on isoform expression.
 
 ### Importing ATAC-seq data as a *SummarizedExperiment* object {#atac}
 
@@ -218,7 +216,7 @@ atac_coldata <- read_tsv("ATAC_sample_metadata.txt.gz") %>%
 ```
 
 The ATAC-seq counts have already been normalized with **cqn** [@Hansen2012] and
-$log_2$ transformed. Loading the **cqn**-normalized matrix of $log_2$ transformed read
+$\log_2$ transformed. Loading the **cqn**-normalized matrix of $\log_2$ transformed read
 counts takes ~30 seconds and loads an object of ~370 Mb. We set the column
 names so that the first column contains the rownames of the matrix, and the
 remaining columns are the sample identities from the `atac_coldata` object.
@@ -300,7 +298,7 @@ and an MA plot:
 
 We now output the results as a _GRanges_ object, and due to the conventions of
 **plyranges**, we construct a new column called _gene\_id_ from the row names of
-the results. Each row now contains the genomic region (_seqnames_, _start_,
+the results. Each row now contains the genomic region ( _seqnames_, _start_,
 _end_, _strand_) along with corresponding metadata columns (the _gene_id_ and
 the results of the test). Note that **tximeta** has correctly identified the
 reference genome as "hg38", and this has also been added to the **GRanges** along
@@ -312,7 +310,7 @@ genomes.
 ```
 
 From this, we can restrict the results to those that meet our FDR threshold and
-select (and rename) the metadata columns we're interested in:
+select (and rename) the metadata columns we are interested in:
 
 ```{r de-genes, echo = TRUE}
 ```
@@ -332,7 +330,7 @@ with our `de_genes` set.
 
 The following section describes the process we have used for generating a
 _GRanges_ object of differential peaks from the ATAC-seq data in @alasoo. The 
-code chunks for the remainder of this section are not run.
+code chunks for the remainder of this section are optional.
 
 For assessing differential accessibility, we run **limma** [@Smyth2004], and
 generate the a summary of LFCs and adjusted p-values for the peaks:
@@ -430,7 +428,7 @@ object, this is given a missing value which we recode to a 0 using `mutate()`
 ### Expanding genomic coordinates around the transcription start site
 
 Now we would like to modify our gene ranges so they contain the 10 kilobases on
-either side of their transcription start site (TSS). There are many ways one
+either side of their TSS. There are many ways one
 could do this, but we prefer an approach via the anchoring methods in
 **plyranges**. Because there is a mutual dependence between the start, end,
 width, and strand of a *GRanges* object, we define anchors to fix one of
@@ -464,7 +462,7 @@ _right_ ranges which makes downstream summaries easy to compute.
 To combine the DE genes with the DA peaks, we perform a left overlap join. This
 returns to us the `all_genes` ranges (potentially with duplication), but with
 the metadata columns from those overlapping DA peaks.  For any gene that has no
-overlaps, the DA peak columns will have `NA`'s.
+overlaps, the DA peak columns will have `NA` values.
 
 ```{r olap-join, echo = TRUE}
 ```
@@ -479,7 +477,7 @@ strand), and the "origin" (DE vs not-DE) we can compute the distinct number of
 peaks for each gene and the maximum peak based on LFC. This is achieved via
 `reduce_ranges_directed()`, which allows an aggregation to result in a _GRanges_
 object via merging neighboring genomic regions. The use of the directed suffix
-indicates we're maintaining strand information. In this case, we are simply
+indicates we are maintaining strand information. In this case, we are simply
 merging ranges (genes) via the groups we mentioned above. We also have to
 account for the number of resamples we have performed when counting if there
 are any peaks, to ensure we do not double count the same peak:
@@ -512,7 +510,7 @@ number of DA peaks decreases as we increase the DA LFC threshold (as expected).
 We now show how to compute the ratio of peak counts from DE compared to non-DE
 genes, so we can see how this ratio changes for various DA LFC thresholds.
 
-For all variables except for the _origin_ column we divide the first row's
+For all variables except for the _origin_ column we divide the first rows
 values by the second row, which will be the enrichment of peaks in DE genes
 compared to other genes. This requires us to reshape the summary table from
 long form back to wide form using the **tidyr** package. First we pivot the

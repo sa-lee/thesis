@@ -50,7 +50,7 @@ knitr::include_graphics(here::here("img", "wflow-thesis-wrangle.png"))
 The approach taken by the suite of software packages collectively known as the 
 **tidyverse**  is an attempt to formalise aspects of the EDA process in the R
 programming language under a single semantic known as *tidy data* 
-[@baser; @tidyverse; @Wickham2014-jc]. Simply put, a *tidy data* set is a 
+[@r-core; @tidyverse; @Wickham2014-jc]. Simply put, a *tidy data* set is a 
 rectangular table where each row of the table corresponds to an observation, 
 each column corresponds to a variable and each cell a value. There is a 
 surprisingly large amount of utility that can be achieved with this definition. 
