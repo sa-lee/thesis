@@ -277,7 +277,7 @@ and <code>condition</code> columns into factors. In the case of <code>condition<
 the “naive” cell line as the reference level. The <code>files</code> column points to the
 quantifications for each observation – these files have been gzipped, but
 would typically not have the ‘gz’ ending if used from <strong>Salmon</strong> directly. One
-other thing to note is the use of the pipe operator,<code>%&gt;%</code>, which can be read as
+other thing to note is the use of the pipe operator, <code>%&gt;%</code>, which can be read as
 “then”, i.e. first read the data, <em>then</em> select columns, <em>then</em> mutate them.</p>
 <p>Now we have a table summarizing the experimental design and the locations of
 the quantifications. The following lines of code do a lot of work for the
@@ -286,8 +286,7 @@ in this case), locating the relevant reference transcriptome,
 attaching the transcript ranges to the data, and fetching genome information.
 Inferential replicates are especially useful for performing transcript-level
 analysis, but here we will use a point estimate for the per-gene counts and
-perform gene-level analysis.</p>
-<p>The result is a <em>SummarizedExperiment</em> object.</p>
+perform gene-level analysis. The result is a <em>SummarizedExperiment</em> object.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">library</span>(SummarizedExperiment)</a>
 <a class="sourceLine" id="cb21-2" title="2"><span class="kw">library</span>(tximeta)</a>
 <a class="sourceLine" id="cb21-3" title="3">se &lt;-<span class="st"> </span><span class="kw">tximeta</span>(coldata, <span class="dt">dropInfReps=</span><span class="ot">TRUE</span>)</a>
@@ -306,7 +305,7 @@ perform gene-level analysis.</p>
 without any extra steps, as the <strong>tximeta</strong> function obtains any necessary
 metadata via FTP, unless it is already cached locally. The <strong>tximeta</strong> package
 can also be used without an internet connection, in this case the linked
-transcriptome can be created directly from a <em>Salmon</em> index and gtf.</p>
+transcriptome can be created directly from a <strong>Salmon</strong> index and gtf.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">makeLinkedTxome</span>(</a>
 <a class="sourceLine" id="cb23-2" title="2">  <span class="dt">indexDir=</span><span class="kw">file.path</span>(dir, <span class="st">&quot;gencode.v29_salmon_0.12.0&quot;</span>),</a>
 <a class="sourceLine" id="cb23-3" title="3">  <span class="dt">source=</span><span class="st">&quot;Gencode&quot;</span>,</a>
@@ -325,9 +324,9 @@ methods of <span class="citation">Soneson, Love, and Robinson (<a href="bibliogr
 negative strand genes is now dictated by the genomic extent of the isoforms of
 the gene (so the <em>start</em> and <em>end</em> of the reduced <em>GRanges</em>). Another
 alternative would be to either operate on transcript abundance, and perform
-differential analysis on transcript (and so avoid defining the TSS of a set of
-isoforms), or to use gene-level summarized expression but to pick the most
-representative TSS based on isoform expression.</p>
+differential analysis on transcript, and so avoid defining the transcription start
+site (TSS) of a set of isoforms, or to use gene-level summarized expression
+but to pick the most representative TSS based on isoform expression.</p>
 </div>
 <div id="atac" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Importing ATAC-seq data as a <em>SummarizedExperiment</em> object</h3>
@@ -348,7 +347,7 @@ used to generate the <code>coldata</code> table for the RNA-seq experiment:</p>
 <a class="sourceLine" id="cb25-6" title="6">  ) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb25-7" title="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">condition =</span> <span class="kw">relevel</span>(<span class="kw">factor</span>(condition), <span class="st">&quot;naive&quot;</span>))</a></code></pre></div>
 <p>The ATAC-seq counts have already been normalized with <strong>cqn</strong> <span class="citation">(Hansen, Irizarry, and Wu <a href="bibliography.html#ref-Hansen2012" role="doc-biblioref">2012</a>)</span> and
-<span class="math inline">\(log_2\)</span> transformed. Loading the <strong>cqn</strong>-normalized matrix of <span class="math inline">\(log_2\)</span> transformed read
+<span class="math inline">\(\log_2\)</span> transformed. Loading the <strong>cqn</strong>-normalized matrix of <span class="math inline">\(\log_2\)</span> transformed read
 counts takes ~30 seconds and loads an object of ~370 Mb. We set the column
 names so that the first column contains the rownames of the matrix, and the
 remaining columns are the sample identities from the <code>atac_coldata</code> object.</p>

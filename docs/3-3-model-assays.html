@@ -280,7 +280,7 @@ Figure 3.2: Visualization of <code>DESeq2</code> results as an “MA plot”. Ge
 
 <p>We now output the results as a <em>GRanges</em> object, and due to the conventions of
 <strong>plyranges</strong>, we construct a new column called <em>gene_id</em> from the row names of
-the results. Each row now contains the genomic region (<em>seqnames</em>, <em>start</em>,
+the results. Each row now contains the genomic region ( <em>seqnames</em>, <em>start</em>,
 <em>end</em>, <em>strand</em>) along with corresponding metadata columns (the <em>gene_id</em> and
 the results of the test). Note that <strong>tximeta</strong> has correctly identified the
 reference genome as “hg38”, and this has also been added to the <strong>GRanges</strong> along
@@ -337,7 +337,7 @@ genomes.</p>
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
 <p>From this, we can restrict the results to those that meet our FDR threshold and
-select (and rename) the metadata columns we’re interested in:</p>
+select (and rename) the metadata columns we are interested in:</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">de_genes &lt;-<span class="st"> </span>de_genes <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">filter</span>(padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.01</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span><span class="kw">select</span>(</a>
@@ -369,7 +369,7 @@ with our <code>de_genes</code> set.</p>
 <h3><span class="header-section-number">3.3.2</span> ATAC-seq peak differential abundance analysis</h3>
 <p>The following section describes the process we have used for generating a
 <em>GRanges</em> object of differential peaks from the ATAC-seq data in <span class="citation">Alasoo et al. (<a href="bibliography.html#ref-alasoo" role="doc-biblioref">2018</a>)</span>. The
-code chunks for the remainder of this section are not run.</p>
+code chunks for the remainder of this section are optional.</p>
 <p>For assessing differential accessibility, we run <strong>limma</strong> <span class="citation">(Smyth <a href="bibliography.html#ref-Smyth2004" role="doc-biblioref">2004</a>)</span>, and
 generate the a summary of LFCs and adjusted p-values for the peaks:</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">library</span>(limma)</a>

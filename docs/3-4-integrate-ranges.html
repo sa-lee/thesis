@@ -350,7 +350,7 @@ object, this is given a missing value which we recode to a 0 using <code>mutate(
 <div id="expanding-genomic-coordinates-around-the-transcription-start-site" class="section level3">
 <h3><span class="header-section-number">3.4.3</span> Expanding genomic coordinates around the transcription start site</h3>
 <p>Now we would like to modify our gene ranges so they contain the 10 kilobases on
-either side of their transcription start site (TSS). There are many ways one
+either side of their TSS. There are many ways one
 could do this, but we prefer an approach via the anchoring methods in
 <strong>plyranges</strong>. Because there is a mutual dependence between the start, end,
 width, and strand of a <em>GRanges</em> object, we define anchors to fix one of
@@ -381,7 +381,7 @@ is that the result maintains all (metadata) columns from each of the <em>left</e
 <p>To combine the DE genes with the DA peaks, we perform a left overlap join. This
 returns to us the <code>all_genes</code> ranges (potentially with duplication), but with
 the metadata columns from those overlapping DA peaks. For any gene that has no
-overlaps, the DA peak columns will have <code>NA</code>’s.</p>
+overlaps, the DA peak columns will have <code>NA</code> values.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">genes_olap_peaks &lt;-<span class="st"> </span>all_genes <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb52-2" title="2"><span class="st">  </span><span class="kw">join_overlap_left</span>(da_peaks)</a>
 <a class="sourceLine" id="cb52-3" title="3">genes_olap_peaks</a></code></pre></div>
@@ -436,7 +436,7 @@ strand), and the “origin” (DE vs not-DE) we can compute the distinct number 
 peaks for each gene and the maximum peak based on LFC. This is achieved via
 <code>reduce_ranges_directed()</code>, which allows an aggregation to result in a <em>GRanges</em>
 object via merging neighboring genomic regions. The use of the directed suffix
-indicates we’re maintaining strand information. In this case, we are simply
+indicates we are maintaining strand information. In this case, we are simply
 merging ranges (genes) via the groups we mentioned above. We also have to
 account for the number of resamples we have performed when counting if there
 are any peaks, to ensure we do not double count the same peak:</p>
@@ -487,7 +487,7 @@ thresholds of 1 or 2 as follows:</p>
 number of DA peaks decreases as we increase the DA LFC threshold (as expected).
 We now show how to compute the ratio of peak counts from DE compared to non-DE
 genes, so we can see how this ratio changes for various DA LFC thresholds.</p>
-<p>For all variables except for the <em>origin</em> column we divide the first row’s
+<p>For all variables except for the <em>origin</em> column we divide the first rows
 values by the second row, which will be the enrichment of peaks in DE genes
 compared to other genes. This requires us to reshape the summary table from
 long form back to wide form using the <strong>tidyr</strong> package. First we pivot the
