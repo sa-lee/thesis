@@ -1,9 +1,8 @@
 # Preface {-}
 
 This thesis has been written using R Markdown with the **bookdown**
-package [@Xie2016-oa; @Xie2017-ke]. All materials required to build the
-thesis from source can be obtained from https://github.com/sa-lee/thesis. An
-online version of the thesis is available at https://sa-lee.github.io/thesis.
+package [@Xie2016-oa; @Xie2017-ke]. The **renv** package
+has been used to create a reproducible environment to build the thesis from source (available at https://github.com/sa-lee/thesis ) [@renv]. An online version of the thesis is available to read at https://sa-lee.github.io/thesis.
 
 Chapter \@ref(ch:plyranges) has been published in _Genome Biology_. It
 won the ACEMS Business Analytics Prize for Best Paper in 2019. Chapter \@ref(ch:fluentGenomics) has been published in _F1000 Research_.  Chapter

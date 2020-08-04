@@ -7,7 +7,7 @@ start_app(theme = simple_theme())
 cli_h1("Preprocessing")
 # spelling check
 cli_h2("Spelling check")
-rmd_files <- list.files(pattern = "*.Rmd", full.names = TRUE, recursive = TRUE)
+rmd_files <- list.files(path = "Rmd/", pattern = "*.Rmd", full.names = TRUE, recursive = TRUE)
 wordlist <- readLines("WORDLIST")
 spell_gb <- spelling::spell_check_files(rmd_files, wordlist, "en_GB")
 spell_us <- spelling::spell_check_files(rmd_files, wordlist, "en_US")
