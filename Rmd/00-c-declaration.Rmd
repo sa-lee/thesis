@@ -21,19 +21,16 @@ The following table details the publications, including my and my fellow co-auth
 \begin{tabular}{|p{1cm}|p{2cm}|p{1.5cm}|p{3.5cm}|p{3.5cm}|p{1.5cm}|}
 \hline
 \RaggedRight\textbf{Thesis Chapter}  & \RaggedRight\textbf{Publication Title}  & \RaggedRight\textbf{Status (published, in press, accepted or returned for revision)}  & \RaggedRight\textbf{Nature and} {\%} \RaggedRight\textbf{of student contribution} & \RaggedRight\textbf{Co-author name(s) Nature and} {\%} \RaggedRight\textbf{of Co-author’s contribution} & \RaggedRight\textbf{Co-author(s), Monash student Y/N} \\ \hline
-2 & \textbf{plyranges}: a grammar of genomic data transformation & Published  & 70\%. Concept, software development, data analysis, and manuscript writing & (1) Dianne Cook, Concept and manuscript revision 10\% (2) Michael Lawrence, Concept and software development  20\% & \multicolumn{1}{c|}{N}  \\
+2 & \textbf{plyranges}: a grammar of genomic data transformation & Published  & 70\%. Concept, software development, data analysis, and manuscript writing & (1) Dianne Cook, Concept and manuscript revision 10\% (2) Michael Lawrence, Concept and software development  20\% & \multicolumn{1}{c|}{(1) No (2) No}  \\
 \hline
-3 & Fluent genomics with \textbf{plyranges} and \textbf{tximeta} & Published & 60\%. Concept, software development, data analysis and manuscript writing  & (1) Michael Lawrence, manuscript feedback and editing 5\% (2) Michael I Love, Concept, data analysis and manuscript writing 35\% & \multicolumn{1}{c|}{N} \\
-\hline
-4 & Exploratory coverage analysis with \textbf{superintronic} and \textbf{plyranges} & To be submitted & 50\%. Concept, software development, data analysis and manuscript writing  & (1) Charity Law, Concept, manuscript feedback and editing 45\% (2) Matthew Ritchie, manuscript writing and editing 5\% & \multicolumn{1}{c|}{N} \\
-\hline
-5 & Casting multiple shadows: high-dimensional interactive data visualisation with tours and embeddings & To be submitted & 85\%. Concept, software development, and manuscript writing & (1) Dianne Cook, Concept and manuscript writing 15\% & \multicolumn{1}{c|}{N} \\
+3 & Fluent genomics with \textbf{plyranges} and \textbf{tximeta} & Published & 60\%. Concept, software development, data analysis and manuscript writing  & (1) Michael Lawrence, manuscript feedback and editing 5\% (2) Michael I Love, Concept, data analysis and manuscript writing 35\% & \multicolumn{1}{c|}{(1) No (2) No} \\
 \hline
 \end{tabular}
 \end{table}
 
 \FloatBarrier
 
+I have renumbered sections of submitted or published papers in order to generate a consistent presentation within the thesis.
 
 \textbf{Student name:} Stuart Andrew Lee
 
@@ -43,6 +40,19 @@ The following table details the publications, including my and my fellow co-auth
 knitr::include_graphics("img/signature.png")
 ```
 
+\textbf{Date:} 05/08/2020
+
+I hereby certify that the above declaration correctly reflects the nature and extent of the student’s and co-authors’ contributions to this work. In instances where I am not the responsible author I have consulted with the responsible author to agree on the respective contributions of the authors. 
+
+\textbf{Supervisor name:} Dianne Helen Cook
+
+\textbf{Supervisor signature:}
+
+```{r supervisor, out.width = "20%", fig.align = "left", eval = file.exists("img/di.png")}
+knitr::include_graphics("img/di.png")
+```
+
+\textbf{Date:} 05/08/2020
 
 `r if (knitr::is_html_output()) '-->'`
 
