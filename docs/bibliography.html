@@ -49,12 +49,13 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -237,32 +240,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Bibliography</h1>
 
 <div id="refs" class="references">
-<div id="ref-alasoo">
-<p>Alasoo, K, J Rodrigues, S Mukhopadhyay, AJ Knights, AL Mann, K Kundu, HIPSCI-Consortium, C Hale, Dougan G, and DJ Gaffney. 2018. “Shared genetic effects on chromatin and gene expression indicate a role for enhancer priming in immune response.” <em>Nature Genetics</em> 50:424–31. <a href="https://doi.org/10.1038/s41588-018-0046-7">https://doi.org/10.1038/s41588-018-0046-7</a>.</p>
-</div>
 <div id="ref-alasooZenodo">
 <p>Alasoo, Kaur, and Daniel Gaffney. 2017. “Processed read counts from macrophage RNA-seq and ATAC-seq experiments.” Zenodo. <a href="https://doi.org/10.5281/zenodo.1188300">https://doi.org/10.5281/zenodo.1188300</a>.</p>
 </div>
+<div id="ref-alasoo">
+<p>Alasoo, K, J Rodrigues, S Mukhopadhyay, AJ Knights, AL Mann, K Kundu, HIPSCI-Consortium, C Hale, Dougan G, and DJ Gaffney. 2018. “Shared genetic effects on chromatin and gene expression indicate a role for enhancer priming in immune response.” <em>Nature Genetics</em> 50: 424–31. <a href="https://doi.org/10.1038/s41588-018-0046-7">https://doi.org/10.1038/s41588-018-0046-7</a>.</p>
+</div>
 <div id="ref-Amezquita2020-at">
-<p>Amezquita, Robert A, Aaron T L Lun, Etienne Becht, Vince J Carey, Lindsay N Carpp, Ludwig Geistlinger, Federico Marini, et al. 2020. “Orchestrating Single-Cell Analysis with Bioconductor.” <em>Nat. Methods</em> 17 (2):137–45. <a href="https://doi.org/10.1038/s41592-019-0654-x">https://doi.org/10.1038/s41592-019-0654-x</a>.</p>
+<p>Amezquita, Robert A, Aaron T L Lun, Etienne Becht, Vince J Carey, Lindsay N Carpp, Ludwig Geistlinger, Federico Marini, et al. 2020. “Orchestrating Single-Cell Analysis with Bioconductor.” <em>Nat. Methods</em> 17 (2): 137–45. <a href="https://doi.org/10.1038/s41592-019-0654-x">https://doi.org/10.1038/s41592-019-0654-x</a>.</p>
 </div>
 <div id="ref-Asimov1985-vp">
-<p>Asimov, Daniel. 1985. “The Grand Tour: A Tool for Viewing Multidimensional Data.” <em>SIAM J. Sci. And Stat. Comput.</em> 6 (1). Society for Industrial; Applied Mathematics:128–43. <a href="https://doi.org/10.1137/0906011">https://doi.org/10.1137/0906011</a>.</p>
+<p>Asimov, Daniel. 1985. “The Grand Tour: A Tool for Viewing Multidimensional Data.” <em>SIAM J. Sci. And Stat. Comput.</em> 6 (1): 128–43. <a href="https://doi.org/10.1137/0906011">https://doi.org/10.1137/0906011</a>.</p>
 </div>
 <div id="ref-R-magrittr">
 <p>Bache, Stefan Milton, and Hadley Wickham. 2014. <em>Magrittr: A Forward-Pipe Operator for R</em>. <a href="https://CRAN.R-project.org/package=magrittr">https://CRAN.R-project.org/package=magrittr</a>.</p>
 </div>
 <div id="ref-ncbi-geo">
-<p>Barrett, Tanya, Stephen E. Wilhite, Pierre Ledoux, Carlos Evangelista, Irene F. Kim, Maxim Tomashevsky, Kimberly A. Marshall, et al. 2013. “NCBI Geo: Archive for Functional Genomics Data Sets—Update.” <em>Nucleic Acids Research</em> 41 (D1):D991–D995. <a href="https://doi.org/10.1093/nar/gks1193">https://doi.org/10.1093/nar/gks1193</a>.</p>
+<p>Barrett, Tanya, Stephen E. Wilhite, Pierre Ledoux, Carlos Evangelista, Irene F. Kim, Maxim Tomashevsky, Kimberly A. Marshall, et al. 2013. “NCBI Geo: Archive for Functional Genomics Data Sets—Update.” <em>Nucleic Acids Research</em> 41 (D1): D991–D995. <a href="https://doi.org/10.1093/nar/gks1193">https://doi.org/10.1093/nar/gks1193</a>.</p>
 </div>
 <div id="ref-Becker1987-gd">
-<p>Becker, Richard A, and William S Cleveland. 1987. “Brushing Scatterplots.” <em>Technometrics</em> 29 (2). [Taylor &amp; Francis, Ltd., American Statistical Association, American Society for Quality]:127–42. <a href="https://doi.org/10.2307/1269768">https://doi.org/10.2307/1269768</a>.</p>
+<p>Becker, Richard A, and William S Cleveland. 1987. “Brushing Scatterplots.” <em>Technometrics</em> 29 (2): 127–42. <a href="https://doi.org/10.2307/1269768">https://doi.org/10.2307/1269768</a>.</p>
 </div>
 <div id="ref-fnn-pkg">
 <p>Beygelzimer, Alina, Sham Kakadet, John Langford, Sunil Arya, David Mount, and Shengqiao Li. 2019. <em>FNN: Fast Nearest Neighbor Search Algorithms and Applications</em>. <a href="https://CRAN.R-project.org/package=FNN">https://CRAN.R-project.org/package=FNN</a>.</p>
 </div>
 <div id="ref-Blondel2008-bx">
-<p>Blondel, Vincent D, Jean-Loup Guillaume, Renaud Lambiotte, and Etienne Lefebvre. 2008. “Fast Unfolding of Communities in Large Networks.” <em>J. Stat. Mech.</em> 2008 (10). IOP Publishing:P10008. <a href="https://doi.org/10.1088/1742-5468/2008/10/P10008">https://doi.org/10.1088/1742-5468/2008/10/P10008</a>.</p>
+<p>Blondel, Vincent D, Jean-Loup Guillaume, Renaud Lambiotte, and Etienne Lefebvre. 2008. “Fast Unfolding of Communities in Large Networks.” <em>J. Stat. Mech.</em> 2008 (10): P10008. <a href="https://doi.org/10.1088/1742-5468/2008/10/P10008">https://doi.org/10.1088/1742-5468/2008/10/P10008</a>.</p>
 </div>
 <div id="ref-Brehmer2014-hk">
 <p>Brehmer, Matthew, Michael Sedlmair, Stephen Ingram, and Tamara Munzner. 2014. “Visualizing Dimensionally-Reduced Data: Interviews with Analysts and a Characterization of Task Sequences.” In <em>Proceedings of the Fifth Workshop on Beyond Time and Errors: Novel Evaluation Methods for Visualization</em>, 1–8. dl.acm.org. <a href="https://dl.acm.org/doi/abs/10.1145/2669557.2669559">https://dl.acm.org/doi/abs/10.1145/2669557.2669559</a>.</p>
@@ -271,13 +274,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Buja, Andreas, and Daniel Asimov. 1986. “Grand Tour Methods: An Outline.” In <em>Proceedings of the Seventeenth Symposium on the Interface of Computer Sciences and Statistics on Computer Science and Statistics</em>, 63–67. USA: Elsevier North-Holland, Inc. <a href="https://dl.acm.org/doi/10.5555/26036.26046">https://dl.acm.org/doi/10.5555/26036.26046</a>.</p>
 </div>
 <div id="ref-Buja1996-fk">
-<p>Buja, Andreas, Dianne Cook, and Deborah F Swayne. 1996. “Interactive High-Dimensional Data Visualization.” <em>J. Comput. Graph. Stat.</em> 5 (1). [American Statistical Association, Taylor &amp; Francis, Ltd., Institute of Mathematical Statistics, Interface Foundation of America]:78–99. <a href="https://doi.org/10.2307/1390754">https://doi.org/10.2307/1390754</a>.</p>
+<p>Buja, Andreas, Dianne Cook, and Deborah F Swayne. 1996. “Interactive High-Dimensional Data Visualization.” <em>J. Comput. Graph. Stat.</em> 5 (1): 78–99. <a href="https://doi.org/10.2307/1390754">https://doi.org/10.2307/1390754</a>.</p>
 </div>
 <div id="ref-Buja1986-ku">
 <p>Buja, Andreas, Catherine Hurley, and John McDonald. 1986. “A Data Viewer for Multivariate Data.” In <em>Computing Science and Statistics: Proceedings of the 18th Symposium on the Interface</em>, 171–74. Washington: American Statistical Association.</p>
 </div>
 <div id="ref-Buja2008-fn">
-<p>Buja, Andreas, Deborah F Swayne, Michael L Littman, Nathaniel Dean, Heike Hofmann, and Lisha Chen. 2008. “Data Visualization with Multidimensional Scaling.” <em>J. Comput. Graph. Stat.</em> 17 (2). Taylor &amp; Francis:444–72. <a href="https://doi.org/10.1198/106186008X318440">https://doi.org/10.1198/106186008X318440</a>.</p>
+<p>Buja, Andreas, Deborah F Swayne, Michael L Littman, Nathaniel Dean, Heike Hofmann, and Lisha Chen. 2008. “Data Visualization with Multidimensional Scaling.” <em>J. Comput. Graph. Stat.</em> 17 (2): 444–72. <a href="https://doi.org/10.1198/106186008X318440">https://doi.org/10.1198/106186008X318440</a>.</p>
 </div>
 <div id="ref-Chang2020-bq">
 <p>Chang, Winston, Joe Cheng, J J Allaire, Yihui Xie, and Jonathan McPherson. 2020. “Shiny: Web Application Framework for R.” <a href="https://CRAN.R-project.org/package=shiny">https://CRAN.R-project.org/package=shiny</a>.</p>
@@ -286,13 +289,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Coenen, Andy, and Adam Pearce. 2019. “Understanding UMAP.” <a href="https://pair-code.github.io/understanding-umap/">https://pair-code.github.io/understanding-umap/</a>. <a href="https://pair-code.github.io/understanding-umap/">https://pair-code.github.io/understanding-umap/</a>.</p>
 </div>
 <div id="ref-Coifman2005-ak">
-<p>Coifman, R R, S Lafon, A B Lee, M Maggioni, B Nadler, F Warner, and S W Zucker. 2005. “Geometric Diffusions as a Tool for Harmonic Analysis and Structure Definition of Data: Diffusion Maps.” <em>Proc. Natl. Acad. Sci. U. S. A.</em> 102 (21):7426–31. <a href="https://doi.org/10.1073/pnas.0500334102">https://doi.org/10.1073/pnas.0500334102</a>.</p>
+<p>Coifman, R R, S Lafon, A B Lee, M Maggioni, B Nadler, F Warner, and S W Zucker. 2005. “Geometric Diffusions as a Tool for Harmonic Analysis and Structure Definition of Data: Diffusion Maps.” <em>Proc. Natl. Acad. Sci. U. S. A.</em> 102 (21): 7426–31. <a href="https://doi.org/10.1073/pnas.0500334102">https://doi.org/10.1073/pnas.0500334102</a>.</p>
 </div>
 <div id="ref-Cook1995-bi">
-<p>Cook, Dianne, Andreas Buja, Javier Cabrera, and Catherine Hurley. 1995. “Grand Tour and Projection Pursuit.” <em>J. Comput. Graph. Stat.</em> 4 (3). Taylor &amp; Francis:155–72. <a href="https://doi.org/10.1080/10618600.1995.10474674">https://doi.org/10.1080/10618600.1995.10474674</a>.</p>
+<p>Cook, Dianne, Andreas Buja, Javier Cabrera, and Catherine Hurley. 1995. “Grand Tour and Projection Pursuit.” <em>J. Comput. Graph. Stat.</em> 4 (3): 155–72. <a href="https://doi.org/10.1080/10618600.1995.10474674">https://doi.org/10.1080/10618600.1995.10474674</a>.</p>
 </div>
 <div id="ref-Dale2011-js">
-<p>Dale, Ryan K, Brent S Pedersen, and Aaron R Quinlan. 2011. “Pybedtools: A Flexible Python Library for Manipulating Genomic Datasets and Annotations.” <em>Bioinformatics</em> 27 (24):3423–4. <a href="https://doi.org/10.1093/bioinformatics/btr539">https://doi.org/10.1093/bioinformatics/btr539</a>.</p>
+<p>Dale, Ryan K, Brent S Pedersen, and Aaron R Quinlan. 2011. “Pybedtools: A Flexible Python Library for Manipulating Genomic Datasets and Annotations.” <em>Bioinformatics</em> 27 (24): 3423–4. <a href="https://doi.org/10.1093/bioinformatics/btr539">https://doi.org/10.1093/bioinformatics/btr539</a>.</p>
 </div>
 <div id="ref-rcpp-annoy-pkg">
 <p>Eddelbuettel, Dirk. 2020. <em>RcppAnnoy: ’Rcpp’ Bindings for ’Annoy’, a Library for Approximate Nearest Neighbors</em>. <a href="https://CRAN.R-project.org/package=RcppAnnoy">https://CRAN.R-project.org/package=RcppAnnoy</a>.</p>
@@ -304,64 +307,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Frankish, A, GENCODE-consoritum, and P Flicek. 2018. “GENCODE reference annotation for the human and mouse genomes.” <em>Nucleic Acids Research</em>. <a href="https://doi.org/10.1093/nar/gky955">https://doi.org/10.1093/nar/gky955</a>.</p>
 </div>
 <div id="ref-Friedman2002-yx">
-<p>Friedman, Jerome H, and Werner Stuetzle. 2002. “John W. Tukey’s Work on Interactive Graphics.” <em>Ann. Stat.</em> 30 (6). Institute of Mathematical Statistics:1629–39. <a href="https://doi.org/10.1214/aos/1043351250">https://doi.org/10.1214/aos/1043351250</a>.</p>
+<p>Friedman, Jerome H, and Werner Stuetzle. 2002. “John W. Tukey’s Work on Interactive Graphics.” <em>Ann. Stat.</em> 30 (6): 1629–39. <a href="https://doi.org/10.1214/aos/1043351250">https://doi.org/10.1214/aos/1043351250</a>.</p>
 </div>
 <div id="ref-Genovese2017-iq">
-<p>Genovese, Christopher, Marco Perone-Pacifico, Isabella Verdinelli, and Larry Wasserman. 2017. “Finding Singular Features.” <em>J. Comput. Graph. Stat.</em> 26 (3). Taylor &amp; Francis:598–609. <a href="https://doi.org/10.1080/10618600.2016.1260472">https://doi.org/10.1080/10618600.2016.1260472</a>.</p>
+<p>Genovese, Christopher, Marco Perone-Pacifico, Isabella Verdinelli, and Larry Wasserman. 2017. “Finding Singular Features.” <em>J. Comput. Graph. Stat.</em> 26 (3): 598–609. <a href="https://doi.org/10.1080/10618600.2016.1260472">https://doi.org/10.1080/10618600.2016.1260472</a>.</p>
 </div>
 <div id="ref-Grolemund2017-uc">
 <p>Grolemund, Garrett, and Hadley Wickham. 2017. <em>R for Data Science</em>. <a href="http://r4ds.had.co.nz/">http://r4ds.had.co.nz/</a>.</p>
 </div>
 <div id="ref-Hansen2012">
-<p>Hansen, Kasper D., Rafael A. Irizarry, and Zhijin Wu. 2012. “Removing technical variability in RNA-seq data using condition quantile normalization.” <em>Biostatistics</em> 13 (2):204–16. <a href="https://doi.org/10.1093/biostatistics/kxr054">https://doi.org/10.1093/biostatistics/kxr054</a>.</p>
+<p>Hansen, Kasper D., Rafael A. Irizarry, and Zhijin Wu. 2012. “Removing technical variability in RNA-seq data using condition quantile normalization.” <em>Biostatistics</em> 13 (2): 204–16. <a href="https://doi.org/10.1093/biostatistics/kxr054">https://doi.org/10.1093/biostatistics/kxr054</a>.</p>
 </div>
 <div id="ref-R-rlang">
 <p>Henry, Lionel, and Hadley Wickham. 2017. <em>Rlang: Functions for Base Types and Core R and ’Tidyverse’ Features</em>. <a href="http://rlang.tidyverse.org">http://rlang.tidyverse.org</a>.</p>
 </div>
 <div id="ref-Huber2015-ei">
-<p>Huber, Wolfgang, Vincent J Carey, Robert Gentleman, Simon Anders, Marc Carlson, Benilton S Carvalho, Hector Corrada Bravo, et al. 2015a. “Orchestrating High-Throughput Genomic Analysis with Bioconductor.” <em>Nat. Methods</em> 12 (2). Springer Nature:115–21. <a href="https://doi.org/10.1038/nmeth.3252">https://doi.org/10.1038/nmeth.3252</a>.</p>
+<p>Huber, Wolfgang, Vincent J Carey, Robert Gentleman, Simon Anders, Marc Carlson, Benilton S Carvalho, Hector Corrada Bravo, et al. 2015a. “Orchestrating High-Throughput Genomic Analysis with Bioconductor.” <em>Nat. Methods</em> 12 (2): 115–21. <a href="https://doi.org/10.1038/nmeth.3252">https://doi.org/10.1038/nmeth.3252</a>.</p>
 </div>
 <div id="ref-bioc">
-<p>———. 2015b. “Orchestrating High-Throughput Genomic Analysis with Bioconductor.” <em>Nature Methods</em> 12 (2). Springer Nature:115–21. <a href="https://doi.org/10.1038/nmeth.3252">https://doi.org/10.1038/nmeth.3252</a>.</p>
+<p>———. 2015b. “Orchestrating High-Throughput Genomic Analysis with Bioconductor.” <em>Nature Methods</em> 12 (2): 115–21. <a href="https://doi.org/10.1038/nmeth.3252">https://doi.org/10.1038/nmeth.3252</a>.</p>
 </div>
 <div id="ref-Hyndman2015-sc">
 <p>Hyndman, R J, E Wang, and N Laptev. 2015. “Large-Scale Unusual Time Series Detection.” In <em>2015 IEEE International Conference on Data Mining Workshop (ICDMW)</em>, 1616–9. <a href="https://doi.org/10.1109/ICDMW.2015.104">https://doi.org/10.1109/ICDMW.2015.104</a>.</p>
 </div>
 <div id="ref-Kaitoua2017-pw">
-<p>Kaitoua, A, Pinoli, P, Bertoni, M, and Ceri, S. 2017. “Framework for Supporting Genomic Operations.” <em>IEEE Trans. Comput.</em> 66 (3):443–57. <a href="https://doi.org/10.1109/TC.2016.2603980">https://doi.org/10.1109/TC.2016.2603980</a>.</p>
+<p>Kaitoua, A, Pinoli, P, Bertoni, M, and Ceri, S. 2017. “Framework for Supporting Genomic Operations.” <em>IEEE Trans. Comput.</em> 66 (3): 443–57. <a href="https://doi.org/10.1109/TC.2016.2603980">https://doi.org/10.1109/TC.2016.2603980</a>.</p>
 </div>
 <div id="ref-Kobak2019-lm">
-<p>Kobak, Dmitry, and Philipp Berens. 2019. “The Art of Using t-SNE for Single-Cell Transcriptomics.” <em>Nat. Commun.</em> 10 (1):5416. <a href="https://doi.org/10.1038/s41467-019-13056-x">https://doi.org/10.1038/s41467-019-13056-x</a>.</p>
+<p>Kobak, Dmitry, and Philipp Berens. 2019. “The Art of Using t-SNE for Single-Cell Transcriptomics.” <em>Nat. Commun.</em> 10 (1): 5416. <a href="https://doi.org/10.1038/s41467-019-13056-x">https://doi.org/10.1038/s41467-019-13056-x</a>.</p>
 </div>
 <div id="ref-Korem2015-af">
-<p>Korem, Yael, Pablo Szekely, Yuval Hart, Hila Sheftel, Jean Hausser, Avi Mayo, Michael E Rothenberg, Tomer Kalisky, and Uri Alon. 2015. “Geometry of the Gene Expression Space of Individual Cells.” <em>PLoS Comput. Biol.</em> 11 (7):e1004224. <a href="https://doi.org/10.1371/journal.pcbi.1004224">https://doi.org/10.1371/journal.pcbi.1004224</a>.</p>
-</div>
-<div id="ref-Kozanitis2016-bm">
-<p>Kozanitis, Christos, and David A Patterson. 2016. “GenAp: A Distributed SQL Interface for Genomic Data.” <em>BMC Bioinformatics</em> 17 (February):63. <a href="https://doi.org/10.1186/s12859-016-0904-1">https://doi.org/10.1186/s12859-016-0904-1</a>.</p>
+<p>Korem, Yael, Pablo Szekely, Yuval Hart, Hila Sheftel, Jean Hausser, Avi Mayo, Michael E Rothenberg, Tomer Kalisky, and Uri Alon. 2015. “Geometry of the Gene Expression Space of Individual Cells.” <em>PLoS Comput. Biol.</em> 11 (7): e1004224. <a href="https://doi.org/10.1371/journal.pcbi.1004224">https://doi.org/10.1371/journal.pcbi.1004224</a>.</p>
 </div>
 <div id="ref-Kozanitis2014-va">
-<p>Kozanitis, Christos, Heiberg, Andrew, Varghese, George, and Bafna, Vineet. 2014. “Using Genome Query Language to Uncover Genetic Variation.” <em>Bioinformatics</em> 30 (1):1–8. <a href="https://doi.org/10.1093/bioinformatics/btt250">https://doi.org/10.1093/bioinformatics/btt250</a>.</p>
+<p>Kozanitis, Christos, Heiberg, Andrew, Varghese, George, and Bafna, Vineet. 2014. “Using Genome Query Language to Uncover Genetic Variation.” <em>Bioinformatics</em> 30 (1): 1–8. <a href="https://doi.org/10.1093/bioinformatics/btt250">https://doi.org/10.1093/bioinformatics/btt250</a>.</p>
+</div>
+<div id="ref-Kozanitis2016-bm">
+<p>Kozanitis, Christos, and David A Patterson. 2016. “GenAp: A Distributed SQL Interface for Genomic Data.” <em>BMC Bioinformatics</em> 17 (February): 63. <a href="https://doi.org/10.1186/s12859-016-0904-1">https://doi.org/10.1186/s12859-016-0904-1</a>.</p>
 </div>
 <div id="ref-snakemake">
-<p>Köster, Johannes, and Sven Rahmann. 2012. “Snakemake—a scalable bioinformatics workflow engine.” <em>Bioinformatics</em> 28 (19):2520–2. <a href="https://doi.org/10.1093/bioinformatics/bts480">https://doi.org/10.1093/bioinformatics/bts480</a>.</p>
+<p>Köster, Johannes, and Sven Rahmann. 2012. “Snakemake—a scalable bioinformatics workflow engine.” <em>Bioinformatics</em> 28 (19): 2520–2. <a href="https://doi.org/10.1093/bioinformatics/bts480">https://doi.org/10.1093/bioinformatics/bts480</a>.</p>
 </div>
 <div id="ref-Rtsne">
 <p>Krijthe, Jesse H. 2015. <em>Rtsne: T-Distributed Stochastic Neighbor Embedding Using Barnes-Hut Implementation</em>. <a href="https://github.com/jkrijthe/Rtsne">https://github.com/jkrijthe/Rtsne</a>.</p>
 </div>
 <div id="ref-Kruskal1964-cz">
-<p>Kruskal, J B. 1964a. “Multidimensional Scaling by Optimizing Goodness of Fit to a Nonmetric Hypothesis.” <em>Psychometrika</em> 29 (1). Springer-Verlag:1–27. <a href="https://doi.org/10.1007/BF02289565">https://doi.org/10.1007/BF02289565</a>.</p>
+<p>Kruskal, J B. 1964a. “Multidimensional Scaling by Optimizing Goodness of Fit to a Nonmetric Hypothesis.” <em>Psychometrika</em> 29 (1): 1–27. <a href="https://doi.org/10.1007/BF02289565">https://doi.org/10.1007/BF02289565</a>.</p>
 </div>
 <div id="ref-Kruskal1964-cw">
-<p>———. 1964b. “Nonmetric Multidimensional Scaling: A Numerical Method.” <em>Psychometrika</em> 29 (2):115–29. <a href="https://doi.org/10.1007/BF02289694">https://doi.org/10.1007/BF02289694</a>.</p>
-</div>
-<div id="ref-Laa2020-fy">
-<p>Laa, Ursula, Dianne Cook, and German Valencia. 2020. “A Slice Tour for Finding Hollowness in High-Dimensional Data.” <em>J. Comput. Graph. Stat.</em>, June. Taylor &amp; Francis, 1–10. <a href="https://doi.org/10.1080/10618600.2020.1777140">https://doi.org/10.1080/10618600.2020.1777140</a>.</p>
+<p>———. 1964b. “Nonmetric Multidimensional Scaling: A Numerical Method.” <em>Psychometrika</em> 29 (2): 115–29. <a href="https://doi.org/10.1007/BF02289694">https://doi.org/10.1007/BF02289694</a>.</p>
 </div>
 <div id="ref-Laa2020-wr">
 <p>Laa, Ursula, Dianne Cook, Andreas Buja, and German Valencia. 2020. “Hole or Grain? A Section Pursuit Index for Finding Hidden Structure in Multiple Dimensions,” April. <a href="http://arxiv.org/abs/2004.13327">http://arxiv.org/abs/2004.13327</a>.</p>
 </div>
+<div id="ref-Laa2020-fy">
+<p>Laa, Ursula, Dianne Cook, and German Valencia. 2020. “A Slice Tour for Finding Hollowness in High-Dimensional Data.” <em>J. Comput. Graph. Stat.</em>, June, 1–10. <a href="https://doi.org/10.1080/10618600.2020.1777140">https://doi.org/10.1080/10618600.2020.1777140</a>.</p>
+</div>
 <div id="ref-Law2018-f1000">
-<p>Law, Charity W, Monther Alhamdoosh, Shian Su, Xueyi Dong, Luyi Tian, Gordon K Smyth, and Matthew E Ritchie. 2018. “RNA-seq Analysis Is Easy as 1-2-3 with Limma, Glimma and edgeR.” <em>F1000 Research</em> 5 (1408). F1000 Research Limited:1408. <a href="https://doi.org/10.12688/f1000research.9005.3">https://doi.org/10.12688/f1000research.9005.3</a>.</p>
+<p>Law, Charity W, Monther Alhamdoosh, Shian Su, Xueyi Dong, Luyi Tian, Gordon K Smyth, and Matthew E Ritchie. 2018. “RNA-seq Analysis Is Easy as 1-2-3 with Limma, Glimma and edgeR.” <em>F1000 Research</em> 5 (1408): 1408. <a href="https://doi.org/10.12688/f1000research.9005.3">https://doi.org/10.12688/f1000research.9005.3</a>.</p>
 </div>
 <div id="ref-Lawrence2013-wg">
 <p>Lawrence, Michael, Wolfgang Huber, Hervé Pagès, Patrick Aboyoun, Marc Carlson, Robert Gentleman, Martin Morgan, and Vincent Carey. 2013a. “Software for Computing and Annotating Genomic Ranges.” <em>PLoS Comput. Biol.</em> 9. <a href="https://doi.org/10.1371/journal.pcbi.1003118">https://doi.org/10.1371/journal.pcbi.1003118</a>.</p>
@@ -370,19 +373,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>———. 2013b. “Software for Computing and Annotating Genomic Ranges.” <em>PLoS Comput. Biol.</em> 9. <a href="https://doi.org/10.1371/journal.pcbi.1003118">https://doi.org/10.1371/journal.pcbi.1003118</a>.</p>
 </div>
 <div id="ref-Lee2009-zb">
-<p>Lee, John A, and Michel Verleysen. 2009. “Quality Assessment of Dimensionality Reduction: Rank-Based Criteria.” <em>Neurocomputing</em> 72 (7). Elsevier:1431–43. <a href="https://doi.org/10.1016/j.neucom.2008.12.017">https://doi.org/10.1016/j.neucom.2008.12.017</a>.</p>
+<p>Lee, John A, and Michel Verleysen. 2009. “Quality Assessment of Dimensionality Reduction: Rank-Based Criteria.” <em>Neurocomputing</em> 72 (7): 1431–43. <a href="https://doi.org/10.1016/j.neucom.2008.12.017">https://doi.org/10.1016/j.neucom.2008.12.017</a>.</p>
 </div>
 <div id="ref-r-liminal">
 <p>Lee, Stuart, and Dianne Cook. 2020. <em>Liminal: Multivariate Data Visualization with Tours and Embeddings</em>. <a href="https://github.com/sa-lee/liminal">https://github.com/sa-lee/liminal</a>.</p>
 </div>
 <div id="ref-Lee2019">
-<p>Lee, Stuart, Dianne Cook, and Michael Lawrence. 2019. “Plyranges: A Grammar of Genomic Data Transformation.” <em>Genome Biology</em> 20 (1):4. <a href="https://doi.org/10.1186/s13059-018-1597-8">https://doi.org/10.1186/s13059-018-1597-8</a>.</p>
+<p>Lee, Stuart, Dianne Cook, and Michael Lawrence. 2019. “Plyranges: A Grammar of Genomic Data Transformation.” <em>Genome Biology</em> 20 (1): 4. <a href="https://doi.org/10.1186/s13059-018-1597-8">https://doi.org/10.1186/s13059-018-1597-8</a>.</p>
 </div>
 <div id="ref-R-plyranges-z">
 <p>Lee, Stuart, Michael Lawrence, and Dianne Cook. 2018. “plyranges: a grammar of genomic data transformation.” <a href="https://doi.org/10.5281/zenodo.1469841">https://doi.org/10.5281/zenodo.1469841</a>.</p>
 </div>
 <div id="ref-Lee2020-ie">
-<p>Lee, Stuart, Michael Lawrence, and Michael I Love. 2020. “Fluent Genomics with <em>Plyranges</em> and <em>Tximeta</em>.” <em>F1000Res.</em> 9 (109). F1000 Research Limited:109. <a href="https://doi.org/10.12688/f1000research.22259.1">https://doi.org/10.12688/f1000research.22259.1</a>.</p>
+<p>Lee, Stuart, Michael Lawrence, and Michael I Love. 2020. “Fluent Genomics with <em>Plyranges</em> and <em>Tximeta</em>.” <em>F1000Res.</em> 9 (109): 109. <a href="https://doi.org/10.12688/f1000research.22259.1">https://doi.org/10.12688/f1000research.22259.1</a>.</p>
 </div>
 <div id="ref-Lee2019-mf">
 <p>Lee, Stuart, Albert Y Zhang, Shian Su, Ashley P Ng, Aliaksei Z Holik, Marie-Liesse Asselin-Labat, Matthew E Ritchie, and Charity W Law. 2019. “Covering All Your Bases: Incorporating Intron Signal from RNA-seq Data.” <em>bioRxiv</em>. <a href="https://doi.org/10.1101/352823">https://doi.org/10.1101/352823</a>.</p>
@@ -391,49 +394,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Lewis, Joshua, Laurens Van der Maaten, and Virginia de Sa. 2012. “A Behavioral Investigation of Dimensionality Reduction.” In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>. Vol. 34.</p>
 </div>
 <div id="ref-Lex2014-bh">
-<p>Lex, Alexander, Nils Gehlenborg, Hendrik Strobelt, Romain Vuillemot, and Hanspeter Pfister. 2014. “UpSet: Visualization of Intersecting Sets.” <em>IEEE Trans. Vis. Comput. Graph.</em> 20 (12):1983–92. <a href="https://doi.org/10.1109/TVCG.2014.2346248">https://doi.org/10.1109/TVCG.2014.2346248</a>.</p>
+<p>Lex, Alexander, Nils Gehlenborg, Hendrik Strobelt, Romain Vuillemot, and Hanspeter Pfister. 2014. “UpSet: Visualization of Intersecting Sets.” <em>IEEE Trans. Vis. Comput. Graph.</em> 20 (12): 1983–92. <a href="https://doi.org/10.1109/TVCG.2014.2346248">https://doi.org/10.1109/TVCG.2014.2346248</a>.</p>
 </div>
 <div id="ref-Liao2013-eb">
-<p>Liao, Yang, Gordon K Smyth, and Wei Shi. 2013. “The Subread Aligner: Fast, Accurate and Scalable Read Mapping by Seed-and-Vote.” <em>Nucleic Acids Res.</em> 41 (10):e108. <a href="https://doi.org/10.1093/nar/gkt214">https://doi.org/10.1093/nar/gkt214</a>.</p>
+<p>Liao, Yang, Gordon K Smyth, and Wei Shi. 2013. “The Subread Aligner: Fast, Accurate and Scalable Read Mapping by Seed-and-Vote.” <em>Nucleic Acids Res.</em> 41 (10): e108. <a href="https://doi.org/10.1093/nar/gkt214">https://doi.org/10.1093/nar/gkt214</a>.</p>
 </div>
 <div id="ref-Liao2019-qn">
-<p>———. 2019. “The R Package Rsubread Is Easier, Faster, Cheaper and Better for Alignment and Quantification of RNA Sequencing Reads.” <em>Nucleic Acids Res.</em> 47 (8):e47. <a href="https://doi.org/10.1093/nar/gkz114">https://doi.org/10.1093/nar/gkz114</a>.</p>
+<p>———. 2019. “The R Package Rsubread Is Easier, Faster, Cheaper and Better for Alignment and Quantification of RNA Sequencing Reads.” <em>Nucleic Acids Res.</em> 47 (8): e47. <a href="https://doi.org/10.1093/nar/gkz114">https://doi.org/10.1093/nar/gkz114</a>.</p>
 </div>
 <div id="ref-Linderman2019-dq">
-<p>Linderman, George C, and Stefan Steinerberger. 2019. “Clustering with t-SNE, Provably.” <em>SIAM Journal on Mathematics of Data Science</em> 1 (2). Society for Industrial; Applied Mathematics:313–32. <a href="https://doi.org/10.1137/18M1216134">https://doi.org/10.1137/18M1216134</a>.</p>
+<p>Linderman, George C, and Stefan Steinerberger. 2019. “Clustering with t-SNE, Provably.” <em>SIAM Journal on Mathematics of Data Science</em> 1 (2): 313–32. <a href="https://doi.org/10.1137/18M1216134">https://doi.org/10.1137/18M1216134</a>.</p>
 </div>
 <div id="ref-Love2016-f1000">
-<p>Love, Michael I, Simon Anders, Vladislav Kim, and Wolfgang Huber. 2016. “RNA-Seq Workflow: Gene-Level Exploratory Analysis and Differential Expression.” <em>F1000 Research</em> 4 (1070). F1000 Research Limited:1070. <a href="https://doi.org/10.12688/f1000research.7035.2">https://doi.org/10.12688/f1000research.7035.2</a>.</p>
+<p>Love, Michael I, Simon Anders, Vladislav Kim, and Wolfgang Huber. 2016. “RNA-Seq Workflow: Gene-Level Exploratory Analysis and Differential Expression.” <em>F1000 Research</em> 4 (1070): 1070. <a href="https://doi.org/10.12688/f1000research.7035.2">https://doi.org/10.12688/f1000research.7035.2</a>.</p>
+</div>
+<div id="ref-Love2014">
+<p>Love, Michael I., Wolfgang Huber, and Simon Anders. 2014. “Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2.” <em>Genome Biology</em> 15 (12): 550. <a href="https://doi.org/10.1186/s13059-014-0550-8">https://doi.org/10.1186/s13059-014-0550-8</a>.</p>
 </div>
 <div id="ref-Love2019-tximeta">
 <p>Love, Michael I, Charlotte Soneson, Peter F Hickey, Lisa K Johnson, N Tessa Pierce, Lori Shepherd, Martin Morgan, and Rob Patro. 2019. “Tximeta: Reference Sequence Checksums for Provenance Identification in RNA-seq.” <em>bioRxiv</em>, September, 777888. <a href="https://doi.org/10.1101/777888">https://doi.org/10.1101/777888</a>.</p>
 </div>
-<div id="ref-Love2014">
-<p>Love, Michael I., Wolfgang Huber, and Simon Anders. 2014. “Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2.” <em>Genome Biology</em> 15 (12):550. <a href="https://doi.org/10.1186/s13059-014-0550-8">https://doi.org/10.1186/s13059-014-0550-8</a>.</p>
-</div>
 <div id="ref-Lun2016">
-<p>Lun, Aaron T. L., Davis J. McCarthy, and John C. Marioni. 2016. “A Step-by-Step Workflow for Low-Level Analysis of Single-Cell Rna-Seq Data with Bioconductor.” <em>F1000Res.</em> 5:2122. <a href="https://doi.org/10.12688/f1000research.9501.2">https://doi.org/10.12688/f1000research.9501.2</a>.</p>
+<p>Lun, Aaron T. L., Davis J. McCarthy, and John C. Marioni. 2016. “A Step-by-Step Workflow for Low-Level Analysis of Single-Cell Rna-Seq Data with Bioconductor.” <em>F1000Res.</em> 5: 2122. <a href="https://doi.org/10.12688/f1000research.9501.2">https://doi.org/10.12688/f1000research.9501.2</a>.</p>
 </div>
 <div id="ref-Lyttle2020-hp">
 <p>Lyttle, Ian, and Vega/Vega-Lite Developers. 2020. “Vegawidget: ’Htmlwidget’ for ’Vega’ and ’Vega-Lite’.” <a href="https://CRAN.R-project.org/package=vegawidget">https://CRAN.R-project.org/package=vegawidget</a>.</p>
 </div>
 <div id="ref-Van_Der_Maaten2014-zn">
-<p>Maaten, Laurens van der. 2014. “Accelerating t-SNE Using Tree-Based Algorithms.” <em>J. Mach. Learn. Res.</em> jmlr.org. <a href="http://www.jmlr.org/papers/volume15/vandermaaten14a/vandermaaten14a.pdf">http://www.jmlr.org/papers/volume15/vandermaaten14a/vandermaaten14a.pdf</a>.</p>
+<p>Maaten, Laurens van der. 2014. “Accelerating t-SNE Using Tree-Based Algorithms.” <em>J. Mach. Learn. Res.</em> <a href="http://www.jmlr.org/papers/volume15/vandermaaten14a/vandermaaten14a.pdf">http://www.jmlr.org/papers/volume15/vandermaaten14a/vandermaaten14a.pdf</a>.</p>
 </div>
 <div id="ref-Maaten2008-sk">
-<p>Maaten, Laurens van der, and Geoffrey Hinton. 2008. “Visualizing Data Using t-SNE.” <em>J. Mach. Learn. Res.</em> 9 (Nov):2579–2605. <a href="http://www.jmlr.org/papers/v9/vandermaaten08a.html">http://www.jmlr.org/papers/v9/vandermaaten08a.html</a>.</p>
+<p>Maaten, Laurens van der, and Geoffrey Hinton. 2008. “Visualizing Data Using t-SNE.” <em>J. Mach. Learn. Res.</em> 9 (Nov): 2579–2605. <a href="http://www.jmlr.org/papers/v9/vandermaaten08a.html">http://www.jmlr.org/papers/v9/vandermaaten08a.html</a>.</p>
 </div>
 <div id="ref-Macosko2015-ot">
-<p>Macosko, Evan Z, Anindita Basu, Rahul Satija, James Nemesh, Karthik Shekhar, Melissa Goldman, Itay Tirosh, et al. 2015. “Highly Parallel Genome-Wide Expression Profiling of Individual Cells Using Nanoliter Droplets.” <em>Cell</em> 161 (5):1202–14. <a href="https://doi.org/10.1016/j.cell.2015.05.002">https://doi.org/10.1016/j.cell.2015.05.002</a>.</p>
+<p>Macosko, Evan Z, Anindita Basu, Rahul Satija, James Nemesh, Karthik Shekhar, Melissa Goldman, Itay Tirosh, et al. 2015. “Highly Parallel Genome-Wide Expression Profiling of Individual Cells Using Nanoliter Droplets.” <em>Cell</em> 161 (5): 1202–14. <a href="https://doi.org/10.1016/j.cell.2015.05.002">https://doi.org/10.1016/j.cell.2015.05.002</a>.</p>
 </div>
 <div id="ref-Markmiller2014-kg">
-<p>Markmiller, Sebastian, Nicole Cloonan, Rea M Lardelli, Karen Doggett, Maria-Cristina Keightley, Yeliz Boglev, Andrew J Trotter, et al. 2014. “Minor Class Splicing Shapes the Zebrafish Transcriptome During Development.” <em>Proc. Natl. Acad. Sci. U. S. A.</em> 111 (8):3062–7. <a href="https://doi.org/10.1073/pnas.1305536111">https://doi.org/10.1073/pnas.1305536111</a>.</p>
-</div>
-<div id="ref-McCarthy2009-qx">
-<p>McCarthy, Davis J, and Gordon K Smyth. 2009. “Testing Significance Relative to a Fold-Change Threshold Is a TREAT.” <em>Bioinformatics</em> 25 (6):765–71. <a href="https://doi.org/10.1093/bioinformatics/btp053">https://doi.org/10.1093/bioinformatics/btp053</a>.</p>
+<p>Markmiller, Sebastian, Nicole Cloonan, Rea M Lardelli, Karen Doggett, Maria-Cristina Keightley, Yeliz Boglev, Andrew J Trotter, et al. 2014. “Minor Class Splicing Shapes the Zebrafish Transcriptome During Development.” <em>Proc. Natl. Acad. Sci. U. S. A.</em> 111 (8): 3062–7. <a href="https://doi.org/10.1073/pnas.1305536111">https://doi.org/10.1073/pnas.1305536111</a>.</p>
 </div>
 <div id="ref-McCarthy2017">
-<p>McCarthy, Davis J., Kieran R. Campbell, Aaron T. L. Lun, and Quin F. Willis. 2017. “Scater: Pre-Processing, Quality Control, Normalisation and Visualisation of Single-Cell RNA-Seq Data in R.” <em>Bioinformatics</em> 33 (8):1179–86. <a href="https://doi.org/10.1093/bioinformatics/btw777">https://doi.org/10.1093/bioinformatics/btw777</a>.</p>
+<p>McCarthy, Davis J., Kieran R. Campbell, Aaron T. L. Lun, and Quin F. Willis. 2017. “Scater: Pre-Processing, Quality Control, Normalisation and Visualisation of Single-Cell RNA-Seq Data in R.” <em>Bioinformatics</em> 33 (8): 1179–86. <a href="https://doi.org/10.1093/bioinformatics/btw777">https://doi.org/10.1093/bioinformatics/btw777</a>.</p>
+</div>
+<div id="ref-McCarthy2009-qx">
+<p>McCarthy, Davis J, and Gordon K Smyth. 2009. “Testing Significance Relative to a Fold-Change Threshold Is a TREAT.” <em>Bioinformatics</em> 25 (6): 765–71. <a href="https://doi.org/10.1093/bioinformatics/btp053">https://doi.org/10.1093/bioinformatics/btp053</a>.</p>
 </div>
 <div id="ref-McDonald1982-ew">
 <p>McDonald, J A. 1982. “Interactive Graphics for Data Analysis.” PhD thesis, Stanford University. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.331.6673&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.331.6673&amp;rep=rep1&amp;type=pdf</a>.</p>
@@ -445,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Melville, James. 2020. “t-SNE Initialization Options.” <a href="https://jlmelville.github.io/smallvis/init.html">https://jlmelville.github.io/smallvis/init.html</a>. <a href="https://jlmelville.github.io/smallvis/init.html">https://jlmelville.github.io/smallvis/init.html</a>.</p>
 </div>
 <div id="ref-Meng2016-pz">
-<p>Meng, Chen, Oana A Zeleznik, Gerhard G Thallinger, Bernhard Kuster, Amin M Gholami, and Aedín C Culhane. 2016. “Dimension Reduction Techniques for the Integrative Analysis of Multi-Omics Data.” <em>Brief. Bioinform.</em> 17 (4):628–41. <a href="https://doi.org/10.1093/bib/bbv108">https://doi.org/10.1093/bib/bbv108</a>.</p>
+<p>Meng, Chen, Oana A Zeleznik, Gerhard G Thallinger, Bernhard Kuster, Amin M Gholami, and Aedı́n C Culhane. 2016. “Dimension Reduction Techniques for the Integrative Analysis of Multi-Omics Data.” <em>Brief. Bioinform.</em> 17 (4): 628–41. <a href="https://doi.org/10.1093/bib/bbv108">https://doi.org/10.1093/bib/bbv108</a>.</p>
 </div>
 <div id="ref-Moon2019-ce">
 <p>Moon, Kevin R, David van Dijk, Zheng Wang, Scott Gigante, Daniel B Burkhardt, William S Chen, Kristina Yim, et al. 2019. “Visualizing Structure and Transitions for Biological Data Exploration.” <em>bioRxiv</em>. <a href="https://doi.org/10.1101/120378">https://doi.org/10.1101/120378</a>.</p>
@@ -457,31 +460,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Morgan, Martin, Hervé Pagès, Valerie Obenchain, and Nathaniel Hayden. 2020. <em>Rsamtools: Binary Alignment (BAM), FASTA, Variant Call (BCF), and Tabix File Import</em>. <a href="http://bioconductor.org/packages/Rsamtools">http://bioconductor.org/packages/Rsamtools</a>.</p>
 </div>
 <div id="ref-Nguyen2019-yh">
-<p>Nguyen, Lan Huong, and Susan Holmes. 2019. “Ten Quick Tips for Effective Dimensionality Reduction.” <em>PLoS Comput. Biol.</em> 15 (6):e1006907. <a href="https://doi.org/10.1371/journal.pcbi.1006907">https://doi.org/10.1371/journal.pcbi.1006907</a>.</p>
+<p>Nguyen, Lan Huong, and Susan Holmes. 2019. “Ten Quick Tips for Effective Dimensionality Reduction.” <em>PLoS Comput. Biol.</em> 15 (6): e1006907. <a href="https://doi.org/10.1371/journal.pcbi.1006907">https://doi.org/10.1371/journal.pcbi.1006907</a>.</p>
 </div>
 <div id="ref-Ovchinnikova2020-sy">
-<p>Ovchinnikova, Svetlana, and Simon Anders. 2020. “Exploring Dimension-Reduced Embeddings with Sleepwalk.” <em>Genome Res.</em> 30 (5):749–56. <a href="https://doi.org/10.1101/gr.251447.119">https://doi.org/10.1101/gr.251447.119</a>.</p>
+<p>Ovchinnikova, Svetlana, and Simon Anders. 2020. “Exploring Dimension-Reduced Embeddings with Sleepwalk.” <em>Genome Res.</em> 30 (5): 749–56. <a href="https://doi.org/10.1101/gr.251447.119">https://doi.org/10.1101/gr.251447.119</a>.</p>
 </div>
 <div id="ref-R-biostrings">
 <p>Pagès, H., P. Aboyoun, R. Gentleman, and S. DebRoy. 2018. <em>Biostrings: Efficient Manipulation of Biological Strings</em>. <a href="https://doi.org/10.18129/B9.bioc.Biostrings">https://doi.org/10.18129/B9.bioc.Biostrings</a>.</p>
 </div>
 <div id="ref-salmon">
-<p>Patro, R, G Duggal, MI Love, RA Irizarry, and C Kingsford. 2017. “Salmon Provides Fast and Bias-Aware Quantification of Transcript Expression.” <em>Nature Methods</em> 14:417–19. <a href="https://doi.org/10.1038/nmeth.4197">https://doi.org/10.1038/nmeth.4197</a>.</p>
+<p>Patro, R, G Duggal, MI Love, RA Irizarry, and C Kingsford. 2017. “Salmon Provides Fast and Bias-Aware Quantification of Transcript Expression.” <em>Nature Methods</em> 14: 417–19. <a href="https://doi.org/10.1038/nmeth.4197">https://doi.org/10.1038/nmeth.4197</a>.</p>
 </div>
 <div id="ref-Pezzotti2017-cz">
-<p>Pezzotti, Nicola, Boudewijn P F Lelieveldt, Laurens Van Der Maaten, Thomas Hollt, Elmar Eisemann, and Anna Vilanova. 2017. “Approximated and User Steerable tSNE for Progressive Visual Analytics.” <em>IEEE Trans. Vis. Comput. Graph.</em> 23 (7):1739–52. <a href="https://doi.org/10.1109/TVCG.2016.2570755">https://doi.org/10.1109/TVCG.2016.2570755</a>.</p>
+<p>Pezzotti, Nicola, Boudewijn P F Lelieveldt, Laurens Van Der Maaten, Thomas Hollt, Elmar Eisemann, and Anna Vilanova. 2017. “Approximated and User Steerable tSNE for Progressive Visual Analytics.” <em>IEEE Trans. Vis. Comput. Graph.</em> 23 (7): 1739–52. <a href="https://doi.org/10.1109/TVCG.2016.2570755">https://doi.org/10.1109/TVCG.2016.2570755</a>.</p>
 </div>
 <div id="ref-Quinlan2010-gc">
-<p>Quinlan, Aaron R, and Ira M Hall. 2010. “BEDTools: A Flexible Suite of Utilities for Comparing Genomic Features.” <em>Bioinformatics</em> 26 (6):841–42. <a href="https://doi.org/10.1093/bioinformatics/btq033">https://doi.org/10.1093/bioinformatics/btq033</a>.</p>
-</div>
-<div id="ref-r-core">
-<p>R Core Team. 2019. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+<p>Quinlan, Aaron R, and Ira M Hall. 2010. “BEDTools: A Flexible Suite of Utilities for Comparing Genomic Features.” <em>Bioinformatics</em> 26 (6): 841–42. <a href="https://doi.org/10.1093/bioinformatics/btq033">https://doi.org/10.1093/bioinformatics/btq033</a>.</p>
 </div>
 <div id="ref-Ramirez2014-sh">
-<p>Ramírez, Fidel, Friederike Dündar, Sarah Diehl, Björn A Grüning, and Thomas Manke. 2014. “DeepTools: A Flexible Platform for Exploring Deep-Sequencing Data.” <em>Nucleic Acids Res.</em> 42 (Web Server issue):W187–91. <a href="https://doi.org/10.1093/nar/gku365">https://doi.org/10.1093/nar/gku365</a>.</p>
+<p>Ramı́rez, Fidel, Friederike Dündar, Sarah Diehl, Björn A Grüning, and Thomas Manke. 2014. “DeepTools: A Flexible Platform for Exploring Deep-Sequencing Data.” <em>Nucleic Acids Res.</em> 42 (Web Server issue): W187–91. <a href="https://doi.org/10.1093/nar/gku365">https://doi.org/10.1093/nar/gku365</a>.</p>
 </div>
 <div id="ref-Rauber2009-vh">
 <p>Rauber, Andreas. 2009. “Multi-Challenge Data Set.” <a href="http://ifs.tuwien.ac.at/dm/dataSets.html">http://ifs.tuwien.ac.at/dm/dataSets.html</a>. <a href="http://ifs.tuwien.ac.at/dm/dataSets.html">http://ifs.tuwien.ac.at/dm/dataSets.html</a>.</p>
+</div>
+<div id="ref-r-core">
+<p>R Core Team. 2019. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
 </div>
 <div id="ref-Rieck2017-kk">
 <p>Rieck, Bastian. 2017. “Persistent Homology in Multivariate Data Visualization.” Edited by Heike Little and Michael Gertz. PhD thesis, Ruprecht-Karls-Universität Heidelberg.</p>
@@ -493,28 +496,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Risso, Davide, and Michael Cole. 2019. <em>ScRNAseq: Collection of Public Single-Cell Rna-Seq Datasets</em>.</p>
 </div>
 <div id="ref-Ritchie2015-mj">
-<p>Ritchie, Matthew E, Belinda Phipson, Di Wu, Yifang Hu, Charity W Law, Wei Shi, and Gordon K Smyth. 2015. “Limma Powers Differential Expression Analyses for RNA-sequencing and Microarray Studies.” <em>Nucleic Acids Res.</em> 43 (7):e47. <a href="https://doi.org/10.1093/nar/gkv007">https://doi.org/10.1093/nar/gkv007</a>.</p>
+<p>Ritchie, Matthew E, Belinda Phipson, Di Wu, Yifang Hu, Charity W Law, Wei Shi, and Gordon K Smyth. 2015. “Limma Powers Differential Expression Analyses for RNA-sequencing and Microarray Studies.” <em>Nucleic Acids Res.</em> 43 (7): e47. <a href="https://doi.org/10.1093/nar/gkv007">https://doi.org/10.1093/nar/gkv007</a>.</p>
 </div>
 <div id="ref-Roadmap-Epigenomics-Consortium2015-pr">
 <p>Roadmap Epigenomics Consortium, Anshul Kundaje, Wouter Meuleman, Jason Ernst, Misha Bilenky, Angela Yen, Alireza Heravi-Moussavi, et al. 2015. “Integrative Analysis of 111 Reference Human Epigenomes.” <em>Nature</em> 518 (7539). <a href="https://doi.org/10.1038/nature14248">https://doi.org/10.1038/nature14248</a>.</p>
 </div>
 <div id="ref-Satyanarayan2017-gs">
-<p>Satyanarayan, Arvind, Dominik Moritz, Kanit Wongsuphasawat, and Jeffrey Heer. 2017. “Vega-Lite: A Grammar of Interactive Graphics.” <em>IEEE Trans. Vis. Comput. Graph.</em> 23 (1):341–50. <a href="https://doi.org/10.1109/TVCG.2016.2599030">https://doi.org/10.1109/TVCG.2016.2599030</a>.</p>
+<p>Satyanarayan, Arvind, Dominik Moritz, Kanit Wongsuphasawat, and Jeffrey Heer. 2017. “Vega-Lite: A Grammar of Interactive Graphics.” <em>IEEE Trans. Vis. Comput. Graph.</em> 23 (1): 341–50. <a href="https://doi.org/10.1109/TVCG.2016.2599030">https://doi.org/10.1109/TVCG.2016.2599030</a>.</p>
 </div>
 <div id="ref-ggally">
 <p>Schloerke, Barret, Jason Crowley, Di Cook, Francois Briatte, Moritz Marbach, Edwin Thoen, Amos Elberg, and Joseph Larmarange. 2020. <em>GGally: Extension to ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=GGally">https://CRAN.R-project.org/package=GGally</a>.</p>
 </div>
 <div id="ref-Sedlmair2013-pn">
-<p>Sedlmair, Michael, Tamara Munzner, and Melanie Tory. 2013. “Empirical Guidance on Scatterplot and Dimension Reduction Technique Choices.” <em>IEEE Trans. Vis. Comput. Graph.</em> 19 (12):2634–43. <a href="https://doi.org/10.1109/TVCG.2013.153">https://doi.org/10.1109/TVCG.2013.153</a>.</p>
+<p>Sedlmair, Michael, Tamara Munzner, and Melanie Tory. 2013. “Empirical Guidance on Scatterplot and Dimension Reduction Technique Choices.” <em>IEEE Trans. Vis. Comput. Graph.</em> 19 (12): 2634–43. <a href="https://doi.org/10.1109/TVCG.2013.153">https://doi.org/10.1109/TVCG.2013.153</a>.</p>
 </div>
 <div id="ref-bcfilecache">
 <p>Shepherd, Lori, and Martin Morgan. 2019. <em>BiocFileCache: Manage Files Across Sessions</em>.</p>
 </div>
 <div id="ref-Silva2003-xw">
-<p>Silva, V D, and J B Tenenbaum. 2003. “Global Versus Local Methods in Nonlinear Dimensionality Reduction.” <em>Adv. Neural Inf. Process. Syst.</em> papers.nips.cc. <a href="http://papers.nips.cc/paper/2141-global-versus-local-methods-in-nonlinear-dimensionality-reduction.pdf">http://papers.nips.cc/paper/2141-global-versus-local-methods-in-nonlinear-dimensionality-reduction.pdf</a>.</p>
+<p>Silva, V D, and J B Tenenbaum. 2003. “Global Versus Local Methods in Nonlinear Dimensionality Reduction.” <em>Adv. Neural Inf. Process. Syst.</em> <a href="http://papers.nips.cc/paper/2141-global-versus-local-methods-in-nonlinear-dimensionality-reduction.pdf">http://papers.nips.cc/paper/2141-global-versus-local-methods-in-nonlinear-dimensionality-reduction.pdf</a>.</p>
 </div>
 <div id="ref-Sims2014-qk">
-<p>Sims, David, Ian Sudbery, Nicholas E Ilott, Andreas Heger, and Chris P Ponting. 2014. “Sequencing Depth and Coverage: Key Considerations in Genomic Analyses.” <em>Nat. Rev. Genet.</em> 15 (2):121–32. <a href="https://doi.org/10.1038/nrg3642">https://doi.org/10.1038/nrg3642</a>.</p>
+<p>Sims, David, Ian Sudbery, Nicholas E Ilott, Andreas Heger, and Chris P Ponting. 2014. “Sequencing Depth and Coverage: Key Considerations in Genomic Analyses.” <em>Nat. Rev. Genet.</em> 15 (2): 121–32. <a href="https://doi.org/10.1038/nrg3642">https://doi.org/10.1038/nrg3642</a>.</p>
 </div>
 <div id="ref-Smilkov2016-hp">
 <p>Smilkov, Daniel, Nikhil Thorat, Charles Nicholson, Emily Reif, Fernanda B Viégas, and Martin Wattenberg. 2016. “Embedding Projector: Interactive Visualization and Interpretation of Embeddings,” November. <a href="http://arxiv.org/abs/1611.05469">http://arxiv.org/abs/1611.05469</a>.</p>
@@ -529,25 +532,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Swayne, Deborah F, and Andreas Buja. 2004. “Exploratory Visual Analysis of Graphs in GGOBI.” In <em>COMPSTAT 2004 — Proceedings in Computational Statistics</em>, 477–88. Physica-Verlag HD. <a href="https://doi.org/10.1007/978-3-7908-2656-2\_39">https://doi.org/10.1007/978-3-7908-2656-2\_39</a>.</p>
 </div>
 <div id="ref-Swayne1998-uq">
-<p>Swayne, Deborah F, Dianne Cook, and Andreas Buja. 1998. “XGobi: Interactive Dynamic Data Visualization in the X Window System.” <em>J. Comput. Graph. Stat.</em> 7 (1). Taylor &amp; Francis:113–30. <a href="https://doi.org/10.1080/10618600.1998.10474764">https://doi.org/10.1080/10618600.1998.10474764</a>.</p>
+<p>Swayne, Deborah F, Dianne Cook, and Andreas Buja. 1998. “XGobi: Interactive Dynamic Data Visualization in the X Window System.” <em>J. Comput. Graph. Stat.</em> 7 (1): 113–30. <a href="https://doi.org/10.1080/10618600.1998.10474764">https://doi.org/10.1080/10618600.1998.10474764</a>.</p>
 </div>
 <div id="ref-Swayne2003-qd">
-<p>Swayne, Deborah F, Duncan Temple Lang, Andreas Buja, and Dianne Cook. 2003. “GGobi: Evolving from XGobi into an Extensible Framework for Interactive Data Visualization.” <em>Comput. Stat. Data Anal.</em> 43 (4). Elsevier:423–44. <a href="https://doi.org/10.1016/S0167-9473(02)00286-4">https://doi.org/10.1016/S0167-9473(02)00286-4</a>.</p>
-</div>
-<div id="ref-Green1996-qg">
-<p>T R G Green AND Petre, M. 1996. “Usability Analysis of Visual Programming Environments: A ‘Cognitive Dimensions’ Framework.” <em>Journal of Visual Languages &amp; Computing</em> 7 (2):131–74. <a href="https://doi.org/10.1006/jvlc.1996.0009">https://doi.org/10.1006/jvlc.1996.0009</a>.</p>
+<p>Swayne, Deborah F, Duncan Temple Lang, Andreas Buja, and Dianne Cook. 2003. “GGobi: Evolving from XGobi into an Extensible Framework for Interactive Data Visualization.” <em>Comput. Stat. Data Anal.</em> 43 (4): 423–44. <a href="https://doi.org/10.1016/S0167-9473(02)00286-4">https://doi.org/10.1016/S0167-9473(02)00286-4</a>.</p>
 </div>
 <div id="ref-Tang2016-oz">
 <p>Tang, Jian, Jingzhou Liu, Ming Zhang, and Qiaozhu Mei. 2016. “Visualizing Large-Scale and High-Dimensional Data,” February. <a href="http://arxiv.org/abs/1602.00370">http://arxiv.org/abs/1602.00370</a>.</p>
 </div>
 <div id="ref-Torgerson1952-am">
-<p>Torgerson, Warren S. 1952. “Multidimensional Scaling: I. Theory and Method.” <em>Psychometrika</em> 17 (4). Springer-Verlag:401–19. <a href="https://doi.org/10.1007/BF02288916">https://doi.org/10.1007/BF02288916</a>.</p>
+<p>Torgerson, Warren S. 1952. “Multidimensional Scaling: I. Theory and Method.” <em>Psychometrika</em> 17 (4): 401–19. <a href="https://doi.org/10.1007/BF02288916">https://doi.org/10.1007/BF02288916</a>.</p>
+</div>
+<div id="ref-Green1996-qg">
+<p>T R G Green AND Petre, M. 1996. “Usability Analysis of Visual Programming Environments: A ‘Cognitive Dimensions’ Framework.” <em>Journal of Visual Languages &amp; Computing</em> 7 (2): 131–74. <a href="https://doi.org/10.1006/jvlc.1996.0009">https://doi.org/10.1006/jvlc.1996.0009</a>.</p>
 </div>
 <div id="ref-Tukey1977-pn">
 <p>Tukey, John W. 1977. <em>Exploratory Data Analysis</em>. Vol. 2. Reading, Mass.: Addison-Wesley Pub. Co.</p>
 </div>
 <div id="ref-Turunen2013-qu">
-<p>Turunen, Janne J, Elina H Niemelä, Bhupendra Verma, and Mikko J Frilander. 2013. “The Significant Other: Splicing by the Minor Spliceosome.” <em>Wiley Interdiscip. Rev. RNA</em> 4 (1):61–76. <a href="https://doi.org/10.1002/wrna.1141">https://doi.org/10.1002/wrna.1141</a>.</p>
+<p>Turunen, Janne J, Elina H Niemelä, Bhupendra Verma, and Mikko J Frilander. 2013. “The Significant Other: Splicing by the Minor Spliceosome.” <em>Wiley Interdiscip. Rev. RNA</em> 4 (1): 61–76. <a href="https://doi.org/10.1002/wrna.1141">https://doi.org/10.1002/wrna.1141</a>.</p>
 </div>
 <div id="ref-renv">
 <p>Ushey, Kevin. 2019. <em>Renv: Project Environments</em>. <a href="https://rstudio.github.io/renv">https://rstudio.github.io/renv</a>.</p>
@@ -556,22 +559,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Wattenberg, Martin, Fernanda Viégas, and Ian Johnson. 2016. “How to Use t-SNE Effectively.” <em>Distill</em> 1 (10). <a href="https://doi.org/10.23915/distill.00002">https://doi.org/10.23915/distill.00002</a>.</p>
 </div>
 <div id="ref-Wickham2014-jc">
-<p>Wickham, Hadley. 2014. “Tidy Data.” <em>Journal of Statistical Software, Articles</em> 59 (10):1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.</p>
-</div>
-<div id="ref-tidyverse">
-<p>Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” <em>Journal of Open Source Software</em> 4 (43):1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.</p>
-</div>
-<div id="ref-Wickham2015-cx">
-<p>Wickham, Hadley, Dianne Cook, and Heike Hofmann. 2015. “Visualizing Statistical Models: Removing the Blindfold.” <em>Statistical Analysis and Data Mining: The ASA Data Science Journal</em> 8 (4). Wiley Subscription Services, Inc., A Wiley Company:203–25. <a href="https://doi.org/10.1002/sam.11271">https://doi.org/10.1002/sam.11271</a>.</p>
-</div>
-<div id="ref-Wickham2011-st">
-<p>Wickham, Hadley, Dianne Cook, Heike Hofmann, and Andreas Buja. 2011. “Tourr: An R Package for Exploring Multivariate Data with Projections.” <em>Journal of Statistical Software, Articles</em> 40 (2):1–18. <a href="https://doi.org/10.18637/jss.v040.i02">https://doi.org/10.18637/jss.v040.i02</a>.</p>
-</div>
-<div id="ref-Wickham2017-dplyr">
-<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+<p>Wickham, Hadley. 2014. “Tidy Data.” <em>Journal of Statistical Software, Articles</em> 59 (10): 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.</p>
 </div>
 <div id="ref-Wickham2016-gz">
 <p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Use R! Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-24277-4">https://doi.org/10.1007/978-3-319-24277-4</a>.</p>
+</div>
+<div id="ref-tidyverse">
+<p>Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.</p>
+</div>
+<div id="ref-Wickham2015-cx">
+<p>Wickham, Hadley, Dianne Cook, and Heike Hofmann. 2015. “Visualizing Statistical Models: Removing the Blindfold.” <em>Statistical Analysis and Data Mining: The ASA Data Science Journal</em> 8 (4): 203–25. <a href="https://doi.org/10.1002/sam.11271">https://doi.org/10.1002/sam.11271</a>.</p>
+</div>
+<div id="ref-Wickham2011-st">
+<p>Wickham, Hadley, Dianne Cook, Heike Hofmann, and Andreas Buja. 2011. “Tourr: An R Package for Exploring Multivariate Data with Projections.” <em>Journal of Statistical Software, Articles</em> 40 (2): 1–18. <a href="https://doi.org/10.18637/jss.v040.i02">https://doi.org/10.18637/jss.v040.i02</a>.</p>
+</div>
+<div id="ref-Wickham2017-dplyr">
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
 </div>
 <div id="ref-r-cowplot">
 <p>Wilke, Clause O. 2019. <em>Cowplot: Streamlined Plot Theme and Plot Annotations for ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=cowplot">https://CRAN.R-project.org/package=cowplot</a>.</p>

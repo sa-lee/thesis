@@ -49,12 +49,13 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -388,32 +391,32 @@ on coverage islands over chromosome 10.</p>
 <p>First, we extract the genome information from the BigWig file and filter
 to get the range for chromosome 10. This range will be used as a filter when
 reading the file.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(plyranges)</a>
-<a class="sourceLine" id="cb1-2" title="2">chr10_ranges &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="st">  </span><span class="kw">get_genome_info</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="st">  </span><span class="kw">filter</span>(seqnames <span class="op">==</span><span class="st"> &quot;chr10&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="2-2-results.html#cb1-1"></a><span class="kw">library</span>(plyranges)</span>
+<span id="cb1-2"><a href="2-2-results.html#cb1-2"></a>chr10_ranges &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></span>
+<span id="cb1-3"><a href="2-2-results.html#cb1-3"></a><span class="st">  </span><span class="kw">get_genome_info</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1-4"><a href="2-2-results.html#cb1-4"></a><span class="st">  </span><span class="kw">filter</span>(seqnames <span class="op">==</span><span class="st"> &quot;chr10&quot;</span>)</span></code></pre></div>
 <p>Then we read the BigWig file only extracting scores if they overlap chromosome
 10. We also add the genome build information to the resulting ranges. This
 book-keeping is good practice as it ensures the integrity of any
 downstream operations such as finding overlaps.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">chr10_scores &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw">read_bigwig</span>(<span class="dt">overlap_ranges =</span> chr10_ranges) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;hg19&quot;</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4">chr10_scores</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="2-2-results.html#cb2-1"></a>chr10_scores &lt;-<span class="st"> </span>bw_file <span class="op">%&gt;%</span></span>
+<span id="cb2-2"><a href="2-2-results.html#cb2-2"></a><span class="st">  </span><span class="kw">read_bigwig</span>(<span class="dt">overlap_ranges =</span> chr10_ranges) <span class="op">%&gt;%</span></span>
+<span id="cb2-3"><a href="2-2-results.html#cb2-3"></a><span class="st">  </span><span class="kw">set_genome_info</span>(<span class="dt">genome =</span> <span class="st">&quot;hg19&quot;</span>)</span>
+<span id="cb2-4"><a href="2-2-results.html#cb2-4"></a>chr10_scores</span></code></pre></div>
 <pre><code>#&gt; GRanges object with 5789841 ranges and 1 metadata column:
-#&gt;             seqnames              ranges strand |              score
-#&gt;                &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |          &lt;numeric&gt;
-#&gt;         [1]    chr10             1-60602      * | 0.0422799997031689
-#&gt;         [2]    chr10         60603-60781      * |  0.163240000605583
-#&gt;         [3]    chr10         60782-60816      * |  0.372139990329742
-#&gt;         [4]    chr10         60817-60995      * |  0.163240000605583
-#&gt;         [5]    chr10         60996-61625      * | 0.0422799997031689
-#&gt;         ...      ...                 ...    ... .                ...
-#&gt;   [5789837]    chr10 135524723-135524734      * |  0.144319996237755
-#&gt;   [5789838]    chr10 135524735-135524775      * |  0.250230014324188
-#&gt;   [5789839]    chr10 135524776-135524784      * |  0.427789986133575
-#&gt;   [5789840]    chr10 135524785-135524806      * |  0.730019986629486
-#&gt;   [5789841]    chr10 135524807-135524837      * |   1.03103005886078
+#&gt;             seqnames              ranges strand |     score
+#&gt;                &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;
+#&gt;         [1]    chr10             1-60602      * |   0.04228
+#&gt;         [2]    chr10         60603-60781      * |   0.16324
+#&gt;         [3]    chr10         60782-60816      * |   0.37214
+#&gt;         [4]    chr10         60817-60995      * |   0.16324
+#&gt;         [5]    chr10         60996-61625      * |   0.04228
+#&gt;         ...      ...                 ...    ... .       ...
+#&gt;   [5789837]    chr10 135524723-135524734      * |   0.14432
+#&gt;   [5789838]    chr10 135524735-135524775      * |   0.25023
+#&gt;   [5789839]    chr10 135524776-135524784      * |   0.42779
+#&gt;   [5789840]    chr10 135524785-135524806      * |   0.73002
+#&gt;   [5789841]    chr10 135524807-135524837      * |   1.03103
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences from hg19 genome</code></pre>
 <p>We then filter for regions with a coverage score greater than 8, and following
@@ -421,24 +424,24 @@ this reduce individual runs to ranges representing the islands of coverage.
 This is achieved with the <code>reduce_ranges()</code> function, which allows a summary
 to be computed over each island: in this case we take the maximum of
 the scores to find the coverage peaks over chromosome 10.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">all_peaks &lt;-<span class="st"> </span>chr10_scores <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">filter</span>(score <span class="op">&gt;</span><span class="st"> </span><span class="dv">8</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">reduce_ranges</span>(<span class="dt">score =</span> <span class="kw">max</span>(score))</a>
-<a class="sourceLine" id="cb4-4" title="4">all_peaks</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="2-2-results.html#cb4-1"></a>all_peaks &lt;-<span class="st"> </span>chr10_scores <span class="op">%&gt;%</span></span>
+<span id="cb4-2"><a href="2-2-results.html#cb4-2"></a><span class="st">  </span><span class="kw">filter</span>(score <span class="op">&gt;</span><span class="st"> </span><span class="dv">8</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-3"><a href="2-2-results.html#cb4-3"></a><span class="st">  </span><span class="kw">reduce_ranges</span>(<span class="dt">score =</span> <span class="kw">max</span>(score))</span>
+<span id="cb4-4"><a href="2-2-results.html#cb4-4"></a>all_peaks</span></code></pre></div>
 <pre><code>#&gt; GRanges object with 1085 ranges and 1 metadata column:
-#&gt;          seqnames              ranges strand |            score
-#&gt;             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;numeric&gt;
-#&gt;      [1]    chr10     1299144-1299370      * | 13.2264003753662
-#&gt;      [2]    chr10     1778600-1778616      * | 8.20512008666992
-#&gt;      [3]    chr10     4613068-4613078      * | 8.76027011871338
-#&gt;      [4]    chr10     4613081-4613084      * | 8.43659973144531
-#&gt;      [5]    chr10             4613086      * | 8.11507987976074
-#&gt;      ...      ...                 ...    ... .              ...
-#&gt;   [1081]    chr10 135344482-135344488      * | 9.23237991333008
-#&gt;   [1082]    chr10 135344558-135344661      * |  11.843409538269
-#&gt;   [1083]    chr10 135344663-135344665      * | 8.26965999603271
-#&gt;   [1084]    chr10 135344670-135344674      * | 8.26965999603271
-#&gt;   [1085]    chr10 135345440-135345441      * | 8.26965999603271
+#&gt;          seqnames              ranges strand |     score
+#&gt;             &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;
+#&gt;      [1]    chr10     1299144-1299370      * |  13.22640
+#&gt;      [2]    chr10     1778600-1778616      * |   8.20512
+#&gt;      [3]    chr10     4613068-4613078      * |   8.76027
+#&gt;      [4]    chr10     4613081-4613084      * |   8.43660
+#&gt;      [5]    chr10             4613086      * |   8.11508
+#&gt;      ...      ...                 ...    ... .       ...
+#&gt;   [1081]    chr10 135344482-135344488      * |   9.23238
+#&gt;   [1082]    chr10 135344558-135344661      * |  11.84341
+#&gt;   [1083]    chr10 135344663-135344665      * |   8.26966
+#&gt;   [1084]    chr10 135344670-135344674      * |   8.26966
+#&gt;   [1085]    chr10 135345440-135345441      * |   8.26966
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences from hg19 genome</code></pre>
 <p>Returning to the <em>GRanges</em> object containing normalized coverage scores,
@@ -448,19 +451,19 @@ by anchoring and modifying the width.</p>
 <p>Finally, the overlap inner join is used to restrict the chromosome 10
 coverage islands, to the islands that are contained in the 5000nt region that surrounds the max peak (figure <a href="2-2-results.html#fig:peak-viz">2.4</a>).</p>
 <pre><code>#&gt; GRanges object with 890 ranges and 2 metadata columns:
-#&gt;         seqnames            ranges strand |            score.x          score.y
-#&gt;            &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; |          &lt;numeric&gt;        &lt;numeric&gt;
-#&gt;     [1]    chr10 21805891-21805988      * | 0.0206599999219179 29.9573001861572
-#&gt;     [2]    chr10 21805989-21806000      * | 0.0211200006306171 29.9573001861572
-#&gt;     [3]    chr10 21806001-21806044      * |  0.022069999948144 29.9573001861572
-#&gt;     [4]    chr10 21806045-21806049      * | 0.0215900000184774 29.9573001861572
-#&gt;     [5]    chr10 21806050-21806081      * | 0.0211200006306171 29.9573001861572
-#&gt;     ...      ...               ...    ... .                ...              ...
-#&gt;   [886]    chr10          21810878      * |   5.24951982498169 29.9573001861572
-#&gt;   [887]    chr10          21810879      * |   5.83534002304077 29.9573001861572
-#&gt;   [888]    chr10 21810880-21810884      * |   6.44267988204956 29.9573001861572
-#&gt;   [889]    chr10 21810885-21810895      * |   7.07054996490479 29.9573001861572
-#&gt;   [890]    chr10 21810896-21810911      * |   6.44267988204956 29.9573001861572
+#&gt;         seqnames            ranges strand |   score.x   score.y
+#&gt;            &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt; &lt;numeric&gt;
+#&gt;     [1]    chr10 21805891-21805988      * |   0.02066   29.9573
+#&gt;     [2]    chr10 21805989-21806000      * |   0.02112   29.9573
+#&gt;     [3]    chr10 21806001-21806044      * |   0.02207   29.9573
+#&gt;     [4]    chr10 21806045-21806049      * |   0.02159   29.9573
+#&gt;     [5]    chr10 21806050-21806081      * |   0.02112   29.9573
+#&gt;     ...      ...               ...    ... .       ...       ...
+#&gt;   [886]    chr10          21810878      * |   5.24952   29.9573
+#&gt;   [887]    chr10          21810879      * |   5.83534   29.9573
+#&gt;   [888]    chr10 21810880-21810884      * |   6.44268   29.9573
+#&gt;   [889]    chr10 21810885-21810895      * |   7.07055   29.9573
+#&gt;   [890]    chr10 21810896-21810911      * |   6.44268   29.9573
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences from hg19 genome</code></pre>
 
@@ -482,9 +485,9 @@ Consortium.</p>
 <p>We can directly obtain the genome information from the header of the
 BAM file: in this case the reads were aligned to the hg19 genome build
 and there are no reads overlapping the mitochondrial genome.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">bam &lt;-<span class="st"> </span><span class="kw">read_bam</span>(h1_bam_sorted, <span class="dt">index =</span> h1_bam_sorted_index)</a>
-<a class="sourceLine" id="cb7-2" title="2">locations &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">get_genome_info</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="2-2-results.html#cb7-1"></a>bam &lt;-<span class="st"> </span><span class="kw">read_bam</span>(h1_bam_sorted, <span class="dt">index =</span> h1_bam_sorted_index)</span>
+<span id="cb7-2"><a href="2-2-results.html#cb7-2"></a>locations &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="2-2-results.html#cb7-3"></a><span class="st">  </span><span class="kw">get_genome_info</span>()</span></code></pre></div>
 <p>Next we only read in alignments that overlap the genomic locations
 we are interested in and select the query sequence. Note that
 the reading of the BAM file is deferred: only alignments that pass the filter
@@ -492,54 +495,54 @@ are loaded into memory. We can add another column representing the GC proportion
 for each alignment using the <code>letterFrequency()</code> function from the <strong>Biostrings</strong>
 package <span class="citation">(Pagès et al. <a href="bibliography.html#ref-R-biostrings" role="doc-biblioref">2018</a>)</span>. After computing the GC proportion as the score
 column, we drop all other columns in the <em>GRanges</em> object.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">alignments &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span><span class="kw">filter_by_overlaps</span>(locations) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw">select</span>(seq) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb8-5" title="5">    <span class="dt">score =</span> <span class="kw">as.numeric</span>(<span class="kw">letterFrequency</span>(seq, <span class="st">&quot;GC&quot;</span>, <span class="dt">as.prob =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb8-6" title="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="st">  </span><span class="kw">select</span>(score)</a>
-<a class="sourceLine" id="cb8-8" title="8">alignments</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="2-2-results.html#cb8-1"></a>alignments &lt;-<span class="st"> </span>bam <span class="op">%&gt;%</span></span>
+<span id="cb8-2"><a href="2-2-results.html#cb8-2"></a><span class="st">  </span><span class="kw">filter_by_overlaps</span>(locations) <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="2-2-results.html#cb8-3"></a><span class="st">  </span><span class="kw">select</span>(seq) <span class="op">%&gt;%</span></span>
+<span id="cb8-4"><a href="2-2-results.html#cb8-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb8-5"><a href="2-2-results.html#cb8-5"></a>    <span class="dt">score =</span> <span class="kw">as.numeric</span>(<span class="kw">letterFrequency</span>(seq, <span class="st">&quot;GC&quot;</span>, <span class="dt">as.prob =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb8-6"><a href="2-2-results.html#cb8-6"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb8-7"><a href="2-2-results.html#cb8-7"></a><span class="st">  </span><span class="kw">select</span>(score)</span>
+<span id="cb8-8"><a href="2-2-results.html#cb8-8"></a>alignments</span></code></pre></div>
 <pre><code>#&gt; GRanges object with 8275595 ranges and 1 metadata column:
-#&gt;             seqnames            ranges strand |             score
-#&gt;                &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; |         &lt;numeric&gt;
-#&gt;         [1]    chr10       50044-50119      - | 0.276315789473684
-#&gt;         [2]    chr10       50050-50119      + |              0.25
-#&gt;         [3]    chr10       50141-50213      - | 0.447368421052632
-#&gt;         [4]    chr10       50203-50278      + | 0.263157894736842
-#&gt;         [5]    chr10       50616-50690      + | 0.276315789473684
-#&gt;         ...      ...               ...    ... .               ...
-#&gt;   [8275591]     chrY 57772745-57772805      - | 0.513157894736842
-#&gt;   [8275592]     chrY 57772751-57772800      + | 0.526315789473684
-#&gt;   [8275593]     chrY 57772767-57772820      + | 0.565789473684211
-#&gt;   [8275594]     chrY 57772812-57772845      + |              0.25
-#&gt;   [8275595]     chrY 57772858-57772912      + | 0.592105263157895
+#&gt;             seqnames            ranges strand |     score
+#&gt;                &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt;
+#&gt;         [1]    chr10       50044-50119      - |  0.276316
+#&gt;         [2]    chr10       50050-50119      + |  0.250000
+#&gt;         [3]    chr10       50141-50213      - |  0.447368
+#&gt;         [4]    chr10       50203-50278      + |  0.263158
+#&gt;         [5]    chr10       50616-50690      + |  0.276316
+#&gt;         ...      ...               ...    ... .       ...
+#&gt;   [8275591]     chrY 57772745-57772805      - |  0.513158
+#&gt;   [8275592]     chrY 57772751-57772800      + |  0.526316
+#&gt;   [8275593]     chrY 57772767-57772820      + |  0.565789
+#&gt;   [8275594]     chrY 57772812-57772845      + |  0.250000
+#&gt;   [8275595]     chrY 57772858-57772912      + |  0.592105
 #&gt;   -------
 #&gt;   seqinfo: 24 sequences from an unspecified genome</code></pre>
 <p>Finally, we create 10000nt tiles over the genome and compute the number
 of reads and average GC content over all reads that fall within
 each tile using an overlap join and merging endpoints.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">bins &lt;-<span class="st"> </span>locations <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw">tile_ranges</span>(<span class="dt">width =</span> 10000L)</a>
-<a class="sourceLine" id="cb10-3" title="3"></a>
-<a class="sourceLine" id="cb10-4" title="4">alignments_summary &lt;-<span class="st"> </span>bins <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-5" title="5"><span class="st">  </span><span class="kw">join_overlap_inner</span>(alignments) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-6" title="6"><span class="st">  </span><span class="kw">disjoin_ranges</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">avg_gc =</span> <span class="kw">mean</span>(score))</a>
-<a class="sourceLine" id="cb10-7" title="7">alignments_summary</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="2-2-results.html#cb10-1"></a>bins &lt;-<span class="st"> </span>locations <span class="op">%&gt;%</span></span>
+<span id="cb10-2"><a href="2-2-results.html#cb10-2"></a><span class="st">  </span><span class="kw">tile_ranges</span>(<span class="dt">width =</span> 10000L)</span>
+<span id="cb10-3"><a href="2-2-results.html#cb10-3"></a></span>
+<span id="cb10-4"><a href="2-2-results.html#cb10-4"></a>alignments_summary &lt;-<span class="st"> </span>bins <span class="op">%&gt;%</span></span>
+<span id="cb10-5"><a href="2-2-results.html#cb10-5"></a><span class="st">  </span><span class="kw">join_overlap_inner</span>(alignments) <span class="op">%&gt;%</span></span>
+<span id="cb10-6"><a href="2-2-results.html#cb10-6"></a><span class="st">  </span><span class="kw">disjoin_ranges</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">avg_gc =</span> <span class="kw">mean</span>(score))</span>
+<span id="cb10-7"><a href="2-2-results.html#cb10-7"></a>alignments_summary</span></code></pre></div>
 <pre><code>#&gt; GRanges object with 286030 ranges and 2 metadata columns:
-#&gt;            seqnames            ranges strand |         n            avg_gc
-#&gt;               &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;         &lt;numeric&gt;
-#&gt;        [1]    chr10       49999-59997      * |        88 0.369019138755981
-#&gt;        [2]    chr10       59998-69997      * |        65 0.434210526315789
-#&gt;        [3]    chr10       69998-79996      * |        56 0.386513157894737
-#&gt;        [4]    chr10       79997-89996      * |        71  0.51297257227576
-#&gt;        [5]    chr10       89997-99996      * |        64 0.387746710526316
-#&gt;        ...      ...               ...    ... .       ...               ...
-#&gt;   [286026]     chrY 57722961-57732958      * |        36 0.468201754385965
-#&gt;   [286027]     chrY 57732959-57742957      * |        38 0.469529085872576
-#&gt;   [286028]     chrY 57742958-57752956      * |        38 0.542936288088643
-#&gt;   [286029]     chrY 57752957-57762955      * |        42 0.510651629072682
-#&gt;   [286030]     chrY 57762956-57772954      * |       504 0.526942355889723
+#&gt;            seqnames            ranges strand |         n    avg_gc
+#&gt;               &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;numeric&gt;
+#&gt;        [1]    chr10       49999-59997      * |        88  0.369019
+#&gt;        [2]    chr10       59998-69997      * |        65  0.434211
+#&gt;        [3]    chr10       69998-79996      * |        56  0.386513
+#&gt;        [4]    chr10       79997-89996      * |        71  0.512973
+#&gt;        [5]    chr10       89997-99996      * |        64  0.387747
+#&gt;        ...      ...               ...    ... .       ...       ...
+#&gt;   [286026]     chrY 57722961-57732958      * |        36  0.468202
+#&gt;   [286027]     chrY 57732959-57742957      * |        38  0.469529
+#&gt;   [286028]     chrY 57742958-57752956      * |        38  0.542936
+#&gt;   [286029]     chrY 57752957-57762955      * |        42  0.510652
+#&gt;   [286030]     chrY 57762956-57772954      * |       504  0.526942
 #&gt;   -------
 #&gt;   seqinfo: 24 sequences from an unspecified genome; no seqlengths</code></pre>
 </div>
@@ -555,31 +558,31 @@ ratio, a quality control metric, within each chromosome in <em>GRanges</em> obje
 <p>First we filter out the indels and mitochondrial variants. Then we
 create a logical vector corresponding to whether there is a transition
 event.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">h1_snp_array &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;D&quot;</span>)), seqnames <span class="op">!=</span><span class="st"> &quot;M&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">transition =</span> (ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;A&quot;</span>))<span class="op">|</span></a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="st">                      </span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="2-2-results.html#cb12-1"></a>h1_snp_array &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></span>
+<span id="cb12-2"><a href="2-2-results.html#cb12-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;D&quot;</span>)), seqnames <span class="op">!=</span><span class="st"> &quot;M&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-3"><a href="2-2-results.html#cb12-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">transition =</span> (ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;A&quot;</span>))<span class="op">|</span></span>
+<span id="cb12-4"><a href="2-2-results.html#cb12-4"></a><span class="st">                      </span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>)))</span></code></pre></div>
 <p>We then compute the transition-transversion ratio over each chromosome using
 <code>group_by()</code> in combination with <code>summarize()</code> (figure <a href="2-2-results.html#fig:titv-viz">2.5</a>).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">ti_tv_results &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(seqnames) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_snps =</span> <span class="kw">n</span>(),</a>
-<a class="sourceLine" id="cb13-4" title="4">            <span class="dt">ti_tv =</span> <span class="kw">sum</span>(transition) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span>transition))</a>
-<a class="sourceLine" id="cb13-5" title="5">ti_tv_results</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2-2-results.html#cb13-1"></a>ti_tv_results &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></span>
+<span id="cb13-2"><a href="2-2-results.html#cb13-2"></a><span class="st">  </span><span class="kw">group_by</span>(seqnames) <span class="op">%&gt;%</span></span>
+<span id="cb13-3"><a href="2-2-results.html#cb13-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_snps =</span> <span class="kw">n</span>(),</span>
+<span id="cb13-4"><a href="2-2-results.html#cb13-4"></a>            <span class="dt">ti_tv =</span> <span class="kw">sum</span>(transition) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(<span class="op">!</span>transition))</span>
+<span id="cb13-5"><a href="2-2-results.html#cb13-5"></a>ti_tv_results</span></code></pre></div>
 <pre><code>#&gt; DataFrame with 24 rows and 3 columns
-#&gt;     seqnames    n_snps            ti_tv
-#&gt;        &lt;Rle&gt; &lt;integer&gt;        &lt;numeric&gt;
-#&gt; 1          Y      2226  1.4381161007667
-#&gt; 2          6    154246 3.32013219807305
-#&gt; 3         13     83736 3.40669403220714
-#&gt; 4         10    120035 3.49400973418195
-#&gt; 5          4    153243 3.29528828096533
-#&gt; ...      ...       ...              ...
-#&gt; 20        16     77538 3.19827819589583
-#&gt; 21        12    113208 3.47851887016378
-#&gt; 22        20     57073  3.7121036988111
-#&gt; 23        21     32349 3.50480434479877
-#&gt; 24         X     55495 3.58219800181653</code></pre>
+#&gt;     seqnames    n_snps     ti_tv
+#&gt;        &lt;Rle&gt; &lt;integer&gt; &lt;numeric&gt;
+#&gt; 1          Y      2226   1.43812
+#&gt; 2          6    154246   3.32013
+#&gt; 3         13     83736   3.40669
+#&gt; 4         10    120035   3.49401
+#&gt; 5          4    153243   3.29529
+#&gt; ...      ...       ...       ...
+#&gt; 20        16     77538   3.19828
+#&gt; 21        12    113208   3.47852
+#&gt; 22        20     57073   3.71210
+#&gt; 23        21     32349   3.50480
+#&gt; 24         X     55495   3.58220</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:titv-viz"></span>
 <img src="img/titv-viz-1.png" alt="The final result of computing quality control metrics over the SNP array data with plyranges, displayed as a dot plot. Chromosomes are ordered by their estimated transition-transversion ratio. A white reference line is drawn at the expected ratio for a human exome."" width="100%" />
 <p class="caption">
