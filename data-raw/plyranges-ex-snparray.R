@@ -3,7 +3,7 @@ library(readr)
 library(BiocFileCache)
 library(plyranges)
 
-bfc <- BiocFileCache(cache = here::here("data"))
+bfc <- BiocFileCache(cache = here::here("data"), ask = FALSE)
 
 rname <- "h1_snp_array"
 res <- bfcquery(bfc, rname)

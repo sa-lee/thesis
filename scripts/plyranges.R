@@ -5,12 +5,12 @@ library(Biostrings)
 library(plyranges)
 library(AnnotationHub)
 # bam and snp array resources are stored in BiocFileCache
-bfc <- BiocFileCache(cache = here::here("data"))
+bfc <- BiocFileCache(cache = here::here("data"), ask = FALSE)
 h1_bam_sorted <- bfcrpath(bfc, "GSM433167_BI.H3K27me3.sorted.bam")
 h1_bam_sorted_index <- bfcrpath(bfc, "GSM433167_BI.H3K27me3.sorted.bam.bai")
 h1_snp_array_path <- bfcrpath(bfc, "h1_snp_array") # this is an rds file
 # AnnotationHub resource for T-cell BigWig file
-bw_file <- AnnotationHub()[["AH33458"]]
+bw_file <- AnnotationHub(cache = here::here("data"))[["AH33458"]]
 
 ## ----load-bw---------------------------------------
 library(plyranges)

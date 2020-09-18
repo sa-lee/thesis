@@ -1,8 +1,6 @@
 # download and prepare BAM file example
-
 library(BiocFileCache)
-bfc <- BiocFileCache(cache = here::here("data"))
-
+bfc <- BiocFileCache(cache = here::here("data"), ask = FALSE)
 # ftp link on GEO
 url <- "ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM433nnn/GSM433167/suppl/GSM433167%5FBI%2EH3K27me3%2Ebam"
 fpath <- "GSM433167_BI.H3K27me3.bam"
