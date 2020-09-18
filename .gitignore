@@ -11,6 +11,9 @@ data-raw/*.txt.gz
 thesis\.tex
 img/signature.png
 docs/img/signature.png
+img/di.png
+docs/img/di.png
 diagram/
 comments/
-
+data/
+data/*.sqlite
