@@ -17,23 +17,6 @@ identifying interesting regions along the genome. The third interface empowers
 analysts to interrogate complex models using visual diagnostics. All 
 are provided as open source software packages. 
 
-## Caching local resources 
-
-The `data-raw/` directory provides scripts used to download and 
-cache large/raw files contained in this thesis. These are then managed
-and transferred into R friendly data formats and managed with
-**BiocFileCache**. 
-
-Processed data files are stored as `.rds` and are located in the `data`
-directory. Since some files are greater than 50Mb, in order to clone this 
-repository you will need to install (git lfs)[https://git-lfs.github.com/] and run 
-
-
-```
-git lfs install
-git clone https://github.com/sa-lee/thesis
-```
-
 ## Reproducibility
 
 The environment and R packages used to construct this thesis
@@ -44,6 +27,35 @@ code to install the packages used in this thesis:
 # install.packages("renv")
 renv::restore()
 ```
+
+The thesis can be compiled into both html and pdf format as follows:
+
+```zsh
+# uncomment if cache isn't setup
+# make hub
+# make bfcbam
+# make bfcsnp
+make both
+```
+
+## Caching local resources 
+
+The `data-raw/` directory provides scripts used to download and 
+cache large/raw files contained in this thesis. These are then managed
+and transferred into R friendly data formats and managed with
+**BiocFileCache** and **AnnotationHub**. 
+
+Processed data files are stored as `.rds` and are located in the `data` directory. 
+
+These files can be created via **BiocFileCache**
+by running the following at the command line:
+
+```zsh
+make hub
+make bfcbam
+make bfcsnp
+```
+
 
 ## Project Structure
 
