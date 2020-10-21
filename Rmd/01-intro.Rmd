@@ -2,7 +2,7 @@
 
 Exploratory data analysis (EDA) is a vital element of the modern 
 statistical workflow - it is an analyst’s first pass at 
-understanding their data; revealing all it’s messes and 
+understanding their data; revealing all its messes and 
 uncovering hidden insights [@Tukey1977-pn; @Grolemund2017-uc]. 
 It is an iterative process involving computation and visualization,
 leading to new hypotheses that can be tested and formalised using 

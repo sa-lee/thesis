@@ -291,7 +291,7 @@ from islands of coverage over chromosome. Here we will use **plyranges**
 to call peaks from islands of coverage above 8 then plot the region
 surrounding the tallest peak.
 
-Using **plyranges** and the the Bioconductor package **AnnotationHub** [@R-ahub]
+Using **plyranges** and the Bioconductor package **AnnotationHub** [@R-ahub]
 we can download and read BigWig files from ChIP-Seq experiments from 
 the Human Epigenome Roadmap project [@Roadmap-Epigenomics-Consortium2015-pr]. 
 Here we analyse a BigWig file corresponding to H3 lysine 27 trimethylation 
