@@ -17,3 +17,4 @@ diagram/
 comments/
 data/
 data/*.sqlite
+response/*.pdf
