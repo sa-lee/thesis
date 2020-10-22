@@ -288,7 +288,7 @@ our data via principal components to reduce dimensionality of $X$ prior to
 running the tour. Instead of picking projections at 
 random, a *guided tour* can be used to generate a sequence of 'interesting' 
 projections as quantified by an index function [@Cook1995-bi]. While our software, 
-**liminal** is able to  visualise guided tours, our focus in the case studies 
+**liminal**, is able to  visualise guided tours, our focus in the case studies 
 uses the grand tour to see global structure in the data. 
 
 ## Visual Design
