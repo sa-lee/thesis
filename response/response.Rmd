@@ -1,0 +1,72 @@
+---
+title: Thesis Amendments
+author: Stuart Lee
+output:
+  MonashEBSTemplates::memo:
+    includes:
+      in_header: preamble2.tex
+fontfamily: mathpazo
+---
+
+First, I would like to thank my examiners for their constructive feedback and insights. I am excited to incorporate their ideas into my future research. The point by point description of changes are below: the examiners' comments are in red and my response is in black.
+
+## Professor Levi Waldron {-}
+
+Thank you for your comments and identification of typographic errors.
+
+> p. 1 Introduction: it’s -> its
+
+Amended.
+
+> p. 16 “Using plyranges and the the”
+
+Amended.
+
+> p. 34: use of `dir` for a directory path string when `dir()` is a function returning contents of a directory path could be confusing. However, this chapter is already peer-reviewed and published so I would not change it.
+
+Noted. I can change this in the workflow for next Bioconductor release.
+
+> P. 43-44: Why is the genome (“hg38”) set using an endomorphic function, but style (“UCSC”) set using a replacement function (`seqlevelsStyle`)?
+
+At the time of writing, `plyranges` does not have any genome restyling functions, hence why the replacement function was used.
+
+> p. 77: Tensorflow “non-liner embedding” p. 77-78” “a lot of” -> many
+
+Amended.
+
+> p. 80: “its bounded above” ->it’s
+
+Amended.
+
+> p. 82: “Like, when, using” -> Like when using “While our software, liminal is able “ -> While our software, liminal, is able
+
+Amended.
+
+>Section 5.3.1 “Finding Gestalt: focus and context” - this is probably a clever metaphor, but I didn’t understand it.
+
+This was a reference to Buja, Cook, and Swayne (1996) paper mentioned in the paragraph above. Here "Gestalt" refers to Gestalt theory in perception and psychology, it refers to identifying patterns in visual forms.
+
+> p. 84: “Whether, points are near, or far” -> remove both commas
+
+Amended.
+
+>Figure 5.2 video https://player.vimeo.com/video/43963590 does not exist. The URL given in Table 5.1 is different and correct.
+
+Amended.
+
+
+> p. 98: “We have shown in the case studies, that” -> no comma
+
+Amended.
+
+
+## Assistant Professor Stephanie C. Hicks {-}
+
+Thank you for your thorough review. I am looking forward to incorporating your suggestions into future work.
+
+
+### General Comments
+
+
+
+
