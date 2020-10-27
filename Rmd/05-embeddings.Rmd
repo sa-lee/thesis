@@ -153,7 +153,7 @@ DR methods can be classified into two broad classes: linear and non-linear
 methods. Linear methods perform a linear transformation of the data, that is,
 $Y$ is a linear transformation of $X$; one example is principal components
 analysis (PCA) which performs an eigendecomposition of the estimated sample
-covariance matrix. The eigenvalues are sorted in decreasing order and represent
+covariance matrix [@Hotelling1933-ck]. The eigenvalues are sorted in decreasing order and represent
 the variance explained by each component (eigenvector). 
 A common approach to deciding on the number of principal components to retain is
 to plot the proportion of variance explained by each component and choose a 
