@@ -17,7 +17,7 @@ to the analyst's time, makes EDA difficult and neglected, which impacts the robu
 
 (ref:wflow-wrangle) In the wrangle phase of the workflow, data from an assay is imported into a programming language. It is then tidied into a new representation that should capture the biological semantics of the measurements. Following this, the representation can be transformed to generate new summaries. 
 
-(ref:wflow-integrate) Data from multiple assays can be combined together using modelling and transformations. Data and model results can be combined, tidied and transformed to have a common representation across different granularities of the genome.
+(ref:wflow-integrate) Data from multiple assays can be combined together using modelling and transformations to gain biological insight. This is achieved either via a statistical technique or more simply via joining data and model results so they have a common representation across different granularities of the genome.
 
 (ref:wflow-explore) Visualisation is a tool for making sense of models. Here we explore, how well a model has captured the structure within the data using interactive graphics.  
 
@@ -66,10 +66,10 @@ thought has gone into the design of data structures that enable interoperability
 between different tools, biological assays and analysis goals [@Huber2015-ei].
 
 Chapter \@ref(ch:plyranges) shows that the *tidy data* semantic is applicable
-to range-based genomics data and develops a *fluent* interface to transforming
+to in memory data measured along the genome and develops a *fluent* interface to transforming
 it called **plyranges**. The software provides a framework to an assist
-an analyst to compose queries on genomics datasets. This chapter has been 
-published as @Lee2019.
+an analyst to compose queries on genomics datasets.  Our software is agnostic to how counts from bulk assays have been obtained. Indeed, we have used data obtained from both alignment and quantification based approaches throughout the thesis to perform useful analyses.  
+This chapter has been  published as @Lee2019.
 
 ## Integration of genomic data structures {#sec:integrate}
 
@@ -81,9 +81,9 @@ It is rare that a biological data analysis will involve
 a single measurement assay or that only one aspect of a measurement assay
 will be of interest to the biological question under study (figure \@ref(fig:wflow-integrate)). While there are 
 many approaches to integrating data sets from multiple assays using multivariate
-statistical techniques [@Meng2016-pz], in chapter \@ref(ch:fluentGenomics)
+statistical techniques [@Meng2016-pz; @Stein-OBrien2018-bk] and data structures to represent them [@Ramos2017-kn], there has been little thought given to the interoperability between these approaches and the **tidyverse**. In chapter \@ref(ch:fluentGenomics)
 we describe a simple end-to-end workflow for integrating 
-results along the genome using **plyranges**. This workflow also shows that
+results along the genome using **plyranges**. This workflow shows that
 our grammar based approach does not impair interoperability between
 the **tidyverse** and Bioconductor approaches, and in fact they work seamlessly
 together. This chapter has been published as @Lee2020-ie. 
