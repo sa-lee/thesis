@@ -51,7 +51,7 @@ concepts of fluent interfaces and tidy data within the Bioconductor community,
 which has led to several developments currently in place that are exploring
 different approaches for fluent interfaces for other types of omics data.
 The **plyranges** package is available to download from 
-https://bioconductor.org/packages/release/bioc/html/plyranges.html and
+https://bioconductor.org/packages/plyranges and
 the **fluentGenomics** workflow is available to download from 
 https://bioconductor.org/packages/release/workflows/html/fluentGenomics.html.
 
