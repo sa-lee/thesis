@@ -619,11 +619,13 @@ used Louvain clustering to generate clusters [@Blondel2008-bx].
 
 To check and verify the clustering we construct a **liminal** view. 
 We tour the first five PCs (approximately 20% of the variance in expression),
-alongside the t-SNE view which was computed from all 25 PCs. 
-Due to latency of the interface we do a weighted sample of  the rows based on
+alongside the t-SNE view which was computed from all 25 PCs. We have selected only the first five PCs because there is a large drop in the percentage of variance explained after the fifth component, with each component after contributing less than one percent of variance.
+Consequently, increasing the number of PCs to tour would increase the dimensionality and volume of the subspace we are touring but without adding any additional signal to the view.
+
+Due to latency of the **liminal** interface we do a weighted sample of  the rows based on
 cluster membership, leaving us with approximately 10 per cent of the original
 data size - 4,590 cells. Although this is not ideal, it still allows us to
-get a sense of the shape of the clusters as seen from the linked video in figure \@ref(fig:mouse-01).
+get a sense of the shape of the clusters as seen from the linked video in figure \@ref(fig:mouse-01). If one was interested in performing more in-depth cluster analysis we recommend an iterative approach of removing large clusters and then re-running the **liminal** view as a way finding more granular cluster structure.
 
 
 (ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data, a video of the tour animation is available at https://player.vimeo.com/video/439635812. 
@@ -721,10 +723,9 @@ There are some limitations
 in using the **liminal** interface for larger datasets. First,
 t-SNE avoids the crowding problem, points are separated into distinct regions
 on the display canvas, while for the tour, points are concentrated in the
-centre of the projection and become difficult to see. 
-Second, as $n$ increases the animation becomes slower as there is more data
-passing from the server to the client. Both of these issues could be mitigated
-through alternate tour paths and displays. The recent work
+centre of the projection and become difficult to see. We have recently proposed a simple non-linear transformation for the tour called a sage tour that aims to fix this problem [@Laa2020-vk]. 
+Second, as $n$ increases both the embedding view and tour view become harder to read due to over-plotting, while the interactivity and animation become slower as there is more data passing from the server to the client.
+For the tasks we have looked at in this paper, where shape and density are important to the analyst, we think that better displays and sub-sampling strategies are more useful than being able to look at every single point on the canvas. We showed in our single cell clustering case study that doing a weighted sample based on cluster membership still allowed us to get a sense of relative cluster orientation, however there are alternative sampling approaches that could be applied, like selecting points close to the cluster centres. Alternative displays via statistical transformations could also mitigate the need to show all of the data. Recent work
 by @Laa2020-wr is a promising area for further investigation, as well as
 work from topological statistics [@Rieck2017-kk; @Genovese2017-iq]. 
 

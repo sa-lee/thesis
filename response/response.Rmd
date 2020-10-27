@@ -107,6 +107,51 @@ I have expanded this section to reflect these comments.
 Most of the comments pertain to the use and learning of the **plyranges** package. I believe they are best addressed through the **plyranges** documentation and vignette. I have amended the thesis to include the package vignette as an appendix. 
 
 
+### Chapter 5 comments
+
+>  Pg 77: “non-liner” should be “non-linear”
+
+Amended. 
+
+>  Pg 78: “produces” should be “produce”
+
+Amended.
+
+
+> Pg 78: Could you add a reference for PCA?
+
+Amended.
+> Pg 80 (also in 81): The way “tSNE” was written in “this essentially turns t-SNE” looks very different
+than previously written stylistically. Could this be converted to the way you were originally referring to
+it?
+
+Amended. 
+
+> Pg 87: “inn” should be “in”
+
+Amended.
+
+> Pg 88: Inside Figure 5.1A and B, could you have liminal label which plot is which i.e. t-SNE vs tour
+view. Also, could axis labels be added? Maybe also add this information to the Figure legend? – Pg 89 – same comment
+
+I think this is not obvious in the static figure but is obvious in the video and when using the **liminal** package that the embedding view is always on the left, and the tour view is on the right (it will be the view that is animated). I think the suggestion of titling the views is a good one and will place that into the software in future. Regarding axis labels, I don't think they make sense for the tour since it's really a linear combination of multiple variables (there's an option to switch on a biplot view for the tour). I am also reluctant to include them for t-SNE because they can be misleading for the reasons mentioned in the chapter, however I do think this would be good to have as an option for **liminal** in future. 
+
+> Pg 90: I believe there should be a period after “tree structure data (figure 5.3)” instead of a comma
+
+Amended.
+
+> Pg 94: Can you comment on the scRNA-seq example where you only pick first 5 PCs that explained only 20% of the variance. Or more generally, what is the trade-off on the liminal view by picking more or less PCs along with a NLDR method. Do you have recommendations for the user on how many
+PCs to pick for and optimal liminal view?
+
+I have amended section 5.5.3 to provide more details about why the first five components were selected, and how to choose variables to tour.  
+
+> Pg 94: Can you comment on the limits of the liminal view in terms of number of observations that
+one can visualize in a given tour? Have you thought about strategies for making this scale with more observations?
+– Ah, I see you touched on this at the end of the discussion of the capture. I think this is a really important point that would be greatly appreciated going forward.
+– And it was talked about in Chapter 6 in Future Work. Incorporating this more in the middle of the chapter with tables specifying what is or is not reasonable to plot in terms of the number of observations, would be helpful.
+
+I have amended section 5.5.3 to discuss a strategy in the specific case of cluster analysis. I have also amended the discussion of the chapter with specific work that can mitigate the need to show all of the data. In the case of tasks performed for clustering I don't think it is useful or necessary to show all points in the scatter plot when we are most interested in density and shapes. There is interesting work to be done here in future for appropriate sampling strategies or aggregations that could be done prior to producing a visualisation. 
+
 ### Chapter 6 comments
 
 
