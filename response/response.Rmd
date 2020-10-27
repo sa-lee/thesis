@@ -65,8 +65,53 @@ Amended.
 Thank you for your thorough review. I am looking forward to incorporating your suggestions into future work.
 
 
-### General Comments
+### Addressing General Comments
+
+#### On Scalability 
+
+I would like to comment that I have avoided performance benchmarking for two main reasons. First, I believe it is out of scope for the thesis, since my focus has been on the development of programming and user interfaces. Second, my implementation of **plyranges** is deeply entwined with the underlying core Bioconductor infrastructure, especially the data structures and methods found in the **IRanges** and **GenomicRanges** packages. This would result any benchmarking of **plyranges** turning into benchmarking of those packages which has been done elsewhere. 
+
+Regarding out of memory data structures like `DelayedArray`, it is possible to incorporate them as columns to a `GRanges` object and then the full **plyranges** API would be available. Currently, there appear to be no plans in Bioconductor for out of memory `Ranges`, and indeed there are times where it is more appropriate to switch to a rectangular data layout for computation, as is reflected in the workflow described in chapter 3 of the thesis. I believe the development of a scalable out of memory interface for genomic data analysis will require the transformation between data measured along the genome (covered by the **plyranges** API) and the rectangular layouts that enable out of disk computing like `SummarizedExperiment`. This is an exciting research area that I would like to explore in the currently under development **plyexperiment**.
+
+#### On alignment vs. pseudoalignment 
+
+I have amended the introduction to include a note about alignment. 
+I believe it is out of scope to go into the gritty details of when to use alignment or pseudo-alignment methods to obtain counts for RNA-seq data. I have included results from both approaches to highlight that **plyranges** is agnostic to the method used and is flexible for many types of data.
 
 
+### Chapter 1 comments
+
+> As you introduced a “biological data science workflow” in this chapter and did a great job of walking the read through the wrangling, combining and visualizing components of the workflow, I was hoping you would touch on tools for communication too. I understand this is outside the scope of the thesis, but I still think it would be nice to at least mention work others have done in this area.
+
+I agree that it would be nice but it is out of scope for the thesis. Communication is extremely broad and I feel that including it here would distract from the focus of my thesis.
+
+> Pg 1: I thought it was strange that the words “figure” in e.g. “figure 1.1” were not capitalized. Would recommend changing to “Figure 1.1” throughout.
+> Pg 1: Recommend capitalizing the word “chapter” when referring to specific chapters e.g. “chapter 2”.
+
+TODO
+
+> Pg 2: Figure 1.1 has been modified to include “combine”, but the caption does not reflect what is meant by that. Would recommend modifying caption to reflect importance of combining experimental assays together to gain biological insight.
+
+Amended. 
+
+> Pg 3: you introduce “range-based genomics data”, but it is not clear what is meant by that. More explanation would be helpful.
+
+I have clarified what this refers to.
+
+>Pg 4: In Section 1.2, could you add a few more references on existing methods for integration of genomic data and then re-emphasize the point that however existing methods have not thought much about the interoperability between the tidyverse and Bioconductor approaches?
+
+I have expanded this section to reflect these comments.
+
+### Chapter 2 comments
+
+Most of the comments pertain to the use and learning of the **plyranges** package. I believe they are best addressed through the **plyranges** documentation and vignette. I have amended the thesis to include the package vignette as an appendix. 
+
+
+### Chapter 6 comments
+
+
+> Pg 102: Instead of https://bioconductor.org/packages/release/bioc/html/plyranges.html, you can always use the short version https://bioconductor.org/packages/plyranges which points to the release version.
+
+Amended.
 
 
