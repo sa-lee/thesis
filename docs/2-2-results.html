@@ -215,6 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
 <li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-getting-started-with-the-plyranges-package.html"><a href="A-getting-started-with-the-plyranges-package.html"><i class="fa fa-check"></i><b>A</b> Getting started with the <strong>plyranges</strong> package</a><ul>
+<li class="chapter" data-level="A.1" data-path="A-1-ranges-revisited.html"><a href="A-1-ranges-revisited.html"><i class="fa fa-check"></i><b>A.1</b> <em>Ranges</em> revisited</a></li>
+<li class="chapter" data-level="A.2" data-path="A-2-constructing-ranges.html"><a href="A-2-constructing-ranges.html"><i class="fa fa-check"></i><b>A.2</b> Constructing <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.3" data-path="A-3-arithmetic-on-ranges.html"><a href="A-3-arithmetic-on-ranges.html"><i class="fa fa-check"></i><b>A.3</b> Arithmetic on Ranges</a></li>
+<li class="chapter" data-level="A.4" data-path="A-4-grouping-ranges.html"><a href="A-4-grouping-ranges.html"><i class="fa fa-check"></i><b>A.4</b> Grouping <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.5" data-path="A-5-restricting-ranges.html"><a href="A-5-restricting-ranges.html"><i class="fa fa-check"></i><b>A.5</b> Restricting <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.6" data-path="A-6-summarising-ranges.html"><a href="A-6-summarising-ranges.html"><i class="fa fa-check"></i><b>A.6</b> Summarising <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.7" data-path="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><a href="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><i class="fa fa-check"></i><b>A.7</b> Joins, or another way at looking at overlaps between <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.8" data-path="A-8-grouping-by-overlaps.html"><a href="A-8-grouping-by-overlaps.html"><i class="fa fa-check"></i><b>A.8</b> Grouping by overlaps</a></li>
+<li class="chapter" data-level="A.9" data-path="A-9-reading-genomic-files.html"><a href="A-9-reading-genomic-files.html"><i class="fa fa-check"></i><b>A.9</b> Reading Genomic Files</a></li>
+<li class="chapter" data-level="A.10" data-path="A-10-learning-more.html"><a href="A-10-learning-more.html"><i class="fa fa-check"></i><b>A.10</b> Learning more</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
 <li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
@@ -254,7 +267,7 @@ Figure 2.1: An illustration of the <em>GRanges</em> data model for a sample from
 for the chromosome, start and end coordinates, and the strand, along
 with an arbitrary set of additional columns, consisting of
 measurements or metadata specific to the data type or experiment
-(figure <a href="2-2-results.html#fig:GRanges">2.1</a>). <em>GRanges</em> balances flexibility with formal
+(Figure <a href="2-2-results.html#fig:GRanges">2.1</a>). <em>GRanges</em> balances flexibility with formal
 constraints, so that it is applicable to virtually any genomic
 workflow, while also being semantically rich enough to support
 high-level operations on genomic ranges. As a core data structure,
@@ -337,7 +350,7 @@ ranges are retained in the joined range. All join operators in the
 <strong>plyranges</strong> DSL generate a set of hits based on overlap or proximity
 of ranges and use those hits to merge the two datasets in different
 ways. There are four supported matching algorithms: <em>overlap</em>,
-<em>nearest</em>, <em>precede</em>, and <em>follow</em> (figure
+<em>nearest</em>, <em>precede</em>, and <em>follow</em> (Figure
 <a href="2-2-results.html#fig:olaps-fig">2.2</a>). We can further restrict the
 matching by whether the query is completely <em>within</em> the subject, and
 adding the <em>directed</em> suffix ensures that matching ranges have the
@@ -364,7 +377,7 @@ operations can be performed over partitions formed
 using the <code>group_by()</code> modifier. Together with our algebra for arithmetic and
 merging, these operations conform to the semantics and syntax of the
 <strong>dplyr</strong> grammar. Consequently, <strong>plyranges</strong> code is generally more compact
-than the equivalent <strong>GenomicRanges</strong> code (figure <a href="2-2-results.html#fig:code-comparison">2.3</a>).</p>
+than the equivalent <strong>GenomicRanges</strong> code (Figure <a href="2-2-results.html#fig:code-comparison">2.3</a>).</p>
 </div>
 </div>
 <div id="developing-workflows-with-plyranges" class="section level3">
@@ -382,7 +395,7 @@ visualization.</p>
 from islands of coverage over chromosome. Here we will use <strong>plyranges</strong>
 to call peaks from islands of coverage above 8 then plot the region
 surrounding the tallest peak.</p>
-<p>Using <strong>plyranges</strong> and the the Bioconductor package <strong>AnnotationHub</strong> <span class="citation">(Morgan <a href="bibliography.html#ref-R-ahub" role="doc-biblioref">2017</a>)</span>
+<p>Using <strong>plyranges</strong> and the Bioconductor package <strong>AnnotationHub</strong> <span class="citation">(Morgan <a href="bibliography.html#ref-R-ahub" role="doc-biblioref">2017</a>)</span>
 we can download and read BigWig files from ChIP-Seq experiments from
 the Human Epigenome Roadmap project <span class="citation">(Roadmap Epigenomics Consortium et al. <a href="bibliography.html#ref-Roadmap-Epigenomics-Consortium2015-pr" role="doc-biblioref">2015</a>)</span>.
 Here we analyse a BigWig file corresponding to H3 lysine 27 trimethylation
@@ -449,7 +462,7 @@ we filter to find the coordinates of the peak containing the maximum coverage
 score. We can then find a 5000 nt region centered around the maximum position
 by anchoring and modifying the width.</p>
 <p>Finally, the overlap inner join is used to restrict the chromosome 10
-coverage islands, to the islands that are contained in the 5000nt region that surrounds the max peak (figure <a href="2-2-results.html#fig:peak-viz">2.4</a>).</p>
+coverage islands, to the islands that are contained in the 5000nt region that surrounds the max peak (Figure <a href="2-2-results.html#fig:peak-viz">2.4</a>).</p>
 <pre><code>#&gt; GRanges object with 890 ranges and 2 metadata columns:
 #&gt;         seqnames            ranges strand |   score.x   score.y
 #&gt;            &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;numeric&gt; &lt;numeric&gt;
@@ -563,7 +576,7 @@ event.</p>
 <span id="cb12-3"><a href="2-2-results.html#cb12-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">transition =</span> (ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;G&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;G&quot;</span>,<span class="st">&quot;A&quot;</span>))<span class="op">|</span></span>
 <span id="cb12-4"><a href="2-2-results.html#cb12-4"></a><span class="st">                      </span>(ref <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>alt <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>)))</span></code></pre></div>
 <p>We then compute the transition-transversion ratio over each chromosome using
-<code>group_by()</code> in combination with <code>summarize()</code> (figure <a href="2-2-results.html#fig:titv-viz">2.5</a>).</p>
+<code>group_by()</code> in combination with <code>summarize()</code> (Figure <a href="2-2-results.html#fig:titv-viz">2.5</a>).</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="2-2-results.html#cb13-1"></a>ti_tv_results &lt;-<span class="st"> </span>h1_snp_array <span class="op">%&gt;%</span></span>
 <span id="cb13-2"><a href="2-2-results.html#cb13-2"></a><span class="st">  </span><span class="kw">group_by</span>(seqnames) <span class="op">%&gt;%</span></span>
 <span id="cb13-3"><a href="2-2-results.html#cb13-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_snps =</span> <span class="kw">n</span>(),</span>

@@ -215,6 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
 <li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-getting-started-with-the-plyranges-package.html"><a href="A-getting-started-with-the-plyranges-package.html"><i class="fa fa-check"></i><b>A</b> Getting started with the <strong>plyranges</strong> package</a><ul>
+<li class="chapter" data-level="A.1" data-path="A-1-ranges-revisited.html"><a href="A-1-ranges-revisited.html"><i class="fa fa-check"></i><b>A.1</b> <em>Ranges</em> revisited</a></li>
+<li class="chapter" data-level="A.2" data-path="A-2-constructing-ranges.html"><a href="A-2-constructing-ranges.html"><i class="fa fa-check"></i><b>A.2</b> Constructing <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.3" data-path="A-3-arithmetic-on-ranges.html"><a href="A-3-arithmetic-on-ranges.html"><i class="fa fa-check"></i><b>A.3</b> Arithmetic on Ranges</a></li>
+<li class="chapter" data-level="A.4" data-path="A-4-grouping-ranges.html"><a href="A-4-grouping-ranges.html"><i class="fa fa-check"></i><b>A.4</b> Grouping <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.5" data-path="A-5-restricting-ranges.html"><a href="A-5-restricting-ranges.html"><i class="fa fa-check"></i><b>A.5</b> Restricting <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.6" data-path="A-6-summarising-ranges.html"><a href="A-6-summarising-ranges.html"><i class="fa fa-check"></i><b>A.6</b> Summarising <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.7" data-path="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><a href="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><i class="fa fa-check"></i><b>A.7</b> Joins, or another way at looking at overlaps between <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.8" data-path="A-8-grouping-by-overlaps.html"><a href="A-8-grouping-by-overlaps.html"><i class="fa fa-check"></i><b>A.8</b> Grouping by overlaps</a></li>
+<li class="chapter" data-level="A.9" data-path="A-9-reading-genomic-files.html"><a href="A-9-reading-genomic-files.html"><i class="fa fa-check"></i><b>A.9</b> Reading Genomic Files</a></li>
+<li class="chapter" data-level="A.10" data-path="A-10-learning-more.html"><a href="A-10-learning-more.html"><i class="fa fa-check"></i><b>A.10</b> Learning more</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
 <li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
@@ -240,20 +253,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.2</span> Import Data as a <em>SummarizedExperiment</em></h2>
 <div id="using-tximeta-to-import-rna-seq-quantification-data" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Using <strong>tximeta</strong> to import RNA-seq quantification data</h3>
-<p>First, we specify a directory <code>dir</code>, where the quantification files are stored.
+<p>First, we specify a directory <code>path</code>, where the quantification files are stored.
 You could simply specify this directory with:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="3-2-se.html#cb17-1"></a>dir &lt;-<span class="st"> &quot;/path/to/quant/files&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="3-2-se.html#cb17-1"></a>path &lt;-<span class="st"> &quot;/path/to/quant/files&quot;</span></span></code></pre></div>
 <p>where the path is relative to your current R session. However, in this case we
 have distributed the files in the <strong>macrophage</strong> package. The relevant directory
 and associated files can be located using <code>system.file()</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="3-2-se.html#cb18-1"></a>dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package=</span><span class="st">&quot;macrophage&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="3-2-se.html#cb18-1"></a>path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package=</span><span class="st">&quot;macrophage&quot;</span>)</span></code></pre></div>
 <p>Information about the experiment is contained in the <code>coldata.csv</code> file. We
 leverage the <strong>dplyr</strong> and <strong>readr</strong> packages (as part of the <strong>tidyverse</strong>) to read
 this file into R <span class="citation">(Wickham et al. <a href="bibliography.html#ref-tidyverse" role="doc-biblioref">2019</a>)</span>. We will see later that <strong>plyranges</strong> extends these
 packages to accommodate genomic ranges.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="3-2-se.html#cb19-1"></a><span class="kw">library</span>(readr)</span>
 <span id="cb19-2"><a href="3-2-se.html#cb19-2"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb19-3"><a href="3-2-se.html#cb19-3"></a>colfile &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, <span class="st">&quot;coldata.csv&quot;</span>)</span>
+<span id="cb19-3"><a href="3-2-se.html#cb19-3"></a>colfile &lt;-<span class="st"> </span><span class="kw">file.path</span>(path, <span class="st">&quot;coldata.csv&quot;</span>)</span>
 <span id="cb19-4"><a href="3-2-se.html#cb19-4"></a>coldata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(colfile) <span class="op">%&gt;%</span></span>
 <span id="cb19-5"><a href="3-2-se.html#cb19-5"></a><span class="st">  </span><span class="kw">select</span>(</span>
 <span id="cb19-6"><a href="3-2-se.html#cb19-6"></a>    names,</span>
@@ -262,7 +275,7 @@ packages to accommodate genomic ranges.</p>
 <span id="cb19-9"><a href="3-2-se.html#cb19-9"></a>    <span class="dt">condition =</span> condition_name</span>
 <span id="cb19-10"><a href="3-2-se.html#cb19-10"></a>  ) <span class="op">%&gt;%</span></span>
 <span id="cb19-11"><a href="3-2-se.html#cb19-11"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb19-12"><a href="3-2-se.html#cb19-12"></a>    <span class="dt">files =</span> <span class="kw">file.path</span>(dir, <span class="st">&quot;quants&quot;</span>, names, <span class="st">&quot;quant.sf.gz&quot;</span>),</span>
+<span id="cb19-12"><a href="3-2-se.html#cb19-12"></a>    <span class="dt">files =</span> <span class="kw">file.path</span>(path, <span class="st">&quot;quants&quot;</span>, names, <span class="st">&quot;quant.sf.gz&quot;</span>),</span>
 <span id="cb19-13"><a href="3-2-se.html#cb19-13"></a>    <span class="dt">line =</span> <span class="kw">factor</span>(line),</span>
 <span id="cb19-14"><a href="3-2-se.html#cb19-14"></a>    <span class="dt">condition =</span> <span class="kw">relevel</span>(<span class="kw">factor</span>(condition), <span class="st">&quot;naive&quot;</span>)</span>
 <span id="cb19-15"><a href="3-2-se.html#cb19-15"></a>  )</span>
@@ -310,13 +323,13 @@ metadata via FTP, unless it is already cached locally. The <strong>tximeta</stro
 can also be used without an internet connection, in this case the linked
 transcriptome can be created directly from a <strong>Salmon</strong> index and gtf.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="3-2-se.html#cb23-1"></a><span class="kw">makeLinkedTxome</span>(</span>
-<span id="cb23-2"><a href="3-2-se.html#cb23-2"></a>  <span class="dt">indexDir=</span><span class="kw">file.path</span>(dir, <span class="st">&quot;gencode.v29_salmon_0.12.0&quot;</span>),</span>
+<span id="cb23-2"><a href="3-2-se.html#cb23-2"></a>  <span class="dt">indexDir=</span><span class="kw">file.path</span>(path, <span class="st">&quot;gencode.v29_salmon_0.12.0&quot;</span>),</span>
 <span id="cb23-3"><a href="3-2-se.html#cb23-3"></a>  <span class="dt">source=</span><span class="st">&quot;Gencode&quot;</span>,</span>
 <span id="cb23-4"><a href="3-2-se.html#cb23-4"></a>  <span class="dt">organism=</span><span class="st">&quot;Homo sapiens&quot;</span>,</span>
 <span id="cb23-5"><a href="3-2-se.html#cb23-5"></a>  <span class="dt">release=</span><span class="st">&quot;29&quot;</span>,</span>
 <span id="cb23-6"><a href="3-2-se.html#cb23-6"></a>  <span class="dt">genome=</span><span class="st">&quot;GRCh38&quot;</span>,</span>
 <span id="cb23-7"><a href="3-2-se.html#cb23-7"></a>  <span class="dt">fasta=</span><span class="st">&quot;gencode.v29.transcripts.fa.gz&quot;</span>, <span class="co"># ftp link to fasta file</span></span>
-<span id="cb23-8"><a href="3-2-se.html#cb23-8"></a>  <span class="dt">gtf=</span><span class="kw">file.path</span>(dir, <span class="st">&quot;gencode.v29.annotation.gtf.gz&quot;</span>), <span class="co"># local version</span></span>
+<span id="cb23-8"><a href="3-2-se.html#cb23-8"></a>  <span class="dt">gtf=</span><span class="kw">file.path</span>(path, <span class="st">&quot;gencode.v29.annotation.gtf.gz&quot;</span>), <span class="co"># local version</span></span>
 <span id="cb23-9"><a href="3-2-se.html#cb23-9"></a>  <span class="dt">write=</span><span class="ot">FALSE</span></span>
 <span id="cb23-10"><a href="3-2-se.html#cb23-10"></a>)</span></code></pre></div>
 <p>Because <strong>tximeta</strong> knows the correct reference transcriptome, we can ask

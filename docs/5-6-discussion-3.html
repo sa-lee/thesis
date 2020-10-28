@@ -215,6 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
 <li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-getting-started-with-the-plyranges-package.html"><a href="A-getting-started-with-the-plyranges-package.html"><i class="fa fa-check"></i><b>A</b> Getting started with the <strong>plyranges</strong> package</a><ul>
+<li class="chapter" data-level="A.1" data-path="A-1-ranges-revisited.html"><a href="A-1-ranges-revisited.html"><i class="fa fa-check"></i><b>A.1</b> <em>Ranges</em> revisited</a></li>
+<li class="chapter" data-level="A.2" data-path="A-2-constructing-ranges.html"><a href="A-2-constructing-ranges.html"><i class="fa fa-check"></i><b>A.2</b> Constructing <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.3" data-path="A-3-arithmetic-on-ranges.html"><a href="A-3-arithmetic-on-ranges.html"><i class="fa fa-check"></i><b>A.3</b> Arithmetic on Ranges</a></li>
+<li class="chapter" data-level="A.4" data-path="A-4-grouping-ranges.html"><a href="A-4-grouping-ranges.html"><i class="fa fa-check"></i><b>A.4</b> Grouping <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.5" data-path="A-5-restricting-ranges.html"><a href="A-5-restricting-ranges.html"><i class="fa fa-check"></i><b>A.5</b> Restricting <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.6" data-path="A-6-summarising-ranges.html"><a href="A-6-summarising-ranges.html"><i class="fa fa-check"></i><b>A.6</b> Summarising <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.7" data-path="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><a href="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><i class="fa fa-check"></i><b>A.7</b> Joins, or another way at looking at overlaps between <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.8" data-path="A-8-grouping-by-overlaps.html"><a href="A-8-grouping-by-overlaps.html"><i class="fa fa-check"></i><b>A.8</b> Grouping by overlaps</a></li>
+<li class="chapter" data-level="A.9" data-path="A-9-reading-genomic-files.html"><a href="A-9-reading-genomic-files.html"><i class="fa fa-check"></i><b>A.9</b> Reading Genomic Files</a></li>
+<li class="chapter" data-level="A.10" data-path="A-10-learning-more.html"><a href="A-10-learning-more.html"><i class="fa fa-check"></i><b>A.10</b> Learning more</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
 <li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
@@ -273,11 +286,10 @@ further investigate mismatches between the <span class="math inline">\(k\)</span
 <p>There are some limitations
 in using the <strong>liminal</strong> interface for larger datasets. First,
 t-SNE avoids the crowding problem, points are separated into distinct regions
-on the display canvas, while for the tour, points are concentrated in the
-centre of the projection and become difficult to see.
-Second, as <span class="math inline">\(n\)</span> increases the animation becomes slower as there is more data
-passing from the server to the client. Both of these issues could be mitigated
-through alternate tour paths and displays. The recent work
+on the display canvas. For the tour, points are concentrated in the
+centre of the projection and become difficult to see. We have recently proposed a simple non-linear transformation for the tour called a sage tour that aims to fix this problem <span class="citation">(Laa, Cook, and Lee <a href="bibliography.html#ref-Laa2020-vk" role="doc-biblioref">2020</a>)</span>.
+Second, as <span class="math inline">\(n\)</span> increases both the embedding view and tour view become harder to read due to over-plotting, while the interactivity and animation become slower as there is more data passing from the server to the client.
+For the tasks we have looked at in this paper, where shape and density are important to the analyst, we think that better displays and sub-sampling strategies are more useful than being able to look at every single point on the canvas. We showed in our single cell clustering case study that doing a weighted sample based on cluster membership still allowed us to get a sense of relative cluster orientation, however there are alternative sampling approaches that could be applied, like selecting points close to the cluster centres. Alternative displays via statistical transformations could also mitigate the need to show all of the data. Recent work
 by <span class="citation">Laa et al. (<a href="bibliography.html#ref-Laa2020-wr" role="doc-biblioref">2020</a>)</span> is a promising area for further investigation, as well as
 work from topological statistics <span class="citation">(Rieck <a href="bibliography.html#ref-Rieck2017-kk" role="doc-biblioref">2017</a>; Genovese et al. <a href="bibliography.html#ref-Genovese2017-iq" role="doc-biblioref">2017</a>)</span>.</p>
 </div>

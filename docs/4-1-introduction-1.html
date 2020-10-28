@@ -215,6 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
 <li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-getting-started-with-the-plyranges-package.html"><a href="A-getting-started-with-the-plyranges-package.html"><i class="fa fa-check"></i><b>A</b> Getting started with the <strong>plyranges</strong> package</a><ul>
+<li class="chapter" data-level="A.1" data-path="A-1-ranges-revisited.html"><a href="A-1-ranges-revisited.html"><i class="fa fa-check"></i><b>A.1</b> <em>Ranges</em> revisited</a></li>
+<li class="chapter" data-level="A.2" data-path="A-2-constructing-ranges.html"><a href="A-2-constructing-ranges.html"><i class="fa fa-check"></i><b>A.2</b> Constructing <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.3" data-path="A-3-arithmetic-on-ranges.html"><a href="A-3-arithmetic-on-ranges.html"><i class="fa fa-check"></i><b>A.3</b> Arithmetic on Ranges</a></li>
+<li class="chapter" data-level="A.4" data-path="A-4-grouping-ranges.html"><a href="A-4-grouping-ranges.html"><i class="fa fa-check"></i><b>A.4</b> Grouping <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.5" data-path="A-5-restricting-ranges.html"><a href="A-5-restricting-ranges.html"><i class="fa fa-check"></i><b>A.5</b> Restricting <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.6" data-path="A-6-summarising-ranges.html"><a href="A-6-summarising-ranges.html"><i class="fa fa-check"></i><b>A.6</b> Summarising <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.7" data-path="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><a href="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><i class="fa fa-check"></i><b>A.7</b> Joins, or another way at looking at overlaps between <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.8" data-path="A-8-grouping-by-overlaps.html"><a href="A-8-grouping-by-overlaps.html"><i class="fa fa-check"></i><b>A.8</b> Grouping by overlaps</a></li>
+<li class="chapter" data-level="A.9" data-path="A-9-reading-genomic-files.html"><a href="A-9-reading-genomic-files.html"><i class="fa fa-check"></i><b>A.9</b> Reading Genomic Files</a></li>
+<li class="chapter" data-level="A.10" data-path="A-10-learning-more.html"><a href="A-10-learning-more.html"><i class="fa fa-check"></i><b>A.10</b> Learning more</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
 <li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
@@ -239,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-1" class="section level2">
 <h2><span class="header-section-number">4.1</span> Introduction</h2>
 <p>In high-throughput sequencing data sets, coverage is the estimated number of
-reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omics analysis such peak-calling in ChIP-seq or variant calling in DNA-seq <span class="citation">(Sims et al. <a href="bibliography.html#ref-Sims2014-qk" role="doc-biblioref">2014</a>)</span>. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data. By faceting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
+reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omics analysis such peak-calling in ChIP-seq or variant calling in DNA-seq <span class="citation">(Sims et al. <a href="bibliography.html#ref-Sims2014-qk" role="doc-biblioref">2014</a>)</span>. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data (Figure <a href="4-1-introduction-1.html#fig:cov-trace">4.1</a>. By faceting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
 insight into biological signal under study.
 Of course, due to the sheer size of most reference genome annotations
 it would take an extremely long time for an analyst to look at every
@@ -250,16 +263,23 @@ visualisation literature; in particular the idea of scatter plot diagnostics (�
 to a small number of descriptors of each scatter plots properties such as
 density or monotonicity <span class="citation">(Friedman and Stuetzle <a href="bibliography.html#ref-Friedman2002-yx" role="doc-biblioref">2002</a>; Wilkinson, Anand, and Grossman <a href="bibliography.html#ref-Wilkinson2005-xt" role="doc-biblioref">2005</a>)</span>. Similarly,
 searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead <span class="citation">(Hyndman, Wang, and Laptev <a href="bibliography.html#ref-Hyndman2015-sc" role="doc-biblioref">2015</a>)</span>.</p>
+
+<div class="figure" style="text-align: center"><span id="fig:cov-trace"></span>
+<img src="img/peak-viz-1.png" alt="An illustrative coverage trace plot from Chapter 2. The coverage score is defined as the number of reads that overlap a single base position within a reference genome. For example, at position 21.807 of chromosome 8 there are approximately 12 reads overlapping it." width="100%" />
+<p class="caption">
+Figure 4.1: An illustrative coverage trace plot from Chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a>. The coverage <em>score</em> is defined as the number of reads that overlap a single base position within a reference genome. For example, at position 21.807 of chromosome 8 there are approximately 12 reads overlapping it.
+</p>
+</div>
 <p>Although there are many flexible and powerful software tools, like <strong>BEDtools</strong> or <strong>deepTools</strong>, for exploring and estimating coverage from common genomic data formats <span class="citation">(Quinlan and Hall <a href="bibliography.html#ref-Quinlan2010-gc" role="doc-biblioref">2010</a>; Ramı́rez et al. <a href="bibliography.html#ref-Ramirez2014-sh" role="doc-biblioref">2014</a>)</span>, it is advantageous to have tooling
 that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
 be possible with a single command line tool. There are also gains in reproducibility as analysts do not have to move between multiple software suites to explore their processed transcriptomics data.</p>
-<p>In <span class="citation">S. Lee et al. (<a href="bibliography.html#ref-Lee2019-mf" role="doc-biblioref">2019</a>)</span>, we showed that there is evidence that a major
+<p>In <span class="citation">S. Lee et al. (<a href="bibliography.html#ref-Lee2019-mf" role="doc-biblioref">2020</a>)</span>, we showed that there is evidence that a major
 source of intron reads in RNA-seq datasets is pre-mRNA, and sought data analysis techniques to unravel different aspects of intron signal. In light of this,
 we made the assumption that most intron reads do not necessarily point to
 intron retention (IR) events, and developed a workflow based on combining
 multiple summary statistics, “data descriptors”, to find coverage traces that appear to have IR-like events by collapsing coverage scores over a design matrix alongside the exonic and intronic parts of a gene. To do this we developed a new R package called <strong>superintronic</strong> that provides tooling for exploratory
 coverage analysis by extending and integrating our previous software package,
-<strong>plyranges</strong> <span class="citation">(S. Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019" role="doc-biblioref">2019</a>)</span>.</p>
+<strong>plyranges</strong> <span class="citation">(Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019" role="doc-biblioref">2019</a>)</span>.</p>
 <p>In this paper, we describe methodology for establishing data descriptors by turning coverage vectors into long form tidy data using <strong>superintronic</strong>
 and <strong>plyranges</strong>. We provide a workflow below
 using a zebrafish RNA-seq dataset for developing data descriptors to find IR like coverage traces within genes known to have minor class splicing events.</p>

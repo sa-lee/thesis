@@ -215,6 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
 <li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-getting-started-with-the-plyranges-package.html"><a href="A-getting-started-with-the-plyranges-package.html"><i class="fa fa-check"></i><b>A</b> Getting started with the <strong>plyranges</strong> package</a><ul>
+<li class="chapter" data-level="A.1" data-path="A-1-ranges-revisited.html"><a href="A-1-ranges-revisited.html"><i class="fa fa-check"></i><b>A.1</b> <em>Ranges</em> revisited</a></li>
+<li class="chapter" data-level="A.2" data-path="A-2-constructing-ranges.html"><a href="A-2-constructing-ranges.html"><i class="fa fa-check"></i><b>A.2</b> Constructing <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.3" data-path="A-3-arithmetic-on-ranges.html"><a href="A-3-arithmetic-on-ranges.html"><i class="fa fa-check"></i><b>A.3</b> Arithmetic on Ranges</a></li>
+<li class="chapter" data-level="A.4" data-path="A-4-grouping-ranges.html"><a href="A-4-grouping-ranges.html"><i class="fa fa-check"></i><b>A.4</b> Grouping <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.5" data-path="A-5-restricting-ranges.html"><a href="A-5-restricting-ranges.html"><i class="fa fa-check"></i><b>A.5</b> Restricting <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.6" data-path="A-6-summarising-ranges.html"><a href="A-6-summarising-ranges.html"><i class="fa fa-check"></i><b>A.6</b> Summarising <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.7" data-path="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><a href="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><i class="fa fa-check"></i><b>A.7</b> Joins, or another way at looking at overlaps between <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.8" data-path="A-8-grouping-by-overlaps.html"><a href="A-8-grouping-by-overlaps.html"><i class="fa fa-check"></i><b>A.8</b> Grouping by overlaps</a></li>
+<li class="chapter" data-level="A.9" data-path="A-9-reading-genomic-files.html"><a href="A-9-reading-genomic-files.html"><i class="fa fa-check"></i><b>A.9</b> Reading Genomic Files</a></li>
+<li class="chapter" data-level="A.10" data-path="A-10-learning-more.html"><a href="A-10-learning-more.html"><i class="fa fa-check"></i><b>A.10</b> Learning more</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
 <li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
@@ -274,13 +287,13 @@ Figure 5.1: Screenshots of the <strong>liminal</strong> interface applied to wel
 </div>
 <iframe src="https://player.vimeo.com/video/439635921" width="100%" height="400px">
 </iframe>
-<p>From the video linked inn figure <a href="5-5-case-studies.html#fig:gaussian">5.1</a>, we learn that t-SNE has
+<p>From the video linked in Figure <a href="5-5-case-studies.html#fig:gaussian">5.1</a>, we learn that t-SNE has
 correctly split out each cluster and laid them out in a star like formation.
 This is agrees with the tour view,
 where once we start the animation, the five clusters begin to appear but
 generally points are more concentrated in the projection view compared to
-the t-SNE layout (figure <a href="5-5-case-studies.html#fig:gaussian">5.1</a>a).
-This can be seen via brushing the t-SNE view (figure <a href="5-5-case-studies.html#fig:gaussian">5.1</a>b).</p>
+the t-SNE layout (Figure <a href="5-5-case-studies.html#fig:gaussian">5.1</a>a).
+This can be seen via brushing the t-SNE view (Figure <a href="5-5-case-studies.html#fig:gaussian">5.1</a>b).</p>
 </div>
 <div id="case-study-2-exploring-spherical-gaussian-clusters-with-hierarchical-structure" class="section level3">
 <h3><span class="header-section-number">5.5.2</span> Case Study 2: Exploring spherical Gaussian clusters with hierarchical structure</h3>
@@ -291,21 +304,21 @@ embedded in 10-<span class="math inline">\(d\)</span>, and a third cluster
 with hierarchical structure. This cluster has two 3-<span class="math inline">\(d\)</span> clusters embedded in
 10-<span class="math inline">\(d\)</span>, where the second cluster is subdivided into three smaller clusters,
 that are each equidistant from each other and have the same covariance structure.
-From the video linked in figure <a href="5-5-case-studies.html#fig:hierarchical">5.2</a>, we see
+From the video linked in Figure <a href="5-5-case-studies.html#fig:hierarchical">5.2</a>, we see
 that t-SNE has correctly identified the sub-clusters. However, their relative
 locations to each other is distorted, with the orange and blue groups being
-far from each other in the tour view (figure <a href="5-5-case-studies.html#fig:hierarchical">5.2</a>a). We see
+far from each other in the tour view (Figure <a href="5-5-case-studies.html#fig:hierarchical">5.2</a>a). We see
 in this case that is difficult
 to see the sub-clusters in the tour view, however, once we zoom and highlight
-they become more apparent (figure <a href="5-5-case-studies.html#fig:hierarchical">5.2</a>b). When we brush
+they become more apparent (Figure <a href="5-5-case-studies.html#fig:hierarchical">5.2</a>b). When we brush
 the sub-clusters in the t-SNE, their
 relative placement is again exaggerated, with the tour showing that they
 are indeed much closer than the impression the t-SNE view gives.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:hierarchical"></span>
-<img src="img/liminal-screenshot-hierarchical.png" alt="Screenshots of the liminal interface applied to sub-clustered data, a video of the tour animation is available at https://player.vimeo.com/video/43963590." width="100%" height="75%" />
+<img src="img/liminal-screenshot-hierarchical.png" alt="Screenshots of the liminal interface applied to sub-clustered data, a video of the tour animation is available at https://player.vimeo.com/video/439635905." width="100%" height="75%" />
 <p class="caption">
-Figure 5.2: Screenshots of the <strong>liminal</strong> interface applied to sub-clustered data, a video of the tour animation is available at <a href="https://player.vimeo.com/video/43963590" class="uri">https://player.vimeo.com/video/43963590</a>.
+Figure 5.2: Screenshots of the <strong>liminal</strong> interface applied to sub-clustered data, a video of the tour animation is available at <a href="https://player.vimeo.com/video/439635905" class="uri">https://player.vimeo.com/video/439635905</a>.
 </p>
 </div>
 <iframe src="https://player.vimeo.com/video/439635905" width="100%" height="400px">
@@ -313,8 +326,8 @@ Figure 5.2: Screenshots of the <strong>liminal</strong> interface applied to sub
 </div>
 <div id="case-study-3-exploring-data-with-piecewise-linear-structure" class="section level3">
 <h3><span class="header-section-number">5.5.3</span> Case Study 3: Exploring data with piecewise linear structure</h3>
-<p>Next we explore some simulated noisy tree structured data (figure
-<a href="5-5-case-studies.html#fig:fake-trees">5.3</a>), our interest here is how t-SNE visualisations break
+<p>Next we explore some simulated noisy tree structured data (Figure
+<a href="5-5-case-studies.html#fig:fake-trees">5.3</a>). Our interest here is how t-SNE visualisations break
 topology of the data, and then seeing if we can resolve this by tweaking the
 default parameters with reference to the global view of the data set.
 This simulation aims to mimic branching trajectories of cell differentiation:
@@ -333,7 +346,7 @@ explained in the data) to use with the grand tour.</p>
 <p>Moreover, we run t-SNE using the default arguments on the complete data (this
 keeps the first 50 PCs, sets the perplexity to equal 30 and performs random
 initialisation). We then create a linked
-tour with t-SNE layout with <strong>liminal</strong> as shown in figure <a href="5-5-case-studies.html#fig:trees-01">5.4</a>.</p>
+tour with t-SNE layout with <strong>liminal</strong> as shown in Figure <a href="5-5-case-studies.html#fig:trees-01">5.4</a>.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:trees-01"></span>
 <img src="img/liminal-screenshot-trees-01.png" alt="Screenshots of the liminal interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635892." width="100%" height="75%" />
@@ -345,7 +358,7 @@ Figure 5.4: Screenshots of the <strong>liminal</strong> interface applied to tre
 </iframe>
 <p>From the linked video, we see that the t-SNE view has been unable to
 recapitulate the topology of the tree - the backbone (blue) branch has been
-split into three fragments (figure <a href="5-5-case-studies.html#fig:trees-01">5.4</a>a). We can see
+split into three fragments (Figure <a href="5-5-case-studies.html#fig:trees-01">5.4</a>a). We can see
 this immediately via the linked highlighting over both
 plots. If we click on the legend for the zero branch, the blue coloured points
 on each view are highlighted and the remaining points are made transparent.
@@ -353,14 +366,14 @@ From, here it becomes apparent from the tour view that the blue branch forms
 the backbone of the tree and is connected to all other branches. From the video
 it is easy to see that cluster sizes formed via t-SNE can be misleading; from the tour
 view there is a lot of noise along the branches, while this does not appear to
-be the case for the t-SNE result (figure <a href="5-5-case-studies.html#fig:trees-01">5.4</a>b).</p>
+be the case for the t-SNE result (Figure <a href="5-5-case-studies.html#fig:trees-01">5.4</a>b).</p>
 <p>From the first view, we modify the inputs to the t-SNE view, to try and produce
 a better trade-off between local structure and retain the topology of the data.
 We keep every parameter the same except that we initialise <span class="math inline">\(Y\)</span> with the first
 two PCs (scaled to have standard deviation 1e-4) instead of the default random
 initialisation and increase the perplexity from 30 to 100. We then combine
 these results with our tour view as displayed in the linked video in the caption
-of figure <a href="5-5-case-studies.html#fig:trees-02">5.5</a>.</p>
+of Figure <a href="5-5-case-studies.html#fig:trees-02">5.5</a>.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:trees-02"></span>
 <img src="img/liminal-screenshot-trees-02.png" alt="Screenshots of the liminal interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635863." width="100%" />
@@ -370,9 +383,9 @@ Figure 5.5: Screenshots of the <strong>liminal</strong> interface applied to tre
 </div>
 <iframe src="https://player.vimeo.com/video/439635863" width="100%" height="400px">
 </iframe>
-<p>The video linked in figure <a href="5-5-case-studies.html#fig:trees-02">5.5</a> shows that this selection of
+<p>The video linked in Figure <a href="5-5-case-studies.html#fig:trees-02">5.5</a> shows that this selection of
 parameters results in the
-tips of the branches (the three black dots in figure <a href="5-5-case-studies.html#fig:fake-trees">5.3</a>a)
+tips of the branches (the three black dots in Figure <a href="5-5-case-studies.html#fig:fake-trees">5.3</a>a)
 being split into three clusters representing the terminal branches of the tree.
 However, there are perceptual issues following the placement of the three
 groupings on the t-SNE view that become apparent via simple linked brushing.
@@ -380,7 +393,7 @@ If we brush the
 tips of the yellow and brown branches (which appear to be close to each other
 on the t-SNE view), we immediately see the placement is distorted in the t-SNE
 view, and in the tour view these tips are at opposite ends of the tree
-(figure <a href="5-5-case-studies.html#fig:trees-02">5.5</a>b).
+(Figure <a href="5-5-case-studies.html#fig:trees-02">5.5</a>b).
 Although, this is a known issue of the t-SNE algorithm, we can easily identify
 it via simple interactivity without knowing the inner workings of the method.</p>
 </div>
@@ -412,11 +425,12 @@ Using the PCs we built a shared nearest neighbours graph (with <span class="math
 used Louvain clustering to generate clusters <span class="citation">(Blondel et al. <a href="bibliography.html#ref-Blondel2008-bx" role="doc-biblioref">2008</a>)</span>.</p>
 <p>To check and verify the clustering we construct a <strong>liminal</strong> view.
 We tour the first five PCs (approximately 20% of the variance in expression),
-alongside the t-SNE view which was computed from all 25 PCs.
-Due to latency of the interface we do a weighted sample of the rows based on
+alongside the t-SNE view which was computed from all 25 PCs. We have selected only the first five PCs because there is a large drop in the percentage of variance explained after the fifth component, with each component after contributing less than one percent of variance.
+Consequently, increasing the number of PCs to tour would increase the dimensionality and volume of the subspace we are touring but without adding any additional signal to the view.</p>
+<p>Due to latency of the <strong>liminal</strong> interface we do a weighted sample of the rows based on
 cluster membership, leaving us with approximately 10 per cent of the original
 data size - 4,590 cells. Although this is not ideal, it still allows us to
-get a sense of the shape of the clusters as seen from the linked video in figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>.</p>
+get a sense of the shape of the clusters as seen from the linked video in Figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>. If one was interested in performing more in-depth cluster analysis we recommend an iterative approach of removing large clusters and then re-running the <strong>liminal</strong> view as a way finding more granular cluster structure.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:mouse-01"></span>
 <img src="img/liminal-screenshot-mouse-01.png" alt="Screenshots of the liminal interface applied to single cell data, a video of the tour animation is available at https://player.vimeo.com/video/439635812." width="100%" height="85%" />
@@ -426,19 +440,19 @@ Figure 5.6: Screenshots of the <strong>liminal</strong> interface applied to sin
 </div>
 <iframe src="https://player.vimeo.com/video/439635812" width="100%" height="400px">
 </iframe>
-<p>From the video linked in figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>, we learn that the embedding has mostly captured the
+<p>From the video linked in Figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>, we learn that the embedding has mostly captured the
 clusters relative location to each other to their location in high dimensional space, with a notable exception of points in cluster 3 and 10 as shown with
-linked brushing (figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>a). As expected, t-SNE mitigates the crowding problem that is
+linked brushing (Figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>a). As expected, t-SNE mitigates the crowding problem that is
 an issue for tour in this case, where points in clusters 2,4,6, and 11 are
-clumped together in tour view, but are blown up in the embedding view (figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>b).
+clumped together in tour view, but are blown up in the embedding view (Figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>b).
 The tour appears to form a tetrahedron like shape, with points lying on
 surface and along the vertices of the tetrahedron in 5-<span class="math inline">\(d\)</span> PCA space -
 a phenomena that has also been observed in <span class="citation">Korem et al. (<a href="bibliography.html#ref-Korem2015-af" role="doc-biblioref">2015</a>)</span>
-(figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>c). Brushing on
+(Figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>c). Brushing on
 the tour view, reveals points in cluster 9 that are diffuse in the embedding
 view, points in cluster 9 are relatively far away and spread apart from other
 clusters in the tour view, but has points placed in cluster 3 and 9 in the embedding
-(figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>d).</p>
+(Figure <a href="5-5-case-studies.html#fig:mouse-01">5.6</a>d).</p>
 <p>Next, we identify marker genes for clusters using one sided Welch t-tests with
 a minimum log fold change of one as recommended by <span class="citation">Amezquita et al. (<a href="bibliography.html#ref-Amezquita2020-at" role="doc-biblioref">2020</a>)</span>, which
 uses the testing framework from <span class="citation">McCarthy and Smyth (<a href="bibliography.html#ref-McCarthy2009-qx" role="doc-biblioref">2009</a>)</span>. We select the top 10 marker
@@ -457,13 +471,13 @@ Figure 5.7: Screenshots of the <strong>liminal</strong> tour applied to a marker
 </div>
 <iframe src="https://player.vimeo.com/video/439635843" width="100%" height="400px">
 </iframe>
-<p>From the video linked in figure <a href="5-5-case-studies.html#fig:mouse-02">5.7</a>, we see that the
+<p>From the video linked in Figure <a href="5-5-case-studies.html#fig:mouse-02">5.7</a>, we see that the
 expression of the marker genes, appear to separate
 the previously clumped clusters 2,4,6, and 11 from the other clusters,
-indicating that these genes are expressed in all four clusters (figure <a href="5-5-case-studies.html#fig:mouse-02">5.7</a>a). After zooming, we can see a trajectory forming along
+indicating that these genes are expressed in all four clusters (Figure <a href="5-5-case-studies.html#fig:mouse-02">5.7</a>a). After zooming, we can see a trajectory forming along
 the clusters, while the axis view shows that magnitude of expression in
 the marker genes is similar across these separated clusters which is
-consistent with the results of marker gene analysis (figure <a href="5-5-case-studies.html#fig:mouse-02">5.7</a>b).</p>
+consistent with the results of marker gene analysis (Figure <a href="5-5-case-studies.html#fig:mouse-02">5.7</a>b).</p>
 </div>
 </div>
             </section>

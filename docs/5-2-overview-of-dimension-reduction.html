@@ -215,6 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
 <li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-getting-started-with-the-plyranges-package.html"><a href="A-getting-started-with-the-plyranges-package.html"><i class="fa fa-check"></i><b>A</b> Getting started with the <strong>plyranges</strong> package</a><ul>
+<li class="chapter" data-level="A.1" data-path="A-1-ranges-revisited.html"><a href="A-1-ranges-revisited.html"><i class="fa fa-check"></i><b>A.1</b> <em>Ranges</em> revisited</a></li>
+<li class="chapter" data-level="A.2" data-path="A-2-constructing-ranges.html"><a href="A-2-constructing-ranges.html"><i class="fa fa-check"></i><b>A.2</b> Constructing <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.3" data-path="A-3-arithmetic-on-ranges.html"><a href="A-3-arithmetic-on-ranges.html"><i class="fa fa-check"></i><b>A.3</b> Arithmetic on Ranges</a></li>
+<li class="chapter" data-level="A.4" data-path="A-4-grouping-ranges.html"><a href="A-4-grouping-ranges.html"><i class="fa fa-check"></i><b>A.4</b> Grouping <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.5" data-path="A-5-restricting-ranges.html"><a href="A-5-restricting-ranges.html"><i class="fa fa-check"></i><b>A.5</b> Restricting <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.6" data-path="A-6-summarising-ranges.html"><a href="A-6-summarising-ranges.html"><i class="fa fa-check"></i><b>A.6</b> Summarising <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.7" data-path="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><a href="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><i class="fa fa-check"></i><b>A.7</b> Joins, or another way at looking at overlaps between <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.8" data-path="A-8-grouping-by-overlaps.html"><a href="A-8-grouping-by-overlaps.html"><i class="fa fa-check"></i><b>A.8</b> Grouping by overlaps</a></li>
+<li class="chapter" data-level="A.9" data-path="A-9-reading-genomic-files.html"><a href="A-9-reading-genomic-files.html"><i class="fa fa-check"></i><b>A.9</b> Reading Genomic Files</a></li>
+<li class="chapter" data-level="A.10" data-path="A-10-learning-more.html"><a href="A-10-learning-more.html"><i class="fa fa-check"></i><b>A.10</b> Learning more</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
 <li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
@@ -250,13 +263,13 @@ the number of observations in <span class="math inline">\(p\)</span> dimensions.
 is to find a low-dimensional representation of the data,
 <span class="math inline">\(Y = [\mathbf{y_1}, \dots, \mathbf{y_n}]\)</span>, such that <span class="math inline">\(Y\)</span> is an <span class="math inline">\(n \times d\)</span>
 matrix where <span class="math inline">\(d \ll p\)</span>. The hope of the analyst is that the DR procedure to
-produces <span class="math inline">\(Y\)</span> will remove noise in the original dataset while retaining any
+produce <span class="math inline">\(Y\)</span> will remove noise in the original dataset while retaining any
 latent structure.</p>
 <p>DR methods can be classified into two broad classes: linear and non-linear
 methods. Linear methods perform a linear transformation of the data, that is,
 <span class="math inline">\(Y\)</span> is a linear transformation of <span class="math inline">\(X\)</span>; one example is principal components
 analysis (PCA) which performs an eigendecomposition of the estimated sample
-covariance matrix. The eigenvalues are sorted in decreasing order and represent
+covariance matrix <span class="citation">(Hotelling <a href="bibliography.html#ref-Hotelling1933-ck" role="doc-biblioref">1933</a>)</span>. The eigenvalues are sorted in decreasing order and represent
 the variance explained by each component (eigenvector).
 A common approach to deciding on the number of principal components to retain is
 to plot the proportion of variance explained by each component and choose a
@@ -301,7 +314,7 @@ joint probability distribution via averaging:</p>
 <p>The variance parameter of the Gaussian kernel is controlled by the analyst
 using a fixed value of perplexity for all observations:</p>
 <p><span class="math display">\[ \text{perplexity}_i = \exp(-\log(2) \sum_{i \ne j}p_{j|i}\log_2(p_{j|i})) \]</span>
-As the perplexity increases, <span class="math inline">\(\sigma^2_{i}\)</span> increases, until its bounded above
+As the perplexity increases, <span class="math inline">\(\sigma^2_{i}\)</span> increases, until it is bounded above
 by the number of observations , <span class="math inline">\(n-1\)</span>, in the data, corresponding to
 <span class="math inline">\(\sigma^2_{i} \rightarrow \infty\)</span>. This essentially turns <span class="math inline">\(t-SNE\)</span> into a
 nearest neighbours algorithm, <span class="math inline">\(p_{i|j}\)</span> will be close to zero for all
@@ -355,7 +368,7 @@ It appears to suffer from the same perceptual issues as t-SNE, however it suppos
 <p>The tour is a visualisation technique that is grounded in
 mathematical theory, and is able to ascertain
 the shape and global structure of a dataset via inspection of the subspace generated by the set of low-dimensional projections <span class="citation">(Asimov <a href="bibliography.html#ref-Asimov1985-vp" role="doc-biblioref">1985</a>; Buja and Asimov <a href="bibliography.html#ref-Buja1986-zr" role="doc-biblioref">1986</a>)</span>.</p>
-<p>Like, when, using other DR techniques, the tour assumes we have a real data matrix
+<p>Like when using other DR techniques, the tour assumes we have a real data matrix
 <span class="math inline">\(X\)</span> consisting of <span class="math inline">\(n\)</span> observations in <span class="math inline">\(p\)</span> dimensions. First, the tour generates
 a sequence of <span class="math inline">\(p \times d\)</span> orthonormal projection matrices (bases)
 <span class="math inline">\(A_{t \in \mathbb{N}}\)</span>, where <span class="math inline">\(d\)</span> is typically <span class="math inline">\(1\)</span> or <span class="math inline">\(2\)</span>. For each pair of
@@ -371,7 +384,7 @@ our data via principal components to reduce dimensionality of <span class="math 
 running the tour. Instead of picking projections at
 random, a <em>guided tour</em> can be used to generate a sequence of ‘interesting’
 projections as quantified by an index function <span class="citation">(Cook et al. <a href="bibliography.html#ref-Cook1995-bi" role="doc-biblioref">1995</a>)</span>. While our software,
-<strong>liminal</strong> is able to visualise guided tours, our focus in the case studies
+<strong>liminal</strong>, is able to visualise guided tours, our focus in the case studies
 uses the grand tour to see global structure in the data.</p>
 </div>
 </div>

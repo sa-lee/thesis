@@ -215,6 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
 <li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-getting-started-with-the-plyranges-package.html"><a href="A-getting-started-with-the-plyranges-package.html"><i class="fa fa-check"></i><b>A</b> Getting started with the <strong>plyranges</strong> package</a><ul>
+<li class="chapter" data-level="A.1" data-path="A-1-ranges-revisited.html"><a href="A-1-ranges-revisited.html"><i class="fa fa-check"></i><b>A.1</b> <em>Ranges</em> revisited</a></li>
+<li class="chapter" data-level="A.2" data-path="A-2-constructing-ranges.html"><a href="A-2-constructing-ranges.html"><i class="fa fa-check"></i><b>A.2</b> Constructing <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.3" data-path="A-3-arithmetic-on-ranges.html"><a href="A-3-arithmetic-on-ranges.html"><i class="fa fa-check"></i><b>A.3</b> Arithmetic on Ranges</a></li>
+<li class="chapter" data-level="A.4" data-path="A-4-grouping-ranges.html"><a href="A-4-grouping-ranges.html"><i class="fa fa-check"></i><b>A.4</b> Grouping <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.5" data-path="A-5-restricting-ranges.html"><a href="A-5-restricting-ranges.html"><i class="fa fa-check"></i><b>A.5</b> Restricting <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.6" data-path="A-6-summarising-ranges.html"><a href="A-6-summarising-ranges.html"><i class="fa fa-check"></i><b>A.6</b> Summarising <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.7" data-path="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><a href="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><i class="fa fa-check"></i><b>A.7</b> Joins, or another way at looking at overlaps between <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.8" data-path="A-8-grouping-by-overlaps.html"><a href="A-8-grouping-by-overlaps.html"><i class="fa fa-check"></i><b>A.8</b> Grouping by overlaps</a></li>
+<li class="chapter" data-level="A.9" data-path="A-9-reading-genomic-files.html"><a href="A-9-reading-genomic-files.html"><i class="fa fa-check"></i><b>A.9</b> Reading Genomic Files</a></li>
+<li class="chapter" data-level="A.10" data-path="A-10-learning-more.html"><a href="A-10-learning-more.html"><i class="fa fa-check"></i><b>A.10</b> Learning more</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
 <li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
@@ -243,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have already used <strong>plyranges</strong> a number of times above, to <code>filter()</code>,
 <code>mutate()</code>, and <code>select()</code> on <em>GRanges</em> objects, as well as ensuring the correct
 genome annotation and style has been used. The <strong>plyranges</strong> package provides a
-grammar for performing transformations of genomic data <span class="citation">(S. Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019" role="doc-biblioref">2019</a>)</span>. Computations
+grammar for performing transformations of genomic data <span class="citation">(Lee, Cook, and Lawrence <a href="bibliography.html#ref-Lee2019" role="doc-biblioref">2019</a>)</span>. Computations
 resulting from compositions of <strong>plyranges</strong> “verbs” are performed using
 underlying, highly optimized range operations in the <strong>GenomicRanges</strong> package
 <span class="citation">(Lawrence et al. <a href="bibliography.html#ref-granges" role="doc-biblioref">2013</a><a href="bibliography.html#ref-granges" role="doc-biblioref">b</a>)</span>.</p>
@@ -294,8 +307,7 @@ samples of size equal to the number of DE-genes from the number of rows in
 #&gt;   [749] 3.09557e-03
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
-<p>We can repeat this many times to create many samples via <code>replicate()</code>. By
-replicating the sub-sampling multiple times, we minimize the variance on the
+<p>We can repeat this many times to create many samples via <code>replicate()</code>. We are sub-sampling gene sets without evidence of DE to have the same size as DE gene set, because for each set we want to how different the ATAC peaks around these different sets assuming the number of DE genes is fixed. The sampling of the non-DE genes is done without replacement so each replication produces a different set to compare. By replicating the sub-sampling multiple times, we minimize the variance on the
 enrichment statistics induced by the sampling process.</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="3-4-integrate-ranges.html#cb46-1"></a><span class="co"># set a seed for the results</span></span>
 <span id="cb46-2"><a href="3-4-integrate-ranges.html#cb46-2"></a><span class="kw">set.seed</span>(<span class="dv">2019-08-02</span>)</span>
@@ -447,7 +459,7 @@ changes between non-DE and DE genes using a boxplot:</p>
 <div class="figure" style="text-align: center"><span id="fig:boxplot"></span>
 <img src="img/boxplot-1.png" alt="A boxplot of maximum LFCs for DA peaks for DE genes compared to non-DE genes where genes have at least one DA peak." width="100%" />
 <p class="caption">
-Figure 3.3: A boxplot of maximum LFCs for DA peaks for DE genes compared to non-DE genes where genes have at least one DA peak.
+Figure 3.4: A boxplot of maximum LFCs for DA peaks for DE genes compared to non-DE genes where genes have at least one DA peak.
 </p>
 </div>
 
@@ -632,7 +644,7 @@ to other genes as a line chart:</p>
 <div class="figure" style="text-align: center"><span id="fig:line-chart"></span>
 <img src="img/line-chart-1.png" alt="A line chart displaying how relative enrichment of DA peaks change between DE genes compared to non-DE genes as the absolute DA LFC threshold increases." width="100%" />
 <p class="caption">
-Figure 3.4: A line chart displaying how relative enrichment of DA peaks change between DE genes compared to non-DE genes as the absolute DA LFC threshold increases.
+Figure 3.5: A line chart displaying how relative enrichment of DA peaks change between DE genes compared to non-DE genes as the absolute DA LFC threshold increases.
 </p>
 </div>
 
@@ -652,7 +664,7 @@ many of the aspects underlying the enrichment plot above.</p>
 <div class="figure" style="text-align: center"><span id="fig:line-chart2"></span>
 <img src="img/line-chart2-1.png" alt="A line chart displaying how gene and peak counts change as the absolute DA LFC threshold increases. Lines are colored according to whether they represent a gene that is DE or not. Note the x-axis is on a \(log_{10}\) scale." width="100%" />
 <p class="caption">
-Figure 3.5: A line chart displaying how gene and peak counts change as the absolute DA LFC threshold increases. Lines are colored according to whether they represent a gene that is DE or not. Note the x-axis is on a <span class="math inline">\(log_{10}\)</span> scale.
+Figure 3.6: A line chart displaying how gene and peak counts change as the absolute DA LFC threshold increases. Lines are colored according to whether they represent a gene that is DE or not. Note the x-axis is on a <span class="math inline">\(log_{10}\)</span> scale.
 </p>
 </div>
 

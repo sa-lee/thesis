@@ -215,6 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
 <li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-getting-started-with-the-plyranges-package.html"><a href="A-getting-started-with-the-plyranges-package.html"><i class="fa fa-check"></i><b>A</b> Getting started with the <strong>plyranges</strong> package</a><ul>
+<li class="chapter" data-level="A.1" data-path="A-1-ranges-revisited.html"><a href="A-1-ranges-revisited.html"><i class="fa fa-check"></i><b>A.1</b> <em>Ranges</em> revisited</a></li>
+<li class="chapter" data-level="A.2" data-path="A-2-constructing-ranges.html"><a href="A-2-constructing-ranges.html"><i class="fa fa-check"></i><b>A.2</b> Constructing <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.3" data-path="A-3-arithmetic-on-ranges.html"><a href="A-3-arithmetic-on-ranges.html"><i class="fa fa-check"></i><b>A.3</b> Arithmetic on Ranges</a></li>
+<li class="chapter" data-level="A.4" data-path="A-4-grouping-ranges.html"><a href="A-4-grouping-ranges.html"><i class="fa fa-check"></i><b>A.4</b> Grouping <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.5" data-path="A-5-restricting-ranges.html"><a href="A-5-restricting-ranges.html"><i class="fa fa-check"></i><b>A.5</b> Restricting <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.6" data-path="A-6-summarising-ranges.html"><a href="A-6-summarising-ranges.html"><i class="fa fa-check"></i><b>A.6</b> Summarising <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.7" data-path="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><a href="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><i class="fa fa-check"></i><b>A.7</b> Joins, or another way at looking at overlaps between <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.8" data-path="A-8-grouping-by-overlaps.html"><a href="A-8-grouping-by-overlaps.html"><i class="fa fa-check"></i><b>A.8</b> Grouping by overlaps</a></li>
+<li class="chapter" data-level="A.9" data-path="A-9-reading-genomic-files.html"><a href="A-9-reading-genomic-files.html"><i class="fa fa-check"></i><b>A.9</b> Reading Genomic Files</a></li>
+<li class="chapter" data-level="A.10" data-path="A-10-learning-more.html"><a href="A-10-learning-more.html"><i class="fa fa-check"></i><b>A.10</b> Learning more</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
 <li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
@@ -240,11 +253,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
 <p>Exploratory data analysis (EDA) is a vital element of the modern
 statistical workflow - it is an analyst’s first pass at
-understanding their data; revealing all it’s messes and
+understanding their data; revealing all its messes and
 uncovering hidden insights <span class="citation">(Tukey <a href="bibliography.html#ref-Tukey1977-pn" role="doc-biblioref">1977</a>; Grolemund and Wickham <a href="bibliography.html#ref-Grolemund2017-uc" role="doc-biblioref">2017</a>)</span>.
 It is an iterative process involving computation and visualization,
 leading to new hypotheses that can be tested and formalised using
-statistical modelling (figure <a href="1-ch-intro.html#fig:wflow-cycle">1.1</a>). As datasets grow in complexity and become
+statistical modelling (Figure <a href="1-ch-intro.html#fig:wflow-cycle">1.1</a>). As datasets grow in complexity and become
 increasingly heterogeneous and multidimensional,
 the use of EDA becomes vital to ensure the integrity and quality of analysis
 outputs. This is certainly true in high-throughput biological
@@ -264,16 +277,16 @@ Figure 1.1: An idealised model of the biological data science workflow (adapted 
 science workflow: wrangling, integration and visualisation, with a focus
 on applications to genomics and transcriptomics. To begin we discuss wrangling
 biological data using a coherent representation and programming interface
-(figure <a href="1-1-sec-tidygranges.html#fig:wflow-wrangle">1.2</a>). Section <a href="1-1-sec-tidygranges.html#sec:tidygranges">1.1</a>
+(Figure <a href="1-1-sec-tidygranges.html#fig:wflow-wrangle">1.2</a>). Section <a href="1-1-sec-tidygranges.html#sec:tidygranges">1.1</a>
 introduces a grammar-based framework for transforming genomics data that is
-described in chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a>. We then look at integrating data and
+described in Chapter <a href="2-ch-plyranges.html#ch:plyranges">2</a>. We then look at integrating data and
 model outputs over genomic regions to gain biological insight (<a href="1-2-sec-integrate.html#fig:wflow-integrate">1.3</a>). Section <a href="1-2-sec-integrate.html#sec:integrate">1.2</a> introduces a
 framework for incorporating genomic regions over multiple assays, described in
-chapter <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a>, while <a href="1-3-sec-coverage.html#sec:coverage">1.3</a> discusses finding ‘interesting’ genomic regions via combining multiple summaries of a single assay, described in <a href="4-ch-intron.html#ch:intron">4</a>. Next, we
-consider the challenges in visualising high dimensional data (figure <a href="1-4-sec-va.html#fig:wflow-explore">1.4</a>). Section <a href="1-4-sec-va.html#sec:va">1.4</a> introduces an interactive
+Chapter <a href="3-ch-fluentGenomics.html#ch:fluentGenomics">3</a>, while <a href="1-3-sec-coverage.html#sec:coverage">1.3</a> discusses finding ‘interesting’ genomic regions via combining multiple summaries of a single assay, described in <a href="4-ch-intron.html#ch:intron">4</a>. Next, we
+consider the challenges in visualising high dimensional data (Figure <a href="1-4-sec-va.html#fig:wflow-explore">1.4</a>). Section <a href="1-4-sec-va.html#sec:va">1.4</a> introduces an interactive
 visualisation approach for understanding non-linear dimension reduction
-techniques described in chapter <a href="5-ch-tsne.html#ch:tsne">5</a>. Lastly, in
-chapter <a href="6-ch-conclusion.html#ch:conclusion">6</a> describes the outputs of the thesis and plans for future developments.</p>
+techniques described in Chapter <a href="5-ch-tsne.html#ch:tsne">5</a>. Lastly, in
+Chapter <a href="6-ch-conclusion.html#ch:conclusion">6</a> describes the outputs of the thesis and plans for future developments.</p>
 </div>
             </section>
 

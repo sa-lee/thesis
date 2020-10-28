@@ -215,6 +215,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="6-1-software-development.html"><a href="6-1-software-development.html"><i class="fa fa-check"></i><b>6.1</b> Software Development</a></li>
 <li class="chapter" data-level="6.2" data-path="6-2-further-work.html"><a href="6-2-further-work.html"><i class="fa fa-check"></i><b>6.2</b> Further Work</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-getting-started-with-the-plyranges-package.html"><a href="A-getting-started-with-the-plyranges-package.html"><i class="fa fa-check"></i><b>A</b> Getting started with the <strong>plyranges</strong> package</a><ul>
+<li class="chapter" data-level="A.1" data-path="A-1-ranges-revisited.html"><a href="A-1-ranges-revisited.html"><i class="fa fa-check"></i><b>A.1</b> <em>Ranges</em> revisited</a></li>
+<li class="chapter" data-level="A.2" data-path="A-2-constructing-ranges.html"><a href="A-2-constructing-ranges.html"><i class="fa fa-check"></i><b>A.2</b> Constructing <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.3" data-path="A-3-arithmetic-on-ranges.html"><a href="A-3-arithmetic-on-ranges.html"><i class="fa fa-check"></i><b>A.3</b> Arithmetic on Ranges</a></li>
+<li class="chapter" data-level="A.4" data-path="A-4-grouping-ranges.html"><a href="A-4-grouping-ranges.html"><i class="fa fa-check"></i><b>A.4</b> Grouping <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.5" data-path="A-5-restricting-ranges.html"><a href="A-5-restricting-ranges.html"><i class="fa fa-check"></i><b>A.5</b> Restricting <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.6" data-path="A-6-summarising-ranges.html"><a href="A-6-summarising-ranges.html"><i class="fa fa-check"></i><b>A.6</b> Summarising <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.7" data-path="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><a href="A-7-joins-or-another-way-at-looking-at-overlaps-between-ranges.html"><i class="fa fa-check"></i><b>A.7</b> Joins, or another way at looking at overlaps between <em>Ranges</em></a></li>
+<li class="chapter" data-level="A.8" data-path="A-8-grouping-by-overlaps.html"><a href="A-8-grouping-by-overlaps.html"><i class="fa fa-check"></i><b>A.8</b> Grouping by overlaps</a></li>
+<li class="chapter" data-level="A.9" data-path="A-9-reading-genomic-files.html"><a href="A-9-reading-genomic-files.html"><i class="fa fa-check"></i><b>A.9</b> Reading Genomic Files</a></li>
+<li class="chapter" data-level="A.10" data-path="A-10-learning-more.html"><a href="A-10-learning-more.html"><i class="fa fa-check"></i><b>A.10</b> Learning more</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
 <li><strong><a href="https://github.com/rstudio/bookdown" target="blank">Proudly published with bookdown</a></strong></li>
@@ -260,8 +273,7 @@ discovery rate (FDR) of 1%.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="3-3-model-assays.html#cb31-1"></a>res &lt;-<span class="st"> </span><span class="kw">results</span>(dds,</span>
 <span id="cb31-2"><a href="3-3-model-assays.html#cb31-2"></a>               <span class="dt">contrast=</span><span class="kw">c</span>(<span class="st">&quot;condition&quot;</span>,<span class="st">&quot;IFNg&quot;</span>,<span class="st">&quot;naive&quot;</span>),</span>
 <span id="cb31-3"><a href="3-3-model-assays.html#cb31-3"></a>               <span class="dt">lfcThreshold=</span><span class="dv">1</span>, <span class="dt">alpha=</span><span class="fl">0.01</span>)</span></code></pre></div>
-<p>To see the results of the expression analysis, we can generate a summary table
-and an MA plot:</p>
+<p>The <code>results()</code> function extracts a summary of the DE analysis: in this case for each gene we have the LFC comparing the two cell lines, the Wald test statistic of LFC from the fitted negative binomial GLM, and associated p-value and corrected p-value accounting for the FDR. To see the results of the expression analysis, we can generate a summary table and a mean-abundance (MA) plot <span class="citation">(Dudoit et al. <a href="bibliography.html#ref-Dudoit2002-vz" role="doc-biblioref">2002</a>)</span>:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="3-3-model-assays.html#cb32-1"></a><span class="kw">summary</span>(res)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; out of 17806 with nonzero total read count
@@ -275,9 +287,9 @@ and an MA plot:</p>
 #&gt; [2] see &#39;independentFiltering&#39; argument of ?results</code></pre>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="3-3-model-assays.html#cb34-1"></a>DESeq2<span class="op">::</span><span class="kw">plotMA</span>(res, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:ma-plot"></span>
-<img src="img/ma-plot-1.png" alt="Visualization of DESeq2 results as an “MA plot”. Genes that have an adjusted p-value below 0.01 are colored red." width="100%" />
+<img src="img/ma-plot-1.png" alt="Visualization of DESeq2 results as an “MA plot”. Genes that have an adjusted p-value below 0.01 are colored blue.In this case the LFC between conditions is shown on the y-axis, while the average normalised gene counts across all conditions are shown on the x-axis. The assumption of an RNA-seq analysis that most genes are not DE, so most genes are scattered about zero on the y-axis while genes that have evidence of DE are far from the zero baseline. The x-axis gives a sense of the total expression of the gene." width="100%" />
 <p class="caption">
-Figure 3.2: Visualization of <code>DESeq2</code> results as an “MA plot”. Genes that have an adjusted <em>p-value</em> below 0.01 are colored red.
+Figure 3.3: Visualization of <code>DESeq2</code> results as an “MA plot”. Genes that have an adjusted <em>p-value</em> below 0.01 are colored blue.In this case the LFC between conditions is shown on the y-axis, while the average normalised gene counts across all conditions are shown on the x-axis. The assumption of an RNA-seq analysis that most genes are not DE, so most genes are scattered about zero on the y-axis while genes that have evidence of DE are far from the zero baseline. The x-axis gives a sense of the total expression of the gene.
 </p>
 </div>
 
@@ -338,7 +350,7 @@ select (and rename) the metadata columns we are interested in:</p>
 <p>We now wish to extract genes for which there is evidence that the LFC is <em>not</em>
 large. We perform this test by specifying an LFC threshold and an alternative
 hypothesis (<code>altHypothesis</code>) that the LFC is less than the threshold in
-absolute value. To visualize the result of this test, you can run <code>results</code>
+absolute value. In this case, the p-values are taken as maximum of the upper and lower Wald tests under the hypothesis absolute value of the estimated LFC is lower than the threshold. To visualize the result of this test, you can run <code>results</code>
 without <code>format="GRanges"</code>, and pass this object to <code>plotMA()</code> as before. We
 label these genes as <code>other_genes</code> and later as “non-DE genes”, for comparison
 with our <code>de_genes</code> set.</p>
