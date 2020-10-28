@@ -5,6 +5,9 @@ output:
   MonashEBSTemplates::memo:
     includes:
       in_header: preamble2.tex
+bibliography: response.bib
+fontfamily: mathpazo
+citation_package: biblatex
 ---
 
 First, I would like to thank my examiners for their constructive feedback and insights. I am excited to incorporate their ideas into my future research. The point by point description of changes are below: the examiners' comments are in red and my response is in black.
@@ -23,7 +26,7 @@ Amended.
 
 > p. 34: use of `dir` for a directory path string when `dir()` is a function returning contents of a directory path could be confusing. However, this chapter is already peer-reviewed and published so I would not change it.
 
-Noted. I can change this in the workflow for next Bioconductor release.
+Amended - since I can update on F1000 at some point.
 
 > P. 43-44: Why is the genome (“hg38”) set using an endomorphic function, but style (“UCSC”) set using a replacement function (`seqlevelsStyle`)?
 
@@ -43,7 +46,7 @@ Amended.
 
 >Section 5.3.1 “Finding Gestalt: focus and context” - this is probably a clever metaphor, but I didn’t understand it.
 
-This was a reference to Buja, Cook, and Swayne (1996) paper mentioned in the paragraph above. Here "Gestalt" refers to Gestalt theory in perception and psychology, it refers to identifying patterns in visual forms.
+This was a reference to @Buja1996-fk paper mentioned in the paragraph above. Here "Gestalt" refers to Gestalt theory in perception and psychology, it refers to identifying patterns in visual forms.
 
 > p. 84: “Whether, points are near, or far” -> remove both commas
 
@@ -61,24 +64,24 @@ Amended.
 
 ## Assistant Professor Stephanie C. Hicks {-}
 
-Thank you for your thorough review. I am looking forward to incorporating your suggestions into future work.
+Thank you for your thorough review and thoughtful suggestions. This feedback is extremely helpful and I am looking forward to incorporating your suggestions into future work.
 
 
-### Addressing General Comments
+### Addressing General Comments {-}
 
-#### On Scalability 
+**On Scalability**
 
 I would like to comment that I have avoided performance benchmarking for two main reasons. First, I believe it is out of scope for the thesis, since my focus has been on the development of programming and user interfaces. Second, my implementation of **plyranges** is deeply entwined with the underlying core Bioconductor infrastructure, especially the data structures and methods found in the **IRanges** and **GenomicRanges** packages. This would result any benchmarking of **plyranges** turning into benchmarking of those packages which has been done elsewhere. 
 
 Regarding out of memory data structures like `DelayedArray`, it is possible to incorporate them as columns to a `GRanges` object and then the full **plyranges** API would be available. Currently, there appear to be no plans in Bioconductor for out of memory `Ranges`, and indeed there are times where it is more appropriate to switch to a rectangular data layout for computation, as is reflected in the workflow described in chapter 3 of the thesis. I believe the development of a scalable out of memory interface for genomic data analysis will require the transformation between data measured along the genome (covered by the **plyranges** API) and the rectangular layouts that enable out of disk computing like `SummarizedExperiment`. This is an exciting research area that I would like to explore in the currently under development **plyexperiment**.
 
-#### On alignment vs. pseudoalignment 
+**On alignment vs. pseudoalignment**
 
 I have amended the introduction to include a note about alignment. 
 I believe it is out of scope to go into the gritty details of when to use alignment or pseudo-alignment methods to obtain counts for RNA-seq data. I have included results from both approaches to highlight that **plyranges** is agnostic to the method used and is flexible for many types of data.
 
 
-### Chapter 1 comments
+### Chapter 1 comments {-}
 
 > As you introduced a “biological data science workflow” in this chapter and did a great job of walking the read through the wrangling, combining and visualizing components of the workflow, I was hoping you would touch on tools for communication too. I understand this is outside the scope of the thesis, but I still think it would be nice to at least mention work others have done in this area.
 
@@ -87,7 +90,7 @@ I agree that it would be nice but it is out of scope for the thesis. Communicati
 > Pg 1: I thought it was strange that the words “figure” in e.g. “figure 1.1” were not capitalized. Would recommend changing to “Figure 1.1” throughout.
 > Pg 1: Recommend capitalizing the word “chapter” when referring to specific chapters e.g. “chapter 2”.
 
-TODO
+Amended. I have made this consistent throughout the thesis now. 
 
 > Pg 2: Figure 1.1 has been modified to include “combine”, but the caption does not reflect what is meant by that. Would recommend modifying caption to reflect importance of combining experimental assays together to gain biological insight.
 
@@ -101,12 +104,12 @@ I have clarified what this refers to.
 
 I have expanded this section to reflect these comments.
 
-### Chapter 2 comments
+### Chapter 2 comments {-}
 
 This chapter has already been published and it appears most of the comments pertain to the use and learning of the **plyranges** package. I believe they are best addressed through the **plyranges** documentation and vignette. I have amended the thesis to include the package vignette as an appendix. 
 
 
-### Chapter 3 comments
+### Chapter 3 comments {-}
 
 > Almost all of Chapter 2 discusses the use of GRanges objects. As most of Chapter 3 discusses the use of the SummarizedExperiment object, could you add a motivating figure at the start explaining the relationship between a SummarizedExperiment and GRanges object (i.e. rowRanges)? I do not think this is obvious to a reader who may not very familiar with these objects. However, I think it is an important aspect to explain in this chapter.
 
@@ -139,7 +142,7 @@ Amended.
 
 I have expanded on this now.
 
-### Chapter 4 comments
+### Chapter 4 comments {-}
 
 > Much of this chapter depends on understanding what is meant by a coverage trace plot. You do have examples (e.g. Figures 4.4-4.7), but this is at the very end of the chapter. It would be good to provide a motivating figure be added at the start to explain what is meant by “coverage” in this context?
 > Pg 63: Introduce what you mean by coverage traces and provide more motiviation why you would want this over just numerical summaries of the data.
@@ -163,12 +166,12 @@ Reads that are split are across exon / intron boundaries are counted towards bot
 I think the facet labels are sufficient in conjunction with the figure captions.
 
 
-### Chapter 5 comments
+### Chapter 5 comments {-}
 
 >  One question I had as I was reading throughout this chapter, was what is your recommendation for users who want to calculate distances? can the liminal framework be used to better approximate distances instead of users who perform clustering directly on top of the tSNE or UMAP spaces? While
 is not ideal, and it is recommended clustering should performed in the PC space, it happens all the time. Another way of framing this question is can your framework be used to improve distance estimates in the tour with a NLDR method as you note it preserves global structure?
 
-This is a really interesting question. To begin, I have amended the clustering case study to comment on a more realistic approach to perform cluster verification. I like the idea of using the tour to calibrate distances obtained from an NLDR method (or the other way around). As mentioned in the text if there are (well-behaved) clusters in the data, it appears that t-SNE will find them but often messes up their orientation and topology. I think you would get some of the way there using the spatial linking approach I described. Another approach would be to look at distance preservation between successive tour frames. One could then ask, how often are these groups of points close according to the tour? Of interest would also be the manual clustering approaches described in Cook and Swayne, 2007. This is left as future work.   
+This is a really interesting question. To begin, I have amended the clustering case study to comment on a more realistic approach to perform cluster verification. I like the idea of using the tour to calibrate distances obtained from an NLDR method (or the other way around). As mentioned in the text if there are (well-behaved) clusters in the data, it appears that t-SNE will find them but often messes up their orientation and topology. I think you would get some of the way there using the spatial linking approach I described. Another approach would be to look at distance preservation between successive tour frames. One could then ask, how often are these groups of points close according to the tour? Of interest would also be the manual clustering approaches described in @Cook2007-ld. This is left as future work.   
 
 >  Pg 77: “non-liner” should be “non-linear”
 
@@ -182,6 +185,7 @@ Amended.
 > Pg 78: Could you add a reference for PCA?
 
 Amended.
+
 > Pg 80 (also in 81): The way “tSNE” was written in “this essentially turns t-SNE” looks very different
 than previously written stylistically. Could this be converted to the way you were originally referring to
 it?
@@ -195,7 +199,7 @@ Amended.
 > Pg 88: Inside Figure 5.1A and B, could you have liminal label which plot is which i.e. t-SNE vs tour
 view. Also, could axis labels be added? Maybe also add this information to the Figure legend? – Pg 89 – same comment
 
-I think this is not obvious in the static figure but is obvious in the video and when using the **liminal** package that the embedding view is always on the left, and the tour view is on the right (it will be the view that is animated). I think the suggestion of titling the views is a good one and will place that into the software in future. Regarding axis labels, I don't think they make sense for the tour since it's really a linear combination of multiple variables (there's an option to switch on a biplot view for the tour). I am also reluctant to include them for t-SNE because they can be misleading for the reasons mentioned in the chapter, however I do think this would be good to have as an option for **liminal** in future. 
+I think this is not immediately obvious in the static figure but is obvious in the video and when using the **liminal** package that the embedding view is always on the left, and the tour view is on the right (it will be the view that is animated). I think the suggestion of titling the views is a good one and will place that into the software in future. Regarding axis labels, I don't think they make sense for the tour since it's really a linear combination of multiple variables (there's an option to switch on a biplot view for the tour). I am also reluctant to include them for t-SNE because they can be misleading for the reasons mentioned in the chapter, however I do think this would be good to have as an option for **liminal** in future. 
 
 > Pg 90: I believe there should be a period after “tree structure data (figure 5.3)” instead of a comma
 
@@ -213,11 +217,11 @@ one can visualize in a given tour? Have you thought about strategies for making 
 
 I have amended section 5.5.3 to discuss a strategy in the specific case of cluster analysis. I have also amended the discussion of the chapter with specific work that can mitigate the need to show all of the data. In the case of tasks performed for clustering I don't think it is useful or necessary to show all points in the scatter plot when we are most interested in density and shapes. There is interesting work to be done here in future for appropriate sampling strategies or aggregations that could be done prior to producing a visualisation. 
 
-### Chapter 6 comments
+### Chapter 6 comments {-}
 
 
 > Pg 102: Instead of https://bioconductor.org/packages/release/bioc/html/plyranges.html, you can always use the short version https://bioconductor.org/packages/plyranges which points to the release version.
 
 Amended.
 
-
+# References
