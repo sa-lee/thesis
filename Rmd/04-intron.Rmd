@@ -23,7 +23,7 @@ to a small number of descriptors of each scatter plots properties such as
 density or monotonicity [@Friedman2002-yx;@Wilkinson2005-xt].  Similarly,
 searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead [@Hyndman2015-sc].
 
-(ref:example-trace) An illustrative coverage trace plot from Chapter \@ref(ch:plyranges). The coverage _score_ is defined as the number of reads that overlap a single base position within a reference genome. For example, at position 21.807 of chromosome 8 there are approximately 12 reads overlapping it. One could also think of a coverage trace as a histogram with the bin width varies as you move along the genome.
+(ref:example-trace) An illustrative coverage trace plot from Chapter \@ref(ch:plyranges). The coverage _score_ is defined as the number of reads that overlap a single base position within a reference genome. For example, at position 21.807 of chromosome 8 there are approximately 12 reads overlapping it.
 
 ```{r cov-trace, echo = FALSE, fig.cap="(ref:example-trace)"}
 knitr::include_graphics(here::here("img", "peak-viz-1.png"))

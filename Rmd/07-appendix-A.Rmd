@@ -6,9 +6,6 @@ detach("package:plyranges", unload = TRUE)
 
 ```
 
-# **plyranges** vignette
-
-
 # Getting started with the **plyranges** package
 
 ## _Ranges_ revisited
