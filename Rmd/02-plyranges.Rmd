@@ -109,7 +109,7 @@ _GRanges_, which is a constrained table, with fixed columns
 for the chromosome, start and end coordinates, and the strand, along
 with an arbitrary set of additional columns, consisting of
 measurements or metadata specific to the data type or experiment
-(figure \@ref(fig:GRanges)).  _GRanges_ balances flexibility with formal
+(Figure \@ref(fig:GRanges)).  _GRanges_ balances flexibility with formal
 constraints, so that it is applicable to virtually any genomic
 workflow, while also being semantically rich enough to support
 high-level operations on genomic ranges. As a core data structure,
@@ -243,7 +243,7 @@ ranges are retained in the joined range.  All join operators in the
 **plyranges** DSL generate a set of hits based on overlap or proximity
 of ranges and use those hits to merge the two datasets in different
 ways. There are four supported matching algorithms: _overlap_,
-_nearest_, _precede_, and _follow_ (figure 
+_nearest_, _precede_, and _follow_ (Figure 
 \@ref(fig:olaps-fig)). We can further restrict the
 matching by whether the query is completely _within_ the subject, and
 adding the _directed_ suffix ensures that matching ranges have the
@@ -272,7 +272,7 @@ operations can be performed over partitions formed
 using the `group_by()` modifier. Together with our algebra for arithmetic and
 merging, these operations conform to the semantics and syntax of the 
 **dplyr** grammar. Consequently, **plyranges** code is generally more compact
-than the equivalent **GenomicRanges** code (figure \@ref(fig:code-comparison)).
+than the equivalent **GenomicRanges** code (Figure \@ref(fig:code-comparison)).
 
 ### Developing workflows with **plyranges**
 
@@ -332,7 +332,7 @@ by anchoring and modifying the width.
 ```
 
 Finally, the overlap inner join is used to restrict the chromosome 10
-coverage islands, to the islands that are contained in the 5000nt region that surrounds the max peak (figure \@ref(fig:peak-viz)).
+coverage islands, to the islands that are contained in the 5000nt region that surrounds the max peak (Figure \@ref(fig:peak-viz)).
 
 ```{r peak_region }
 ```
@@ -397,7 +397,7 @@ event.
 ```
 
 We then compute the transition-transversion ratio over each chromosome using
-`group_by()` in combination with `summarize()` (figure \@ref(fig:titv-viz)).
+`group_by()` in combination with `summarize()` (Figure \@ref(fig:titv-viz)).
 
 ```{r titv, echo = TRUE}
 ```

@@ -1,37 +1,44 @@
 # (APPENDIX) Appendix {-}
 
+```{r detach, include = FALSE}
+detach("package:dplyr", unload = TRUE)
+detach("package:plyranges", unload = TRUE)
+
+```
+
 # **plyranges** vignette
 
-## Getting started with the **plyranges** package
 
-### `Ranges` revisited
+# Getting started with the **plyranges** package
+
+## _Ranges_ revisited
 
 In Bioconductor there are two classes, `IRanges` and `GRanges`, that are
 standard data structures for representing genomics data.  Throughout this
-document I refer to either of these classes as `Ranges` if an operation can be
+document I refer to either of these classes as _Ranges_ if an operation can be
 performed on either class, otherwise I explicitly mention if a function is
-appropriate for an `IRanges` or `GRanges`.
+appropriate for an _IRanges_ or _GRanges_.
 
-`Ranges` objects can either represent sets of integers as `IRanges` (which have
+_Ranges_ objects can either represent sets of integers as _IRanges_ (which have
 start, end and width attributes) or represent genomic intervals (which have
-additional attributes, sequence name, and strand) as `GRanges`. In addition,
-both types of `Ranges` can store information about their intervals as metadata
+additional attributes, sequence name, and strand) as _GRanges_. In addition,
+both types of _Ranges_ can store information about their intervals as metadata
 columns (for example GC content over a genomic interval).
 
-`Ranges` objects follow the tidy data principle: each row of a `Ranges` object
+_Ranges_ objects follow the tidy data principle: each row of a _Ranges_ object
 corresponds to an interval, while each column will represent a variable about
 that interval, and generally each object will represent a single unit of
 observation (like gene annotations).
 
-Consequently, `Ranges` objects provide a powerful representation for reasoning
-about genomic data. In this vignette, you will learn more about `Ranges`
+Consequently, _Ranges_ objects provide a powerful representation for reasoning
+about genomic data. In this vignette, you will learn more about _Ranges_
 objects and how via grouping, restriction and aggregation you can perform
 common data tasks.
 
 
-### Constructing `Ranges`
+## Constructing _Ranges_
 
-To construct an `IRanges` we require that there are at least two columns that
+To construct an _IRanges_ we require that there are at least two columns that
 represent at either a starting coordinate, finishing coordinate or the width of
 the interval.
 
@@ -47,7 +54,7 @@ rng
 
 ```
 
-To construct a `GRanges` we require a column that represents that sequence name
+To construct a _GRanges_ we require a column that represents that sequence name
 ( contig or chromosome id), and an optional column to represent the
 strandedness of an interval.
 
@@ -62,7 +69,7 @@ grng <- df %>%
 grng
 ```
 
-### Arithmetic on Ranges
+## Arithmetic on Ranges
 
 Sometimes you want to modify a genomic interval by altering the width of the
 interval while leaving the start, end or midpoint of the coordinates unaltered.
@@ -72,7 +79,7 @@ The act of anchoring fixes either the start, end, center coordinates of the
 `Range` object, as shown in the figure and code below and anchors are used in
 combination with either `mutate` or `stretch`.
 
-```{r anchor_fig, echo = FALSE, out.width="400px", fig.align="center"}
+```{r anchor_fig, echo = FALSE}
 knitr::include_graphics(here::here("img", "anchors.png"), dpi = 150)
 ```
 
@@ -103,7 +110,7 @@ stretch(anchor_3p(grng), 10)
 stretch(anchor_5p(grng), 10)
 ```
 
-`Ranges` can be shifted left or right. If strand information is available we
+_Ranges_ can be shifted left or right. If strand information is available we
 can also shift upstream or downstream.
 
 ```{r}
@@ -113,13 +120,13 @@ shift_upstream(grng, 10)
 shift_downstream(grng, 10)
 ```
 
-### Grouping `Ranges`
+## Grouping _Ranges_
 
-**plyranges** introduces a new class of `Ranges` called `RangesGrouped`, this is
+**plyranges** introduces a new class of _Ranges_ called `RangesGrouped`, this is
 a similar idea to the grouped `data.frame\tibble` in **dplyr**.
 
 Grouping can act on either the core components or the metadata columns of a
-`Ranges` object.
+_Ranges_ object.
 
 It is most effective when combined with other verbs such as `mutate()`,
 `summarise()`, `filter()`, `reduce_ranges()` or `disjoin_ranges()`.
@@ -137,9 +144,9 @@ grng_by_strand <- grng %>%
 grng_by_strand
 ```
 
-### Restricting `Ranges`
+## Restricting _Ranges_
 
-The verb `filter` can be used to restrict rows in the `Ranges`. Note that
+The verb `filter` can be used to restrict rows in the _Ranges_. Note that
 grouping will cause the `filter` to act within each group of the data.
 ```{r}
 grng %>% filter(gc < 0.3)
@@ -148,7 +155,7 @@ grng_by_strand %>% filter(gc == max(gc))
 ```
 
 We also provide the convenience methods `filter_by_overlaps` and
-`filter_by_non_overlaps` for restricting by any overlapping `Ranges`.
+`filter_by_non_overlaps` for restricting by any overlapping _Ranges_.
 
 ```{r}
 ir0 <- data.frame(start = c(5,10, 15,20), width = 5) %>%
@@ -161,10 +168,10 @@ ir0 %>% filter_by_overlaps(ir1)
 ir0 %>% filter_by_non_overlaps(ir1)
 ```
 
-### Summarising `Ranges`
+## Summarising _Ranges_
 
 The `summarise` function will return a `DataFrame` because the information
-required to return a `Ranges` object is lost. It is often most useful to use
+required to return a _Ranges_ object is lost. It is often most useful to use
 `summarise()` in combination with the `group_by()` family of functions.
 
 ```{r}
@@ -176,7 +183,7 @@ ir0 %>%
   summarise(gc = mean(gc))
 ```
 
-### Joins, or another way at looking at overlaps between `Ranges`
+## Joins, or another way at looking at overlaps between _Ranges_
 
 A join acts on two GRanges objects, a query and a subject.
 
@@ -223,13 +230,13 @@ _within_ the subject, and adding the _directed_ suffix ensures that matching
 ranges have the same direction (strand).
 
 
-```{r olaps-diagram, echo = FALSE, out.width="600px"}
+```{r olaps-diagram, echo = FALSE}
 knitr::include_graphics(here::here("img", "olap-fig.png"))
 ```
 
-The first function, `join_overlap_intersect()` will return a `Ranges` object
+The first function, `join_overlap_intersect()` will return a _Ranges_ object
 where the start, end, and width coordinates correspond to the amount of any
-overlap between the left and right input `Ranges`. It also returns any
+overlap between the left and right input _Ranges_. It also returns any
 metadata in the subject range if the subject overlaps the query.
 
 ```{r}
@@ -254,8 +261,8 @@ ggplot(melted_ranges, aes(xmin = start, xmax = end, ymin = 1, ymax = 3)) +
 ```
 
 
-The `join_overlap_inner()` function will return the `Ranges` in the query that
-overlap any `Ranges` in the subject. Like the `join_overlap_intersect()`
+The `join_overlap_inner()` function will return the _Ranges_ in the query that
+overlap any _Ranges_ in the subject. Like the `join_overlap_intersect()`
 function metadata of the subject `Range` is returned if it overlaps the query.
 
 ```{r}
@@ -329,40 +336,40 @@ ggplot(melted_ranges,
 ```
 
 Compared with `filter_by_overlaps()` above, the overlap left join expands the
-`Ranges` to give information about each interval on the query `Ranges` that
-overlap those on the subject `Ranges` as well as the intervals on the left that
+_Ranges_ to give information about each interval on the query _Ranges_ that
+overlap those on the subject _Ranges_ as well as the intervals on the left that
 do not overlap any range on the right.
 
 #### Finding your neighbours
-We also provide methods for finding nearest, preceding or following `Ranges`.
+We also provide methods for finding nearest, preceding or following _Ranges_.
 Conceptually this is identical to our approach for finding overlaps, except the
 semantics of the join are different.
 
-```{r neigbours, echo = FALSE, out.width="600px"}
+```{r neigbours, echo = FALSE}
 knitr::include_graphics(here::here("img", "neighbours.png"))
 ```
 
 ```{r}
 join_nearest(ir0, ir1)
 join_follow(ir0, ir1)
-join_precede(ir0, ir1) # nothing precedes returns empty `Ranges`
+join_precede(ir0, ir1) # nothing precedes returns empty _Ranges_
 join_precede(ir1, ir0)
 ```
 
 
-### Example: dealing with multi-mapping
+#### Example: dealing with multi-mapping
 This example is taken from the Bioconductor support
 [site](https://support.bioconductor.org/p/100046/).
 
-We have two `Ranges` objects. The first contains single nucleotide positions
+We have two _Ranges_ objects. The first contains single nucleotide positions
 corresponding to an intensity measurement such as a ChIP-seq experiment, while
 the other contains coordinates for two genes of interest.
 
 
-We want to identify which positions in the `intensities` `Ranges` overlap the
+We want to identify which positions in the `intensities` _Ranges_ overlap the
 genes, where each row corresponds to a position that overlaps a single gene.
 
-First we create the two `Ranges` objects
+First we create the two _Ranges_ objects
 ```{r ex1}
 intensities <- data.frame(seqnames = "VI",
                           start = c(3320:3321,3330:3331,3341:3342),
@@ -398,7 +405,7 @@ olap %>%
   summarise(n = n())
 ```
 
-### Grouping by overlaps
+## Grouping by overlaps
 
 It's also possible to group by overlaps. Using this approach we can count the
 number of overlaps that are greater than 0.
@@ -418,10 +425,10 @@ ir0 %>%
   mutate(n_overlaps = count_overlaps(., ir1))
 ```
 
-### Data Import/Output
+## Reading Genomic Files
 
 We provide convenience functions via **rtracklayer** and **GenomicAlignments** for
-reading/writing the following data formats to/from `Ranges` objects.
+reading/writing the following data formats to/from _Ranges_ objects.
 
 | **plyranges** functions | File Format |
 |-----------------------|-------------|
@@ -434,7 +441,7 @@ reading/writing the following data formats to/from `Ranges` objects.
 | `read_wig()` /`write_wig()` | Wig |
 
 
-# Learning more
+## Learning more
 
 There are many other resources and workshops available to learn to use
 **plyranges** and related Bioconductor packages, especially for more realistic

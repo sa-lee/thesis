@@ -22,13 +22,13 @@ implemented software that facilitates the wrangling, integration, and
 visualisation of high-throughput biological data in a principled and pragmatic
 manner.  The early chapters of this thesis explored the *tidy data* semantic and 
 its extension to range based genomics data. This culminated in the development
-of "plyranges: a grammar of genomic data transformation" in chapter 
+of "plyranges: a grammar of genomic data transformation" in Chapter 
 \@ref(ch:plyranges), which developed a new domain specific language for genomics
 data analysis. The applicability of the **plyranges** interface and use of the 
-*tidy data* concept were further interrogated in chapter \@ref(ch:fluentGenomics),
+*tidy data* concept were further interrogated in Chapter \@ref(ch:fluentGenomics),
 "Fluent genomics with plyranges and tximeta", which described techniques 
 integrating data along the genome, and emphasised the importance of 
-interoperability between analysis tools. Similarly, chapter  \@ref(ch:intron), 
+interoperability between analysis tools. Similarly, Chapter  \@ref(ch:intron), 
 "Exploratory coverage analysis with superintronic and 
 plyranges", tackled data integration from a different angle by looking at 
 multiple summaries of variables measured along the genome to find putative 
@@ -46,7 +46,7 @@ The **plyranges** package develops a suite of verbs for interacting
 with genomic data as a *GRanges* object. Since its release on Bioconductor,
 it  has been relatively  successful: it has been downloaded `r nice(plyranges_stats$no_downloads)` times from  `r nice(plyranges_stats$no_ip)` unique IP addresses. I have also had the privilege of teaching workshops on **plyranges**
 at Bioconductor conferences which also led to the development of the 
-**fluentGenomics** workflow package, outlined in chapter \@ref(ch:fluentGenomics). A broader impact of the work, has been the discussions around the
+**fluentGenomics** workflow package, outlined in Chapter \@ref(ch:fluentGenomics). A broader impact of the work, has been the discussions around the
 concepts of fluent interfaces and tidy data within the Bioconductor community,
 which has led to several developments currently in place that are exploring
 different approaches for fluent interfaces for other types of omics data.
@@ -55,7 +55,7 @@ https://bioconductor.org/packages/plyranges and
 the **fluentGenomics** workflow is available to download from 
 https://bioconductor.org/packages/release/workflows/html/fluentGenomics.html.
 
-The **superintronic** software described in chapter \@ref(ch:intron) has
+The **superintronic** software described in Chapter \@ref(ch:intron) has
 been used in @Lee2019-mf to disentangle and view intron signal in RNA-seq
 data. Here, we again show the strengths of providing a long-form representations
 of genomics data (in this case coverage vectors). By leveraging **plyranges**
@@ -92,7 +92,7 @@ is required to explore the design space of grammars for data
 transformations and grammars for graphics when the data are large, multifaceted
 and non-rectangular. 
 
-We showed in chapter \@ref(ch:tsne) that tours provide a global overview
+We showed in Chapter \@ref(ch:tsne) that tours provide a global overview
 that can be used as tool for exploring model fits. An issue that arises is
 how to scale the tour as the number of observations increases. There are
 latencies in sending data from the back end to the visualisation client

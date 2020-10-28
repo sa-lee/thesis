@@ -53,7 +53,7 @@ using a zebrafish RNA-seq dataset for developing data descriptors to find IR lik
 and visualising per-base coverage scores, that can then be 
 flexibly summarised over factors within an experimental design and collapsed
 over regions of the genome using our companion package **plyranges**. The
-aspects of this combined workflow are summarised in figure \@ref(fig:si-fig). 
+aspects of this combined workflow are summarised in Figure \@ref(fig:si-fig). 
 
 (ref:si-fig) An overview of the **superintronic** and **plyranges** workflow. Coverage is estimated directly using the design matrix that contains a source column pointing to the locations of BAM files. The long-form representation is output as a _GRanges_ object, and contains columns that were part of the design. Additional annotations are added with join functions, here we show the particular case of expanding the coverage _GRanges_ to include exonic and intronic parts of a gene. This object can be further analysed using **plyranges** and our data descriptors approach, and then descriptors can be visualised as a scatter plot matrix with the **GGally** and **ggplot2** packages [@ggally; @Wickham2016-gz]. Coverage traces can be directly generated with **superintronic** and collapsed over parts of the design matrix to identify differences between groups.
 
@@ -150,7 +150,7 @@ computing data descriptors on in order to detecting IR-like coverage traces. Acr
 the mean and standard deviation of the log-transformed coverage score weighted by the number of bases covered were computed over all intron and exon parts within the groupings of 
 genotype and line. We also computed the bases above descriptor for intron
 features. It refers to the total number of bases within an intron that has a score above the overall average exon coverage score. The scatter plot 
-matrix view of these descriptors is shown in figure \@ref(fig:si-splom)
+matrix view of these descriptors is shown in Figure \@ref(fig:si-splom)
 for a single biological group in the experiment. Using these views and
 by summarising over the data descriptors, we came up with thresholds
 for finding genes that have IR-like traces within each biological group.
@@ -166,7 +166,7 @@ the standard deviation of intron log-coverage values is twice the standard
 deviation of exon log-coverage values. That is, we are selecting genes that
 are expressed but  have large average intron expression that is more variable than the gene's exon expression. This results in a total of 86 genes selected
 to link back to their underlying coverage traces, with the overlaps shown
-in the UpSet plot in figure \@ref(fig:si-upset) [@Lex2014-bh]. The procedure produces gene coverage traces with known minor class splice sites affected by the knockout procedure such as ccdc43 and nat15 (figures \@ref(fig:si-cvg-ccdc43) and \@ref(fig:si-cvg-nat15)), as well as some that appear to have U12 intron retention like events such as mapk3 or tspan31 (figures \@ref(fig:si-cvg-mapk3) and \@ref(fig:si-cvg-tspan31)) that affect other parts of the gene.
+in the UpSet plot in Figure \@ref(fig:si-upset) [@Lex2014-bh]. The procedure produces gene coverage traces with known minor class splice sites affected by the knockout procedure such as ccdc43 and nat15 (figures \@ref(fig:si-cvg-ccdc43) and \@ref(fig:si-cvg-nat15)), as well as some that appear to have U12 intron retention like events such as mapk3 or tspan31 (figures \@ref(fig:si-cvg-mapk3) and \@ref(fig:si-cvg-tspan31)) that affect other parts of the gene.
 
 
 (ref:si-upset) Gene overlaps found between each combination of genotype and line using the thresholds defined in the text. Our procedure mostly finds genes with IR like profiles across all groups (28 shared between all four) or that is unique to a single group, since we do not consider looking at differential IR and run our thresholding separately for each group of replicates. The rnpc3 knockout lines share the largest overlap in results. 
@@ -218,7 +218,7 @@ purely data-driven manner. We did not include additional information
 that could have been useful when deriving our selected genes, such as
 sequence motifs for U12 class of introns, or exploit the experimental
 design to find differential IR like profiles. However, if that was of interest,
-one could look at the overlaps, like we did in figure \@ref(fig:si-upset),
+one could look at the overlaps, like we did in Figure \@ref(fig:si-upset),
 or combine our data descriptors with external estimates using **limma** 
 [@Ritchie2015-mj], like our proposed index method in @Lee2019-mf. The gene
 candidates obtained by our thresholds have been validated by the Heath lab

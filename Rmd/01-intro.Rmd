@@ -6,7 +6,7 @@ understanding their data; revealing all its messes and
 uncovering hidden insights [@Tukey1977-pn; @Grolemund2017-uc]. 
 It is an iterative process involving computation and visualization,
 leading to new hypotheses that can be tested and formalised using 
-statistical modelling (figure \@ref(fig:wflow-cycle)). As datasets grow in complexity and become
+statistical modelling (Figure \@ref(fig:wflow-cycle)). As datasets grow in complexity and become
 increasingly heterogeneous and multidimensional, 
 the use of EDA becomes vital to ensure the integrity and quality of analysis 
 outputs. This is certainly true in high-throughput biological 
@@ -30,16 +30,16 @@ This thesis focuses on core aspects of EDA as part of a biological data
 science workflow: wrangling, integration and visualisation, with a focus 
 on applications to genomics and transcriptomics. To begin we discuss wrangling
 biological data using a coherent representation and programming interface 
-(figure \@ref(fig:wflow-wrangle)). Section \@ref(sec:tidygranges)
+(Figure \@ref(fig:wflow-wrangle)). Section \@ref(sec:tidygranges)
 introduces a grammar-based framework for transforming genomics data that is 
-described in chapter \@ref(ch:plyranges). We then look at integrating data and 
+described in Chapter \@ref(ch:plyranges). We then look at integrating data and 
 model outputs over genomic regions to gain biological insight (\@ref(fig:wflow-integrate)). Section \@ref(sec:integrate) introduces a 
 framework for incorporating genomic regions  over multiple assays, described in 
-chapter \@ref(ch:fluentGenomics), while  \@ref(sec:coverage) discusses finding 'interesting' genomic regions via combining multiple summaries of a single assay, described in \@ref(ch:intron). Next, we 
-consider the challenges in  visualising  high dimensional data (figure \@ref(fig:wflow-explore)). Section  \@ref(sec:va) introduces an interactive 
+Chapter \@ref(ch:fluentGenomics), while  \@ref(sec:coverage) discusses finding 'interesting' genomic regions via combining multiple summaries of a single assay, described in \@ref(ch:intron). Next, we 
+consider the challenges in  visualising  high dimensional data (Figure \@ref(fig:wflow-explore)). Section  \@ref(sec:va) introduces an interactive 
 visualisation approach for  understanding non-linear dimension reduction 
-techniques described in chapter  \@ref(ch:tsne). Lastly, in 
-chapter \@ref(ch:conclusion) describes the outputs of the thesis and plans for future developments. 
+techniques described in Chapter  \@ref(ch:tsne). Lastly, in 
+Chapter \@ref(ch:conclusion) describes the outputs of the thesis and plans for future developments. 
 
 ## A grammar for genomic data analysis {#sec:tidygranges}
 
@@ -61,7 +61,7 @@ mapped to graphical aesthetics of plots. This paradigm enables the grammar of gr
 It is unclear whether the *fluent* interfaces as implemented using the
 *tidy data* framework can be more generally applied and useful
 in fields such as high-throughput biology where domain specific semantics are 
-required (figure \@ref(fig:wflow-wrangle)). This is particularly true in the Bioconductor ecosystem, where much 
+required (Figure \@ref(fig:wflow-wrangle)). This is particularly true in the Bioconductor ecosystem, where much 
 thought has gone into the design of data structures that enable interoperability
 between different tools, biological assays and analysis goals [@Huber2015-ei].
 
@@ -79,9 +79,9 @@ knitr::include_graphics(here::here("img", "wflow-thesis-integrate.png"))
 
 It is rare that a biological data analysis will involve
 a single measurement assay or that only one aspect of a measurement assay
-will be of interest to the biological question under study (figure \@ref(fig:wflow-integrate)). While there are 
+will be of interest to the biological question under study (Figure \@ref(fig:wflow-integrate)). While there are 
 many approaches to integrating data sets from multiple assays using multivariate
-statistical techniques [@Meng2016-pz; @Stein-OBrien2018-bk] and data structures to represent them [@Ramos2017-kn], there has been little thought given to the interoperability between these approaches and the **tidyverse**. In chapter \@ref(ch:fluentGenomics)
+statistical techniques [@Meng2016-pz; @Stein-OBrien2018-bk] and data structures to represent them [@Ramos2017-kn], there has been little thought given to the interoperability between these approaches and the **tidyverse**. In Chapter \@ref(ch:fluentGenomics)
 we describe a simple end-to-end workflow for integrating 
 results along the genome using **plyranges**. This workflow shows that
 our grammar based approach does not impair interoperability between
@@ -90,7 +90,7 @@ together. This chapter has been published as @Lee2020-ie.
 
 ## Representation of genomic data structures{#sec:coverage}
 
-In chapter \@ref(ch:intron) we explore the limits of the *tidy data*
+In Chapter \@ref(ch:intron) we explore the limits of the *tidy data*
 semantic by extending **plyranges** to analyse coverage estimated on RNA-seq
 data by developing a new software tool called **superintronic**. We show that the
 long-form tidy representation is an effective way of combining the experimental
@@ -98,7 +98,7 @@ design and reference annotations into a single genomic data structure for
 exploration. We use **superintronic** to develop a framework for discovering
 interesting regions of coverage and apply our approach to integrating intron
 signal from RNA-seq data. This chapter is based on my software and analysis
-contributions to the preprint @Lee2019-mf. 
+contributions to the  @Lee2019-mf. 
 
 ## Interactive visualisation for high-dimensional data {#sec:va}
 
@@ -106,9 +106,9 @@ contributions to the preprint @Lee2019-mf.
 knitr::include_graphics(here::here("img", "wflow-thesis-explore.png"))
 ```
 
-In the final chapter, we move away from data wrangling and towards the 
+Finally, we move away from data wrangling and towards the 
 integration of visualisation with model-based summaries of high-dimensional
-data sets (figure \@ref(fig:wflow-explore)). We focus on a common tool for EDA 
+data sets (Figure \@ref(fig:wflow-explore)). We focus on a common tool for EDA 
 (especially applied to single-cell transcriptomics): non-linear dimension 
 reduction (NLDR). We consider the incorporation of interactive and dynamic 
 graphics to assist analysts in using  NLDR techniques for cluster orientation 

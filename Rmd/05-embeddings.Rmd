@@ -468,13 +468,13 @@ display_screenshot("gaussian", vid_lookup)
 display_vid_html("gaussian", vid_lookup)
 ```
 
-From the video linked in figure \@ref(fig:gaussian), we learn that t-SNE has 
+From the video linked in Figure \@ref(fig:gaussian), we learn that t-SNE has 
 correctly split out each cluster and laid them out in a star like formation. 
 This is agrees with the tour view,
 where once we start the animation, the five clusters begin to appear but
 generally points are more concentrated in the projection view compared to 
-the t-SNE layout (figure \@ref(fig:gaussian)a). 
-This can be seen via brushing the t-SNE view (figure \@ref(fig:gaussian)b). 
+the t-SNE layout (Figure \@ref(fig:gaussian)a). 
+This can be seen via brushing the t-SNE view (Figure \@ref(fig:gaussian)b). 
 
 
 ### Case Study 2: Exploring spherical Gaussian clusters with hierarchical structure
@@ -486,13 +486,13 @@ embedded in 10-$d$, and a third cluster
 with hierarchical structure. This cluster has two 3-$d$ clusters embedded in 
 10-$d$, where the second cluster is subdivided into three smaller clusters, 
 that are each equidistant from each other and have the same covariance structure.
-From the video linked in figure \@ref(fig:hierarchical), we see 
+From the video linked in Figure \@ref(fig:hierarchical), we see 
 that t-SNE has correctly identified the sub-clusters. However, their relative 
 locations to each other is distorted, with the orange and blue groups being
-far from each other in the tour view (figure \@ref(fig:hierarchical)a). We see 
+far from each other in the tour view (Figure \@ref(fig:hierarchical)a). We see 
 in this case that is difficult
 to see the sub-clusters in the tour view, however, once we zoom and highlight
-they become more apparent (figure \@ref(fig:hierarchical)b). When we brush 
+they become more apparent (Figure \@ref(fig:hierarchical)b). When we brush 
 the sub-clusters in the t-SNE, their
 relative placement is again exaggerated, with the tour showing that they
 are indeed much closer than the impression the t-SNE view gives.
@@ -509,7 +509,7 @@ display_vid_html("hierarchical", vid_lookup)
 
 ### Case Study 3: Exploring data with piecewise linear structure
 
-Next we explore some simulated noisy tree structured data (figure
+Next we explore some simulated noisy tree structured data (Figure
 \@ref(fig:fake-trees)). Our interest here is how t-SNE visualisations break
 topology of the data, and then seeing if we can resolve this by tweaking the
 default parameters with reference to the global view of the data set. 
@@ -531,7 +531,7 @@ explained in the data) to use with the grand tour.
 Moreover, we run t-SNE using the default arguments on the complete data (this
 keeps the first 50 PCs, sets the perplexity to equal 30 and performs random
 initialisation). We then create a linked
-tour with t-SNE layout with **liminal** as shown in figure \@ref(fig:trees-01).
+tour with t-SNE layout with **liminal** as shown in Figure \@ref(fig:trees-01).
 
 (ref:trees-01) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635892.    
 
@@ -545,7 +545,7 @@ display_vid_html("trees-01", vid_lookup)
 
 From the linked video, we see that the t-SNE view has been unable to 
 recapitulate the topology of the tree - the backbone (blue) branch has been 
-split into three fragments (figure \@ref(fig:trees-01)a). We can see 
+split into three fragments (Figure \@ref(fig:trees-01)a). We can see 
 this immediately via the linked highlighting over both
 plots. If we click on the legend for the zero branch, the blue coloured points
 on each view are highlighted and the remaining points are made transparent.
@@ -553,7 +553,7 @@ From, here it becomes apparent from the tour view that the blue branch forms
 the backbone of the tree and is connected to all other branches. From the video 
 it is easy to see that cluster sizes formed via t-SNE can be misleading; from the tour
 view there is a lot of noise along the branches, while this does not appear to
-be the case for the t-SNE result (figure \@ref(fig:trees-01)b).
+be the case for the t-SNE result (Figure \@ref(fig:trees-01)b).
 
 From the first view, we modify the inputs to the t-SNE view, to try and produce
 a better trade-off between local structure and retain the topology of the data.
@@ -561,7 +561,7 @@ We keep every parameter the same except that we initialise $Y$ with the first
 two PCs (scaled to have standard deviation 1e-4) instead of the default random
 initialisation and increase the perplexity from 30 to 100. We then combine
 these results with our tour view as displayed in the linked video in the caption
-of figure \@ref(fig:trees-02).
+of Figure \@ref(fig:trees-02).
 
 
 (ref:trees-02) Screenshots of the **liminal** interface applied to tree structured data, a video of the tour animation is available at https://player.vimeo.com/video/439635863.  
@@ -574,9 +574,9 @@ display_screenshot("trees-02", vid_lookup)
 display_vid_html("trees-02", vid_lookup)
 ```
 
-The video linked in figure \@ref(fig:trees-02) shows that this selection of 
+The video linked in Figure \@ref(fig:trees-02) shows that this selection of 
 parameters results in the 
-tips of the branches (the three black dots in figure \@ref(fig:fake-trees)a) 
+tips of the branches (the three black dots in Figure \@ref(fig:fake-trees)a) 
 being split into three clusters representing the terminal branches of the tree. 
 However, there are perceptual issues following the placement of the three 
 groupings on the t-SNE view that become apparent via simple linked brushing. 
@@ -584,7 +584,7 @@ If we brush the
 tips of the yellow and brown branches (which appear to be close to each other
 on the t-SNE view), we immediately see the placement is distorted in the t-SNE
 view, and in the tour view these tips are at opposite ends of the tree 
-(figure \@ref(fig:trees-02)b).
+(Figure \@ref(fig:trees-02)b).
 Although, this is a known issue of the t-SNE algorithm, we can easily identify
 it via simple interactivity without knowing the inner workings of the method.
 
@@ -625,7 +625,7 @@ Consequently, increasing the number of PCs to tour would increase the dimensiona
 Due to latency of the **liminal** interface we do a weighted sample of  the rows based on
 cluster membership, leaving us with approximately 10 per cent of the original
 data size - 4,590 cells. Although this is not ideal, it still allows us to
-get a sense of the shape of the clusters as seen from the linked video in figure \@ref(fig:mouse-01). If one was interested in performing more in-depth cluster analysis we recommend an iterative approach of removing large clusters and then re-running the **liminal** view as a way finding more granular cluster structure.
+get a sense of the shape of the clusters as seen from the linked video in Figure \@ref(fig:mouse-01). If one was interested in performing more in-depth cluster analysis we recommend an iterative approach of removing large clusters and then re-running the **liminal** view as a way finding more granular cluster structure.
 
 
 (ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data, a video of the tour animation is available at https://player.vimeo.com/video/439635812. 
@@ -638,19 +638,19 @@ display_screenshot("mouse-01", vid_lookup)
 display_vid_html("mouse-01", vid_lookup)
 ```
 
-From the video linked in figure \@ref(fig:mouse-01), we learn that the embedding has mostly captured the
+From the video linked in Figure \@ref(fig:mouse-01), we learn that the embedding has mostly captured the
 clusters relative location to each other to their location in high dimensional space, with a notable exception of points in cluster 3 and 10 as shown with
-linked brushing (figure \@ref(fig:mouse-01)a). As expected, t-SNE mitigates the crowding problem that is
+linked brushing (Figure \@ref(fig:mouse-01)a). As expected, t-SNE mitigates the crowding problem that is
 an issue for tour in this case, where points in clusters 2,4,6, and 11 are
-clumped together in tour view, but are blown up in the embedding view (figure \@ref(fig:mouse-01)b). 
+clumped together in tour view, but are blown up in the embedding view (Figure \@ref(fig:mouse-01)b). 
 The tour appears to form a tetrahedron like shape, with points lying on
 surface and along the vertices of the tetrahedron in 5-$d$ PCA space -
 a phenomena that has also been observed in @Korem2015-af 
-(figure \@ref(fig:mouse-01)c). Brushing on
+(Figure \@ref(fig:mouse-01)c). Brushing on
 the tour view, reveals points in cluster 9 that are diffuse in the embedding 
 view, points in cluster 9 are relatively far away and spread apart from other 
 clusters in the tour view, but has points placed in cluster 3 and 9 in the embedding
-(figure \@ref(fig:mouse-01)d). 
+(Figure \@ref(fig:mouse-01)d). 
 
 Next, we identify marker genes for clusters using one sided Welch t-tests with
 a minimum log fold change of one as recommended by @Amezquita2020-at, which
@@ -673,13 +673,13 @@ display_screenshot("mouse-02", vid_lookup)
 display_vid_html("mouse-02", vid_lookup)
 ```
 
-From the video linked in figure \@ref(fig:mouse-02), we see that the 
+From the video linked in Figure \@ref(fig:mouse-02), we see that the 
 expression of the marker genes, appear to separate
 the previously clumped clusters 2,4,6, and 11 from the other clusters, 
-indicating that these genes are expressed in all four clusters (figure \@ref(fig:mouse-02)a). After zooming, we can see a trajectory forming along
+indicating that these genes are expressed in all four clusters (Figure \@ref(fig:mouse-02)a). After zooming, we can see a trajectory forming along
 the clusters, while the axis view shows that magnitude of expression in 
 the marker genes is similar across these separated clusters which is 
-consistent with the results of marker gene analysis (figure \@ref(fig:mouse-02)b).
+consistent with the results of marker gene analysis (Figure \@ref(fig:mouse-02)b).
 
 ## Discussion
 
