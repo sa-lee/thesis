@@ -71,14 +71,14 @@ Thank you for your thorough review and thoughtful suggestions. This feedback is 
 
 **On Scalability**
 
-I would like to comment that I have avoided performance benchmarking for two main reasons. First, I believe it is out of scope for the thesis, since my focus has been on the development of programming and user interfaces. Second, my implementation of **plyranges** is deeply entwined with the underlying core Bioconductor infrastructure, especially the data structures and methods found in the **IRanges** and **GenomicRanges** packages. This would result any benchmarking of **plyranges** turning into benchmarking of those packages which has been done elsewhere. 
+I would like to comment that I have avoided performance benchmarking for two main reasons. First, I believe it is out of scope for the thesis, since my focus has been on the development of programming and user interfaces. Second, my implementation of **plyranges** is deeply entwined with the underlying core Bioconductor infrastructure, especially the data structures and methods found in the **IRanges** and **GenomicRanges** packages. This would result in any benchmarking of **plyranges** turning into benchmarking of those packages which has been done elsewhere. 
 
 Regarding out of memory data structures like `DelayedArray`, it is possible to incorporate them as columns to a `GRanges` object and then the full **plyranges** API would be available. Currently, there appear to be no plans in Bioconductor for out of memory `Ranges`, and indeed there are times where it is more appropriate to switch to a rectangular data layout for computation, as is reflected in the workflow described in chapter 3 of the thesis. I believe the development of a scalable out of memory interface for genomic data analysis will require the transformation between data measured along the genome (covered by the **plyranges** API) and the rectangular layouts that enable out of disk computing like `SummarizedExperiment`. This is an exciting research area that I would like to explore in the currently under development **plyexperiment**.
 
 **On alignment vs. pseudoalignment**
 
 I have amended the introduction to include a note about alignment. 
-I believe it is out of scope to go into the gritty details of when to use alignment or pseudo-alignment methods to obtain counts for RNA-seq data. I have included results from both approaches to highlight that **plyranges** is agnostic to the method used and is flexible for many types of data.
+I believe it is out of scope to go into the finer details of when to use alignment or pseudo-alignment methods to obtain counts for RNA-seq data. I have included results from both approaches to highlight that **plyranges** is agnostic to the method used and is flexible for many types of data.
 
 
 ### Chapter 1 comments {-}
@@ -98,7 +98,7 @@ Amended.
 
 > Pg 3: you introduce “range-based genomics data”, but it is not clear what is meant by that. More explanation would be helpful.
 
-I have clarified what this refers to.
+Amended. It now refers to data measured along the genome.
 
 >Pg 4: In Section 1.2, could you add a few more references on existing methods for integration of genomic data and then re-emphasize the point that however existing methods have not thought much about the interoperability between the tidyverse and Bioconductor approaches?
 
@@ -113,7 +113,7 @@ This chapter has already been published and it appears most of the comments pert
 
 > Almost all of Chapter 2 discusses the use of GRanges objects. As most of Chapter 3 discusses the use of the SummarizedExperiment object, could you add a motivating figure at the start explaining the relationship between a SummarizedExperiment and GRanges object (i.e. rowRanges)? I do not think this is obvious to a reader who may not very familiar with these objects. However, I think it is an important aspect to explain in this chapter.
 
-I agree and have amended this by adding a figure which describes these features.
+I agree and have amended this by adding a figure which explains what a `SummarizedExperiment`  is and how it is related to a `GRanges`.
 
 > Pg 31: Figure 3.1 is fairly low resolution. Is it possible to make a higher resolution version?
 
@@ -140,7 +140,7 @@ Amended.
 
 >Pg 45: More motivation could be provided on why you want to generate random samples of size equal to the number of DE-genes from the other_genes with your larger question in mind of “how many DA peaks are near DE genes relative to”other" non-DE genes¿‘. It is stated on pg 46”we minimize the variance on the enrichment statistics induced by the sampling process", but it might be good to explain this in greater detail at a higher level.
 
-I have expanded on this now.
+I have added a few more sentences to this section which describes the motivation for selecting sets of the same size between non-DE and DE genes, and why we want to do sub-sampling.
 
 ### Chapter 4 comments {-}
 
