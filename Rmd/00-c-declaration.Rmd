@@ -11,7 +11,7 @@ interfaces for biological data analysis, and given the collaborative nature
 of statistical computing and bioinformatics research; all of the included
 papers in this thesis reflect and acknowledge the contributions of my 
 co-authors. Of special note is chapter \@ref(ch:intron), which reflects my 
-contribution (in the form of a software package) to the submitted manuscript entitled 
+contribution (in the form of a software package) to the published manuscript entitled 
 _Covering all your bases: incorporating intron signal from RNA-seq data_
 [@Lee2019-mf], and includes new data analyses not found in the paper. 
 The following table details the publications, including my and my fellow co-authors contributions:

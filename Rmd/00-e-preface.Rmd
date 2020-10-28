@@ -6,7 +6,7 @@ has been used to create a reproducible environment to build the thesis from sour
 
 Chapter \@ref(ch:plyranges) has been published in _Genome Biology_. It
 won the ACEMS Business Analytics Prize for Best Paper in 2019. Chapter \@ref(ch:fluentGenomics) has been published in _F1000 Research_.  Chapter
-\@ref(ch:intron) is based on my software contributions to the submitted
+\@ref(ch:intron) is based on my software contributions to the published
 article @Lee2019-mf. Chapter \@ref(ch:tsne) has not been submitted.
 
 

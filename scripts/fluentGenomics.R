@@ -26,13 +26,13 @@ makeLinkedTxome(
 # n <- plyranges::n
 
 ## ----setdir----------------------------------------
-dir <- system.file("extdata", package="macrophage")
+path <- system.file("extdata", package="macrophage")
 
 
 ## ----coldata-rna-----------------------------------
 library(readr)
 library(dplyr)
-colfile <- file.path(dir, "coldata.csv")
+colfile <- file.path(path, "coldata.csv")
 coldata <- read_csv(colfile) %>%
   select(
     names,
@@ -41,7 +41,7 @@ coldata <- read_csv(colfile) %>%
     condition = condition_name
   ) %>%
   mutate(
-    files = file.path(dir, "quants", names, "quant.sf.gz"),
+    files = file.path(path, "quants", names, "quant.sf.gz"),
     line = factor(line),
     condition = relevel(factor(condition), "naive")
   )

@@ -36,24 +36,24 @@ and this binding may increase the accessibility of those regions such that it
 can be detected by ATAC-seq.
 
 ```{r workflow, fig.cap = "(ref:workflow)"}
-knitr::include_graphics(here::here("img", "workflow-fluentgenomics.png"))
+knitr::include_graphics(here::here("img", "workflow-fluentgenomics.pdf"))
 ```
 
 (ref:workflow) An overview of the fluent genomics workflow. First, we *import* data as a _SummarizedExperiment_ object, which enables interoperability with downstream analysis packages. Then we *model* our assay data, using the existing Bioconductor packages **DESeq2** and **limma**. We take the results of our models for each assay with respect to their genomic coordinates, and *integrate* them. First, we compute the overlap between the results of each assay, then aggregate over the combined genomic regions, and finally summarize to compare enrichment for differentially expressed genes to non differentially expressed genes. The final output can be used for downstream visualization or further transformation.
 
 Throughout the workflow (Figure \@ref(fig:workflow)), we will use existing
 Bioconductor infrastructure to understand these datasets. In particular, we
-will emphasize the use of the Bioconductor packages **plyranges** and **tximeta** and the _SummarizedExperiment_ class (Figure \@ref(fig:se).
+will emphasize the use of the Bioconductor packages **plyranges** and **tximeta** and the _SummarizedExperiment_ class (Figure \@ref(fig:se)).
 The **plyranges** package fluently transforms data tied to genomic ranges using
 operations like shifting, window construction, overlap detection, etc. It is
 described by @Lee2019 and leverages underlying core Bioconductor infrastructure
 [@granges; @bioc] and the **tidyverse** design principles @tidyverse.
 
 ```{r se, fig.cap = "(ref:se)"}
-knitr::include_graphics(here::here("img", "se-diagram.png"))
+knitr::include_graphics(here::here("img", "se-diagram.pdf"))
 ```
 
-(ref:se): A _SummarizedExperiment_ orients bulk assay measurements as matrices where rows correspond to features, and columns correspond to samples. The rows have their own accessor functions which contains additional data about the feature of interest, in this `rowRanges()` returns a _GRanges_  where rows are the genomic coordinates for each gene measured in the assay, while `colData()` returns a _DataFrame_  where rows contain information about the samples. 
+(ref:se) A _SummarizedExperiment_ orients bulk assay measurements as matrices where rows correspond to features, and columns correspond to samples. The rows have their own accessor functions which contains additional data about the feature of interest, in this `rowRanges()` returns a _GRanges_  where rows are the genomic coordinates for each gene measured in the assay, while `colData()` returns a _DataFrame_  where rows contain information about the samples. 
 
 The **tximeta** package described by @Love2019-tximeta is used to read RNA-seq
 quantification data into R/Bioconductor, such that the transcript ranges and
@@ -301,7 +301,7 @@ The `results()` function extracts a summary of the DE analysis: in this case for
 ```{r ma-plot, fig.cap="(ref:maplot)", echo = TRUE}
 ```
 
-(ref:maplot) Visualization of `DESeq2` results as an "MA plot". Genes  that have an adjusted *p-value* below 0.01 are colored red.In this case the LFC between conditions is shown on the y-axis, while the average normalised gene counts across all conditions are shown on the x-axis. The assumption of an RNA-seq analysis that most genes are not DE, so most genes are scattered about zero on the y-axis while genes that have evidence of DE are far from the zero baseline. The x-axis gives a sense of the total expression of the gene. 
+(ref:maplot) Visualization of `DESeq2` results as an "MA plot". Genes  that have an adjusted *p-value* below 0.01 are colored blue.In this case the LFC between conditions is shown on the y-axis, while the average normalised gene counts across all conditions are shown on the x-axis. The assumption of an RNA-seq analysis that most genes are not DE, so most genes are scattered about zero on the y-axis while genes that have evidence of DE are far from the zero baseline. The x-axis gives a sense of the total expression of the gene. 
 
 We now output the results as a _GRanges_ object, and due to the conventions of
 **plyranges**, we construct a new column called _gene\_id_ from the row names of
