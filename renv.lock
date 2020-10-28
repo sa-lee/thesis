@@ -890,10 +890,10 @@
     },
     "magick": {
       "Package": "magick",
-      "Version": "2.4.0",
+      "Version": "2.5.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "40a9efbb0418902cf6b663a1529a975a"
+      "Hash": "b20d010999474ee594d3c80ead4b1efb"
     },
     "magrittr": {
       "Package": "magrittr",
