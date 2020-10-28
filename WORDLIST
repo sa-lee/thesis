@@ -26,6 +26,7 @@ contigs
 cqn
 CSL
 cvg
+DataFrame
 deepTools
 DESeq
 doi
@@ -234,3 +235,11 @@ Coughlan
 Vahid
 renv
 GGally
+plyrangesWorkshops
+contig
+Bioc
+BEDGraph
+narrowPeaks
+strandedness
+GenomicAlignments
+

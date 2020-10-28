@@ -103,11 +103,41 @@ I have expanded this section to reflect these comments.
 
 ### Chapter 2 comments
 
-Most of the comments pertain to the use and learning of the **plyranges** package. I believe they are best addressed through the **plyranges** documentation and vignette. I have amended the thesis to include the package vignette as an appendix. 
+This chapter has already been published and it appears most of the comments pertain to the use and learning of the **plyranges** package. I believe they are best addressed through the **plyranges** documentation and vignette. I have amended the thesis to include the package vignette as an appendix. 
 
 
 ### Chapter 3 comments
 
+> Almost all of Chapter 2 discusses the use of GRanges objects. As most of Chapter 3 discusses the use of the SummarizedExperiment object, could you add a motivating figure at the start explaining the relationship between a SummarizedExperiment and GRanges object (i.e. rowRanges)? I do not think this is obvious to a reader who may not very familiar with these objects. However, I think it is an important aspect to explain in this chapter.
+
+I agree and have amended this by adding a figure which describes these features.
+
+> Pg 31: Figure 3.1 is fairly low resolution. Is it possible to make a higher resolution version?
+
+Amended.
+
+> Pg 31: Figure 3.1 demonstrates how you use plyranges to integrate the results from DE and DA (i.e. finding overlaps). Would it also make sense to the integration step prior to modeling? I am thinking
+about this as a way to reduce the amount of tests performed for DE and DA.
+
+I think it would make sense but it is out of scope for this paper.
+
+> Pg 32: The fluentGenomics package needs a reference
+
+Amended.
+
+>Pg 39: Could you add 1-2 sentences (and maybe a reference) about what is a MA plot and why it’s
+useful for visualizing DE results?
+
+Amended. 
+
+> Pg 40: I think it would be useful if you could comment on the results() function a bit more to explain
+what is happening under the hood there. It’s a pretty critical step for everything downstream after identifying the DE genes in preparation for the integration step. As it stands, I felt like it was kind of glossed over.
+
+Amended.
+
+>Pg 45: More motivation could be provided on why you want to generate random samples of size equal to the number of DE-genes from the other_genes with your larger question in mind of “how many DA peaks are near DE genes relative to”other" non-DE genes¿‘. It is stated on pg 46”we minimize the variance on the enrichment statistics induced by the sampling process", but it might be good to explain this in greater detail at a higher level.
+
+I have expanded on this now.
 
 ### Chapter 4 comments
 

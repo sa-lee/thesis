@@ -9,16 +9,16 @@ library(DESeq2)
 library(readr)
 library(dplyr)
 
-dir <- system.file("extdata", package="macrophage")
+path <- system.file("extdata", package="macrophage")
 
 makeLinkedTxome(
-  indexDir=file.path(dir, "gencode.v29_salmon_0.12.0"),
+  indexDir=file.path(path, "gencode.v29_salmon_0.12.0"),
   source="Gencode",
   organism="Homo sapiens",
   release="29",
   genome="GRCh38",
   fasta="ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/gencode.v29.transcripts.fa.gz",
-  gtf=file.path(dir, "gencode.v29.annotation.gtf.gz"), # local version
+  gtf=file.path(path, "gencode.v29.annotation.gtf.gz"), # local version
   write=FALSE
 )
 # # alias to plyranges

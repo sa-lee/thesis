@@ -355,7 +355,7 @@ This example is taken from the Bioconductor support
 [site](https://support.bioconductor.org/p/100046/).
 
 We have two `Ranges` objects. The first contains single nucleotide positions
-corresponding to an intensity measurement such as a ChiP-seq experiment, while
+corresponding to an intensity measurement such as a ChIP-seq experiment, while
 the other contains coordinates for two genes of interest.
 
 
