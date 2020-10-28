@@ -5,7 +5,6 @@ output:
   MonashEBSTemplates::memo:
     includes:
       in_header: preamble2.tex
-fontfamily: mathpazo
 ---
 
 First, I would like to thank my examiners for their constructive feedback and insights. I am excited to incorporate their ideas into my future research. The point by point description of changes are below: the examiners' comments are in red and my response is in black.
@@ -107,7 +106,39 @@ I have expanded this section to reflect these comments.
 Most of the comments pertain to the use and learning of the **plyranges** package. I believe they are best addressed through the **plyranges** documentation and vignette. I have amended the thesis to include the package vignette as an appendix. 
 
 
+### Chapter 3 comments
+
+
+### Chapter 4 comments
+
+> Much of this chapter depends on understanding what is meant by a coverage trace plot. You do have examples (e.g. Figures 4.4-4.7), but this is at the very end of the chapter. It would be good to provide a motivating figure be added at the start to explain what is meant by “coverage” in this context?
+> Pg 63: Introduce what you mean by coverage traces and provide more motiviation why you would want this over just numerical summaries of the data.
+
+Amended.
+
+> Pg 66: You state “resulting GRanges in memory can be compressed using run-length encoding for any categorical variable”. Could you give a numeric example of the amount of compression that can be obtained with RLEs? Also, maybe add a brief sentence explaining what are RLEs.
+
+Amended. 
+
+> Pg 68: Can you comment on why the GFF files from RefSeq were used?
+
+The model organism is Zebrafish which has limited annotations available compared to human and mouse. I chose the RefSeq GFF build because that is what was recommended to me by our collaborators as the canonical reference. 
+
+> Pg 68: How did you handle reads that map over boundaries for introns and exons? or do you only keep the ones that are entirely inside an intron or exon? 
+
+Reads that are split are across exon / intron boundaries are counted towards both categories.
+
+> Pg 69: In the facets, you used a short descriptor, but could you write out what is each facet label is in the legend?
+
+I think the facet labels are sufficient in conjunction with the figure captions.
+
+
 ### Chapter 5 comments
+
+>  One question I had as I was reading throughout this chapter, was what is your recommendation for users who want to calculate distances? can the liminal framework be used to better approximate distances instead of users who perform clustering directly on top of the tSNE or UMAP spaces? While
+is not ideal, and it is recommended clustering should performed in the PC space, it happens all the time. Another way of framing this question is can your framework be used to improve distance estimates in the tour with a NLDR method as you note it preserves global structure?
+
+This is a really interesting question. To begin, I have amended the clustering case study to comment on a more realistic approach to perform cluster verification. I like the idea of using the tour to calibrate distances obtained from an NLDR method (or the other way around). As mentioned in the text if there are (well-behaved) clusters in the data, it appears that t-SNE will find them but often messes up their orientation and topology. I think you would get some of the way there using the spatial linking approach I described. Another approach would be to look at distance preservation between successive tour frames. One could then ask, how often are these groups of points close according to the tour? Of interest would also be the manual clustering approaches described in Cook and Swayne, 2007. This is left as future work.   
 
 >  Pg 77: “non-liner” should be “non-linear”
 

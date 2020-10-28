@@ -11,7 +11,7 @@ package called **superintronic**, available at https://github.com/sa-lee/superin
 ## Introduction
 
 In high-throughput sequencing data sets, coverage is the estimated number of
-reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omics analysis such peak-calling in ChIP-seq or variant calling in DNA-seq [@Sims2014-qk]. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data. By faceting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
+reads that overlap a single position of the reference genome, and is important for assessing sequencing data quality and used in many different aspects of omics analysis such peak-calling in ChIP-seq or variant calling in DNA-seq [@Sims2014-qk]. Here we emphasise looking at coverage traces to find biological events of interest, rather than only relying on numerical summaries of the data (Figure \@ref(fig:cov-trace). By faceting these traces over combinations of the experimental design and with their biological context such as gene annotations, we can gain an
 insight into biological signal under study. 
 Of course, due to the sheer size of most reference genome annotations 
 it would take an extremely long time for an analyst to look at every 
@@ -22,6 +22,13 @@ visualisation literature; in particular the idea of scatter plot diagnostics ("s
 to a small number of descriptors of each scatter plots properties such as 
 density or monotonicity [@Friedman2002-yx;@Wilkinson2005-xt].  Similarly,
 searching for unusual time series via estimating descriptors such as seasonality or autocorrelation, and visualising those descriptors instead [@Hyndman2015-sc].
+
+(ref:example-trace): An illustrative coverage trace plot from Chapter \@ref(ch:plyranges). The coverage _score_ is defined as the number of reads that overlap a single base position within a reference genome. For example, at position 21.807 of chromosome 8 there are approximately 12 reads overlapping it. One could also think of a coverage trace as a histogram with the bin width varies as you move along the genome.
+
+```{r cov-trace, echo = FALSE, fig.cap="(ref:example-trace)}
+knitr::include_graphics(here::here("img", "peak-viz-1.png"))
+```
+
 
 Although there are many flexible and powerful software tools, like **BEDtools** or **deepTools**, for exploring and estimating coverage from common genomic data formats [@Quinlan2010-gc; @Ramirez2014-sh], it is advantageous to have tooling
 that is tightly coupled to a statistical computing language such as R. This allows interoperability between other software packages for data wrangling, visualisation and modelling within the ecosystem of the language that may not
@@ -56,6 +63,11 @@ knitr::include_graphics(here::here("img", "si-workflow.png"))
 
 ### Representation of coverage estimation
 
+```{r rle-example, echo =FALSE}
+set.seed(1836)
+x <- sample(letters[1:2], 10, replace = TRUE)
+x_rle <- S4Vectors::Rle(x)
+```
 The per base coverage score is estimated directly from one or more BAM files
 that represent the units within the experimental design,
 along with an optional experimental design table that is returns 
@@ -68,7 +80,14 @@ structure corresponds to position(s) within a given sample with a given
 coverage score alongside any variables such as biological group. While the long-form representation repeats the same information
 for a sample within the design, the size of the resulting _GRanges_ in
 memory can be compressed using run-length encoding for any categorical 
-variable. This representation allows us to easily transform the coverage scores
+variable, which is a form of data compression where "runs" of a vector are stored rather than their values. For example, the character vector of letters "a", and "b" is shortened so successive values are stored as a single value with their lengths: 
+
+```{r, echo = FALSE}
+x
+x_rle
+```
+
+This representation is memory efficient: at worst it will be the same size as the input, and at best reduce the size by a factor corresponding to the largest run. The allows us to easily transform the coverage scores
 and integrate annotations using the **plyranges** grammar, and visualise traces using **ggplot2** [@Wickham2016-gz].
 
 ### Integration of external annotations
