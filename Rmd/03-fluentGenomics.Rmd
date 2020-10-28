@@ -50,7 +50,7 @@ described by @Lee2019 and leverages underlying core Bioconductor infrastructure
 [@granges; @bioc] and the **tidyverse** design principles @tidyverse.
 
 ```{r se, fig.cap = "(ref:se)"}
-knitr::include_graphics(here::here("img", "se-digram.png"))
+knitr::include_graphics(here::here("img", "se-diagram.png"))
 ```
 
 (ref:se): A _SummarizedExperiment_ orients bulk assay measurements as matrices where rows correspond to features, and columns correspond to samples. The rows have their own accessor functions which contains additional data about the feature of interest, in this `rowRanges()` returns a _GRanges_  where rows are the genomic coordinates for each gene measured in the assay, while `colData()` returns a _DataFrame_  where rows contain information about the samples. 
