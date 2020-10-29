@@ -10,7 +10,7 @@ fontfamily: mathpazo
 citation_package: biblatex
 ---
 
-First, I would like to thank my examiners for their constructive feedback and insights. I have incorporated most of the comments into thesis revisions. Where changes have not been made I have described my plans to incorporate them into future work. The point by point description of changes is below: the examiners' comments are in black and my response is in red.
+First, I would like to thank my examiners for their constructive feedback and insights. I have incorporated most of the comments into the thesis revisions. Where changes have not been made I have described my plans to incorporate them into future work. The point by point description of changes is below: the examiners' comments are in black and my response is in red.
 
 ## Professor Levi Waldron {-}
 
