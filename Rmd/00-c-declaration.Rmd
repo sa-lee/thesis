@@ -36,12 +36,12 @@ I have renumbered sections of submitted or published papers in order to generate
 
 \textbf{Student signature:}
 
-```{r signature, out.width = "20%", fig.align = "left", eval = file.exists("img/signature.png")}
+```{r signature, out.width = "20%", fig.align = "left", eval = FALSE}
 knitr::include_graphics("img/signature.png")
 ```
 
-\textbf{Date:} 05/08/2020
-
+\textbf{Date:} 29/10/2020
+<!--
 I hereby certify that the above declaration correctly reflects the nature and extent of the student’s and co-authors’ contributions to this work. In instances where I am not the responsible author I have consulted with the responsible author to agree on the respective contributions of the authors. 
 
 \textbf{Supervisor name:} Dianne Helen Cook
@@ -53,6 +53,8 @@ knitr::include_graphics("img/di.png")
 ```
 
 \textbf{Date:} 05/08/2020
+
+-->
 
 `r if (knitr::is_html_output()) '-->'`
 
