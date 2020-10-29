@@ -303,7 +303,7 @@ analysts to perform  cluster orientation tasks via linked highlighting and
 brushing [@McDonald1982-ew; @Becker1987-gd]. 
 This approach allows our interface to achieve 
 the three principles for interactive high-dimensional data visualisation outlined
-by @Buja1996-fk: finding gestalt, posing queries, and making comparisons.
+by @Buja1996-fk: finding gestalt (identifying patterns in visual forms), posing queries, and making comparisons.
 
 ### Finding Gestalt: focus and context
 
@@ -630,7 +630,7 @@ get a sense of the shape of the clusters as seen from the linked video in Figure
 
 (ref:mouse-01) Screenshots of the **liminal** interface applied to single cell data, a video of the tour animation is available at https://player.vimeo.com/video/439635812. 
 
-```{r mouse-01, fig.cap = "(ref:mouse-01)", out.height = "85%"}
+```{r mouse-01, fig.cap = "(ref:mouse-01)", out.height = "90%"}
 display_screenshot("mouse-01", vid_lookup)
 ```
 

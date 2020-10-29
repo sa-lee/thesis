@@ -99,7 +99,7 @@ per base coverage that are overlapped the genomic features in the annotation,
 along side any metadata about the features themselves. Since our main workflow
 interest is in discovering coverage traces with IR profiles, **superintronic**
 provides some syntactic sugar for unravelling gene annotations into their exonic
-and intronic parts, and intersecting them with a coverage _GRanges_.
+and intronic parts, and intersecting them with a coverage _GRanges_. Split reads that cross the boundaries of exon and intron parts are counted towards both unless filtered beforehand.
 
 ### Discovery of regions of interest via 'data descriptors'
 
@@ -142,7 +142,7 @@ sample [@Liao2013-eb; @Liao2019-qn]. The coverage was then estimated directly fr
 using **superintronic** into the long form _GRanges_ representation we described above. 
 
 The gene annotation files were
-obtained as GFF files from RefSeq and used to construct the exonic
+obtained as GFF files from RefSeq as is standard for Zebrafish analyses. The GFF was used to construct the exonic
 and intronic parts of each gene as _GRanges_ object using **superintronic**. 
 We further filtered genes that had a single exon or genes that were overlapping
 others in the annotation and that were not on the main contigs of the reference genome (i.e. excluding mitochondria) to simplify our analysis and reduce any coverage ambiguity. This left 18,270 genes available for 
