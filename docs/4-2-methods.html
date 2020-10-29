@@ -294,7 +294,7 @@ per base coverage that are overlapped the genomic features in the annotation,
 along side any metadata about the features themselves. Since our main workflow
 interest is in discovering coverage traces with IR profiles, <strong>superintronic</strong>
 provides some syntactic sugar for unravelling gene annotations into their exonic
-and intronic parts, and intersecting them with a coverage <em>GRanges</em>.</p>
+and intronic parts, and intersecting them with a coverage <em>GRanges</em>. Split reads that cross the boundaries of exon and intron parts are counted towards both unless filtered beforehand.</p>
 </div>
 <div id="discovery-of-regions-of-interest-via-data-descriptors" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Discovery of regions of interest via ‘data descriptors’</h3>

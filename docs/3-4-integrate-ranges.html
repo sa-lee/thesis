@@ -281,30 +281,30 @@ samples of size equal to the number of DE-genes from the number of rows in
 <pre><code>#&gt; GRanges object with 749 ranges and 3 metadata columns:
 #&gt;         seqnames              ranges strand |            gene_id  de_log2FC
 #&gt;            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; |        &lt;character&gt;  &lt;numeric&gt;
-#&gt;     [1]     chr9 127447674-127451405      - | ENSG00000197958.12 -0.5536550
-#&gt;     [2]     chr6   41921188-41933046      + |  ENSG00000112578.9 -0.2192863
-#&gt;     [3]    chr12   56309842-56316336      - |  ENSG00000257727.5 -0.1624436
-#&gt;     [4]     chr1   84479259-84497790      + | ENSG00000117133.10  0.0459108
-#&gt;     [5]     chr8 129839593-130017129      - | ENSG00000153310.19  0.3744888
+#&gt;     [1]    chr12   57520710-57530148      + | ENSG00000166987.14 -0.1731698
+#&gt;     [2]    chr22   41459717-41468725      - |  ENSG00000100410.7 -0.0364158
+#&gt;     [3]     chr9   34329506-34343713      + | ENSG00000164978.17  0.0484335
+#&gt;     [4]     chr1   27830778-27851676      + | ENSG00000117751.17 -0.1340895
+#&gt;     [5]    chr12   50129306-50167533      - | ENSG00000139624.12  0.3348782
 #&gt;     ...      ...                 ...    ... .                ...        ...
-#&gt;   [745]    chr19     9560353-9584533      - | ENSG00000197961.11 -0.0312059
-#&gt;   [746]    chr15   41230839-41281890      + | ENSG00000187446.11  0.0692942
-#&gt;   [747]     chr1   32292086-32333635      + | ENSG00000116478.11 -0.1319324
-#&gt;   [748]    chr17       410327-431062      + |  ENSG00000187624.8 -0.1305158
-#&gt;   [749]     chr3 100492619-100577444      + | ENSG00000181458.10 -0.0677612
+#&gt;   [745]    chr22   19175575-19178830      - |  ENSG00000100075.9 -0.0431335
+#&gt;   [746]     chr9 132375548-132406851      - | ENSG00000125482.12 -0.3859562
+#&gt;   [747]    chr20   17941597-17968980      - | ENSG00000089006.16 -0.3609427
+#&gt;   [748]     chr9 122940833-123104866      + | ENSG00000011454.16  0.0981684
+#&gt;   [749]    chr18   58862600-58986480      + | ENSG00000074657.13  0.2913740
 #&gt;             de_padj
 #&gt;           &lt;numeric&gt;
-#&gt;     [1] 1.42296e-03
-#&gt;     [2] 9.93378e-04
-#&gt;     [3] 3.40210e-08
-#&gt;     [4] 1.35088e-22
-#&gt;     [5] 3.43003e-03
+#&gt;     [1] 1.13014e-12
+#&gt;     [2] 1.19682e-17
+#&gt;     [3] 1.45952e-18
+#&gt;     [4] 2.46329e-23
+#&gt;     [5] 1.06269e-14
 #&gt;     ...         ...
-#&gt;   [745] 1.04682e-09
-#&gt;   [746] 7.42872e-08
-#&gt;   [747] 2.16830e-08
-#&gt;   [748] 5.56352e-03
-#&gt;   [749] 3.09557e-03
+#&gt;   [745] 5.97384e-15
+#&gt;   [746] 4.56944e-14
+#&gt;   [747] 3.85372e-03
+#&gt;   [748] 1.02610e-13
+#&gt;   [749] 1.10245e-06
 #&gt;   -------
 #&gt;   seqinfo: 25 sequences (1 circular) from hg38 genome</code></pre>
 <p>We can repeat this many times to create many samples via <code>replicate()</code>. We are sub-sampling gene sets without evidence of DE to have the same size as DE gene set, because for each set we want to how different the ATAC peaks around these different sets assuming the number of DE genes is fixed. The sampling of the non-DE genes is done without replacement so each replication produces a different set to compare. By replicating the sub-sampling multiple times, we minimize the variance on the
